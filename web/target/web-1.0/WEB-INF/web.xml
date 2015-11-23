@@ -1,0 +1,282 @@
+
+    <web-app version="3.0"
+             xmlns="http://java.sun.com/xml/ns/javaee"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<display-name>Portal</display-name>
+
+    <!-- Define the default CSS Theme -->
+	<context-param>
+		<param-name>csstheme</param-name>
+		<param-value>vms_strecth</param-value>
+	</context-param>
+    <context-param>
+		<param-name>mobi8url</param-name>
+		<param-value>http://10.151.70.92/dien-dan/mvnforum/listthreads?forum=1</param-value>
+	</context-param>
+	<!-- Define the basename for a resource bundle for I18N -->
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+		<param-value>ApplicationResources</param-value>
+	</context-param>
+	<!--
+		Fallback locale if no bundles found for browser's preferred locale
+	-->
+	<!--
+		Force a single locale using param-name
+		'javax.servlet.jsp.jstl.fmt.locale'
+	-->
+	<context-param>
+		<param-name>javax.servlet.jsp.jstl.fmt.fallbackLocale</param-name>
+		<param-value>vi</param-value>
+	</context-param>
+	<!-- Context Configuration locations for Spring XML files -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+            classpath:/applicationContext-*.xml
+            /WEB-INF/applicationContext*.xml
+            /WEB-INF/security.xml
+        </param-value>
+	</context-param>
+    <filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+    <filter>
+        <filter-name>exportFilter</filter-name>
+        <filter-class>org.displaytag.filter.ResponseOverrideFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>lazyLoadingFilter</filter-name>
+		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+    <filter>
+		<filter-name>localeFilter</filter-name>
+		<filter-class>com.banvien.portal.vms.filter.LocaleFilter</filter-class>
+	</filter>
+
+	<filter>
+		<filter-name>rewriteFilter</filter-name>
+		<filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>
+		<init-param>
+			<param-name>logLevel</param-name>
+			<param-value>log4j</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>securityFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+		<init-param>
+			<param-name>targetBeanName</param-name>
+			<param-value>springSecurityFilterChain</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
+	</filter>
+
+    <filter>
+        <filter-name>pageViewFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetBeanName</param-name>
+            <param-value>pageViewBean</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>shopperAccessFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetBeanName</param-name>
+            <param-value>shopperAccessBean</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>lazyLoadingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>securityFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+    <filter-mapping>
+        <filter-name>exportFilter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+    <filter-mapping>
+        <filter-name>pageViewFilter</filter-name>
+        <url-pattern>/detail.html</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>shopperAccessFilter</filter-name>
+        <url-pattern>*.html</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter>
+	    <filter-name>cacheFilter</filter-name>
+	    <filter-class>com.opensymphony.oscache.web.filter.CacheFilter</filter-class>
+	    <init-param>
+	        <param-name>time</param-name>
+	        <param-value>600</param-value>
+	    </init-param>
+	</filter>
+	<!-- Commented out this filter for setting expired header -->
+	<filter>
+		<filter-name>ExpiresFilter</filter-name>
+		<filter-class>org.apache.catalina.filters.ExpiresFilter</filter-class>
+		<init-param>
+		   <param-name>ExpiresByType image</param-name>
+		   <param-value>access plus 1 weeks</param-value>
+		</init-param>
+		<init-param>
+		   <param-name>ExpiresByType text/css</param-name>
+		   <param-value>access plus 1 weeks</param-value>
+		</init-param>
+		<init-param>
+		   <param-name>ExpiresByType application/javascript</param-name>
+		   <param-value>access plus 1 weeks</param-value>
+		</init-param>
+        <init-param>
+		   <param-name>ExpiresByType application/x-font-ttf</param-name>
+		   <param-value>access plus 1 years</param-value>
+		</init-param>
+        <init-param>
+		   <param-name>ExpiresByType application/vnd.ms-fontobject</param-name>
+		   <param-value>access plus 1 years</param-value>
+		</init-param>
+		<init-param>
+		 <param-name>ExpiresExcludedResponseStatusCodes</param-name>
+		 <param-value>302, 500, 503</param-value>
+		</init-param>
+	</filter>
+    <filter-mapping>
+		<filter-name>cacheFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>localeFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+    <filter-mapping>
+		<filter-name>rewriteFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<!-- Commented out this filter for setting expired header -->
+	 <filter-mapping>
+	 <filter-name>ExpiresFilter</filter-name>
+	 <url-pattern>/*</url-pattern>
+	 <dispatcher>REQUEST</dispatcher>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.banvien.portal.vms.listener.StartupListener</listener-class>
+	</listener>
+    <listener>
+        <listener-class>com.banvien.portal.vms.listener.UserCounterListener</listener-class>
+    </listener>
+	<servlet>
+	    <servlet-name>DownloadFileServlet</servlet-name>
+	    <servlet-class>com.banvien.portal.vms.webapp.jcr.DownloadFileServlet</servlet-class>
+  	</servlet>
+
+    <servlet-mapping>
+        <servlet-name>DownloadFileServlet</servlet-name>
+        <url-pattern>/repository/*</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+
+	<!-- Dispatching handled by StaticFilter -->
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>*.html</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>net.fckeditor.connector.ConnectorServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<url-pattern>/ckeditor/filemanager/connectors/*</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>120</session-timeout>
+        <tracking-mode>COOKIE</tracking-mode>
+	</session-config>
+
+	<welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>400</error-code>
+		<location>/index.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/403.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/404.jsp</location>
+	</error-page>
+
+</web-app>

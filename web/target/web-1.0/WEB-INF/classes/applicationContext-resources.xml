@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd">
+    
+    <!-- For mail settings and future properties files -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                 <value>classpath:portal.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- JNDI DataSource for J2EE environments -->
+    <!--<jee:jndi-lookup id="dataSource" jndi-name="java:MySqlDS"/>
+<bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager" />
+
+    -->
+
+    <bean
+            id="dataSource"
+            class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property
+                name="driverClassName"
+                value="${jdbc.driverClassName}" />
+        <property
+                name="url"
+                value="${jdbc.url}" />
+        <property
+                name="username"
+                value="${jdbc.username}" />
+        <property
+                name="password"
+                value="${jdbc.password}" />
+    </bean>
+    
+    <!--<bean id="dataSource" class="com.m" destroy-method="close">-->
+        <!--<property name="driverClassName" value="${jdbc.driverClassName}"/>-->
+        <!--<property name="url" value="${jdbc.url}"/>-->
+        <!--<property name="username" value="${jdbc.username}"/>-->
+        <!--<property name="password" value="${jdbc.password}"/>-->
+        <!--<property name="initialSize" value="10"/>-->
+        <!--<property name="maxActive" value="120"/>-->
+        <!--<property name="maxWait" value="120000"/>-->
+        <!--<property name="maxIdle" value="10"/>-->
+        <!--<property name="testOnBorrow" value="true"/>-->
+        <!--<property name="testWhileIdle" value="false"/>-->
+        <!--<property name="testOnReturn" value="false"/>-->
+        <!--<property name="minEvictableIdleTimeMillis" value="60000"/>-->
+        <!--<property name="timeBetweenEvictionRunsMillis" value="30000"/>-->
+        <!--<property name="numTestsPerEvictionRun" value="10" />-->
+        <!--<property name="poolPreparedStatements" value="false"/>-->
+        <!--<property name="defaultAutoCommit" value="false"/>-->
+        <!--<property name="removeAbandoned" value="true"/>-->
+        <!--<property name="removeAbandonedTimeout" value="60" />-->
+        <!--<property name="validationQuery" value="select 1 from USERSESSION"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">-->
+        <!--<property name="URL" value="${jdbc.url}"/>-->
+        <!--<property name="user" value="${jdbc.username}"/>-->
+        <!--<property name="password" value="${jdbc.password}"/>-->
+        <!--<property name="connectionCachingEnabled" value="true"/>-->
+        <!--<property name="connectionCacheProperties">-->
+           <!--<props merge="default">-->
+                <!--<prop key="MinLimit">3</prop>-->
+                <!--<prop key="MaxLimit">100</prop>-->
+          <!--</props>-->
+       <!--</property>-->
+    <!--</bean>-->
+
+</beans>

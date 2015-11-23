@@ -1,0 +1,129 @@
+.giaitri_skin {
+
+}
+
+.giaitri_skin .header{
+    background: url(images/giaitri_header_bk.png) no-repeat scroll bottom left;
+    width: 420px;
+    height: 40px;
+}
+
+.giaitri_skin .body {
+    padding: 5px 5px 0px 5px;
+    border: 1px solid #d1d1d1;
+    width: 405px;
+}
+
+.giaitri_skin .horizontal {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.giaitri_skin .horizontal li {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 128px;
+}
+
+.giaitri_skin .horizontal li a {
+    color: #333333;
+}
+
+.giaitri_skin .text_red {
+    color:#ff0008;
+}
+
+.giaitri_skin .chan_dung {
+    text-align: justify;
+}
+
+.giaitri_skin .chan_dung .thumb{
+    background: url(images/guong_tieu_bieu_thumb_bk.png) no-repeat scroll top left;
+    width: 216px;
+    height: 187px;
+    float: left;
+    margin-left:-10px;
+}
+
+.giaitri_skin .chan_dung .thumb img {
+    height: 156px;
+    margin-left: 13px;
+    margin-top: 16px;
+    width: 190px;
+}
+
+.giaitri_skin .chan_dung .name {
+    font-size: 18px;
+    font-weight: bold;
+    color:#ff0008;
+}
+
+.giaitri_skin .chan_dung  .position {
+    background: url(images/chandung_name_bk.png) scroll top left no-repeat;
+    width: 189px;
+    height: 29px;
+    line-height: 24px;
+    font-weight: bold;
+    color:#2d2d2d;
+    margin-left:205px;
+}
+
+.giaitri_skin .chan_dung .quote {
+    color:#005ab2;
+    font-weight: bold;
+}
+
+.giaitri_skin .more {
+
+}
+
+.giaitri_skin .more a {
+    background:url(images/news_icon.png) no-repeat scroll top left;
+    padding-left:10px;
+    color:#005ab2;
+    font-weight: bold;
+}
+
+.giaitri_skin .mobi8 {
+
+}
+
+.giaitri_skin .mobi8  ul {
+    list-style: none;
+}
+
+.giaitri_skin .mobi8 .thumb {
+    float: left;
+
+}
+
+.giaitri_skin .mobi8 .thumb img {
+    width: 54px;
+    height: 52px;
+}
+
+.giaitri_skin .mobi8 .text {
+    float: left;
+    width:330px;
+    margin-left: 10px;
+    color:#005ab2;
+    font-weight: bold;
+}
+
+.giaitri_skin .mobi8 .modified_date {
+    color:#2d2d2d;
+    font-weight: normal;
+}
+
+.giaitri_skin .mobi8 .like {
+    color:#2d2d2d;
+    font-weight: normal;
+}
+
+.giaitri_skin .footer {
+    clear:both;
+    margin-bottom: 10px;
+}

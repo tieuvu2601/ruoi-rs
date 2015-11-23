@@ -1,0 +1,15 @@
+.no_skin {
+    margin-bottom: 5px;
+}
+
+.no_skin .header{
+    display: none;
+}
+
+.no_skin .body {
+}
+
+.no_skin .footer {
+    display: none;
+    clear:both;
+}

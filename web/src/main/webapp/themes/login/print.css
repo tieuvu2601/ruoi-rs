@@ -1,0 +1,34 @@
+#header, #nav, #sub, #sub h2, #footer, #local {
+    display: none;
+}
+
+#main, #content {
+    width: 900px;
+}
+
+.noprint {
+	display: none;
+}
+
+.pathway {
+    padding-left: 35px !important;
+}
+
+.btn {
+    display: none;
+}
+
+#proficiency-table .border-lrb {
+    border: none;
+}
+.custom-select {
+	background:none !important;
+	border:none !important;
+}
+.custom-select-button-icon {
+	background:none !important;
+}
+
+.custom-select-status {
+    padding: 0.1em 0px;
+}

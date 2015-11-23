@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+  <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+    <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="%c %d{ISO8601} -- %p -- %m%n"/>
+    </layout>
+  </appender>
+
+  <appender name="DEBUG" class="org.apache.log4j.RollingFileAppender">
+     <param name="File" value="${user.home}/portal/logs/jcr-migrate.log"/>
+     <param name="Append" value="true"/>
+     <param name="MaxFileSize" value="5MB"/>
+     <param name="MaxBackupIndex" value="2"/>
+    <layout class="org.apache.log4j.PatternLayout">
+          <param name="ConversionPattern" value="%c %d{ISO8601} -- %p -- %m%n"/>
+    </layout>
+    <filter class="org.apache.log4j.varia.LevelRangeFilter">
+      <param name="LevelMin" value="DEBUG" />
+    </filter>
+  </appender>
+
+  <root>
+  	<appender-ref ref="STDOUT"/>
+    <appender-ref ref="DEBUG"/>
+  </root>
+
+</log4j:configuration>

@@ -1,0 +1,54 @@
+.thongbao_skin {
+    margin-bottom: 5px;
+}
+
+.thongbao_skin .header{
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0px 20px;
+    line-height: 40px;
+}
+
+.thongbao_skin .body {
+    background: url(images/thongbao_body_bk.png) repeat-y scroll top left;
+    width: 300px;
+    padding: 20px 0px;
+    color: #010101;
+}
+
+.thongbao_skin ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.thongbao_skin li {
+    padding: 0px 10px;
+}
+
+.thongbao_skin .calendar {
+    background: url(images/thongbao_calendar_bk.png) no-repeat scroll top left;
+    width: 35px;
+    height: 35px;
+    color:#010101;
+    font-size:12px;
+    line-height: 12px;
+    padding-top: 9px;
+    text-align: center;
+    float: left;
+}
+
+.thongbao_skin .text {
+    float:left;
+    width: 220px;
+    margin-left: 5px;
+    text-align: justify;
+}
+
+.thongbao_skin .text a {
+    color: #010101;
+}
+
+.thongbao_skin .footer {
+    margin-bottom: 5px;
+}

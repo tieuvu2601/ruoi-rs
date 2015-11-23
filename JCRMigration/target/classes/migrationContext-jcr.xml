@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+    
+        
+    <bean id="repository" class="org.apache.jackrabbit.rmi.repository.URLRemoteRepository">
+        <constructor-arg value="http://localhost:8080/jackrabbit/rmi"/>
+    </bean>
+     
+	<!-- rmi server -->
+  
+	
+	<bean id="rmiRegistry" class="org.springframework.remoting.rmi.RmiRegistryFactoryBean"/>
+  
+	<bean id="rmiServer" class="org.springmodules.jcr.jackrabbit.RmiServerRepositoryFactoryBean">
+		  <property name="repository" ref="repository"/>
+		  <property name="remoteAdapterFactory">
+		    <bean class="org.apache.jackrabbit.rmi.server.ServerAdapterFactory"/>
+		  </property>
+		  <property name="registry" ref="rmiRegistry"/>
+		  <property name="rmiName" value="jackrabbit.repository"/>
+	</bean>
+	
+	
+	 
+	<bean id="rmiClientFactory" class="org.apache.jackrabbit.rmi.client.ClientRepositoryFactory"/>
+	<bean id="rmiClient" factory-bean="rmiClientFactory" factory-method="getRepository" depends-on="rmiServer">
+		<constructor-arg value="rmi://localhost:1097/jackrabbit.repository"/>
+	</bean>
+	  
+    <bean id="jcrSessionFactory" class="org.springmodules.jcr.jackrabbit.JackrabbitSessionFactory">
+        <property name="repository" ref="rmiClient" />
+        
+        <property name="credentials">
+		   <bean class="javax.jcr.SimpleCredentials">
+		    <constructor-arg index="0" value="admin"/>
+		    <!-- create the credentials using a bean factory -->
+		    <constructor-arg index="1">
+		     <bean factory-bean="password"
+		          factory-method="toCharArray"/>
+		    </constructor-arg>
+		   </bean>
+		  </property>
+		        
+    </bean>
+<!-- create the password to return it as a char[] -->
+<bean id="password" class="java.lang.String">
+  <constructor-arg index="0" value="admin"/>
+</bean>
+    <bean id="jcrTemplate" class="org.springmodules.jcr.JcrTemplate">
+        <property name="sessionFactory" ref="jcrSessionFactory" />
+        <property name="allowCreate" value="true" />
+    </bean>
+    
+    <bean id="jcrContent" name="jcrContent" class="com.banvien.jcr.api.JcrContentImpl">
+        <property name="template" ref="jcrTemplate" />
+        <property name="webdavContextPath" value="/repository" />
+    </bean>
+    
+</beans>

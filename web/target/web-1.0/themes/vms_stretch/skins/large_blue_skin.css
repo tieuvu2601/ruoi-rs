@@ -1,0 +1,88 @@
+.large_blue_skin {
+
+}
+
+.large_blue_skin .header{
+    background: url(images/large_blue_skin_header_bk.png) no-repeat scroll top left;
+    height: 40px;
+    width: 696px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial;
+    padding-left: 40px;
+    line-height: 30px;
+    color:#FFFFFF;
+}
+
+.large_blue_skin .header a {
+    color:#ffffff;
+}
+
+.large_blue_skin .header .home_icon {
+    vertical-align: middle;
+}
+
+.large_blue_skin .body {
+    background: #ffffff;
+    border: 1px solid #d1d1d1;
+    border-top: none;
+    width: 694px;
+}
+.large_blue_skin .body .content_item .content_title {
+    color: #124ea6;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.large_blue_skin .body .content_item .text {
+    text-align: justify;
+}
+.large_blue_skin .body .title a {
+    color: #124ea6;
+    font-weight: bold;
+}
+
+.large_blue_skin .body_content {
+    padding: 0px 5px;
+}
+
+.large_blue_skin .more_items {
+
+}
+
+.large_blue_skin .more_items .thumbnail {
+    float: left;
+    padding:0px 5px 5px 0px;
+}
+.large_blue_skin .more_items .thumbnail img {
+    width: 120px;
+    height: 80px;
+}
+
+.large_blue_skin .more_items .brief {
+}
+
+.large_blue_skin  .body .modified_date {
+    color:#8e8e8e;
+    font-size: 11px;
+    font-weight: normal;
+}
+.large_blue_skin .related_items .title {
+    background: url(images/related_item_bk.png) scroll top left repeat-x;
+    height: 30px;
+    line-height: 30px;
+    color: #0047ae;
+    font-size: 15px;
+}
+.large_blue_skin .related_items .more a {
+    color: #124ea6;
+}
+
+.large_blue_skin .related_items .more .text_red {
+    color:#f10012;
+}
+
+.large_blue_skin .footer {
+    clear:both;
+    margin-bottom: 5px;
+}

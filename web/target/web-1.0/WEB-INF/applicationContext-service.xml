@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<aop:config>
+        <aop:advisor id="managerSaveTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.save*(..))" order="2"/>
+        <aop:advisor id="managerAddTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.add*(..))" order="2"/>
+        <aop:advisor id="managerUpdateTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.update*(..))" order="2"/>
+        <aop:advisor id="managerDeleteTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.delete*(..))" order="2"/>
+        <aop:advisor id="managerImportTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Service.import*(..))" order="2"/>
+    </aop:config>
+
+	<tx:advice id="txAdvice">
+        <tx:attributes>
+            <!-- Read-only commented out to make things easier for end-users -->
+            <!-- http://issues.appfuse.org/browse/APF-556 -->
+            <!--tx:method name="get*" read-only="true"/-->
+            <tx:method name="*" rollback-for="com.banvien.portal.vms.exception.DuplicateException"/>
+        </tx:attributes>
+    </tx:advice>
+	
+    <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:mail.properties</value>
+            </list>
+        </property>
+    </bean>
+    
+	<bean id="mailEngine" class="com.banvien.portal.vms.service.MailEngine">
+        <property name="velocityEngine" ref="velocityEngine"/>
+        <property name="emailSender" ref="emailSender"/>
+    </bean>
+
+    <!-- Configure Velocity for sending e-mail -->
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="velocityProperties">
+            <props>
+                <prop key="resource.loader">class</prop>
+                <prop key="class.resource.loader.class">
+                    org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+                </prop>
+                <prop key="velocimacro.library"></prop>
+            </props>
+        </property>
+    </bean>
+	<!-- Configure e-mail sender for sending e-mail -->
+	<bean id="emailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host}"/>
+        <property name="defaultEncoding" value="UTF-8"/> 
+        <!-- Uncomment if you need to authenticate with your SMTP Server -->
+        <property name="username" value="${mail.username}"/>
+        <property name="password" value="${mail.password}"/>
+        <property name="port" value="${mail.port}"/>
+        <property name="javaMailProperties">
+            <value>
+                mail.smtp.auth=${mail.smtp.auth}
+            </value>
+        </property>
+    </bean>
+    
+	<bean id="roleService" class="com.banvien.portal.vms.service.RoleServiceImpl">
+        <property name="roleDAO" ref="roleDAO"/>
+    </bean>
+    <bean id="userGroupService" class="com.banvien.portal.vms.service.UserGroupServiceImpl">
+        <property name="userGroupDAO" ref="userGroupDAO"/>
+    </bean>
+    <bean id="authoringTemplateService" class="com.banvien.portal.vms.service.AuthoringTemplateServiceImpl">
+        <property name="authoringTemplateDAO" ref="authoringTemplateDAO"/>
+    </bean>
+    <bean id="categoryService" class="com.banvien.portal.vms.service.CategoryServiceImpl">
+        <property name="categoryDAO" ref="categoryDAO"/>
+    </bean>
+    <bean id="commentService" class="com.banvien.portal.vms.service.CommentServiceImpl">
+        <property name="commentDAO" ref="commentDAO"/>
+    </bean>
+    <bean id="contentService" class="com.banvien.portal.vms.service.ContentServiceImpl">
+        <property name="noOfDateTracking" value="${no.of.date.tracking}"/>
+        <property name="contentDAO" ref="contentDAO"/>
+        <property name="contentCategoryDAO"  ref="contentCategoryDAO"/>
+        <property name="contentDepartmentDAO" ref="contentDepartmentDAO"/>
+    </bean>
+    <bean id="contentCategoryService" class="com.banvien.portal.vms.service.ContentCategoryServiceImpl">
+        <property name="contentCategoryDAO"  ref="contentCategoryDAO"/>
+    </bean>
+
+    <bean id="contentDepartmentService" class="com.banvien.portal.vms.service.ContentDepartmentServiceImpl">
+        <property name="contentDepartmentDAO"  ref="contentDepartmentDAO"/>
+    </bean>
+    <bean id="departmentService" class="com.banvien.portal.vms.service.DepartmentServiceImpl">
+        <property name="departmentDAO" ref="departmentDAO"/>
+    </bean>
+    <bean id="renderingTemplateService" class="com.banvien.portal.vms.service.RenderingTemplateServiceImpl">
+        <property name="renderingTemplateDAO" ref="renderingTemplateDAO"/>
+    </bean>
+    <bean id="trackingService" class="com.banvien.portal.vms.service.TrackingServiceImpl">
+        <property name="trackingDAO" ref="trackingDAO"/>
+    </bean>
+    <bean id="userService" class="com.banvien.portal.vms.service.UserServiceImpl">
+        <property name="userDAO" ref="userDAO"/>
+        <property name="userRoleDAO" ref="userRoleDAO"/>
+    </bean>
+    <bean id="userRoleService" class="com.banvien.portal.vms.service.UserRoleServiceImpl">
+        <property name="userRoleDAO" ref="userRoleDAO"/>
+        <property name="roleDAO" ref="roleDAO"/>
+    </bean>
+
+    <bean id="pageService" class="com.banvien.portal.vms.service.PageServiceImpl">
+        <property name="pageDAO" ref="pageDAO"/>
+    </bean>
+    <bean id="userSessionService" class="com.banvien.portal.vms.service.UserSessionServiceImpl">
+        <property name="userSessionDAO" ref="userSessionDAO"/>
+    </bean>
+    
+    <bean id="authoringTemplateUserService" class="com.banvien.portal.vms.service.AuthoringTemplateUserServiceImpl">
+        <property name="authoringTemplateUserDAO" ref="authoringTemplateUserDAO"/>
+    </bean>
+    
+    <bean id="authoringTemplateUGroupService" class="com.banvien.portal.vms.service.AuthoringTemplateUGroupServiceImpl">
+        <property name="authoringTemplateUGroupDAO" ref="authoringTemplateUGroupDAO"/>
+    </bean>
+    
+    <bean id="authoringTemplateShowAllService" class="com.banvien.portal.vms.service.AuthoringTemplateShowAllServiceImpl">
+        <property name="authoringTemplateShowAllDAO" ref="authoringTemplateShowAllDAO"/>
+    </bean>
+    
+    <bean id="categoryUserService" class="com.banvien.portal.vms.service.CategoryUserServiceImpl">
+        <property name="categoryUserDAO" ref="categoryUserDAO"/>
+    </bean>
+    
+    <bean id="categoryUserGroupService" class="com.banvien.portal.vms.service.CategoryUserGroupServiceImpl">
+        <property name="categoryUserGroupDAO" ref="categoryUserGroupDAO"/>
+    </bean>
+    
+    <bean id="categoryShowAllService" class="com.banvien.portal.vms.service.CategoryShowAllServiceImpl">
+        <property name="categoryShowAllDAO" ref="categoryShowAllDAO"/>
+    </bean>
+    
+    <bean id="reportService" class="com.banvien.portal.vms.service.ReportServiceImpl">
+        <property name="contentDAO" ref="contentDAO"/>
+    </bean>
+
+    <bean id="threadMobi8Service" class="com.banvien.portal.vms.service.ThreadMobi8ServiceImpl">
+         <property name="rss" value="${rss2.url}"></property>
+    </bean>
+    <bean id="pageViewBean" class="com.banvien.portal.vms.filter.PageViewFilter">
+        <property name="trackingService" ref="trackingService"/>
+    </bean>
+    <bean id="smsService" class="com.banvien.portal.vms.service.SmsServiceImpl">
+        <property name="smsDAO" ref="smsDAO"/>
+    </bean>
+
+    <bean id="userDepartmentACLService" class="com.banvien.portal.vms.service.UserDepartmentACLServiceImpl">
+        <property name="userDepartmentACLDAO" ref="userDepartmentACLDAO"/>
+    </bean>
+    <bean id="announcementCategoryService" class="com.banvien.portal.vms.service.AnnouncementCategoryServiceImpl">
+        <property name="announcementCategoryDAO" ref="announcementCategoryDAO"/>
+    </bean>
+
+    <bean id="feedbackCategoryService" class="com.banvien.portal.vms.service.FeedbackCategoryServiceImpl">
+        <property name="feedbackCategoryDAO" ref="feedbackCategoryDAO"/>
+    </bean>
+    <bean id="feedbackService" class="com.banvien.portal.vms.service.FeedbackServiceImpl">
+        <property name="feedbackDAO" ref="feedbackDAO"/>
+        <property name="smsDAO" ref="smsDAO"/>
+        <property name="departmentDAO" ref="departmentDAO"/>
+    </bean>
+    <bean id="feedbackReplyService" class="com.banvien.portal.vms.service.FeedbackReplyServiceImpl">
+        <property name="feedbackReplyDAO" ref="feedbackReplyDAO"/>
+    </bean>
+
+    <bean id="shopperAccessBean" class="com.banvien.portal.vms.filter.ShopperAccessFilter">
+        <property name="shopperRangeIPs" value="${shopperRangeIPs}"/>
+        <property name="shopperURLs">
+            <value>
+                <![CDATA[/daily/**]]>
+            </value>
+        </property>
+    </bean>
+</beans>

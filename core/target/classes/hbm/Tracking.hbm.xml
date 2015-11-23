@@ -1,0 +1,27 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.Tracking" table="PortalTracking">
+
+		<id name="trackingID">
+			<generator class="sequence">
+                <param name="sequence">PORTALTRACKING_SEQ</param>
+            </generator>
+		</id>
+
+		<property name="views" column="Views"/>
+
+        <property name="likes" column="Likes"/>
+
+        <property name="dislike" column="Dislike"/>
+	
+		<property name="trackingDate" column="TrackingDate"/>
+
+        <many-to-one name="content" column="ContentID"/>
+
+        <property  name="code" column="code"/>
+
+	</class>
+</hibernate-mapping>

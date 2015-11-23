@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--VMS-->
+    <bean id="contextSource"
+          class="org.springframework.ldap.core.support.LdapContextSource">
+        <property name="url" value="ldap://10.151.70.248:389" />
+        <property name="base" value="ou=c2,dc=vms,dc=com,dc=vn" />
+        <property name="userDn" value="CN=portalcenter2,OU=MailSuDungChoCacChuongTrinh,OU=P.CNTT,OU=C2,DC=vms,DC=com,DC=vn" />
+        <property name="password" value="portalcenter21016"/>
+        <property name="pooled" value="false" />
+    </bean>
+    <!--<bean id="contextSource"-->
+          <!--class="org.springframework.ldap.core.support.LdapContextSource">-->
+        <!--<property name="url" value="ldap://10.151.70.248:389" />-->
+        <!--<property name="base" value="ou=c2,dc=vms,dc=com,dc=vn" />-->
+        <!--<property name="userDn" value="CN=Lien Tan Phuoc,OU=P.CNTT,OU=C2,DC=vms,DC=com,DC=vn" />-->
+        <!--<property name="password" value="phuoclt1604"/>-->
+        <!--<property name="pooled" value="false" />-->
+    <!--</bean>-->
+    <!--<bean id="contextSource"-->
+          <!--class="org.springframework.ldap.core.support.LdapContextSource">-->
+        <!--<property name="url" value="${ldapURL}" />-->
+        <!--<property name="base" value="o=dcs,ou=users,ou=system" />-->
+        <!--<property name="userDn" value="uid=admin,ou=system" />-->
+        <!--<property name="password" value="secret"/>-->
+        <!--<property name="pooled" value="false" />-->
+
+    <!--</bean>-->
+    <bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
+        <constructor-arg ref="contextSource" />
+    </bean>
+    <!--<bean id="ldapUserLookup"-->
+          <!--class="com.banvien.portal.vms.security.LdapUserLookupImpl">-->
+        <!--<property name="ldapTemplate" ref="ldapTemplate" />-->
+        <!--<property name="userDNPrefix" value="uid"/>-->
+        <!--<property name="lastNameAttribute" value="sn"/>-->
+        <!--<property name="userObjectClasses" value="person"/>-->
+
+    <!--</bean>-->
+
+    <bean id="ldapUserLookup"
+          class="com.banvien.portal.vms.security.LdapUserLookupImpl">
+        <property name="ldapTemplate" ref="ldapTemplate" />
+        <property name="userDNPrefix" value="sAMAccountName"/>
+        <property name="lastNameAttribute" value="sn"/>
+        <property name="userObjectClasses" value="person"/>
+
+    </bean>
+
+    <bean id="userSecurityAdvice" class="com.banvien.portal.vms.security.MyUserDetailsService">
+    	<property name="userService" ref="userService"/>
+        <property name="roleDAO" ref="roleDAO"/>
+        <property name="identityService" ref="identityService"/>
+        <property name="departmentDAO" ref="departmentDAO"/>
+        <property name="userGroupDAO" ref="userGroupDAO"/>
+        <property name="ldapUserLookup" ref="ldapUserLookup"/>
+    </bean>
+
+</beans>

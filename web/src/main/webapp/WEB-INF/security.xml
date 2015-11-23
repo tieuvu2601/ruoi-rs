@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+              http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+    <http auto-config="false" lowercase-comparisons="true" access-decision-manager-ref="accessDecisionManager">
+        <intercept-url pattern="/images/**" filters="none"/>
+        <intercept-url pattern="/styles/**" filters="none"/>
+        <intercept-url pattern="/scripts/**" filters="none"/>
+        <intercept-url pattern="/themes/**" filters="none"/>
+        <intercept-url pattern="/fckeditor/**" filters="none"/>
+        <intercept-url pattern="/ckeditor/**" filters="none"/>
+        <intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+
+        <intercept-url pattern="/admin/**" access="LOGON" />
+        <intercept-url pattern="/mysite/**" access="LOGON" />
+
+        <intercept-url pattern="/admin/authoringtemplate/**" access="AUTHORING_TEMPLATE"/>
+        <intercept-url pattern="/admin/category/**" access="CATEGORY"/>
+        <intercept-url pattern="/admin/content/**" access="CONTENT"/>
+        <intercept-url pattern="/admin/department/**" access="DEPARTMENT"/>
+        <intercept-url pattern="/admin/renderingtemplate/**" access="RENDERING_TEMPLATE"/>
+        <intercept-url pattern="/admin/role/**" access="ROLE"/>
+        <intercept-url pattern="/admin/user/**" access="USER"/>
+        <intercept-url pattern="/admin/usergroup/**" access="USERGROUP"/>
+
+
+        <intercept-url pattern="/**" filters="none" />
+
+
+
+        <custom-filter position="PRE_AUTH_FILTER" ref="myAuthenticationFilter" />
+        <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error=1" login-processing-url="/j_security_check"/>
+        <logout logout-url="/logout.jsp" invalidate-session="false" success-handler-ref="myLogoutSuccessHandler"/>
+        <remember-me user-service-ref="userSecurityAdvice" key="e37f4b31-0c45-11dd-bd0b-0800200c9a66"/>
+		<session-management invalid-session-url="/index.html" session-authentication-strategy-ref="concurrentSessionControlStrategy"/>
+
+    </http>
+
+    <beans:bean id="sessionFixtationStrategy" class="org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy">
+    	<beans:property name="alwaysCreateSession" value="false"></beans:property>
+    </beans:bean>
+    
+    <beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
+
+    <beans:bean id="concurrentSessionControlStrategy" class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">
+	  <beans:constructor-arg name="sessionRegistry" ref="sessionRegistry" />
+	  <beans:property name="maximumSessions" value="5" />
+	</beans:bean>
+    
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider user-service-ref="userSecurityAdvice">
+            <password-encoder ref="passwordEncoder"/>
+        </authentication-provider>   
+    </authentication-manager>
+    
+    <beans:bean id="myLogoutSuccessHandler" class="com.banvien.portal.vms.security.MyLogoutSuccessHandler">
+		<beans:property name="logoutSuccessUrl" value="/login.jsp?action=logout"></beans:property>
+	</beans:bean>
+    
+	<beans:bean id="myAuthenticationFilter" class="com.banvien.portal.vms.security.AuthenticationProcessingFilterExtends">
+		<beans:property name="filterProcessesUrl" value="/j_security_check"></beans:property>
+		<beans:property name="authenticationManager" ref="authenticationManager"></beans:property>
+		<beans:property name="authenticationSuccessHandler" ref="myAuthenticationSuccessHandler"></beans:property>
+		<beans:property name="authenticationFailureHandler" ref="myAuthenticationFailureHandler"></beans:property>
+		<beans:property name="allowSessionCreation" value="false"/>
+	</beans:bean>
+
+	<beans:bean id="myAuthenticationSuccessHandler" class="com.banvien.portal.vms.security.MyAuthenticationSuccessHandler">
+		<beans:property name="alwaysUseDefaultTargetUrl" value="false"/>
+        <beans:property name="defaultTargetUrl" value="/admin/content/list.html"/>
+	</beans:bean>
+
+	<beans:bean id="myAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+		<beans:property name="defaultFailureUrl" value="/login.jsp?error=1"/>
+		<beans:property name="allowSessionCreation" value="false"/>
+	</beans:bean>
+    <!-- Override the default password-encoder (SHA) by Triple DES -->
+    <beans:bean id="passwordEncoder" class="com.banvien.portal.vms.security.MyPasswordEncoder">
+        <beans:property name="ldapUserLookup" ref="ldapUserLookup"/>
+        <beans:property name="userDAO" ref="userDAO"/>
+    </beans:bean>
+
+	<!-- ExceptionTranslationFilter: Handles any AccessDeniedException and AuthenticationException thrown within the filter chain.-->
+	<beans:bean id="exceptionTranslationFilter" class="org.springframework.security.web.access.ExceptionTranslationFilter">
+	  <beans:property name="authenticationEntryPoint">
+	    <beans:bean class="org.springframework.security.web.authentication.AuthenticationProcessingFilterEntryPoint">
+	      <beans:property name="loginFormUrl" value="/login.jsp?action=exc"/>
+	      <beans:property name="forceHttps" value="false"/>
+	    </beans:bean>
+	  </beans:property>
+	  <beans:property name="accessDeniedHandler">
+	    <beans:bean class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+	      <beans:property name="errorPage" value="/accessdenied.jsp"/>
+	    </beans:bean>
+	  </beans:property>
+	</beans:bean>
+
+	<beans:bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+        <beans:property name="allowIfAllAbstainDecisions">
+	        <beans:value>false</beans:value>
+		</beans:property>
+        <beans:property name="decisionVoters">
+            <beans:list>
+                <beans:ref local="roleVoter"/>
+                <beans:bean class="org.springframework.security.access.vote.AuthenticatedVoter"/>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
+        <beans:property name="rolePrefix">
+	        <beans:value/>
+        </beans:property>
+    </beans:bean>
+
+    <global-method-security>
+    </global-method-security>
+</beans:beans>

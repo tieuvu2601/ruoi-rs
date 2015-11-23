@@ -1,0 +1,10 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<p>
+    Bạn có bài viết mới yêu cầu xét duyệt [<a href="${targetUrl}"> Nhấn vào đây</a>] để xem chi tiết bài viết.
+</p>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.0//EN"
+    "http://tuckey.org/res/dtds/urlrewrite3.0.dtd">
+
+<urlrewrite>	
+    <rule>
+        <from>^/trang-chu.html</from>
+        <to type="forward">/index.html</to>
+    </rule>
+    <rule>
+        <from>^/tin-nong/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=tin-tuc&amp;contentID=$1&amp;hot=1</to>
+    </rule>
+    <rule>
+        <from>^/tin-doc-nhieu/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=tin-tuc&amp;contentID=$1</to>
+    </rule>
+    <rule>
+        <from>^/thong-diep-giam-doc/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=thong-diep-giam-doc&amp;contentID=$1</to>
+    </rule>
+    <rule>
+        <from>^/tin-quan-trong/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=tin-quan-trong&amp;contentID=$1</to>
+    </rule>
+    <rule>
+        <from>^/tin-tuc/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/page.html?authoringTemplate=tin-tuc&amp;category=$1</to>
+    </rule>
+    <rule>
+        <from>^/tin-tuc/([a-zA-Z0-9_-]+)/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=tin-tuc&amp;category=$1&amp;contentID=$2</to>
+    </rule>
+    <rule>
+        <from>^/tin-tuc/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=tin-tuc&amp;contentID=$1</to>
+    </rule>
+    <rule>
+        <from>^/chan-dung/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=chan-dung&amp;contentID=$1</to>
+    </rule>
+    <rule>
+        <from>^/thong-bao/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=thong-bao&amp;contentID=$1</to>
+    </rule>
+    <rule>
+        <from>^/tai-lieu/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=tai-lieu&amp;contentID=$1</to>
+    </rule>
+    <rule>
+        <from>^/lich-cong-tac.html</from>
+        <to type="forward">/page.html?authoringTemplate=lich-cong-tac</to>
+    </rule>
+    <rule>
+        <from>^/lich-cong-tac/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=lich-cong-tac&amp;contentID=$1</to>
+    </rule>
+    <rule>
+        <from>^/servername</from>
+        <to type="forward">/serverinfo.html</to>
+    </rule>
+    <rule>
+        <from>^/tim-kiem.html</from>
+        <to type="forward">/search.html</to>
+    </rule>
+    <rule>
+        <from>^/tim-kiem/([0-9]+)/([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=$2&amp;contentID=$1</to>
+    </rule>
+    <rule>
+        <from>^/tin-luu-tru/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/search.html?authoringTemplate=tin-tuc&amp;month=$1&amp;crudaction=search</to>
+    </rule>
+
+    <rule>
+        <from>^/chi-tiet/([a-zA-Z0-9_-]+)/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=$1&amp;contentID=$2</to>
+    </rule>
+
+    <rule>
+        <from>^/phong-ban/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/page.html?authoringTemplate=thong-bao&amp;departmentID=$1</to>
+    </rule>
+
+    <rule>
+        <from>^/phong-ban/([0-9]+)/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=thong-bao&amp;departmentID=$1&amp;contentID=$2</to>
+    </rule>
+
+    <rule>
+        <from>^/chi-nhanh/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/page.html?authoringTemplate=thong-bao&amp;departmentID=$1</to>
+    </rule>
+
+    <rule>
+        <from>^/chi-nhanh/([0-9]+)/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/detail.html?authoringTemplate=thong-bao&amp;departmentID=$1&amp;contentID=$2</to>
+    </rule>
+    <rule>
+        <from>^/phan-hoi/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/xem-y-kien.html?pojo.feedbackID=$1</to>
+    </rule>
+
+    <rule>
+        <from>^/daily/index.html</from>
+        <to type="forward">/c2shopper/index.html</to>
+    </rule>
+    <rule>
+        <from>^/daily/chi-nhanh/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/pagec2shopper.html?authoringTemplate=thong-bao&amp;departmentID=$1</to>
+    </rule>
+    <rule>
+        <from>^/daily/chi-nhanh/([0-9]+)/([0-9]+)/([a-zA-Z0-9_-]+).html</from>
+        <to type="forward">/c2shopperdetail.html?authoringTemplate=thong-bao&amp;departmentID=$1&amp;contentID=$2</to>
+    </rule>
+
+</urlrewrite>
+

@@ -1,0 +1,19 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.UserDepartmentACL" table="PortalUserDepartmentACL">
+
+		<id name="userDepartmentACLID">
+			<generator class="sequence">
+                <param name="sequence">PortalUserDepartmentACL_SEQ</param>
+            </generator>
+		</id>
+
+		<many-to-one name="user" column="UserID"/>
+
+        <many-to-one name="department" column="DepartmentID"/>
+
+	</class>
+</hibernate-mapping>

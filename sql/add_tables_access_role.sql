@@ -1,0 +1,60 @@
+CREATE TABLE PortalAuthoringTemplateUser (
+  AuthoringTemplateUserID NUMBER PRIMARY KEY,
+  AuthoringTemplateID NUMBER NOT NULL,
+  UserID NUMBER NOT NULL
+);
+
+ALTER TABLE PortalAuthoringTemplateUser ADD CONSTRAINT FK_PortalATU_AuthoringTemplate FOREIGN KEY (AuthoringTemplateID) REFERENCES PortalAuthoringTemplate(AuthoringTemplateID);
+ALTER TABLE PortalAuthoringTemplateUser ADD CONSTRAINT FK_PortalATU_User FOREIGN KEY (UserID) REFERENCES PortalUser(UserID);
+CREATE SEQUENCE PortalATU_SEQ  MINVALUE 1 MAXVALUE 999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+
+CREATE TABLE PortalAuthoringTemplateUGroup (
+  AuthoringTemplateUGroupID NUMBER PRIMARY KEY,
+  AuthoringTemplateID NUMBER NOT NULL,
+  UserGroupID NUMBER NOT NULL
+);
+
+ALTER TABLE PortalAuthoringTemplateUGroup ADD CONSTRAINT FK_PortalATUG_AT FOREIGN KEY (AuthoringTemplateID) REFERENCES PortalAuthoringTemplate(AuthoringTemplateID);
+ALTER TABLE PortalAuthoringTemplateUGroup ADD CONSTRAINT FK_PortalATUG_UserGroup FOREIGN KEY (UserGroupID) REFERENCES PortalUserGroup(UserGroupID);
+CREATE SEQUENCE PortalATUG_SEQ  MINVALUE 1 MAXVALUE 999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+
+
+CREATE TABLE PortalAuthoringTemplateShowAll (
+  AuthoringTemplateShowAllID NUMBER PRIMARY KEY,
+  AuthoringTemplateID NUMBER NOT NULL,
+  DisplayAll VARCHAR2(1 CHAR) NULL
+);
+
+comment on column PortalAuthoringTemplateShowAll.DisplayAll is 'Y: display all; N: partial';
+
+ALTER TABLE PortalAuthoringTemplateShowAll ADD CONSTRAINT FK_PortalATShowAll_AT FOREIGN KEY (AuthoringTemplateID) REFERENCES PortalAuthoringTemplate(AuthoringTemplateID);
+CREATE SEQUENCE PortalATShowAll_SEQ  MINVALUE 1 MAXVALUE 999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+
+CREATE TABLE PortalCategoryUser (
+  CategoryUserID NUMBER PRIMARY KEY,
+  CategoryID NUMBER NOT NULL,
+  UserID NUMBER NOT NULL
+);
+
+ALTER TABLE PortalCategoryUser ADD CONSTRAINT FK_CategoryUser_Category FOREIGN KEY (CategoryID) REFERENCES PortalCategory(CategoryID);
+ALTER TABLE PortalCategoryUser ADD CONSTRAINT FK_CategoryUser_User FOREIGN KEY (UserID) REFERENCES PortalUser(UserID);
+CREATE SEQUENCE PortalCategoryUser_SEQ  MINVALUE 1 MAXVALUE 999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+
+CREATE TABLE PortalCategoryUserGroup (
+  CategoryUserGroupID NUMBER PRIMARY KEY,
+  CategoryID NUMBER NOT NULL,
+  UserGroupID NUMBER NOT NULL
+);
+
+ALTER TABLE PortalCategoryUserGroup ADD CONSTRAINT FK_CategoryUserGroup_Category FOREIGN KEY (CategoryID) REFERENCES PortalCategory(CategoryID);
+ALTER TABLE PortalCategoryUserGroup ADD CONSTRAINT FK_CategoryUserGroup_UserGroup FOREIGN KEY (UserGroupID) REFERENCES PortalUserGroup(UserGroupID);
+CREATE SEQUENCE PortalCategoryUserGroup_SEQ  MINVALUE 1 MAXVALUE 999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;
+
+CREATE TABLE PortalCategoryShowAll (
+  CategoryShowAllID NUMBER PRIMARY KEY,
+  CategoryID NUMBER NOT NULL,
+  DisplayAll VARCHAR2(1 CHAR) NULL
+);
+comment on column PortalCategoryShowAll.DisplayAll is 'Y: display all; N: partial';
+ALTER TABLE PortalCategoryShowAll ADD CONSTRAINT FK_CategoryShowAll_Category FOREIGN KEY (CategoryID) REFERENCES PortalCategory(CategoryID);
+CREATE SEQUENCE PortalCategoryShowAll_SEQ  MINVALUE 1 MAXVALUE 999999999999999999999999 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER  NOCYCLE ;

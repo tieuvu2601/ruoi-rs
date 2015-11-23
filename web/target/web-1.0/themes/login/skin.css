@@ -1,0 +1,214 @@
+a {
+    color: #D80D45;
+    text-decoration: none;
+}
+.box_container {
+    border: 1px solid #CBCBC4;
+}
+
+
+.box_container .header {
+    background-color: #CBCBC4;
+    color: #000000;
+    font-weight: bold;
+    height: 20px;
+    padding: 3px 10px;
+}
+
+.box_container .blank_header {
+  background-color: #ecf4f8;
+  height: 5px;
+}
+#grid .box_container .header label {
+  padding-left: 10px;
+}
+
+.box_container .header label {
+
+}
+.box_container .bright_blue_body {
+  width: 100%;
+}
+
+.box_container .footer {
+  height: 20px;
+  border-top: solid 1px #8db2e3;
+  color: #b81b26;
+  padding-top: 4px;
+}
+
+.pathway {
+    color: #D80D45;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.2em;
+    margin-bottom: 0.706em;
+    margin-top: 0.706em;
+}
+
+
+* html .btn span, * html .btn i { float: left; width: auto; background-image: none; cursor: pointer; }
+
+h2 {
+    color: #000000;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.2em;
+    margin-bottom: 0.706em;
+}
+
+th {
+    text-align:left;
+    font-weight: normal;
+}
+
+.dialog {
+    min-height: 20px !important;
+}
+
+.ui-datepicker-trigger {
+    padding-left: 2px;
+    vertical-align: middle;
+}
+
+ul.error_list {
+    list-style-type: none;
+}
+ul.error_list li {
+    margin: 0; padding:0;
+    color: #ff3333;
+}
+
+ul.success_list {
+
+}
+ul.success_list li {
+    margin: 0; padding:0;
+    color: #0033ff;
+}
+
+
+div.navigation {
+    background: url("images/bg_dotted_border.gif") repeat-x scroll left top #FFFFFF;
+    margin: 0 auto 1.2em 0;
+    padding: 0px 0 0;
+    position: relative;
+    width: 204px;
+}
+
+div.navigation h2 {
+    padding: 0 6px;
+}
+div.navigation ul, div.navigation ul li ul {
+    list-style-type: none;
+}
+div.navigation ul li {
+    background: none repeat scroll 0 0 transparent;
+    display: block;
+    margin: 0 0 2px;
+    padding: 0;
+}
+div.navigation ul li a {
+    background: none repeat scroll 0 0 #F4F3F1;
+    color: #525558;
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 2.6em;
+    padding: 0 0 0 12px;
+    width: 192px;
+}
+div.navigation ul li a:hover, div.navigation ul li a.selected_nochildren, div.navigation ul li a.selected_nochildren:hover, div.navigation ul li a.selected_children, div.navigation ul li a.selected_children:hover {
+    background: url("images/bg_subnav_hover.png") no-repeat scroll left top transparent;
+    color: #D31145;
+    text-decoration: none;
+}
+div.navigation ul li a.selected_children, div.navigation ul li a.selected_children:hover {
+    background: url("images/bg_subnav_selected.png") no-repeat scroll left top transparent;
+}
+div.navigation ul li a.selected, div.navigation ul li a.selected:hover {
+    background: url("images/bg_subnav_selected.png") no-repeat scroll left top transparent;
+    color: #D31145;
+    text-decoration: none;
+}
+div.navigation ul li ul li a {
+    background: url("images/bg_dotted_border.gif") repeat-x scroll left top #FFFFFF;
+    color: #909496;
+    display: block;
+    font-size: 1em;
+    font-weight: normal;
+    line-height: 2.6em;
+    padding: 0 0 0 16px;
+    text-decoration: none;
+    width: 188px;
+}
+div.navigation ul li ul li a:hover {
+    background: url("images/bg_dotted_border.gif") repeat-x scroll left top #FFFFFF;
+    color: #D31145;
+    text-decoration: underline;
+}
+div.navigation ul li ul li a.selected {
+    background: url("images/bg_dotted_border.gif") repeat-x scroll left top #FFFFFF;
+    color: #006699;
+}
+div.navigation ul li ul li a.selected:hover {
+    background: url("images/bg_dotted_border.gif") repeat-x scroll left top #FFFFFF;
+}
+div.navigation ul li ul li a.first {
+    background-image: none;
+}
+div.navigation ul li ul li a.first:hover {
+    background-image: none;
+}
+
+.top_navigation {
+    margin-top: 10px;
+}
+
+.gt_report_header {
+    height: 0px !important;
+}
+
+#firstHeader {
+    background-color: #e1e1e1 !important;
+}
+
+#secondHeader {
+    background-color: #e1e1e1 !important;
+}
+#thirdHeader {
+    background-color: #e1e1e1 !important;
+}
+
+#fourthHeader {
+    background-color: #e1e1e1 !important;
+}
+
+.tableList{
+    background-color: #EFEFE7;
+    width:100%;
+}
+.tableList tr{
+    background-color: #eeeee6;
+}
+
+.tableList td{
+    padding: 3px 5px;
+}
+
+.radioTitle{
+    vertical-align: top;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.titleHeader{
+    color:#BF0F36;
+    font-weight: bold;
+}
+select, input[type="text"], input[type="password"] {
+    width: 220px;
+}
+
+.msg-response {
+    color: #BF0F36;
+}

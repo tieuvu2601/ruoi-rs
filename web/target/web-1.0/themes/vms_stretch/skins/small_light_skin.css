@@ -1,0 +1,29 @@
+.small_light_skin {
+    margin-bottom: 5px;
+}
+
+.small_light_skin .header{
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0px 20px;
+    line-height: 40px;
+}
+
+.small_light_skin .body {
+    padding: 0px 20px;
+}
+
+.small_light_skin ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.small_light_skin .footer {
+    display: none;
+    clear:both;
+}
+
+.small_light_skin .feedback_search_panel li {
+    height: 24px;
+}

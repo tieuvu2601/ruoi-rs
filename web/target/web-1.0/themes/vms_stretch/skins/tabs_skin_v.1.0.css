@@ -1,0 +1,149 @@
+.tabs_skin {
+    margin-bottom: 5px;
+}
+
+.tabs_skin .header{
+    display: none;
+}
+
+.tabs_skin .body {
+    clear:both;
+    height: 230px;
+}
+
+.tabs_skin .body .first_item {
+    width: 490px;
+    padding: 0px 30px;
+    float: left;
+    margin-top: -35px;
+    margin-left: -15px;
+}
+
+.tabs_skin .body .first_item .title a{
+    font-size:18px;
+    font-weight: bold;
+    color:#863d0a;
+    line-height: 30px;
+}
+
+.tabs_skin .body .first_item  .thumb {
+    float: left;
+}
+
+.tabs_skin .body .first_item  .thumb > img {
+    width: 200px;
+    height: 140px;
+
+}
+
+.tabs_skin .body .first_item  .text {
+    float: left;
+    margin-left: 20px;
+    text-align: justify;
+    width: 265px;
+    height: 150px;
+}
+
+.tabs_skin .body .more {
+    float: left;
+    border-left: 1px dotted #f2f2f2;
+    width: 380px;
+    padding-left: 20px;
+    margin-top: -35px;
+    height: 210px;
+}
+
+.tabs_skin .body .more .link_all {
+    margin-top: 20px;
+}
+
+.tabs_skin .body .more ul {
+    list-style: circle inside;;
+    margin: 0;
+    padding: 0;
+}
+
+.tabs_skin .body .more li {
+    color: #0a3d71;
+}
+
+.tabs_skin .body .more li a {
+    color:#0a3d71;
+}
+
+.tabs_skin .footer {
+    display: none;
+    clear:both;
+}
+
+#tabs_news_boxes_container {
+    width: 980px;
+    margin-top: 20px;
+}
+#tabs_news_boxes_container .ui-tabs { padding:0px !important;position: relative;zoom: 1;border-radius: 0px !important;background: none !important; border: none !important;} /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav { margin: 0; padding: .2em .2em 0; }
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bottom: 0 !important; padding: 0; white-space: nowrap; }
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav li a { float: left; padding: .5em 1em; text-decoration: none; }
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav li.ui-tabs-selected { margin-bottom: 0; padding-bottom: 1px;}
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
+#tabs_news_boxes_container .ui-tabs .ui-tabs-panel { display: block; border-width: 0; padding: 1em 1.4em; background: url(images/tabs_news_box_bk.png) scroll top center repeat-y;border-radius: 0px !important;border-right: 1px solid #E6EDF5;border-left: 1px solid #E6EDF5; }
+#tabs_news_boxes_container .ui-tabs .ui-tabs-hide { display: none !important; }
+
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav {
+    border: none !important;
+    border-radius: 0px !important;
+    width:900px;
+    margin: 0 auto;
+    background: url(images/news_box_tab_bk.png) scroll top left repeat-x;
+    height: 37px;
+    padding: 0px 2px !important;
+
+}
+
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav a {
+    color:#666666;
+}
+
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav li {
+    background: url(images/news_box_tab_space.png) scroll top right no-repeat;
+    height: 31px;
+    top:0px !important;
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+}
+
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav li:last-child{
+    background: none;
+}
+
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav .ui-state-default {
+    border: none;
+}
+
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav .ui-tabs-selected,
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav .ui-state-hover {
+    background: url(images/news_box_tab_hover.png) scroll top left repeat-x !important;
+    border-radius: 0px !important;
+
+    color: #333333;
+    height: 37px;
+}
+
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav .ui-tabs-selected a,
+#tabs_news_boxes_container .ui-tabs .ui-tabs-nav .ui-state-hover  a{
+    color:#ef0f19;
+}
+
+#tabs_news_boxes .ui-tabs-panel:before{
+    content: url(images/WNB_Bell-56x56px.png);
+    position: relative;
+    top: -15px;
+    left: -25px;
+}
+
+.link_all:after{
+    content: url(images/WNB_banner-290x69px.png);
+    position: relative;
+    top: -25px;
+}

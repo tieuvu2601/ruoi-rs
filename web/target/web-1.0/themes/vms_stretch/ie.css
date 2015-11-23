@@ -1,0 +1,19 @@
+th {
+    text-align:left;
+}
+
+.custom-select-button-icon {
+    margin: 0px 0px 3px 0px !important;
+}
+
+.custom-select-status {
+    line-height: 20px !important;
+}
+
+input[type=checkbox] {
+    border: none !important;
+}
+
+input[type=radio] {
+   border: none !important;
+}

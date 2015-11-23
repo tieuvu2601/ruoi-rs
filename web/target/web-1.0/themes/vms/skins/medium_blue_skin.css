@@ -1,0 +1,184 @@
+.medium_blue_skin {
+
+}
+
+.medium_blue_skin .header{
+    background: url(images/medium_blue_header_bk2.png) no-repeat scroll top left;
+    height: 40px;
+    width: 414px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial;
+    padding-left: 40px;
+    line-height: 30px;
+    color:#FFFFFF;
+}
+
+.medium_blue_skin .body {
+    background: #ffffff;
+    border: 1px solid #d1d1d1;
+    border-top: none;
+    width: 412px;
+}
+
+.medium_blue_skin .body_content {
+    padding: 0px 5px;
+}
+
+.medium_blue_skin  .body .left {
+    float: left;
+    width: 194px;
+}
+
+.medium_blue_skin  .body .left .thumb img {
+    width: 194px;
+    height: 128px;
+}
+
+.medium_blue_skin  .body .left a{
+    color:#ff0008;
+    font-weight: bold;
+}
+
+.medium_blue_skin  .body .right {
+    float: left;
+    width: 200px;
+    margin-left: 7px;
+}
+
+.medium_blue_skin  .body .right ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.medium_blue_skin  .body .right a{
+    color:#124ea6;
+    font-weight: bold;
+}
+
+.medium_blue_skin  .body .modified_date {
+    color:#8e8e8e;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.medium_blue_skin .footer {
+    margin-bottom: 10px;
+}
+
+
+.medium_blue_skin .horizontal {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.medium_blue_skin .horizontal li {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    float: left;
+    width: 128px;
+}
+
+.medium_blue_skin .horizontal li a {
+    color: #2d2d2d;
+    font-weight: bold;
+}
+
+.medium_blue_skin .text_red {
+    color:#ff0008;
+}
+
+.medium_blue_skin .chan_dung {
+    text-align: justify;
+}
+
+.medium_blue_skin .chan_dung .thumb{
+    background: url(images/guong_tieu_bieu_thumb_bk.png) no-repeat scroll top left;
+    width: 216px;
+    height: 187px;
+    float: left;
+    margin-left:-10px;
+}
+
+.medium_blue_skin .chan_dung .thumb img {
+    height: 156px;
+    margin-left: 13px;
+    margin-top: 16px;
+    width: 190px;
+}
+
+.medium_blue_skin .chan_dung .name {
+    font-size: 18px;
+    font-weight: bold;
+    color:#ff0008;
+}
+
+.medium_blue_skin .chan_dung  .position {
+    background: url(images/chandung_name_bk.png) scroll top left no-repeat;
+    width: 189px;
+    height: 29px;
+    line-height: 24px;
+    font-weight: bold;
+    color:#2d2d2d;
+    margin-left:205px;
+}
+
+.medium_blue_skin .chan_dung .quote {
+    color:#005ab2;
+    font-weight: bold;
+}
+
+.medium_blue_skin .more {
+
+}
+
+.medium_blue_skin .more a {
+    background:url(images/news_icon.png) no-repeat scroll top left;
+    padding-left:10px;
+    color:#005ab2;
+    font-weight: bold;
+}
+
+.medium_blue_skin .mobi8 {
+
+}
+
+.medium_blue_skin .mobi8  ul {
+    list-style: none;
+}
+
+.medium_blue_skin .mobi8 .thumb {
+    float: left;
+
+}
+
+.medium_blue_skin .mobi8 .thumb img {
+    width: 54px;
+    height: 52px;
+}
+
+.medium_blue_skin .mobi8 .text {
+    float: left;
+    width:330px;
+    margin-left: 10px;
+    color:#005ab2;
+    font-weight: bold;
+}
+
+.medium_blue_skin .mobi8 .modified_date {
+    color:#2d2d2d;
+    font-weight: normal;
+}
+
+.medium_blue_skin .mobi8 .like {
+    color:#2d2d2d;
+    font-weight: normal;
+}
+
+.medium_blue_skin .footer {
+    clear:both;
+    margin-bottom: 10px;
+}

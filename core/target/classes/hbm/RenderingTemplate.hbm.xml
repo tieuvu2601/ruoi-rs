@@ -1,0 +1,25 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.RenderingTemplate" table="PortalRenderingTemplate">
+
+		<id name="renderingTemplateID">
+			<generator class="sequence">
+                <param name="sequence">PORTALRENDERINGTEMPLATE_SEQ</param>
+            </generator>
+		</id>
+
+		<property name="code" column="Code"/>
+
+        <property name="name" column="Name"/>
+	
+		<property name="templateContent" column="TemplateContent"/>
+
+		<property name="createdDate" column="CreatedDate"/>
+	
+		<property name="modifiedDate" column="ModifiedDate"/>
+
+	</class>
+</hibernate-mapping>

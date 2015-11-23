@@ -1,0 +1,33 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.Category" table="PortalCategory">
+
+		<id name="categoryID">
+			<generator class="sequence">
+                <param name="sequence">PORTALCATEGORY_SEQ</param>
+            </generator>
+		</id>
+
+		<property name="code" column="Code"/>
+
+        <property name="name" column="Name"/>
+
+        <property name="keyword" column="Keyword"/>
+	
+		<property name="description" column="Description"/>
+
+        <property name="displayOrder" column="DisplayOrder"/>
+
+        <many-to-one name="authoringTemplate" column="AuthoringTemplateID"/>
+
+        <many-to-one name="renderingTemplate" column="RenderingTemplateID"/>
+	
+		<property name="createdDate" column="CreatedDate"/>
+	
+		<property name="modifiedDate" column="ModifiedDate"/>
+
+	</class>
+</hibernate-mapping>

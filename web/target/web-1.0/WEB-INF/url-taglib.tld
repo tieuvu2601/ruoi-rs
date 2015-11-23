@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+  "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+  <tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>curl</shortname>
+  <uri>http://www.banvien.com/tags/seo</uri>
+  <info>
+    SEO URL Tag lib
+  </info>
+
+  <tag>
+    <name>url</name>
+    <tagclass>com.banvien.portal.vms.taglibs.SEOTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <attribute>
+      <name>value</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>prefix</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>var</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+  </tag>
+</taglib>

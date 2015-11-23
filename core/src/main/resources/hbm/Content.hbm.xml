@@ -1,0 +1,52 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.Content" table="PortalContent">
+
+		<!--<id name="contentID">-->
+			<!--<generator class="sequence">-->
+                <!--<param name="sequence">PORTALCONTENT_SEQ</param>-->
+            <!--</generator>-->
+		<!--</id>-->
+        <id name="contentID" column="ContentID">
+            <generator class="increment"/>
+        </id>
+
+		<property name="title" column="Title"/>
+
+        <property name="keyword" column="Keyword"/>
+	
+		<property name="thumbnail" column="Thumbnail"/>
+
+        <property name="xmlData" column="XmlData"/>
+
+        <property name="accessPolicy" column="AccessPolicy"/>
+
+        <property name="hot" column="Hot"/>
+
+        <property name="displayOrder" column="DisplayOrder"/>
+
+        <many-to-one name="authoringTemplate" column="AuthoringTemplateID"/>
+
+		<property name="createdDate" column="CreatedDate" lazy="true"/>
+	
+		<property name="modifiedDate" column="ModifiedDate" lazy="true"/>
+		
+		<property name="status" column="Status"/>
+
+        <many-to-one name="createdBy" column="CreatedBy"/>
+
+        <many-to-one name="modifiedBy" column="ModifiedBy"/>
+        
+        <property name="publishedDate" column="PublishedDate"/>
+
+        <many-to-one name="category" column="CategoryID" lazy="false"/>
+
+        <property name="beginDate" column="BeginDate"/>
+
+        <property name="endDate" column="EndDate"/>
+
+	</class>
+</hibernate-mapping>

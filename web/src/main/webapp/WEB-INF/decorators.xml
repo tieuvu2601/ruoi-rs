@@ -1,0 +1,20 @@
+<decorators defaultdir="/themes">
+    <excludes>
+        <pattern>/40*.jsp</pattern>
+        <pattern>/ajax/*</pattern>
+        <pattern>/ckeditor/*</pattern>
+    </excludes>
+
+	<decorator name="login" page="/themes/login/layout.jsp">
+        <pattern>/login*</pattern>
+    </decorator>
+
+    <decorator name="portal-admin" page="/themes/themeadmin/layout.jsp">
+        <pattern>/admin/*</pattern>
+    </decorator>
+
+    <decorator name="default" page="/themes/site/home.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+</decorators>

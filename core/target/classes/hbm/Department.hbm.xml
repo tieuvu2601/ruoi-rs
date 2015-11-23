@@ -1,0 +1,31 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.Department" table="PortalDepartment">
+
+		<id name="departmentID">
+			<generator class="sequence">
+                <param name="sequence">PORTALDEPARTMENT_SEQ</param>
+            </generator>
+		</id>
+
+		<property name="code" column="Code"/>
+
+        <property name="name" column="Name"/>
+
+        <property name="isBranch" column="IsBranch"/>
+
+        <property name="description" column="Description"/>
+
+		<property name="createdDate" column="CreatedDate"/>
+	
+		<property name="modifiedDate" column="ModifiedDate"/>
+        
+        <property name="mobile" column="Mobile"/>
+
+        <property name="organizationUnit" column="OrganizationUnit"/>
+
+	</class>
+</hibernate-mapping>

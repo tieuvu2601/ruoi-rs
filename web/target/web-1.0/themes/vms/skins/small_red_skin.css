@@ -1,0 +1,56 @@
+.small_red_skin {
+
+}
+
+.small_red_skin .header{
+    background: url(images/red_header_bk.png) no-repeat scroll top left;
+    height: 40px;
+    width: 280px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial;
+    padding-left: 40px;
+    line-height: 30px;
+    color:#FFFFFF;
+}
+
+.small_red_skin .body {
+    background: #ffffff;
+    border: 1px solid #d1d1d1;
+    border-top: none;
+    width: 261px;
+    padding: 5px 5px 0px 5px;
+}
+
+.small_red_skin .more .thumb {
+    float: left;
+    width: 70px;
+}
+
+.small_red_skin .more .text {
+    float: left;
+    margin-left: 5px;
+    text-align: justify;
+    width: 185px;
+}
+
+.small_red_skin .more .text a {
+    color:#333333;
+}
+
+.small_red_skin ul {
+    list-style: none;
+}
+
+.small_red_skin li {
+    margin: 5px 0px;
+}
+
+.small_red_skin .modified_date {
+    color:#8e8e8e;
+    font-size: 11px;
+}
+
+.small_red_skin .footer {
+    margin-bottom: 10px;
+}

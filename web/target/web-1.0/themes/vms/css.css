@@ -1,0 +1,509 @@
+﻿body{
+	font-family: Tahoma, Geneva, sans-serif;
+	background-color: black;
+}
+#wapper {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 978px;
+    margin: auto;
+    color: white;
+}
+.image_carousel {
+    width: 978px;
+    margin: auto;
+}
+.image_carousel img {
+    display: block;
+    float: right;
+}
+.img_border {
+    width: 350px;
+    height: 280px;
+    border-color: #CDCDCD;
+    border-style: solid;
+    border-width: 1px;
+}
+.clearfix {
+    float: none;
+    clear: both;
+}
+#logo {
+    height: 116px;
+    width: 400px;
+    background: url('../images/logo.png') no-repeat right bottom;
+    margin-bottom: 20px;
+    float: right;
+}
+.line {
+    height: 116px;
+    width: 350px;
+    background: url('../images/line.png') no-repeat right bottom;
+    float: right;
+   
+}
+.line h1 {
+     color:  white;
+     font-size: 14px;
+     padding-top: 85px;
+     text-align: right;
+}
+.hightLine {
+    font-weight: bold;
+}
+#bottom_right {
+    
+    color: white;
+    font-weight: bold;
+    background: url('../images/icon.png') no-repeat right center;
+    height: 70px;
+    width: 500px;
+    float: right;
+}
+#bottom_right .line1 {
+    height: 70px;
+    width: 500px;
+    float: right;
+   
+}
+#bottom_right ul {
+    float: right;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 15px;
+
+}
+#bottom_right ul a {
+    color: white;
+    text-decoration: none;
+}
+#bottom_right ul a:hover {
+    color: #f9f746;
+}
+
+#language {
+    float: right;
+    width: 500px;
+    padding-top: 20px;
+    text-align: right;
+    font-size: 14px;
+    font-weight: bold;
+}
+#usa
+{
+    background: url('../images/icon_usa.png') no-repeat right center;
+    width: 70px;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;
+    color: white;
+}
+#vietnam
+{
+    background: url('../images/icon_vn.png') no-repeat right center;
+    width: 100px;
+    float: right;
+    cursor: pointer;
+    color: white;
+}
+#containe {
+    width: 100%;
+}
+
+#containe .images {
+    height: 500px;
+    width: 400px;
+    background: url('../images/about.jpg');
+    border: 1px solid #717275;
+    -webkit-border-radius: 5px;
+    float: right;
+}
+
+#containe .introduction {
+    height: 500px;
+    width: 630px;
+    border: 1px solid #717275;
+    -webkit-border-radius: 5px;
+    float: right;
+}
+
+#containe .introduction h2 {
+    text-align: center;
+    color: #6270f8;
+    text-shadow: -1px -1px 1px #CCC;
+    text-transform: uppercase;
+}
+#containe .introduction h3 {
+    text-align: justify;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #e8e7e7;
+}
+#containe .introduction h4 {
+    text-align: right;
+    padding: 10px;
+    font-size: 15px;
+    color: red;
+}
+#lotus_team
+{
+    border: 1px solid #717275;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding-bottom: 20px;
+}
+#lotus_team .member{
+    height: 170px;
+    margin: 20px;
+}
+
+#lotus_team .member .img{
+    height: 150px;
+    width: 150px;
+    float: right;
+    border: 1px solid #717275; 
+}
+
+#lotus_team .member .intro{
+    height: 150;
+    width: 800px;
+    float: right;
+    position: relative;
+}
+#lotus_team .member .intro .name{
+    padding-top: 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+    height: 25px;
+    line-height: 25px;
+    font-weight: bold;
+    color: #bbbbbc;
+}
+#lotus_team .member .intro .namePartner{
+    padding-top: 10px;
+    font-size: 17px;
+    height: 25px;
+    line-height: 25px;
+    font-weight: bold;
+    color: #bbbbbc;
+}
+
+#lotus_team .member .intro .link a{
+    font-size: 15px;
+    color: red;
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #828dfb;
+    text-decoration: none;
+}
+#lotus_team .member .intro .link a:hover{
+    color: #3c4ce4;
+}
+
+#lotus_team .member .intro .chucvu{
+    font-size: 15px;
+    color: red;
+    height: 25px;
+    line-height: 25px;
+    font-weight: bold;
+}
+#lotus_team .member .intro .phone{
+    font-size: 15px;
+    height: 25px;
+    line-height: 25px;
+}
+#lotus_team .member .intro .email{
+    font-size: 15px;
+    height: 25px;
+    line-height: 25px;
+}
+.heightLight {
+    font-weight: bold;
+}
+
+.title h2 {
+    text-align: center;
+    color: #6270f8;
+    text-shadow: -1px -1px 1px #CCC;
+    text-transform: uppercase;
+}
+
+#project{
+    font-family:Arial;
+    background:#fff url('../images/pattern.png') repeat top right;
+    height: 420px;
+    position: relative;
+    border: 1px solid #717275;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#project .title{
+    font-family:Arial;
+    color: black;
+    padding-top: 30px;
+    padding-right: 350px;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 30px;
+    color: #444;
+    text-align: right;
+    margin: 0px 0px 15px 20px;
+    text-shadow: -1px -1px 1px #CCC;
+}
+
+#project .slogan{
+    font-family:Arial;
+    color: black;
+    padding-right: 260px;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 19px;
+    color: #444;
+    text-align: right;
+    margin: 0px 0px 15px 20px;
+    text-shadow: -1px -1px 1px #CCC;
+}
+.newsLink a{
+    bottom:5px;
+    right:20px;
+    text-transform:uppercase;
+    font-style:normal;
+    font-size:11px;
+    text-decoration:none;
+    color:#f7522c;
+    
+}
+.newsLink p {
+    line-height: 16px;
+    font-size: 14px;
+}
+
+.newsLink a:hover{
+    color:red;
+    text-decoration:underline;
+}
+
+#contact {
+    width: 100%;
+    height: 370px;
+    border: 1px solid #717275;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: url('../images/bando.png') no-repeat right bottom;
+    background-color: #eef0f0;
+    color: #4b4d4d;
+}
+#contact .contact{
+    width: 485px;
+    float: right;
+    height: 370px;
+    border-right: 1px solid #c2c4c4;
+    text-align: center;
+}
+
+#contact .contact h2{
+    font-family: Arial;
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 25px;
+    color: #444;
+    text-shadow: -1px -1px 1px #CCC;
+    text-transform: uppercase;
+}
+
+#menu {
+    color: white;
+    font-weight: bold;
+    background: url('../images/icon_nguoc.png') no-repeat right center;
+    height: 70px;
+    width: 500px;
+    float: right;
+    text-align: right;
+    margin-top: 65px;
+}
+#menu_right .line1 {
+    height: 70px;
+    width: 500px;
+    float: right;
+    text-align: right;
+   
+}
+#menu_right ul {
+    float: left;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 15px;
+
+}
+#menu_right ul a {
+    color: white;
+    text-decoration: none;
+}
+#menu_right ul a:hover {
+    color: #f9f746;
+}
+
+#partner .images {
+    height: 500px;
+    width: 400px;
+    background: url('../images/shakehand.jpg');
+    border: 1px solid #717275;
+    -webkit-border-radius: 5px;
+    float: right;
+}
+
+#partner .introduction {
+    height: 500px;
+    width: 630px;
+    border: 1px solid #717275;
+    -webkit-border-radius: 5px;
+    float: right;
+}
+#partner .introduction h2 {
+    text-align: center;
+    color: #6270f8;
+    text-shadow: -1px -1px 1px #CCC;
+    text-transform: uppercase;
+}
+#partner .introduction h3 {
+    text-align: justify;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #e8e7e7;
+}
+#partner .introduction .name {
+    text-align: right;
+    font-size: 17px;
+    padding-right: 20px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+#partner .link a{
+    font-size: 13px;
+    color: red;
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #828dfb;
+    text-decoration: none;
+    padding-right: 20px;
+}
+#partner .link a:hover{
+    color: #3c4ce4;
+}
+.table_right {
+    width: 40px;
+    text-align: right;
+}
+.table_right {
+    padding-right: 10px;
+    width: 200px;
+    text-align: right;
+}
+.lienhe {
+    color: #717275;
+}
+.lienhe div {
+    padding: 2px;
+    color: #717275;
+    font-size: 14px;
+}
+#project_items{
+    font-family:Arial;
+    background:#fff url('../images/pattern.png') repeat top right;
+    height: 410px;
+    position: relative;
+     border: 1px solid #717275;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#project_items .right .title{
+    font-family:Arial;
+    color: black;
+    padding-top: 30px;
+    text-align: right;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 30px;
+    color: #444;
+    margin: 0px 0px 15px 20px;
+    text-shadow: -1px -1px 1px #CCC;
+}
+
+#project_items .right .slogan{
+    font-family:Arial;
+    color: black;
+    text-align: right;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 19px;
+    color: #444;
+    margin: 0px 0px 15px 20px;
+    text-shadow: -1px -1px 1px #CCC;
+}
+
+
+#project_items .right {
+    width: 400px;
+    float: right;
+    text-align: right;
+}
+
+#project_items .content {
+    position: absolute;
+    width: 600px;
+    height: 410px;
+    top: 0px;
+    right: 0px;
+}
+
+div.wrapper{
+    height: 130px;
+    width: 150px;
+    position:relative; /* important(so we can absolutely position the description div */ 
+    float: right;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+div .description1 {
+    position:absolute; /* absolute position (so we can position it where we want)*/
+    bottom:0px; /* position will be on bottom */
+    right:5px;
+    display:none; /* hide it */
+    /* styling bellow */
+    background-color:black;
+    font-family: 'tahoma';
+    font-size:11px;
+    color:white;
+}
+div.description_content{
+    padding:10px;
+}
+.title_news {
+    padding-top: 20px;
+    font: bold 19px arial;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+.page  a{
+    color: #BBBBBC;
+    text-decoration: none;
+}
+
+.page a:hover {
+    color: red;
+}

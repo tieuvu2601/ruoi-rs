@@ -1,0 +1,33 @@
+.poll_skin {
+    margin-bottom: 5px;
+}
+
+.poll_skin .header{
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 18px;
+    height: 70px;
+    line-height: 70px;
+}
+
+.poll_skin .body {
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.poll_skin .body input[type="radio"] {
+    margin-right:5px;
+}
+
+.poll_skin .body ul {
+
+}
+
+.poll_skin .body li {
+    line-height: 24px;
+}
+
+.poll_skin .footer {
+    display: none;
+    clear:both;
+}

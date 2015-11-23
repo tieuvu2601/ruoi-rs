@@ -1,0 +1,93 @@
+.chandung_skin {
+    margin-bottom: 5px;
+}
+
+.chandung_skin .header{
+    background: url(images/chan_dung_title_bk.png) scroll top left no-repeat;
+    height: 34px;
+    width: 281px;
+    position: absolute;
+    margin-top: -30px;
+    line-height: 34px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #8d3d12;
+    text-align: center;
+
+}
+
+.chandung_skin .body {
+}
+
+.chandung_skin .footer {
+    display: none;
+    clear:both;
+}
+
+.chandung_skin .body ul{
+    left:5px;
+    top: 2px;
+    font-size: 16px;
+    list-style: none outside none;
+}
+.chandung_skin .body li{
+    margin-top: 40px;
+    width:220px;
+    position: absolute;
+    background-repeat:no-repeat;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    list-style: none outside none;
+    float: left;
+}
+
+.chandung_skin .body li .box_image
+{
+    background: #fff;
+    width: 206px;
+    height: 146px !important;
+    margin-bottom: 0px !important;
+    border-radius: 5px;
+}
+
+.chandung_skin .body li img
+{
+    background: #fff;
+    width: 200px;
+    height: 140px !important;
+    padding: 3px;
+
+}
+
+.chandung_skin .body li .description{
+    text-align: center;
+    bottom:0px;
+    right:0px;
+    color: #000000;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+.chandung_skin .body a {
+    color:#2d2d2d;
+}
+.chandung_skin .body li .position{
+    text-align: center;
+    bottom:0px;
+    right:0px;
+    color: #000000;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: normal;
+}
+
+
+.chandung_skin .body  .prev {
+    margin-top: 110px;
+}
+
+.chandung_skin .body .next {
+    margin-top: 110px;
+}

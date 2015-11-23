@@ -1,0 +1,42 @@
+.document_skin {
+    margin-bottom: 5px;
+}
+
+.document_skin .header{
+    display: none;
+}
+
+.document_skin .body {
+    background: url(images/tailieu_bk.png) no-repeat scroll top left;
+    width: 273px;
+    height: 404px;
+    padding-top: 40px;
+}
+
+.document_skin ul {
+    list-style: none;
+}
+
+.document_skin li {
+    margin-left: 20px;
+    padding: 0 10px 5px;
+    background: url(images/thongbao_line_break.png) no-repeat scroll bottom center;
+}
+
+.document_skin .icon {
+    float: right;
+}
+
+.document_skin .text {
+    float:left;
+    width: 210px;
+    text-align: justify;
+}
+
+.document_skin .text a{
+    color:#333333;
+}
+
+.document_skin .footer {
+    display: none;
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0">
+	<xsd:element name="contentItem" type="ContentItem"/>
+	<xsd:complexType name="ContentItem">
+		<xsd:sequence>
+			<xsd:element name="items" type="Items" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+    <xsd:complexType name="Items">
+		<xsd:sequence>
+			<xsd:element name="item" type="Item" maxOccurs="unbounded" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+    <xsd:complexType name="Item">
+        <xsd:sequence>
+            <xsd:element name="itemValue" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="itemKey" type="xsd:string"/>
+        <xsd:attribute name="displayName" type="xsd:string"/>
+        <xsd:attribute name="itemType" type="xsd:string"/>
+        <xsd:attribute name="minOccurs" type="xsd:int"/>
+        <xsd:attribute name="maxOccurs" type="xsd:int"/>
+
+    </xsd:complexType>
+
+</xsd:schema>

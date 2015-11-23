@@ -1,0 +1,125 @@
+.mobi8_skin {
+    margin-bottom: 5px;
+    float: left;
+}
+
+.mobi8_skin .header{
+    background: url(images/mobi8_header_bk.png) scroll top left no-repeat;
+    height: 35px;
+    width: 687px;
+}
+
+.mobi8_skin .header .navigator {
+    float: right;
+    line-height: 35px;
+}
+
+.mobi8_skin .header .navigator ul {
+    list-style: none outside none;
+}
+
+.mobi8_skin .header .navigator li {
+    list-style: none outside none;
+    float:left;
+}
+
+.mobi8_skin .header .navigator a{
+    color:#ffdb64;
+}
+.mobi8_skin .header .icon {
+    float:left;
+}
+.mobi8_skin .header .icon > img {
+    margin-top: -20px;
+    position: relative;
+}
+
+.mobi8_skin .header .navigator .view_all {
+    background: url(images/button_mobi8_view_all_bk.png) scroll top left no-repeat;
+    width: 75px;
+    height: 35px;
+    color: #ffdb64;
+    display: block;
+    text-align: center;
+}
+
+.mobi8_skin .body {
+    color:#ffffff;
+}
+
+.mobi8_skin .body a {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.mobi8_skin .body ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobi8_skin .body li {
+    float: left;
+    list-style: none outside none;
+    margin: 0px 30px;
+    width: 160px;
+}
+
+.mobi8_skin .body .avatar {
+    width: 85px;
+    height: 85px;
+    padding: 3px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.mobi8_skin .body .avatar > img{
+    width: 84px;
+    height: 84px;
+}
+.mobi8_skin .body .modified_date {
+    font-weight: normal;
+}
+
+.mobi8_skin .body li.space {
+    background: url(images/mobi8_space.png) scroll top left no-repeat;
+    width: 4px;
+    height: 239px;
+    margin: 0px;
+}
+
+.mobi8_skin .body .text {
+    text-align: justify;
+}
+
+.mobi8_skin .body .text .myspan {
+    vertical-align: top;
+}
+
+.mobi8_skin .button_prev {
+    background: url(images/previous_icon.png) scroll center left no-repeat;
+    width: 24px;
+    height: 35px;
+    line-height: 35px;
+    padding-left: 16px;
+    display: block !important;
+}
+
+
+.mobi8_skin .button_next {
+    background: url(images/next_icon.png) scroll center right no-repeat;
+    width: 24px;
+    height: 35px;
+    line-height: 35px;
+    display: block !important;
+    padding-right: 16px;
+    text-align: right;
+
+}
+
+.mobi8_skin .footer {
+    display: none;
+    clear:both;
+}

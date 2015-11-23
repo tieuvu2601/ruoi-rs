@@ -1,0 +1,161 @@
+@font-face{font-family:"VIE-HandelGothic";src:url(fonts/VIE-HandelGothicMedium.eot);src:local("VIE-HandelGothic Medium"), url(fonts/VIE-HandelGothic-Medium.otf) format("opentype");font-weight:normal;font-style:normal;}
+
+body {
+    font-family: Arial;
+    font-size:13px;
+    line-height: 1.55em;
+    background: none repeat scroll 0 0 #ffffff;
+    color: #333333;
+}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+fieldset, img {
+    border: 0 none;
+}
+
+ol, ul {
+    list-style: none outside none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+.clear {
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+}
+.clearfix:after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    width: 0;
+}
+.clearfix {
+    display: inline-block;
+}
+* html .clearfix {
+    height: 1%;
+}
+.clearfix {
+    display: block;
+}
+.clearfix.inline-block {
+    display: inline-block;
+}
+#header {
+    height: 60px;
+    margin: 0 0;
+    background: #2D7CCD;
+}
+
+#header .left {
+    float:left;
+}
+
+#header .right {
+    float:right;
+    clear:right;
+}
+#top .center, #bottom .center {
+    width: 975px;
+}
+#page_wrapper {
+    margin: 0 auto;
+    width: 100%;
+    background: none repeat scroll 0 0 #ffffff;
+}
+#page {
+    margin:0 auto;
+    width: 100%;
+    background: none repeat scroll 0 0 #ffffff;
+}
+
+
+#maincontent {
+    padding: 0px 10px 10px;
+}
+#footer {
+    margin: 0 0;
+    background: #2D7CCD;
+    height:40px;
+}
+
+#footercontent {
+    height: 40px;
+    text-align: center;
+    color:#ffffff;
+}
+
+#content {
+   margin: 0 auto;
+   width: 100%;
+}
+
+.w1-2 {
+    width: 470px;
+}
+.w1-3 {
+    width: 310px;
+}
+.w2-3 {
+    width: 630px;
+}
+.w1-4 {
+    width: 230px;
+}
+.w3-4 {
+    width: 710px;
+}
+.w1-6 {
+    width: 150px;
+}
+.w1-8 {
+    width: 110px;
+}
+.w2-9 {
+    width: 203px;
+}
+.box .w2-9 {
+    width: 203px;
+}
+.w4-18 {
+    width: 190px;
+}
+.w10-18 {
+    width: 550px;
+}
+
+.loginBox {
+    width: 550px;
+    height: 200px;
+    margin: 100px auto;
+    background:#F6F6F0;
+    border: 1px solid #E9E8E3;
+}
+
+#leftpane {
+    float:left;
+}
+
+#mainpane {
+    float: left;
+    margin-left: 5px;
+    width: 780px;
+
+}
+span.defaultSkin table.mceLayout tbody tr.mceLast td.mceStatusbar {
+    display: none !important;
+}
+

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+       default-lazy-init="true">
+
+    <!-- Hibernate SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="lobHandler" ref="lobHandler"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgresPlusDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.bytecode.use_reflection_optimizer">false</prop>
+                <prop key="hibernate.jdbc.use_streams_for_binary">true</prop>
+				<prop key="hibernate.connection.release_mode">auto</prop>
+                <prop key="hibernate.cache.query_cache_factory">org.hibernate.cache.StandardQueryCacheFactory</prop>
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+                <prop key="hibernate.cache.use_structured_entries">false</prop>
+                <prop key="hibernate.cache.provider_configuration_file_resource_path">/ehcache.xml</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+			</props>
+		</property>
+        <property name="mappingResources">
+            <list>
+                <value>hbm/User.hbm.xml</value>
+                <value>hbm/Role.hbm.xml</value>
+                <value>hbm/UserGroup.hbm.xml</value>
+                <value>hbm/UserRole.hbm.xml</value>
+                <value>hbm/Category.hbm.xml</value>
+                <value>hbm/Content.hbm.xml</value>
+                <value>hbm/AuthoringTemplate.hbm.xml</value>
+                <value>hbm/RenderingTemplate.hbm.xml</value>
+                <value>hbm/ContentCategory.hbm.xml</value>
+                <value>hbm/Department.hbm.xml</value>
+                <value>hbm/Tracking.hbm.xml</value>
+                <value>hbm/Comment.hbm.xml</value>
+                <value>hbm/UserSession.hbm.xml</value>
+                <value>hbm/Page.hbm.xml</value>
+                <value>hbm/AuthoringTemplateUser.hbm.xml</value>
+                <value>hbm/AuthoringTemplateUGroup.hbm.xml</value>
+                <value>hbm/AuthoringTemplateShowAll.hbm.xml</value>
+                <value>hbm/CategoryUser.hbm.xml</value>
+                <value>hbm/CategoryUserGroup.hbm.xml</value>
+                <value>hbm/CategoryShowAll.hbm.xml</value>
+                <value>hbm/Sms.hbm.xml</value>
+                <value>hbm/ContentDepartment.hbm.xml</value>
+                <value>hbm/UserDepartmentACL.hbm.xml</value>
+                <value>hbm/AnnouncementCategory.hbm.xml</value>
+                <value>hbm/Feedback.hbm.xml</value>
+                <value>hbm/FeedbackCategory.hbm.xml</value>
+                <value>hbm/FeedbackReply.hbm.xml</value>
+                <value>jbpm.execution.hbm.xml</value>
+				<value>jbpm.repository.hbm.xml</value>
+				<value>jbpm.task.hbm.xml</value>
+				<value>jbpm.history.hbm.xml</value>
+				<value>jbpm.identity.hbm.xml</value>
+            </list>
+        </property>
+
+    </bean>
+	<!-- Hibernate Templates -->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+
+	<!-- The transactionmanager to use for regular non JTA datasource -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler">
+        <property name="nativeJdbcExtractor" ref="nativeJdbcExtractor"/>
+    </bean>
+    <bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"/>
+
+	<bean id="roleDAO" class="com.banvien.portal.vms.dao.RoleHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="userGroupDAO" class="com.banvien.portal.vms.dao.UserGroupHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="userDAO" class="com.banvien.portal.vms.dao.UserHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="departmentDAO" class="com.banvien.portal.vms.dao.DepartmentHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="userRoleDAO" class="com.banvien.portal.vms.dao.UserRoleHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="authoringTemplateDAO" class="com.banvien.portal.vms.dao.AuthoringTemplateHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="renderingTemplateDAO" class="com.banvien.portal.vms.dao.RenderingTemplateHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="categoryDAO" class="com.banvien.portal.vms.dao.CategoryHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="contentDAO" class="com.banvien.portal.vms.dao.ContentHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="contentCategoryDAO" class="com.banvien.portal.vms.dao.ContentCategoryHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="contentDepartmentDAO" class="com.banvien.portal.vms.dao.ContentDepartmentHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="commentDAO" class="com.banvien.portal.vms.dao.CommentHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="trackingDAO" class="com.banvien.portal.vms.dao.TrackingHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+    <bean id="pageDAO" class="com.banvien.portal.vms.dao.PageHibernateDAO">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+    <bean id="userSessionDAO" class="com.banvien.portal.vms.dao.UserSessionHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="authoringTemplateUserDAO" class="com.banvien.portal.vms.dao.AuthoringTemplateUserHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="authoringTemplateUGroupDAO" class="com.banvien.portal.vms.dao.AuthoringTemplateUGroupHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="authoringTemplateShowAllDAO" class="com.banvien.portal.vms.dao.AuthoringTemplateShowAllHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="categoryUserDAO" class="com.banvien.portal.vms.dao.CategoryUserHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="categoryUserGroupDAO" class="com.banvien.portal.vms.dao.CategoryUserGroupHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="categoryShowAllDAO" class="com.banvien.portal.vms.dao.CategoryShowAllHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+    <bean id="smsDAO" class="com.banvien.portal.vms.dao.SmsHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="userDepartmentACLDAO" class="com.banvien.portal.vms.dao.UserDepartmentACLHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="announcementCategoryDAO" class="com.banvien.portal.vms.dao.AnnouncementCategoryHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="feedbackCategoryDAO" class="com.banvien.portal.vms.dao.FeedbackCategoryHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="feedbackDAO" class="com.banvien.portal.vms.dao.FeedbackHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    <bean id="feedbackReplyDAO" class="com.banvien.portal.vms.dao.FeedbackReplyHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+</beans>

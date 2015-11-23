@@ -1,0 +1,24 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.FeedbackReply" table="PortalFeedbackReply">
+
+		<id name="feedbackReplyID" column="FeedbackReplyID">
+			<!--<generator class="sequence">-->
+                <!--<param name="sequence">PORTALFEEDBACKREPLY_SEQ</param>-->
+            <!--</generator>-->
+            <generator class="increment"/>
+		</id>
+
+        <property name="content" column="Content"/>
+	
+		<many-to-one name="feedback" column="FeedbackID"/>
+
+		<property name="createdDate" column="CreatedDate"/>
+
+        <many-to-one name="createdBy" column="CreatedBy"/>
+
+	</class>
+</hibernate-mapping>

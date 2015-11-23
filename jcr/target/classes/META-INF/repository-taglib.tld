@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+
+<taglib>
+  <tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>repository</shortname>
+  <uri>http://banvien.com/tags/repository</uri>
+  <info>
+    The Repository Tag lib for rendering download file from JCR Repository
+    Author: Nguyen Hai Vien - [vien.ly.hhac@gmail.com]
+  </info>
+
+  <tag>
+    <name>href</name>
+    <tagclass>com.banvien.jcr.taglib.RepositoryFileTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <attribute>
+      <name>value</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>displayName</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>fullDisplay</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>cssStyle</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>cssClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>   
+    <attribute>
+      <name>servletName</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>  
+    <attribute>
+      <name>displayName</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+      <attribute>
+          <name>var</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+      </attribute>
+  </tag>
+</taglib>

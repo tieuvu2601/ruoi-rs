@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#placeholder_dlg.placeholder_title}</title>
+	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
+	<script type="text/javascript" src="../../utils/mctabs.js"></script>
+	<script type="text/javascript" src="../../utils/form_utils.js"></script>
+  <script type="text/javascript" src="js/placeholder.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/placeholder.css" />
+	<base target="_self" />
+</head>
+<body style="display:none;">
+<form onsubmit="PlaceHolderDialog.insert(); return false;" action="#">
+	
+	<div class="panel_wrapper">
+    <table border="0" cellspacing="0" cellpadding="0" class="direction">
+      <tr>
+        <td><input id="placeholder_mom_first_name" name="placeholder_object" class="radio" value="[[@mom_first_name@]]" type="radio" /></td>
+        <td><label for="placeholder_mom_first_name">Mom's First name</label></td>
+        <td><input id="placeholder_child_first_name" name="placeholder_object" class="radio" value="[[@child_first_name@]]" type="radio" /></td>
+        <td><label for="placeholder_child_first_name">Child's First name</label></td>
+      </tr>
+      <tr>
+        <td><input id="placeholder_mom_last_name" name="placeholder_object" class="radio" value="[[@mom_last_name@]]" type="radio" checked="checked" /></td>
+        <td><label for="placeholder_mom_last_name">Mom's Last name</label></td>
+        <td><input id="placeholder_child_last_name" name="placeholder_object" class="radio" value="[[@child_last_name@]]" type="radio" checked="checked" /></td>
+        <td><label for="placeholder_child_last_name">Child's Last name</label></td>
+      </tr>
+      <tr>
+        <td><input id="placeholder_mom_date_of_birth" name="placeholder_object" class="radio" value="[[@mom_date_of_birth@]]" type="radio" /></td>
+        <td><label for="placeholder_mom_date_of_birth">Mom's Date of birth</label></td>
+        <td><input id="placeholder_child_date_of_birth" name="placeholder_object" class="radio" value="[[@child_date_of_birth@]]" type="radio" /></td>
+        <td><label for="placeholder_child_date_of_birth">Child's Date of birth</label></td>
+      </tr>
+    </table>
+    
+	</div>
+
+	<div class="mceActionPanel">
+		<div style="float: left">
+			<input type="submit" id="insert" name="insert" value="Insert" />
+		</div>
+
+		<div style="float: right">	
+			<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
+		</div>
+	</div>
+</form>
+</body>
+</html>

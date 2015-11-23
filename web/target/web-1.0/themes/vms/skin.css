@@ -1,0 +1,201 @@
+a {
+    font-family: Arial;
+    color: #D80D45;
+    text-decoration: none;
+}
+.box_container {
+    border: 1px solid #CBCBC4;
+}
+
+
+.box_container .header {
+    background-color: #CBCBC4;
+    color: #000000;
+    font-weight: bold;
+    height: 20px;
+    padding: 3px 10px;
+}
+
+.box_container .blank_header {
+  background-color: #ecf4f8;
+  height: 5px;
+}
+#grid .box_container .header label {
+  padding-left: 10px;
+}
+
+.box_container .header label {
+
+}
+.box_container .bright_blue_body {
+  width: 100%;
+}
+
+.box_container .footer {
+  height: 20px;
+  border-top: solid 1px #8db2e3;
+  color: #b81b26;
+  padding-top: 4px;
+}
+
+.pathway {
+    color: #D80D45;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.2em;
+    margin-bottom: 0.706em;
+    margin-top: 0.706em;
+}
+
+
+* html .btn span, * html .btn i { float: left; width: auto; background-image: none; cursor: pointer; }
+
+h2 {
+    color: #000000;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.2em;
+    margin-bottom: 0.706em;
+}
+
+th {
+    text-align:left;
+    font-weight: normal;
+}
+
+.dialog {
+    min-height: 20px !important;
+}
+
+.ui-datepicker-trigger {
+    padding-left: 2px;
+    vertical-align: middle;
+}
+
+ul.error_list {
+    list-style-type: none;
+}
+ul.error_list li {
+    margin: 0; padding:0;
+    color: #ff3333;
+}
+
+ul.success_list {
+
+}
+ul.success_list li {
+    margin: 0; padding:0;
+    color: #0033ff;
+}
+
+.navigation {
+	font-size:12px;
+    float:left;
+    height: 35px;
+    width: 100%;
+    background: url(images/top_nav_bk.png) repeat-x scroll top left;
+}
+.navigation ul {
+    list-style: none outside none;
+    margin:0;
+    padding:0;
+
+}
+
+.navigation li {
+    list-style: none outside none;
+    float:left;
+    width: 126px;
+    color: #ffffff;
+    line-height: 35px;
+    text-align: center;
+}
+
+.navigation .hover {
+	background-color:#964614;
+}
+
+.navigation img {
+    vertical-align: middle;
+}
+
+.navigation a {
+    color:#0033a7;
+    text-decoration: none;
+    font-size:15px;
+}
+
+.navigation .selected{
+    background: url(images/button_nav_hover.png) no-repeat scroll top center;
+    height: 35px;
+    width: 126px;
+    display: block;
+    line-height: 35px;
+    color:#ffffff;
+}
+
+.navigation a:hover{
+    background: url(images/button_nav_hover.png) no-repeat scroll top center;
+    height: 35px;
+    width: 126px;
+    display: block;
+    line-height: 35px;
+    color:#ffffff;
+}
+
+
+
+.titleHeader{
+    color:#BF0F36;
+    font-weight: bold;
+}
+select, input[type="text"], input[type="password"] {
+    width: 220px;
+}
+
+.msg-response {
+    color: #BF0F36;
+}
+
+.online_statistic {
+    background: url(images/online_statistic_bk.png) no-repeat scroll top left;
+    height: 108px;
+    width: 204px;
+    font-size: 14px;
+    line-height: 50px;
+    padding-left: 70px;
+}
+
+.related_items{
+	margin-top: 10px;
+}
+#sliderRelatedArticles{
+	left:7px !important;
+}
+
+
+#sliderRelatedArticles .description{
+	margin-right: 20px;
+}
+#sliderRelatedArticles li{
+	background-repeat: no-repeat;
+    cursor: pointer;
+    float: left;
+    list-style: none outside none;
+    margin-top: 5px;
+    overflow: hidden;
+    position: relative;
+    width: 140px;
+    left:0px !important;
+    margin-right:0px !important;
+}
+
+.relatedPrev{
+	 float: left;
+	 margin-top:40px;
+}
+
+.relatedNext{
+	float: right;
+	margin-top:40px;
+}

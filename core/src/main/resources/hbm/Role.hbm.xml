@@ -1,0 +1,26 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.Role" table="PortalRole">
+
+		<id name="roleID" column="RoleID">
+			<!--<generator class="sequence">-->
+                <!--<param name="sequence">PORTALROLE_SEQ</param>-->
+            <!--</generator>-->
+            <generator class="increment"/>
+		</id>
+
+		<property name="role" column="Role"/>
+
+        <property name="name" column="Name"/>
+	
+		<property name="description" column="Description"/>
+	
+		<property name="createdDate" column="CreatedDate"/>
+	
+		<property name="modifiedDate" column="ModifiedDate"/>
+
+	</class>
+</hibernate-mapping>

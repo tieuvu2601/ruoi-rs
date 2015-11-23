@@ -1,0 +1,52 @@
+.simple_skin {
+    margin-bottom: 5px;
+}
+
+.simple_skin .header{
+    display: none;
+}
+
+.simple_skin .body {
+}
+
+.simple_skin .body ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.simple_skin .body li {
+    float: left;
+    list-style: none outside none;
+    width: 290px;
+}
+
+.simple_skin .body li.space {
+    background: url(images/simple_space_bk.png) scroll top left no-repeat;
+    width: 4px;
+    height: 214px;
+    margin: 0 20px;
+}
+
+.simple_skin .body .title {
+    font-size:14px;
+    font-weight: bold;
+    color:#ffdc68;
+    line-height: 32px;
+    height: 32px;
+}
+
+.simple_skin .body .title > img {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.simple_skin .body .text {
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.simple_skin .footer {
+    display: none;
+    clear:both;
+}

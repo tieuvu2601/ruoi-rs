@@ -1,0 +1,27 @@
+<decorators defaultdir="/themes">
+    <excludes>
+        <pattern>/40*.jsp</pattern>
+        <pattern>/ajax/*</pattern>
+        <pattern>/ckeditor/*</pattern>
+    </excludes>
+	<decorator name="login" page="/themes/login/layout.jsp">
+        <pattern>/login*</pattern>
+    </decorator>
+    
+    <decorator name="default" page="/themes/vms_stretch/layout.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+
+    <decorator name="admin" page="/themes/admin/layout.jsp">
+        <pattern>/admin/*</pattern>
+    </decorator>
+
+    <decorator name="mysite" page="/themes/vms_stretch/mysite.jsp">
+        <pattern>/mysite/*</pattern>
+    </decorator>
+
+    <decorator name="shopper" page="/themes/vms_stretch/shopper.jsp">
+        <pattern>/daily/*</pattern>
+    </decorator>
+
+</decorators>

@@ -1,0 +1,28 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.Page" table="PortalPage">
+
+		<id name="pageID" column="PageID">
+			<!--<generator class="sequence">-->
+                <!--<param name="sequence">PORTALPAGE_SEQ</param>-->
+            <!--</generator>-->
+            <generator class="increment"/>
+		</id>
+
+		<property name="code" column="Code"/>
+
+        <property name="title" column="Title"/>
+	
+		<property name="keyword" column="Keyword"/>
+
+        <property name="xmlData" column="XMLData"/>
+
+		<property name="createdDate" column="CreatedDate"/>
+	
+		<property name="modifiedDate" column="ModifiedDate"/>
+
+	</class>
+</hibernate-mapping>
