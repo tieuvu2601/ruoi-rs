@@ -107,9 +107,9 @@
 
 
         <db.username>root</db.username>
-        <db.password>12345678@x</db.password>
+        <db.password>123456</db.password>
         <db.driver>com.mysql.jdbc.Driver</db.driver>
-        <db.url>jdbc:mysql://localhost:3306/nttportal?useUnicode=true&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=utf8&amp;characterEncoding=utf8</db.url>
+        <db.url>jdbc:mysql://localhost:3306/RealEstate?useUnicode=true&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=utf8&amp;characterEncoding=utf8</db.url>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <jpa.hibernate.dialect>org.hibernate.dialect.MySQLDialect</jpa.hibernate.dialect>
