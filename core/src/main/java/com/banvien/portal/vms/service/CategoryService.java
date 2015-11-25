@@ -8,13 +8,6 @@ import com.banvien.portal.vms.exception.ObjectNotFoundException;
 
 import java.util.List;
 
-/**
- * Copyright (c) by Ban Vien Co., Ltd.
- * User: MBP
- * Date: 11/13/12
- * Time: 4:40 PM
- * Author: vien.nguyen@banvien.com
- */
 public interface CategoryService extends GenericService<Category, Long> {
 
     Category findByCode(String Code) throws ObjectNotFoundException;

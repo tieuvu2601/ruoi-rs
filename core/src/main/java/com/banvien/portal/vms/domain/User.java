@@ -3,12 +3,6 @@ package com.banvien.portal.vms.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-/**
- * Created by Ban Vien Ltd.
- * User: Vien Nguyen (vien.nguyen@banvien.com)
- * Date: 11/13/12
- * Time: 2:51 PM
- */
 public class User implements Serializable {
     private Long userID;
 
@@ -29,8 +23,6 @@ public class User implements Serializable {
     private Integer status = 1;//default is active
 
     private UserGroup userGroup;
-
-    private Department department;
 
     private Timestamp createdDate;
 
@@ -120,14 +112,6 @@ public class User implements Serializable {
 
     public void setUserGroup(UserGroup userGroup) {
         this.userGroup = userGroup;
-    }
-
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 
     public Timestamp getCreatedDate() {

@@ -5,16 +5,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.banvien.portal.vms.domain.Content;
-import com.banvien.portal.vms.dto.TopCommentsContentDTO;
-import com.banvien.portal.vms.dto.TopViewContentDTO;
 
-/**
- * Copyright (c) by Ban Vien Co., Ltd.
- * User: MBP
- * Date: 11/13/12
- * Time: 4:24 PM
- * Author: vien.nguyen@banvien.com
- */
 public interface ContentDAO extends GenericDAO<Content, Long> {
 
     List<Content> findByCategory(String category, Integer startRow, Integer pageSize, Boolean isEng, Integer status);
@@ -25,10 +16,6 @@ public interface ContentDAO extends GenericDAO<Content, Long> {
 
     List<Content> findRelatedItems(String authoringTemplate, String category, Long departmentID, Timestamp modifiedDate, Integer startRow, Integer pageSize);
 
-    List<TopViewContentDTO> findTopViewByAuthoringCode(String authoringCode, String category, Integer pageSize, Integer noOfDateTracking);
-
-    List<TopCommentsContentDTO> findTopCommentByAuthoringCode(String authoringCode, String category, Integer pageSize, Integer noOfDateTracking);
-    
     Object[] reportByPublishedDate(Timestamp fromDate, Timestamp toDate, Integer startIndex, Integer pageSize, String sortProperty, String sortDirection);
     
     Object[] reportByDepartment(Timestamp fromDate, Timestamp toDate, Long departmentID, Integer status, Integer startIndex, Integer pageSize, String sortProperty, String sortDirection);

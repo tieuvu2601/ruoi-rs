@@ -1,11 +1,9 @@
 package com.banvien.portal.vms.security;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.banvien.portal.vms.dao.DepartmentDAO;
 import com.banvien.portal.vms.dao.UserDAO;
 import com.banvien.portal.vms.dao.UserGroupDAO;
 import org.apache.log4j.Logger;
@@ -21,7 +19,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.banvien.portal.vms.dao.RoleDAO;
 import com.banvien.portal.vms.domain.Role;
 import com.banvien.portal.vms.domain.User;
-import com.banvien.portal.vms.dto.C2UserDTO;
 import com.banvien.portal.vms.service.UserService;
 import com.banvien.portal.vms.util.Constants;
 
@@ -40,8 +37,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
     private RoleDAO roleDAO;
 
-    private DepartmentDAO departmentDAO;
-
     private UserGroupDAO userGroupDAO;
 
     private UserDAO userDAO;
@@ -53,10 +48,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
     public void setRoleDAO(RoleDAO roleDAO) {
         this.roleDAO = roleDAO;
-    }
-
-    public void setDepartmentDAO(DepartmentDAO departmentDAO) {
-        this.departmentDAO = departmentDAO;
     }
 
     public void setUserGroupDAO(UserGroupDAO userGroupDAO) {
@@ -143,9 +134,6 @@ public class MyUserDetailsService implements UserDetailsService {
 		authorities.values().toArray(grantedAuthority);
 		MyUserDetail loginUser = new MyUserDetail(username, username, true, true, true, true, grantedAuthority);
 
-        if (account != null && account.getDepartment() != null) {
-            loginUser.setDepartmentID(account.getDepartment().getDepartmentID());
-        }
         loginUser.setFullAccessSystem(account.getFullAccess() != null && account.getFullAccess().equals(1) ? true : false);
 		BeanUtils.copyProperties(account, loginUser);
 

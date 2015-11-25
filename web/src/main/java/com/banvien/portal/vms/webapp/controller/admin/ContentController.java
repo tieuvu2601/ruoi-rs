@@ -7,11 +7,9 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.JAXBException;
 
 import com.banvien.portal.vms.domain.*;
 import com.banvien.portal.vms.editor.CustomDateEditorSQL;
-import com.banvien.portal.vms.exception.InvalidXMLException;
 import com.banvien.portal.vms.service.*;
 import com.banvien.portal.vms.util.*;
 import org.apache.commons.lang.StringUtils;
@@ -30,16 +28,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.banvien.jcr.api.IJcrContent;
-import com.banvien.portal.vms.bean.CommentBean;
 import com.banvien.portal.vms.bean.ContentBean;
-import com.banvien.portal.vms.bean.CropImageBean;
 import com.banvien.portal.vms.bean.FileItem;
-import com.banvien.portal.vms.bean.TrackingBean;
 import com.banvien.portal.vms.bean.XmlNodeDTO;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.editor.FileItemMultipartFileEditor;
 import com.banvien.portal.vms.editor.PojoEditor;
-import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 
 import com.banvien.portal.vms.security.SecurityUtils;
@@ -49,9 +43,6 @@ import com.banvien.portal.vms.xml.authoringtemplate.Node;
 import com.banvien.portal.vms.xml.contentitem.ContentItem;
 import com.banvien.portal.vms.xml.contentitem.Item;
 import com.banvien.portal.vms.xml.contentitem.Items;
-import com.lowagie.text.pdf.codec.PngImage;
-import org.xml.sax.SAXException;
-
 
 @Controller
 public class ContentController extends ApplicationObjectSupport {
@@ -67,25 +58,10 @@ public class ContentController extends ApplicationObjectSupport {
     private ContentValidator contentValidator;
 
     @Autowired
-    private CommentService commentService;
-
-    @Autowired
     private AuthoringTemplateService authoringTemplateService;
 
     @Autowired
-    private TrackingService trackingService;
-
-    @Autowired
     private CategoryService categoryService;
-
-    @Autowired
-    private DepartmentService departmentService;
-
-    @Autowired
-    private ContentDepartmentService contentDepartmentService;
-
-    @Autowired
-    private ContentCategoryService contentCategoryService;
 
     @Autowired
     private IJcrContent jcrContent;
@@ -96,16 +72,12 @@ public class ContentController extends ApplicationObjectSupport {
     
     @Autowired
     private MailEngine mailEngine;
-    
-    @Autowired
-    private SmsService smsService;
-    
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
     	binder.registerCustomEditor(Date.class, new CustomDateEditorSQL());
         binder.registerCustomEditor(Timestamp.class, new CustomDateEditor("dd/MM/yyyy"));
         binder.registerCustomEditor(AuthoringTemplate.class, new PojoEditor(AuthoringTemplate.class, "authoringTemplateID", Long.class));
-        binder.registerCustomEditor(Comment.class, new PojoEditor(Comment.class, "commentID", Long.class));
         binder.registerCustomEditor(User.class, new PojoEditor(User.class, "userID", Long.class));
         binder.registerCustomEditor(FileItem.class, new FileItemMultipartFileEditor());
 	}
@@ -126,7 +98,6 @@ public class ContentController extends ApplicationObjectSupport {
                     for(String id : checkList){
                         contentIds.add(Long.valueOf(id.trim()));
                     }
-                    smsService.deleteByContentIds(contentIds);
                 }
                 totalDeleted = contentService.deleteItems(checkList);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.delete.successful", new String[]{totalDeleted.toString(), String.valueOf(bean.getCheckList().length)}));
@@ -199,8 +170,6 @@ public class ContentController extends ApplicationObjectSupport {
         mav.addObject("authoringTemplates", authoringTemplateService.findAll());
         mav.addObject("currentUserID", SecurityUtils.getLoginUserId());
     }
-
-    //    redirectAttributes.addFlashAttribute("productZIPFile", (String)objects[0]);
 
     @RequestMapping("/admin/content/add.html")
     public ModelAndView add(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, BindingResult bindingResult){
@@ -387,22 +356,6 @@ public class ContentController extends ApplicationObjectSupport {
         if(StringUtils.isBlank(bean.getCrudaction()) && bean.getPojo().getContentID() != null){
             bean.setPojo(dbItem);
             bean.setContentItem(contentItem);
-        }
-        if (bean.getPojo().getContentID() != null) {
-            List<ContentCategory> contentCategories = contentCategoryService.findProperty("content.contentID", bean.getPojo().getContentID());
-            Map<Long, ContentCategory> contentCategoryMap = new HashMap<Long, ContentCategory>();
-            for (ContentCategory contentCategory : contentCategories) {
-                contentCategoryMap.put(contentCategory.getCategory().getCategoryID(), contentCategory);
-            }
-            bean.setContentCategoryMap(contentCategoryMap);
-            removeSessionFileMap(bean.getPojo().getContentID(), CONTENT_FILE_MAP, request);
-
-            List<ContentDepartment> contentDepartments = contentDepartmentService.findProperty("content.contentID", bean.getPojo().getContentID());
-            Map<Long, ContentDepartment> contentDepartmentMap = new HashMap<Long, ContentDepartment>();
-            for (ContentDepartment contentDepartment : contentDepartments) {
-                contentDepartmentMap.put(contentDepartment.getDepartment().getDepartmentID(), contentDepartment);
-            }
-            bean.setContentDepartmentMap(contentDepartmentMap);
         }
         mav.addObject("listCategories", CategoryUtil.getAllCategoryObjectInSite(categoryService.findAllCategoryParent()));
         mav.addObject(Constants.FORM_MODEL_KEY, bean);

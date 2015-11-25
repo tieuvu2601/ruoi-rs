@@ -72,7 +72,6 @@ public class LocaleFilter extends OncePerRequestFilter {
         }
         chain.doFilter(request, response);
 
-        // Reset thread-bound LocaleContext.
         LocaleContextHolder.setLocaleContext(null);
     }
 }

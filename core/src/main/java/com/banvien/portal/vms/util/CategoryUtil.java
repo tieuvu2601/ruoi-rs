@@ -9,13 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: HauKute
- * Date: 10/7/15
- * Time: 5:05 PM
- * To change this template use File | Settings | File Templates.
- */
+
 public class CategoryUtil {
 
     public static List<CategoryDTO> buildTreeCategory(List<Category> listCats, Category parent) {
@@ -82,7 +76,6 @@ public class CategoryUtil {
         categoryDTO.setKeyword(category.getKeyword());
         categoryDTO.setModifiedDate(category.getModifiedDate());
         categoryDTO.setName(category.getName());
-        categoryDTO.setRenderingTemplate(category.getRenderingTemplate());
         return categoryDTO;
     }
 

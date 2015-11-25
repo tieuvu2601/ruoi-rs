@@ -57,10 +57,7 @@ public class ImageUtils {
         // Now our buffered image is ready
         // Encode it as a JPEG
         ByteArrayOutputStream encoderOutputStream = new ByteArrayOutputStream();
-//		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(encoderOutputStream);
-//        FileOutputStream fos = new FileOutputStream();
         JPEGImageWriter imageWriter = (JPEGImageWriter) ImageIO.getImageWritersBySuffix("jpeg").next();
-//        ImageOutputStream ios = ImageIO.createImageOutputStream(fos);
         imageWriter.setOutput(bufferedResizedImage);
         byte[] resizedImageByteArray = encoderOutputStream.toByteArray();
         return resizedImageByteArray;
@@ -72,9 +69,7 @@ public class ImageUtils {
         BufferedImage bImageFromConvert = ImageIO.read(in);
         BufferedImage bufferedCroppedImage = bImageFromConvert.getSubimage(x, y, width, height);
         ByteArrayOutputStream encoderOutputStream = new ByteArrayOutputStream();
-//        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(encoderOutputStream);
         JPEGImageWriter imageWriter = (JPEGImageWriter) ImageIO.getImageWritersBySuffix("jpeg").next();
-//        encoder.encode(bufferedCroppedImage);
         imageWriter.setOutput(bufferedCroppedImage);
         return encoderOutputStream.toByteArray();
     }

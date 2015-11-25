@@ -6,9 +6,6 @@
 	<class name="com.banvien.portal.vms.domain.UserRole" table="PortalUserRole">
 
 		<id name="userRoleID" column="UserRoleID">
-			<!--<generator class="sequence">-->
-                <!--<param name="sequence">PORTALUSERGROUP_SEQ</param>-->
-            <!--</generator>-->
             <generator class="increment"/>
 		</id>
 

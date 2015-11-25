@@ -27,8 +27,6 @@ public class Category implements Serializable {
 
     private AuthoringTemplate authoringTemplate;
 
-    private RenderingTemplate renderingTemplate;
-
     private Timestamp createdDate;
 
     private Timestamp modifiedDate;
@@ -127,14 +125,6 @@ public class Category implements Serializable {
 
     public void setAuthoringTemplate(AuthoringTemplate authoringTemplate) {
         this.authoringTemplate = authoringTemplate;
-    }
-
-    public RenderingTemplate getRenderingTemplate() {
-        return renderingTemplate;
-    }
-
-    public void setRenderingTemplate(RenderingTemplate renderingTemplate) {
-        this.renderingTemplate = renderingTemplate;
     }
 
     public Timestamp getCreatedDate() {

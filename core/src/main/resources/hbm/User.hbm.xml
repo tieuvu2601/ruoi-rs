@@ -5,11 +5,9 @@
 <hibernate-mapping>
 	<class name="com.banvien.portal.vms.domain.User" table="PortalUser">
 
-
         <id name="userID" column="UserID">
             <generator class="increment"/>
         </id>
-
 
 		<property name="username" column="Username"/>
 
@@ -29,8 +27,6 @@
 
         <many-to-one name="userGroup" column="UserGroupID" lazy="false"/>
 
-        <many-to-one name="department" column="DepartmentID"/>
-	
 		<property name="createdDate" column="CreatedDate"/>
 	
 		<property name="modifiedDate" column="ModifiedDate"/>

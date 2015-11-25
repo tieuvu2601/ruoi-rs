@@ -17,11 +17,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.banvien.portal.vms.domain.UserSession;
-import com.banvien.portal.vms.exception.ObjectNotFoundException;
-import com.banvien.portal.vms.service.UserSessionService;
-
-
 /**
  * UserCounterListener class used to count the current number
  * of active users for the applications.  Does this by counting
@@ -101,23 +96,6 @@ public class UserCounterListener extends HttpSessionEventPublisher implements Se
         return WebApplicationContextUtils.getWebApplicationContext(servletContext);
     }
     public void sessionCreated(javax.servlet.http.HttpSessionEvent event) {
-
-//        ApplicationContext applicationContext = getContext(event.getSession().getServletContext());
-//        try {
-//            if (servletContext.getAttribute(TOTAL_VISITORS_KEY) == null) {
-//                UserSessionService userSessionService = applicationContext.getBean(UserSessionService.class);
-//
-//                UserSession userSession = userSessionService.getTotalVisitors();
-//                userSession.setNumberOfVisitors(userSession.getNumberOfVisitors() + 1);
-//                servletContext.setAttribute((TOTAL_VISITORS_KEY), userSession.getNumberOfVisitors());
-//                //userSessionService.updateNumberOfVisitors(userSession);
-//            }else{
-//                Long total =  (Long)servletContext.getAttribute(TOTAL_VISITORS_KEY);
-//                servletContext.setAttribute((TOTAL_VISITORS_KEY), total + 1);
-//            }
-//        } catch (ObjectNotFoundException e1) {
-//            log.error(e1.getMessage());
-//        }
         incrementUserCounter();
         String ipAddr = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
                 .getRequest().getRemoteAddr();
