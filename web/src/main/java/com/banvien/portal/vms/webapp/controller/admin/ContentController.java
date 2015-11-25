@@ -16,7 +16,6 @@ import com.banvien.portal.vms.service.*;
 import com.banvien.portal.vms.util.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.jbpm.api.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.stereotype.Controller;
@@ -42,7 +41,7 @@ import com.banvien.portal.vms.editor.FileItemMultipartFileEditor;
 import com.banvien.portal.vms.editor.PojoEditor;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
-import com.banvien.portal.vms.jbpm.service.JbpmSpringService;
+
 import com.banvien.portal.vms.security.SecurityUtils;
 import com.banvien.portal.vms.webapp.jcr.JcrConstants;
 import com.banvien.portal.vms.webapp.validator.ContentValidator;
@@ -53,12 +52,7 @@ import com.banvien.portal.vms.xml.contentitem.Items;
 import com.lowagie.text.pdf.codec.PngImage;
 import org.xml.sax.SAXException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: NhuKhang
- * Date: 10/6/12
- * Time: 10:57 AM
- */
+
 @Controller
 public class ContentController extends ApplicationObjectSupport {
 	private transient final Logger logger = Logger.getLogger(getClass());
@@ -95,9 +89,7 @@ public class ContentController extends ApplicationObjectSupport {
 
     @Autowired
     private IJcrContent jcrContent;
-    
-    @Autowired
-    private JbpmSpringService jbpmSpringService;
+
     
     @Autowired
     private UserService userService;

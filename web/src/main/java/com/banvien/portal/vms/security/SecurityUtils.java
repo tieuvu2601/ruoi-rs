@@ -22,7 +22,10 @@ public class SecurityUtils {
 		return getPrincipal().getUserID();
 	}
 
-	
+    public static String displayName(){
+        return getPrincipal().getDisplayName();
+    }
+
 	public static boolean userHasAuthority(String roleCode) {
 		List<GrantedAuthority> list = (List<GrantedAuthority>)(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 		List<GrantedAuthority> authories = list;

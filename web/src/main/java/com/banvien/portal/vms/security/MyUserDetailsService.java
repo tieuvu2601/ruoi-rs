@@ -8,12 +8,7 @@ import java.util.Map;
 import com.banvien.portal.vms.dao.DepartmentDAO;
 import com.banvien.portal.vms.dao.UserDAO;
 import com.banvien.portal.vms.dao.UserGroupDAO;
-import com.banvien.portal.vms.domain.Department;
-import com.banvien.portal.vms.dto.UserDTO;
-import com.banvien.portal.vms.exception.ObjectNotFoundException;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.jbpm.api.IdentityService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.GrantedAuthority;
@@ -47,17 +42,10 @@ public class MyUserDetailsService implements UserDetailsService {
 
     private DepartmentDAO departmentDAO;
 
-    private IdentityService identityService;
-
-    private LdapUserLookup ldapUserLookup;
-
     private UserGroupDAO userGroupDAO;
 
     private UserDAO userDAO;
 
-    public void setLdapUserLookup(LdapUserLookup ldapUserLookup) {
-        this.ldapUserLookup = ldapUserLookup;
-    }
 
     public void setUserService(UserService userService) {
         this.userService = userService;
@@ -70,10 +58,6 @@ public class MyUserDetailsService implements UserDetailsService {
     public void setDepartmentDAO(DepartmentDAO departmentDAO) {
         this.departmentDAO = departmentDAO;
     }
-
-    public void setIdentityService(IdentityService identityService) {
-		this.identityService = identityService;
-	}
 
     public void setUserGroupDAO(UserGroupDAO userGroupDAO) {
         this.userGroupDAO = userGroupDAO;
@@ -129,57 +113,7 @@ public class MyUserDetailsService implements UserDetailsService {
 		try {
 			account = userService.findByUserName(username);
 			Integer activeStatus = 1;
-//            if (account == null) {
-                //Check from LDAP
-//                UserDTO userDTO = null;
-//                try{
-//                    userDTO = ldapUserLookup.getUser(username);
-//                    if (userDTO != null) {
-//                        account = new User();
-//                        account.setUsername(username);
-//                        account.setPassword(userDTO.getPassword());
-//                        account.setDisplayName(userDTO.getDisplayName());
-//                        account.setStatus(1);
-//                        account.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-//                        account.setIsShopper(0);
-//                        account.setUserGroup(userGroupDAO.findEqualUnique("code", Constants.GROUP_GUEST));
-//
-//                        if (StringUtils.isNotBlank(userDTO.getDepartment())) {
-//                            Department department = departmentDAO.findEqualUnique("organizationUnit", userDTO.getDepartment());
-//                            account.setDepartment(department);
-//                        }
-//
-//                        account = userService.save(account);
-//                    }
-//                }catch (Exception e) {
-//                    userDTO = null;
-//                }
-//                if (userDTO == null) {
-//                    C2UserDTO c2UserDTO = userService.findC2UserByUsername(username);
-//                    if (c2UserDTO != null) {
-//                        account = new User();
-//                        account.setUsername(c2UserDTO.getUsername());
-//                        account.setPassword(c2UserDTO.getPassword());
-//                        account.setDisplayName(c2UserDTO.getFullname());
-//                        account.setStatus(Integer.valueOf(c2UserDTO.getStatus()));
-//                        account.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-//                        account.setUserGroup(userGroupDAO.findEqualUnique("code", Constants.GROUP_GUEST));
-//                        try{
-//                            Department department = departmentDAO.findDepartmentByShopCode(c2UserDTO.getShopcode());
-//                            account.setDepartment(department);
-//                            if (!department.getCode().equals(c2UserDTO.getShopcode())) {
-//                                account.setIsShopper(1);
-//                            }else{
-//                                account.setIsShopper(0);
-//                            }
-//                        }catch (Exception e) {
-//
-//                        }
-//                        account = userService.save(account);
-//                    }
-//                }
-//            }
-			if (account == null || !activeStatus.equals(account.getStatus())) {				
+			if (account == null || !activeStatus.equals(account.getStatus())) {
 				throw new UsernameNotFoundException("UserProcessingFilter.usernameNotFound");
 			}
 			
@@ -187,37 +121,7 @@ public class MyUserDetailsService implements UserDetailsService {
 			logger.error(e.getMessage(), e);
 			throw new UsernameNotFoundException(e.getMessage());
 		}
-		//create jbpm user and usergroup if not existed
-		try {
-			if(account.getUserGroup() != null) {
-				org.jbpm.api.identity.Group jbpmGroup = identityService.findGroupById(account.getUserGroup().getCode());
-				if(jbpmGroup == null) {
-					identityService.createGroup(account.getUserGroup().getCode());
-				}
-			}
-			org.jbpm.api.identity.User jbpmUser = identityService.findUserById(username);
-			if(jbpmUser != null) {
-				List<String> jbpmGroups = identityService.findGroupIdsByUser(username);
-				if(jbpmGroups != null && jbpmGroups.size() > 0 && account.getUserGroup() != null) {
-                    try {
-                        identityService.deleteMembership(username, jbpmGroups.get(0), null);
-                        identityService.createMembership(username, account.getUserGroup().getCode());
-                        }catch(Exception e) {}
-//					identityService.createMembership(username, account.getUserGroup().getCode());
-				}else if(account.getUserGroup() != null) {
-					identityService.createMembership(username, account.getUserGroup().getCode());
-				}
-			}else {
-				identityService.createUser(username, username, account.getDisplayName());
-				if(account.getUserGroup() != null) {
-					identityService.createMembership(username, account.getUserGroup().getCode());
-				}
-			}
-			
-		}catch (Exception e) {
-			logger.error(e.getMessage(), e);
-			throw new UsernameNotFoundException("UserProcessingFilter.usernameNotFound");
-		}
+
 		
 		Map<String, GrantedAuthority> authorities = new HashMap<String, GrantedAuthority>();
 

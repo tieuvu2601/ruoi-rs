@@ -109,6 +109,17 @@
     <bean id="trackingService" class="com.banvien.portal.vms.service.TrackingServiceImpl">
         <property name="trackingDAO" ref="trackingDAO"/>
     </bean>
+
+
+
+
+    <bean id="userSecurityAdvice" class="com.banvien.portal.vms.security.MyUserDetailsService">
+        <property name="userService" ref="userService"/>
+        <property name="roleDAO" ref="roleDAO"/>
+        <property name="departmentDAO" ref="departmentDAO"/>
+        <property name="userGroupDAO" ref="userGroupDAO"/>
+    </bean>
+
     <bean id="userService" class="com.banvien.portal.vms.service.UserServiceImpl">
         <property name="userDAO" ref="userDAO"/>
         <property name="userRoleDAO" ref="userRoleDAO"/>

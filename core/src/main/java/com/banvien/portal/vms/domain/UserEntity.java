@@ -1,7 +1,7 @@
 package com.banvien.portal.vms.domain;
 
 import java.io.Serializable;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 
 public class UserEntity implements Serializable {

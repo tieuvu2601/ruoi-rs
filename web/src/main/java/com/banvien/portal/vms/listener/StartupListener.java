@@ -11,12 +11,10 @@ import javax.servlet.ServletContextListener;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.jbpm.api.IdentityService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.banvien.portal.vms.core.context.AppContext;
-import com.banvien.portal.vms.jbpm.service.JbpmSpringService;
 import com.banvien.portal.vms.util.Constants;
 
 /**
@@ -63,26 +61,6 @@ public class StartupListener implements ServletContextListener {
         try {
         	ApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(context);
             AppContext.setApplicationContext(ctx);
-
-	        JbpmSpringService  jbpmSpringService = ctx.getBean(JbpmSpringService.class);
-	        if(!jbpmSpringService.isProcessDeployed(Constants.CONTENT_PAGEFLOW_PROCESS_KEY)) {
-				jbpmSpringService.deploy(Constants.CONTENT_PAGEFLOW_PROCESS_FILE_NAME);
-
-				IdentityService  identityService = ctx.getBean(IdentityService.class);
-				createJbpmTempUser(identityService);
-	        }
-
-	        if(!jbpmSpringService.isProcessDeployed(Constants.EDITOR_PAGEFLOW_PROCESS_KEY)) {
-	        	jbpmSpringService.deploy(Constants.EDITOR_PAGEFLOW_PROCESS_FILE_NAME);
-	        }
-
-	        if(!jbpmSpringService.isProcessDeployed(Constants.APPROVER_PAGEFLOW_PROCESS_KEY)) {
-	        	jbpmSpringService.deploy(Constants.APPROVER_PAGEFLOW_PROCESS_FILE_NAME);
-	        }
-
-	        if(!jbpmSpringService.isProcessDeployed(Constants.PUBLISHER_PAGEFLOW_PROCESS_KEY)) {
-	        	jbpmSpringService.deploy(Constants.PUBLISHER_PAGEFLOW_PROCESS_FILE_NAME);
-	        }
         }catch (Throwable e) {
         	log.error(e.getMessage(), e);
 		}
@@ -92,22 +70,6 @@ public class StartupListener implements ServletContextListener {
         
 
     }
-    
-    private void createJbpmTempUser(IdentityService  identityService) {
-		String[] groups = new String[]{Constants.GROUP_AUTHOR, Constants.GROUP_EDITOR, Constants.GROUP_APPROVER,  Constants.GROUP_PUBLISHER};
-		String[] users = new String[]{Constants.JBPM_USER_AUTHOR, Constants.JBPM_USER_EDITOR, Constants.JBPM_USER_APPROVER,  Constants.JBPM_USER_PUBLISHER};
-		for(int i = 0; i < groups.length; i++) {
-			org.jbpm.api.identity.Group jbpmGroup = identityService.findGroupById(groups[i]);
-			if(jbpmGroup == null) {
-				identityService.createGroup(groups[i]);
-			}
-			org.jbpm.api.identity.User jbpmUser = identityService.findUserById(users[i]);
-			if(jbpmUser == null) {
-				identityService.createUser(users[i], users[i], users[i]);
-				identityService.createMembership(users[i], groups[i]);
-			}
-		}
-	}
     
 	/**
      * This method uses the LookupManager to lookup available roles from the data layer.

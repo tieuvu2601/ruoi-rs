@@ -12,13 +12,7 @@ import org.apache.log4j.Logger;
 import java.sql.Timestamp;
 import java.util.List;
 
-/**
- * Copyright (c) by Ban Vien Co., Ltd.
- * User: MBP
- * Date: 11/13/12
- * Time: 4:59 PM
- * Author: vien.nguyen@banvien.com
- */
+
 public class UserServiceImpl extends GenericServiceImpl<User, Long> implements UserService {
 
     private transient final Logger logger = Logger.getLogger(getClass());

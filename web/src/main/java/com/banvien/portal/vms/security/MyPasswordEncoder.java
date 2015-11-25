@@ -1,25 +1,13 @@
-/**
- * 
- */
 package com.banvien.portal.vms.security;
 
 import com.banvien.portal.vms.dao.UserDAO;
 import com.banvien.portal.vms.domain.User;
-import com.banvien.portal.vms.dto.C2UserDTO;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 
-/**
- * @author Nguyen Hai Vien
- *
- */
-public class MyPasswordEncoder implements PasswordEncoder {
-    private LdapUserLookup ldapUserLookup;
-    private UserDAO userDAO;
 
-    public void setLdapUserLookup(LdapUserLookup ldapUserLookup) {
-        this.ldapUserLookup = ldapUserLookup;
-    }
+public class MyPasswordEncoder implements PasswordEncoder {
+    private UserDAO userDAO;
 
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
@@ -39,19 +27,6 @@ public class MyPasswordEncoder implements PasswordEncoder {
                 res = true;
             }
         }
-
-
-//        try{
-//		    res = ldapUserLookup.authenticate(encPass, rawPass);
-//        }catch (Exception ex) {
-//
-//        }
-//        if (!res) {
-//            C2UserDTO c2UserDTO = userDAO.findC2UserByUsernameAndPassword(encPass, rawPass);
-//            if (c2UserDTO != null && c2UserDTO.getStatus() != null && c2UserDTO.getStatus().equals("1")) {
-//                res = true;
-//            }
-//        }
         return res;
 	}
 

@@ -55,11 +55,9 @@
                 <value>hbm/FeedbackCategory.hbm.xml</value>
                 <value>hbm/FeedbackReply.hbm.xml</value>
                 <value>hbm/Opinion.hbm.xml</value>
-                <value>jbpm.execution.hbm.xml</value>
-				<value>jbpm.repository.hbm.xml</value>
-				<value>jbpm.task.hbm.xml</value>
-				<value>jbpm.history.hbm.xml</value>
-				<value>jbpm.identity.hbm.xml</value>
+
+                <!--<value>hbm/UserGroupEntity.hbm.xml</value>-->
+                <!--<value>hbm/UserEntity.hbm.xml</value>-->
             </list>
         </property>
 
@@ -194,5 +192,15 @@
     <bean id="feedbackReplyDAO" class="com.banvien.portal.vms.dao.FeedbackReplyHibernateDAO">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
+
+
+
+    <!--<bean id="newUserGroupDAO" class="com.banvien.portal.vms.dao.NewUserGroupHibernateDAO">-->
+        <!--<property name="sessionFactory" ref="sessionFactory" />-->
+    <!--</bean>-->
+
+    <!--<bean id="newUserDAO" class="com.banvien.portal.vms.dao.NewUserHibernateDAO">-->
+        <!--<property name="sessionFactory" ref="sessionFactory" />-->
+    <!--</bean>-->
 
 </beans>

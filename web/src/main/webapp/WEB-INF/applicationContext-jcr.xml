@@ -27,9 +27,7 @@
 		  <property name="registry" ref="rmiRegistry"/>
 		  <property name="rmiName" value="jackrabbit.repository"/>
 	</bean>
-	
-	
-	 
+
 	<bean id="rmiClientFactory" class="org.apache.jackrabbit.rmi.client.ClientRepositoryFactory"/>
 	<bean id="rmiClient" factory-bean="rmiClientFactory" factory-method="getRepository" depends-on="rmiServer">
 		<constructor-arg value="${jcr.rmi.url}"/>
