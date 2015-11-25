@@ -1,0 +1,17 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.ProductPromotionEntity" table="ProductPromotion">
+        <id name="productPromotionId" column="productPromotionId">
+            <generator class="increment"/>
+        </id>
+
+        <many-to-one name="product" column="productId" lazy="false"/>
+
+		<property name="title" column="title" not-null="true" unique="true"/>
+
+        <property name="value" column="value"/>
+	</class>
+</hibernate-mapping>

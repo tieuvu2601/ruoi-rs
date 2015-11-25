@@ -1,0 +1,43 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.ProductEntity" table="Product">
+        <id name="productId" column="productId">
+            <generator class="increment"/>
+        </id>
+
+        <many-to-one name="productType" column="productTypeId" lazy="false"/>
+
+        <many-to-one name="productCategory" column="productCategoryId" lazy="false"/>
+
+        <property name="title" column="title" not-null="true" unique="true"/>
+
+        <property name="keyword" column="keyword"/>
+
+        <property name="prefixUrl" column="prefixUrl"/>
+
+        <property name="shortDescription" column="shortDescription"/>
+
+        <property name="dataXML" column="dataXML"/>
+
+        <property name="thumbnails" column="thumbnails"/>
+
+        <property name="location" column="location"/>
+
+        <property name="locationPoint" column="locationPoint"/>
+
+        <property name="images" column="images"/>
+
+        <property name="displayOrder" column="displayOrder"/>
+
+        <property name="createdDate" column="createdDate"/>
+
+        <property name="modifiedDate" column="modifiedDate"/>
+
+        <property name="publishedDate" column="publishedDate"/>
+
+        <property name="author" column="author"/>
+	</class>
+</hibernate-mapping>

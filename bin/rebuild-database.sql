@@ -25,7 +25,6 @@ CREATE TABLE Users (
   modifiedDate datetime DEFAULT NULL,
   avatar varchar(255) DEFAULT NULL,
   fullAccess int(11) DEFAULT NULL,
-  PRIMARY KEY (userID),
   UNIQUE (username),
   FOREIGN KEY (userGroupId) REFERENCES UsersGroup(userGroupId)
 );
@@ -56,8 +55,11 @@ CREATE TABLE Product (
   keyword VARCHAR(255) NOT NULL,
   prefixUrl VARCHAR(255),
   shortDescription VARCHAR(255) NOT NULL,
-  description TEXT,
+  dataXML TEXT,
   thumbnails VARCHAR(255),
+  location VARCHAR(255),
+  locationPoint VARCHAR(255),
+  images TEXT,
   displayOrder INT NOT NULL DEFAULT 0,
   createdDate TIMESTAMP NOT NULL,
   modifiedDate TIMESTAMP,
@@ -66,6 +68,13 @@ CREATE TABLE Product (
   UNIQUE (title),
   FOREIGN KEY (productTypeId) REFERENCES ProductType(productTypeId),
   FOREIGN KEY (productCategoryId) REFERENCES ProductCategory(productCategoryId)
+);
+
+CREATE TABLE ProductPromotion(
+   productPromotionId BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+   productId BIGINT(20) NOT NULL,
+   title VARCHAR(255) NOT NULL,
+   value BIGINT(20)  NOT NULL
 );
 
 CREATE TABLE ProductComment (
@@ -80,14 +89,17 @@ CREATE TABLE ProductComment (
   resolvedBy VARCHAR(255)
 );
 
+-- // MUST BE REVISE
+
 CREATE TABLE Customer (
    productCommentId BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
    customerName VARCHAR(255) NOT NULL,
    email VARCHAR(255) NOT NULL,
    phoneNumber VARCHAR(20),
    location VARCHAR(255),
+   locationPoint VARCHAR(255),
    autoGetEmail int(11) DEFAULT 0,
-   createdDate TIMESTAMP NOT NULL,
+   createdDate TIMESTAMP NOT NULL
 )
 
 
