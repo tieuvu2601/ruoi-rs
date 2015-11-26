@@ -20,15 +20,9 @@ public interface ContentService extends GenericService<Content, Long> {
 
     Object [] findByCategoryWithMaxItem(String category, Integer startRow, Integer pageSize, Boolean isEng, Integer orderBy, Integer status);
 
-    List<Content> findByCategoryId(Long categoryId, Integer startRow, Integer pageSize, Integer status);
-
     List<Content> findByAuthoringTemplate(String authoringCode, Integer startRow, Integer pageSize);
 
     Content saveItem(ContentBean bean) throws DuplicateException;
-
-    List<Content> findRelatedItems(String authoringTemplate, String category, Long departmentID, Timestamp modifiedDate, Integer startRow, Integer pageSize);
-
-	List<Content> findByListID(List<Long> contentIDs);
 
     List<Content> findByAuthoringTemplateAndDepartment(String authoringTemplate, String department, Integer begin, Integer pageSize);
 

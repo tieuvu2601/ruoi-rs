@@ -2,7 +2,6 @@ package com.banvien.portal.vms.service.impl;
 
 import com.banvien.portal.vms.dao.*;
 import com.banvien.portal.vms.domain.User;
-import com.banvien.portal.vms.domain.UserRole;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.UserService;
@@ -17,26 +16,6 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
     private transient final Logger logger = Logger.getLogger(getClass());
 
     private UserDAO userDAO;
-
-    private RoleDAO roleDAO;
-
-    private UserRoleDAO userRoleDAO;
-
-    public RoleDAO getRoleDAO() {
-        return roleDAO;
-    }
-
-    public void setRoleDAO(RoleDAO roleDAO) {
-        this.roleDAO = roleDAO;
-    }
-
-    public UserRoleDAO getUserRoleDAO() {
-        return userRoleDAO;
-    }
-
-    public void setUserRoleDAO(UserRoleDAO userRoleDAO) {
-        this.userRoleDAO = userRoleDAO;
-    }
 
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
@@ -57,8 +36,8 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
     @Override
     public void updateItem(User pojo) throws ObjectNotFoundException, DuplicateException {
 
-        User dbItem = this.userDAO.findByIdNoAutoCommit(pojo.getUserID());
-        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getUserID());
+        User dbItem = this.userDAO.findByIdNoAutoCommit(pojo.getUserId());
+        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getUserId());
 
         pojo.setCreatedDate(dbItem.getCreatedDate());
         pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));
@@ -72,8 +51,6 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
         if (checkList != null && checkList.length > 0) {
             res = checkList.length;
             for (String id : checkList) {
-                List<UserRole> listRoles = userRoleDAO.findByUserId(Long.parseLong(id));
-                userRoleDAO.deleteAll(listRoles);
                 userDAO.delete(Long.parseLong(id));
             }
         }

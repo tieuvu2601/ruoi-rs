@@ -3,38 +3,35 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-	<class name="com.banvien.portal.vms.domain.User" table="PortalUser">
-
-        <id name="userID" column="UserID">
+	<class name="com.banvien.portal.vms.domain.User" table="Users">
+        <id name="userId" column="UserID">
             <generator class="increment"/>
         </id>
 
-		<property name="username" column="Username"/>
+        <many-to-one name="userGroup" column="userGroupId" lazy="false"/>
 
-        <property name="password" column="Password"/>
+		<property name="username" column="username"/>
+
+        <property name="password" column="password"/>
 	
-		<property name="email" column="Email"/>
+		<property name="email" column="email"/>
 
-        <property name="firstName" column="FirstName"/>
+        <property name="firstName" column="firstName"/>
 
-        <property name="lastName" column="LastName"/>
+        <property name="lastName" column="lastName"/>
 
-        <property name="displayName" column="DisplayName"/>
+        <property name="displayName" column="displayName"/>
 
-        <property name="mobileNumber" column="MobileNumber"/>
+        <property name="phoneNumber" column="phoneNumber"/>
 
-        <property name="status" column="Status"/>
+        <property name="status" column="status"/>
 
-        <many-to-one name="userGroup" column="UserGroupID" lazy="false"/>
-
-		<property name="createdDate" column="CreatedDate"/>
+		<property name="createdDate" column="createdDate"/>
 	
-		<property name="modifiedDate" column="ModifiedDate"/>
+		<property name="modifiedDate" column="modifiedDate"/>
 		
-		<property name="avatar" column="Avatar"/>
+		<property name="avatar" column="avatar"/>
 
-        <property name="isShopper" column="IsShopper"/>
-
-        <property name="fullAccess" column="FullAccess"/>
+        <property name="fullAccess" column="fullAccess"/>
 	</class>
 </hibernate-mapping>

@@ -10,44 +10,20 @@ import java.sql.Timestamp;
  * Time: 2:59 PM
  */
 public class AuthoringTemplate implements Serializable {
-    private Long authoringTemplateID;
-
+    private Long authoringTemplateId;
     private String code;
-
     private String name;
-
     private String templateContent;
-    
-    private String status; // Y: allow comment, N: not comment
-
-    private String prefixUrl;
-
-    private String hasThumbnail;
-
-    private String hasHotItem;
-
-    private String hasDepartment;
-
-    private String event;
-
+    private Integer event;
     private Timestamp createdDate;
-
     private Timestamp modifiedDate;
 
-    public String getPrefixUrl() {
-        return prefixUrl;
+    public Long getAuthoringTemplateId() {
+        return authoringTemplateId;
     }
 
-    public void setPrefixUrl(String prefixUrl) {
-        this.prefixUrl = prefixUrl;
-    }
-
-    public Long getAuthoringTemplateID() {
-        return authoringTemplateID;
-    }
-
-    public void setAuthoringTemplateID(Long authoringTemplateID) {
-        this.authoringTemplateID = authoringTemplateID;
+    public void setAuthoringTemplateId(Long authoringTemplateId) {
+        this.authoringTemplateId = authoringTemplateId;
     }
 
     public String getCode() {
@@ -74,6 +50,13 @@ public class AuthoringTemplate implements Serializable {
         this.templateContent = templateContent;
     }
 
+    public Integer getEvent() {
+        return event;
+    }
+
+    public void setEvent(Integer event) {
+        this.event = event;
+    }
 
     public Timestamp getCreatedDate() {
         return createdDate;
@@ -89,45 +72,5 @@ public class AuthoringTemplate implements Serializable {
 
     public void setModifiedDate(Timestamp modifiedDate) {
         this.modifiedDate = modifiedDate;
-    }
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-    public String getHasThumbnail() {
-        return hasThumbnail;
-    }
-
-    public void setHasThumbnail(String hasThumbnail) {
-        this.hasThumbnail = hasThumbnail;
-    }
-
-    public String getHasHotItem() {
-        return hasHotItem;
-    }
-
-    public void setHasHotItem(String hasHotItem) {
-        this.hasHotItem = hasHotItem;
-    }
-
-    public String getHasDepartment() {
-        return hasDepartment;
-    }
-
-    public void setHasDepartment(String hasDepartment) {
-        this.hasDepartment = hasDepartment;
-    }
-
-    public String getEvent() {
-        return event;
-    }
-
-    public void setEvent(String event) {
-        this.event = event;
     }
 }

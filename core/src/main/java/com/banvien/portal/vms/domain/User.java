@@ -4,42 +4,35 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class User implements Serializable {
-    private Long userID;
-
-    private String username;
-
-    private String password;
-
-    private String email;
-
-    private String firstName;
-
-    private String lastName;
-
-    private String displayName;
-
-    private String mobileNumber;
-
-    private Integer status = 1;//default is active
-
+    private Long userId;
     private UserGroup userGroup;
-
-    private Timestamp createdDate;
-
-    private Timestamp modifiedDate;
-    
+    private String username;
+    private String password;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String displayName;
+    private String phoneNumber;
+    private Integer status;
     private String avatar;
-
-    private Integer isShopper;
-
     private Integer fullAccess;
+    private Timestamp createdDate;
+    private Timestamp modifiedDate;
 
-    public Long getUserID() {
-        return userID;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserID(Long userID) {
-        this.userID = userID;
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public UserGroup getUserGroup() {
+        return userGroup;
+    }
+
+    public void setUserGroup(UserGroup userGroup) {
+        this.userGroup = userGroup;
     }
 
     public String getUsername() {
@@ -90,12 +83,12 @@ public class User implements Serializable {
         this.displayName = displayName;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Integer getStatus() {
@@ -106,12 +99,20 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public UserGroup getUserGroup() {
-        return userGroup;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setUserGroup(UserGroup userGroup) {
-        this.userGroup = userGroup;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public Integer getFullAccess() {
+        return fullAccess;
+    }
+
+    public void setFullAccess(Integer fullAccess) {
+        this.fullAccess = fullAccess;
     }
 
     public Timestamp getCreatedDate() {
@@ -128,29 +129,5 @@ public class User implements Serializable {
 
     public void setModifiedDate(Timestamp modifiedDate) {
         this.modifiedDate = modifiedDate;
-    }
-
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-
-    public Integer getIsShopper() {
-        return isShopper;
-    }
-
-    public void setIsShopper(Integer shopper) {
-        isShopper = shopper;
-    }
-
-    public Integer getFullAccess() {
-        return fullAccess;
-    }
-
-    public void setFullAccess(Integer fullAccess) {
-        this.fullAccess = fullAccess;
     }
 }

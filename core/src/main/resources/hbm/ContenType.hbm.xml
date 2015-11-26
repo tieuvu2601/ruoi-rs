@@ -3,12 +3,14 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-	<class name="com.banvien.portal.vms.domain.UserGroup" table="UsersGroup">
-        <id name="userGroupId" column="userGroupId">
+	<class name="com.banvien.portal.vms.domain.ContentType" table="ContentType">
+        <id name="contentTypeId" column="contentTypeId">
             <generator class="increment"/>
         </id>
         <property name="code" column="code"/>
 
         <property name="name" column="name"/>
+
+        <property name="displayOrder" column="displayOrder"/>
 	</class>
 </hibernate-mapping>

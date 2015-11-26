@@ -16,14 +16,6 @@ public interface ContentDAO extends GenericDAO<Content, Long> {
 
     List<Content> findRelatedItems(String authoringTemplate, String category, Long departmentID, Timestamp modifiedDate, Integer startRow, Integer pageSize);
 
-    Object[] reportByPublishedDate(Timestamp fromDate, Timestamp toDate, Integer startIndex, Integer pageSize, String sortProperty, String sortDirection);
-    
-    Object[] reportByDepartment(Timestamp fromDate, Timestamp toDate, Long departmentID, Integer status, Integer startIndex, Integer pageSize, String sortProperty, String sortDirection);
-    
-    Object[] reportByAccessViewOrUserLike(Timestamp fromDate, Timestamp toDate, Integer top, Integer startIndex, Integer pageSize, String sortProperty, String sortDirection, Boolean isAccessViewReport);
-    
-    Object[] reportByComment(Timestamp fromDate, Timestamp toDate, Integer top, Integer startIndex, Integer pageSize, String sortProperty, String sortDirection);
-
 	List<Content> findByListID(List<Long> contentIDs);
 
     List<Content> findByAuthoringTemplateAndDepartment(String authoringTemplate, String department, Integer begin, Integer pageSize);
@@ -35,8 +27,6 @@ public interface ContentDAO extends GenericDAO<Content, Long> {
     List<Content> findByPrefixUrl(String prefixUrl, Integer startRow, Integer pageSize, Boolean isEng, Integer status);
 
     Object[] findByCategoryTypeWithMaxItem(String categoryType, Integer startRow, Integer pageSize, Date toDate, String categorySearch, Boolean isEng, Integer status);
-
-    Object[] findByParentCategoryWithMaxItem(String category, Integer startRow, Integer pageSize, Integer status);
 
     Content findByTitle(String title, Boolean isEng, Integer status);
 

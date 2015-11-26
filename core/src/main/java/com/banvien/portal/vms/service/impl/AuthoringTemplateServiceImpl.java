@@ -9,14 +9,6 @@ import com.banvien.portal.vms.service.AuthoringTemplateService;
 
 import java.sql.Timestamp;
 import java.util.List;
-
-/**
- * Copyright (c) by Ban Vien Co., Ltd.
- * User: MBP
- * Date: 11/13/12
- * Time: 4:43 PM
- * Author: vien.nguyen@banvien.com
- */
 public class AuthoringTemplateServiceImpl extends GenericServiceImpl<AuthoringTemplate, Long> implements AuthoringTemplateService {
     private AuthoringTemplateDAO authoringTemplateDAO;
 
@@ -39,8 +31,8 @@ public class AuthoringTemplateServiceImpl extends GenericServiceImpl<AuthoringTe
     @Override
     public void updateItem(AuthoringTemplate pojo) throws ObjectNotFoundException, DuplicateException {
 
-        AuthoringTemplate dbItem = this.authoringTemplateDAO.findByIdNoAutoCommit(pojo.getAuthoringTemplateID());
-        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getAuthoringTemplateID());
+        AuthoringTemplate dbItem = this.authoringTemplateDAO.findByIdNoAutoCommit(pojo.getAuthoringTemplateId());
+        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getAuthoringTemplateId());
         pojo.setCreatedDate(dbItem.getCreatedDate());
         pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));
         this.authoringTemplateDAO.detach(dbItem);

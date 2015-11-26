@@ -34,48 +34,48 @@ public class ContentServiceImpl extends GenericServiceImpl<Content, Long> implem
     
     @Override
     public void updateItem(ContentBean bean) throws ObjectNotFoundException, DuplicateException {
-        Content pojo = bean.getPojo();
-        Content dbItem = this.contentDAO.findByIdNoAutoCommit(pojo.getContentID());
-        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getContentID());
-
-        if (StringUtils.isBlank(pojo.getThumbnail())) {
-            pojo.setThumbnail(dbItem.getThumbnail());
-        }
-        pojo.setAuthoringTemplate(dbItem.getAuthoringTemplate());
-        Timestamp now = new Timestamp(System.currentTimeMillis());
-        pojo.setCreatedDate(dbItem.getCreatedDate());
-        pojo.setModifiedDate(now);
-
-        if(pojo.getStatus() == Constants.CONTENT_PUBLISH){
-            if(dbItem.getStatus() == Constants.CONTENT_PUBLISH){
-                pojo.setPublishedDate(dbItem.getPublishedDate());
-            } else {
-                pojo.setPublishedDate(now);
-            }
-
-        }
-        pojo.setModifiedDate(now);
-        this.contentDAO.detach(dbItem);
-        pojo = this.contentDAO.update(pojo);
+//        Content pojo = bean.getPojo();
+//        Content dbItem = this.contentDAO.findByIdNoAutoCommit(pojo.getContentID());
+//        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getContentID());
+//
+//        if (StringUtils.isBlank(pojo.getThumbnail())) {
+//            pojo.setThumbnail(dbItem.getThumbnail());
+//        }
+//        pojo.setAuthoringTemplate(dbItem.getAuthoringTemplate());
+//        Timestamp now = new Timestamp(System.currentTimeMillis());
+//        pojo.setCreatedDate(dbItem.getCreatedDate());
+//        pojo.setModifiedDate(now);
+//
+//        if(pojo.getStatus() == Constants.CONTENT_PUBLISH){
+//            if(dbItem.getStatus() == Constants.CONTENT_PUBLISH){
+//                pojo.setPublishedDate(dbItem.getPublishedDate());
+//            } else {
+//                pojo.setPublishedDate(now);
+//            }
+//
+//        }
+//        pojo.setModifiedDate(now);
+//        this.contentDAO.detach(dbItem);
+//        pojo = this.contentDAO.update(pojo);
     }
 
     @Override
     public void updateStatusItem(Content content) throws ObjectNotFoundException, DuplicateException {
-        Content dbItem = this.contentDAO.findByIdNoAutoCommit(content.getContentID());
-        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + content.getContentID());
-        Timestamp now = new Timestamp(System.currentTimeMillis());
-        Content newItem = dbItem;
-        newItem.setStatus(content.getStatus());
-        if(newItem.getStatus() == Constants.CONTENT_PUBLISH){
-            if(dbItem.getStatus() == Constants.CONTENT_PUBLISH){
-                newItem.setPublishedDate(dbItem.getPublishedDate());
-            } else {
-                newItem.setPublishedDate(now);
-            }
-        }
-        newItem.setModifiedDate(now);
-        this.contentDAO.detach(dbItem);
-        this.contentDAO.update(newItem);
+//        Content dbItem = this.contentDAO.findByIdNoAutoCommit(content.getContentID());
+//        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + content.getContentID());
+//        Timestamp now = new Timestamp(System.currentTimeMillis());
+//        Content newItem = dbItem;
+//        newItem.setStatus(content.getStatus());
+//        if(newItem.getStatus() == Constants.CONTENT_PUBLISH){
+//            if(dbItem.getStatus() == Constants.CONTENT_PUBLISH){
+//                newItem.setPublishedDate(dbItem.getPublishedDate());
+//            } else {
+//                newItem.setPublishedDate(now);
+//            }
+//        }
+//        newItem.setModifiedDate(now);
+//        this.contentDAO.detach(dbItem);
+//        this.contentDAO.update(newItem);
     }
 
     @Override
@@ -102,23 +102,18 @@ public class ContentServiceImpl extends GenericServiceImpl<Content, Long> implem
 
         Object [] result =  this.contentDAO.findByCategoryWithMaxItem(category, startRow, pageSize, isEng, orderBy, status);
         List<Content> listContent = new ArrayList<Content>();
-        for(Content content : (List<Content>) result[1]){
-            Content contentObj = content;
-            Category categoryObj = content.getCategory();
-            if(categoryObj.getParentCategory() != null && categoryObj.getParentCategory().getCategoryID() != null && categoryObj.getParentCategory().getCategoryID() > 0){
-                Category parent = categoryObj.getParentCategory();
-                categoryObj.setParentCategory(parent);
-            } else {
-                categoryObj.setParentCategory(null);
-            }
-            listContent.add(contentObj);
-        }
+//        for(Content content : (List<Content>) result[1]){
+//            Content contentObj = content;
+//            Category categoryObj = content.getCategory();
+//            if(categoryObj.getParentCategory() != null && categoryObj.getParentCategory().getCategoryID() != null && categoryObj.getParentCategory().getCategoryID() > 0){
+//                Category parent = categoryObj.getParentCategory();
+//                categoryObj.setParentCategory(parent);
+//            } else {
+//                categoryObj.setParentCategory(null);
+//            }
+//            listContent.add(contentObj);
+//        }
         return new Object [] {result[0], listContent};
-    }
-
-    @Override
-    public List<Content> findByCategoryId(Long categoryId, Integer startRow, Integer pageSize, Integer status) {
-        return this.contentDAO.findByCategoryId(categoryId, startRow, pageSize, status);
     }
 
     @Override
@@ -136,23 +131,12 @@ public class ContentServiceImpl extends GenericServiceImpl<Content, Long> implem
 
         pojo.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));
-        if(pojo.getStatus() != null && pojo.getStatus() == Constants.CONTENT_PUBLISH){
-            pojo.setPublishedDate(new Timestamp(System.currentTimeMillis()));
-        }
+//        if(pojo.getStatus() != null && pojo.getStatus() == Constants.CONTENT_PUBLISH){
+//            pojo.setPublishedDate(new Timestamp(System.currentTimeMillis()));
+//        }
         pojo = this.contentDAO.save(pojo);
         return pojo;
     }
-
-    @Override
-    public List<Content> findRelatedItems(String authoringTemplate, String category, Long departmentID, Timestamp modifiedDate, Integer startRow, Integer pageSize) {
-        return this.contentDAO.findRelatedItems(authoringTemplate, category, departmentID, modifiedDate, startRow, pageSize);
-    }
-
-	@Override
-	public List<Content> findByListID(List<Long> contentIDs) {
-		return this.contentDAO.findByListID(contentIDs);
-	}
-
     @Override
     public List<Content> findByAuthoringTemplateAndDepartment(String authoringTemplate, String department, Integer begin, Integer pageSize) {
         return this.contentDAO.findByAuthoringTemplateAndDepartment(authoringTemplate, department, begin, pageSize);

@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class FileItem implements Serializable {
 	private byte[] data;
 	private String originalFilename;
-	private long lastModified;// millis
+	private long lastModified;
 	private String path;
 	private String hrefPath;
 	private String mimeType;

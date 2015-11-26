@@ -1,79 +1,59 @@
 package com.banvien.portal.vms.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 
-/**
- * Created by Ban Vien Ltd.
- * User: Vien Nguyen (vien.nguyen@banvien.com)
- * Date: 11/13/12
- * Time: 3:07 PM
- */
+
+
 public class Content implements Serializable {
-    private Long contentID;
 
-    private String title;
-
-    private String keyword;
-
-    private String thumbnail;
-
-    private String xmlData;
-
+    private Long contentId;
+    private ContentType contentType;
+    private ContentCategory contentCategory;
     private AuthoringTemplate authoringTemplate;
-
-    private Integer accessPolicy;
-
+    private String title;
+    private String keyword;
+    private String prefixUrl;
+    private String shortDescription;
+    private String dataXML;
+    private String location;
+    private String locationPoint;
     private Integer displayOrder;
-
-    private Integer hot;
-
     private Timestamp createdDate;
-
     private Timestamp modifiedDate;
-    
-    private Integer status;
-
-    private User createdBy;
-
-    private User modifiedBy;
-
-    private String icon;
-
     private Timestamp publishedDate;
+    private User author;
 
-    private Category category;
-
-    private Date beginDate;
-
-    private Date endDate;
-
-    public Category getCategory() {
-        return category;
+    public Long getContentId() {
+        return contentId;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setContentId(Long contentId) {
+        this.contentId = contentId;
     }
 
-    private String createdDateStr;
-
-    public String getIcon() {
-        return icon;
+    public ContentType getContentType() {
+        return contentType;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setContentType(ContentType contentType) {
+        this.contentType = contentType;
     }
 
-    public Long getContentID() {
-        return contentID;
+    public ContentCategory getContentCategory() {
+        return contentCategory;
     }
 
-    public void setContentID(Long contentID) {
-        this.contentID = contentID;
+    public void setContentCategory(ContentCategory contentCategory) {
+        this.contentCategory = contentCategory;
+    }
+
+    public AuthoringTemplate getAuthoringTemplate() {
+        return authoringTemplate;
+    }
+
+    public void setAuthoringTemplate(AuthoringTemplate authoringTemplate) {
+        this.authoringTemplate = authoringTemplate;
     }
 
     public String getTitle() {
@@ -92,36 +72,44 @@ public class Content implements Serializable {
         this.keyword = keyword;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
+    public String getPrefixUrl() {
+        return prefixUrl;
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setPrefixUrl(String prefixUrl) {
+        this.prefixUrl = prefixUrl;
     }
 
-    public String getXmlData() {
-        return xmlData;
+    public String getShortDescription() {
+        return shortDescription;
     }
 
-    public void setXmlData(String xmlData) {
-        this.xmlData = xmlData;
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
     }
 
-    public AuthoringTemplate getAuthoringTemplate() {
-        return authoringTemplate;
+    public String getDataXML() {
+        return dataXML;
     }
 
-    public void setAuthoringTemplate(AuthoringTemplate authoringTemplate) {
-        this.authoringTemplate = authoringTemplate;
+    public void setDataXML(String dataXML) {
+        this.dataXML = dataXML;
     }
 
-    public Integer getAccessPolicy() {
-        return accessPolicy;
+    public String getLocation() {
+        return location;
     }
 
-    public void setAccessPolicy(Integer accessPolicy) {
-        this.accessPolicy = accessPolicy;
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLocationPoint() {
+        return locationPoint;
+    }
+
+    public void setLocationPoint(String locationPoint) {
+        this.locationPoint = locationPoint;
     }
 
     public Integer getDisplayOrder() {
@@ -130,14 +118,6 @@ public class Content implements Serializable {
 
     public void setDisplayOrder(Integer displayOrder) {
         this.displayOrder = displayOrder;
-    }
-
-    public Integer getHot() {
-        return hot;
-    }
-
-    public void setHot(Integer hot) {
-        this.hot = hot;
     }
 
     public Timestamp getCreatedDate() {
@@ -156,64 +136,19 @@ public class Content implements Serializable {
         this.modifiedDate = modifiedDate;
     }
 
-	public Integer getStatus() {
-		return status;
-	}
-
-	public void setStatus(Integer status) {
-		this.status = status;
-	}
-
-
-    public User getCreatedBy() {
-        return createdBy;
+    public Timestamp getPublishedDate() {
+        return publishedDate;
     }
 
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
+    public void setPublishedDate(Timestamp publishedDate) {
+        this.publishedDate = publishedDate;
     }
 
-    public User getModifiedBy() {
-        return modifiedBy;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setModifiedBy(User modifiedBy) {
-        this.modifiedBy = modifiedBy;
-    }
-
-	public Timestamp getPublishedDate() {
-		return publishedDate;
-	}
-
-	public void setPublishedDate(Timestamp publishedDate) {
-		this.publishedDate = publishedDate;
-	}
-
-    public String getCreatedDateStr() {
-        if (this.createdDate != null) {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
-            return simpleDateFormat.format(this.createdDate);
-        }
-        return "";
-    }
-
-    public void setCreatedDateStr(String createdDateStr) {
-        this.createdDateStr = createdDateStr;
-    }
-
-    public Date getBeginDate() {
-        return beginDate;
-    }
-
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }

@@ -10,7 +10,7 @@ import com.banvien.portal.vms.xml.contentitem.ContentItem;
 public class ContentBean extends AbstractBean<Content> {
     private FileItem thumbnailFile;
 
-    private Long authoringTemplateID;
+    private Long authoringTemplateId;
 
     private Timestamp fromDate;
 
@@ -18,22 +18,9 @@ public class ContentBean extends AbstractBean<Content> {
 
     private ContentItem contentItem;
 
-    private Long categoryID;
-
-    private Long[] categoryIDs;
-
-    private Long[] departmentIDs;
-
-    private Map<Long, Boolean> contentPublishedMap;
-    
     private Map<String, List<String>> oldNodeAttachementValues;
     
     private List<String> deletedAttchments;
-
-    public ContentBean()
-    {
-        this.pojo = new Content();
-    }
 
     public FileItem getThumbnailFile() {
         return thumbnailFile;
@@ -41,6 +28,14 @@ public class ContentBean extends AbstractBean<Content> {
 
     public void setThumbnailFile(FileItem thumbnailFile) {
         this.thumbnailFile = thumbnailFile;
+    }
+
+    public Long getAuthoringTemplateId() {
+        return authoringTemplateId;
+    }
+
+    public void setAuthoringTemplateId(Long authoringTemplateId) {
+        this.authoringTemplateId = authoringTemplateId;
     }
 
     public Timestamp getFromDate() {
@@ -59,15 +54,6 @@ public class ContentBean extends AbstractBean<Content> {
         this.toDate = toDate;
     }
 
-
-    public Long getAuthoringTemplateID() {
-        return authoringTemplateID;
-    }
-
-    public void setAuthoringTemplateID(Long authoringTemplateID) {
-        this.authoringTemplateID = authoringTemplateID;
-    }
-
     public ContentItem getContentItem() {
         return contentItem;
     }
@@ -76,53 +62,19 @@ public class ContentBean extends AbstractBean<Content> {
         this.contentItem = contentItem;
     }
 
-    public Long[] getCategoryIDs() {
-        return categoryIDs;
+    public Map<String, List<String>> getOldNodeAttachementValues() {
+        return oldNodeAttachementValues;
     }
 
-    public void setCategoryIDs(Long[] categoryIDs) {
-        this.categoryIDs = categoryIDs;
+    public void setOldNodeAttachementValues(Map<String, List<String>> oldNodeAttachementValues) {
+        this.oldNodeAttachementValues = oldNodeAttachementValues;
     }
 
-	public Map<Long, Boolean> getContentPublishedMap() {
-		return contentPublishedMap;
-	}
-
-	public void setContentPublishedMap(Map<Long, Boolean> contentPublishedMap) {
-		this.contentPublishedMap = contentPublishedMap;
-	}
-
-    public Long getCategoryID() {
-        return categoryID;
+    public List<String> getDeletedAttchments() {
+        return deletedAttchments;
     }
 
-    public void setCategoryID(Long categoryID) {
-        this.categoryID = categoryID;
+    public void setDeletedAttchments(List<String> deletedAttchments) {
+        this.deletedAttchments = deletedAttchments;
     }
-
-	public Map<String, List<String>> getOldNodeAttachementValues() {
-		return oldNodeAttachementValues;
-	}
-
-	public void setOldNodeAttachementValues(
-			Map<String, List<String>> oldNodeAttachementValues) {
-		this.oldNodeAttachementValues = oldNodeAttachementValues;
-	}
-
-	public List<String> getDeletedAttchments() {
-		return deletedAttchments;
-	}
-
-	public void setDeletedAttchments(List<String> deletedAttchments) {
-		this.deletedAttchments = deletedAttchments;
-	}
-
-    public Long[] getDepartmentIDs() {
-        return departmentIDs;
-    }
-
-    public void setDepartmentIDs(Long[] departmentIDs) {
-        this.departmentIDs = departmentIDs;
-    }
-
 }

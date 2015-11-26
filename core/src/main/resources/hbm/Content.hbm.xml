@@ -3,44 +3,41 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-	<class name="com.banvien.portal.vms.domain.Content" table="PortalContent">
-        <id name="contentID" column="ContentID">
+	<class name="com.banvien.portal.vms.domain.Content" table="Content">
+        <id name="contentId" column="ContentID">
             <generator class="increment"/>
         </id>
 
-		<property name="title" column="Title"/>
+        <many-to-one name="contentType" column="contentTypeId"/>
 
-        <property name="keyword" column="Keyword"/>
+        <many-to-one name="contentCategory" column="contentCategoryId"/>
+
+        <many-to-one name="authoringTemplate" column="authoringTemplateId"/>
+
+		<property name="title" column="title"/>
+
+        <property name="keyword" column="keyword"/>
+
+        <property name="prefixUrl" column="prefixUrl"/>
 	
-		<property name="thumbnail" column="Thumbnail"/>
+		<property name="shortDescription" column="shortDescription"/>
 
-        <property name="xmlData" column="XmlData"/>
+        <property name="dataXML" column="dataXML"/>
 
-        <property name="accessPolicy" column="AccessPolicy"/>
+        <property name="location" column="location"/>
 
-        <property name="hot" column="Hot"/>
+        <property name="locationPoint" column="locationPoint"/>
 
-        <property name="displayOrder" column="DisplayOrder"/>
+        <property name="displayOrder" column="displayOrder"/>
 
-        <many-to-one name="authoringTemplate" column="AuthoringTemplateID"/>
-
-		<property name="createdDate" column="CreatedDate" lazy="true"/>
+		<property name="createdDate" column="createdDate"/>
 	
-		<property name="modifiedDate" column="ModifiedDate" lazy="true"/>
+		<property name="modifiedDate" column="modifiedDate"/>
 		
-		<property name="status" column="Status"/>
+		<property name="modifiedDate" column="modifiedDate"/>
 
-        <many-to-one name="createdBy" column="CreatedBy"/>
+        <property name="publishedDate" column="publishedDate"/>
 
-        <many-to-one name="modifiedBy" column="ModifiedBy"/>
-        
-        <property name="publishedDate" column="PublishedDate"/>
-
-        <many-to-one name="category" column="CategoryID" lazy="false"/>
-
-        <property name="beginDate" column="BeginDate"/>
-
-        <property name="endDate" column="EndDate"/>
-
+        <many-to-one name="author" column="userId" lazy="false"/>
 	</class>
 </hibernate-mapping>
