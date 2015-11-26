@@ -27,12 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: NhuKhang
- * Date: 10/6/12
- * Time: 10:57 AM
- */
 @Controller
 public class UserGroupController extends ApplicationObjectSupport {
 	private transient final Logger logger = Logger.getLogger(getClass());
@@ -57,12 +51,10 @@ public class UserGroupController extends ApplicationObjectSupport {
             try{
                 userGroupValidator.validate(bean, bindingResult);
                 if(!bindingResult.hasErrors()){
-                    if(pojo.getUserGroupID() != null && pojo.getUserGroupID() >0 ){
+                    if(pojo.getUserGroupId() != null && pojo.getUserGroupId() >0 ){
                         this.userGroupService.updateItem(pojo);
                         mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
                     }else{
-                        pojo.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-                        pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));
                         this.userGroupService.save(pojo);
                         mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.add.successful"));
                     }
@@ -73,10 +65,10 @@ public class UserGroupController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        if(!bindingResult.hasErrors() && bean.getPojo().getUserGroupID() != null){
+        if(!bindingResult.hasErrors() && bean.getPojo().getUserGroupId() != null){
 
             try{
-                bean.setPojo(userGroupService.findById(bean.getPojo().getUserGroupID()));
+                bean.setPojo(userGroupService.findById(bean.getPojo().getUserGroupId()));
             }catch (ObjectNotFoundException oe) {
                 logger.error(oe.getMessage(), oe);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));

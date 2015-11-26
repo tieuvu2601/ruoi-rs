@@ -1,7 +1,7 @@
 package com.banvien.portal.vms.security;
 
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import com.banvien.portal.vms.dao.UserDAO;
@@ -16,17 +16,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import com.banvien.portal.vms.dao.RoleDAO;
-import com.banvien.portal.vms.domain.Role;
+
 import com.banvien.portal.vms.domain.User;
 import com.banvien.portal.vms.service.UserService;
 import com.banvien.portal.vms.util.Constants;
-
-
-/**
- * @author Nguyen Hai Vien
- * 
- */
 
 public class MyUserDetailsService implements UserDetailsService {
 	 private transient final Logger logger = Logger.getLogger(MyUserDetailsService.class);
@@ -35,8 +28,6 @@ public class MyUserDetailsService implements UserDetailsService {
 	
 	private UserService userService;
 
-    private RoleDAO roleDAO;
-
     private UserGroupDAO userGroupDAO;
 
     private UserDAO userDAO;
@@ -44,10 +35,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
     public void setUserService(UserService userService) {
         this.userService = userService;
-    }
-
-    public void setRoleDAO(RoleDAO roleDAO) {
-        this.roleDAO = roleDAO;
     }
 
     public void setUserGroupDAO(UserGroupDAO userGroupDAO) {
@@ -122,10 +109,6 @@ public class MyUserDetailsService implements UserDetailsService {
 		    authorities.put(account.getUserGroup().getCode(), new GrantedAuthorityImpl(account.getUserGroup().getCode()));
         }
 
-        List<Role> roleList = roleDAO.findByUserID(account.getUserID());
-        for (Role role : roleList) {
-            authorities.put(role.getRole(), new GrantedAuthorityImpl(role.getRole()));
-        }
         if (account.getFullAccess() != null && account.getFullAccess().equals(1)) {
             authorities.put(Constants.FULL_ACCESS_RIGHT, new GrantedAuthorityImpl(Constants.FULL_ACCESS_RIGHT));
         }

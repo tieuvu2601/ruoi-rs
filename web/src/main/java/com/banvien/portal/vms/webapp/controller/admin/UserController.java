@@ -2,12 +2,9 @@ package com.banvien.portal.vms.webapp.controller.admin;
 
 import com.banvien.jcr.api.IJcrContent;
 import com.banvien.portal.vms.bean.FileItem;
-import com.banvien.portal.vms.bean.RoleBean;
 import com.banvien.portal.vms.bean.UserBean;
-import com.banvien.portal.vms.domain.Role;
 import com.banvien.portal.vms.domain.User;
 import com.banvien.portal.vms.domain.UserGroup;
-import com.banvien.portal.vms.domain.UserRole;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.editor.FileItemMultipartFileEditor;
 import com.banvien.portal.vms.editor.PojoEditor;
@@ -50,16 +47,10 @@ public class UserController extends ApplicationObjectSupport {
     private UserService userService;
 
     @Autowired
-    private RoleService roleService;
-
-    @Autowired
     private UserValidator userValidator;
 
     @Autowired
     private UserGroupService userGroupService;
-
-    @Autowired
-    private UserRoleService userRoleService;
 
     @Autowired
     private IJcrContent jcrContent; 
@@ -86,7 +77,7 @@ public class UserController extends ApplicationObjectSupport {
                 	}catch(Exception e){
                 		logger.error("Could not save file to Jcr");
                 	}
-                    if(pojo.getUserID() != null && pojo.getUserID() >0 ){
+                    if(pojo.getUserId() != null && pojo.getUserId() >0 ){
                         this.userService.updateItem(pojo);
                         mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
                     }else{
@@ -101,10 +92,10 @@ public class UserController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        if(!bindingResult.hasErrors() && bean.getPojo().getUserID() != null){
+        if(!bindingResult.hasErrors() && bean.getPojo().getUserId() != null){
 
             try{
-                bean.setPojo(userService.findById(bean.getPojo().getUserID()));
+                bean.setPojo(userService.findById(bean.getPojo().getUserId()));
             }catch (ObjectNotFoundException oe) {
                 logger.error(oe.getMessage(), oe);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
@@ -135,48 +126,6 @@ public class UserController extends ApplicationObjectSupport {
         return mav;
     }
 
-    @RequestMapping(value={"/admin/user/access.html"})
-    public ModelAndView access(@ModelAttribute(Constants.FORM_MODEL_KEY) UserBean bean, BindingResult bindingResult, HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("/admin/user/access");
-
-        String crudaction = bean.getCrudaction();
-        if(StringUtils.isNotBlank(crudaction) && crudaction.equals("access")) {
-            try{
-                Integer res = 0;
-                res = userRoleService.updateItemsByUserRole(bean);
-
-            }catch(Exception e) {
-                logger.error(e.getMessage(), e);
-                mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
-            }
-        }
-        if(!bindingResult.hasErrors() && bean.getPojo().getUserID() != null){
-
-            try{
-                bean.setPojo(userService.findById(bean.getPojo().getUserID()));
-            }catch (ObjectNotFoundException oe) {
-                logger.error(oe.getMessage(), oe);
-                mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
-            }
-        }
-
-        RoleBean roleBean = new RoleBean();
-        executeSearchRole(roleBean, request);
-        excutedSearchRole4User(bean,request);
-        bean.setRoleBean(roleBean);
-        mav.addObject(Constants.FORM_MODEL_KEY, bean);
-        return mav;
-    }
-    
-    private void executeSearchRole(RoleBean bean, HttpServletRequest request) {
-        RequestUtil.initSearchBean(request, bean);
-        Map<String, Object> properties = new HashMap<String, Object>();
-
-        Object[] results = this.roleService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
-        bean.setListResult((List<Role>)results[1]);
-        bean.setTotalItems(Integer.valueOf(results[0].toString()));
-    }
-
     private void executeSearch(UserBean bean, HttpServletRequest request) {
         RequestUtil.initSearchBean(request, bean);
         Map<String, Object> properties = new HashMap<String, Object>();
@@ -190,8 +139,8 @@ public class UserController extends ApplicationObjectSupport {
             properties.put("username", bean.getPojo().getUsername());
         }
         UserGroup userGroup = bean.getPojo().getUserGroup(); 
-        if(userGroup != null && userGroup.getUserGroupID() != null){
-        	properties.put("userGroup.userGroupID", userGroup.getUserGroupID());
+        if(userGroup != null && userGroup.getUserGroupId() != null){
+        	properties.put("userGroup.userGroupId", userGroup.getUserGroupId());
         }
         Object[] results = this.userService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
         bean.setListResult((List<User>)results[1]);
@@ -200,48 +149,5 @@ public class UserController extends ApplicationObjectSupport {
 
     private void referenceData(ModelAndView mav) {
         mav.addObject("userGroups", userGroupService.findAll());
-    }
-
-    private void excutedSearchRole4User(UserBean bean, HttpServletRequest request) {
-        RequestUtil.initSearchBean(request, bean);
-        Map<String, Object> properties = new HashMap<String, Object>();
-        if(bean.getPojo().getUserID() != null && bean.getPojo().getUserID() > 0)
-        {
-            properties.put(UserRole.FIELD_USER, bean.getPojo().getUserID());
-        }
-        Object[] results = this.userRoleService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), 0, -1);
-        List<UserRole> lst = new ArrayList<UserRole>();
-        lst = (List<UserRole>)results[1];
-        Map<Long, Boolean> published = new HashMap<Long, Boolean>();
-        if(lst.size() > 0){
-        	for(UserRole userrole: lst){
-        		published.put(userrole.getRole().getRoleID(), true);
-        	}
-        }
-        bean.setRoleMap(published);
-        bean.setTotalItems(Integer.valueOf(results[0].toString()));
-    }
-
-    @RequestMapping(value="/ajax/filterUserByGroup.html")
-    public ModelAndView searchByGroup(@RequestParam(value="id", required=false) List<Long> groupIDs, 
-    		@RequestParam(value="uid", required=false) List<Long> userIDs,
-    		HttpServletRequest request, HttpServletResponse response) throws IOException{
-    	ModelAndView mav = new ModelAndView("/admin/user/ajax");
-    	List<User> users = userService.findAll();
-    	mav.addObject("users", users);
-    	mav.addObject("success", true);
-    	Map<Long, String> mapCheckedUser = new HashMap<Long, String>();
-    	if(groupIDs != null && groupIDs.size() > 0){
-	    	for(Long ID : groupIDs){
-	    		mapCheckedUser.put(ID, "disabled");
-	    	}
-    	}
-    	if(userIDs != null && userIDs.size() > 0){
-	    	for(Long uid : userIDs){
-	    		mapCheckedUser.put(uid, "edit");
-	    	}
-    	}
-    	mav.addObject("mapCheckedUser", mapCheckedUser);
-    	return mav;
     }
 }

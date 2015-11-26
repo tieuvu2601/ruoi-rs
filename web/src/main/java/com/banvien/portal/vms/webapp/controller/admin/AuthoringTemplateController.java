@@ -4,10 +4,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -70,7 +68,7 @@ public class AuthoringTemplateController extends ApplicationObjectSupport {
                 	}else{
 	                    String xmlTemplateContent = convertIntoXMLTemplateContent(bean.getAuthoringTemplateNodes());
 	                    pojo.setTemplateContent(xmlTemplateContent);
-	                    if(pojo.getAuthoringTemplateID() != null && pojo.getAuthoringTemplateID() > 0 ){
+	                    if(pojo.getAuthoringTemplateId() != null && pojo.getAuthoringTemplateId() > 0 ){
 	                        this.authoringTemplateService.updateItem(pojo);
 	                        mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
 	                    }else{
@@ -86,9 +84,9 @@ public class AuthoringTemplateController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        if(!bindingResult.hasErrors() && bean.getPojo().getAuthoringTemplateID() != null){
+        if(!bindingResult.hasErrors() && bean.getPojo().getAuthoringTemplateId() != null){
             try{
-                AuthoringTemplate authoringTemplate =  authoringTemplateService.findById(bean.getPojo().getAuthoringTemplateID());
+                AuthoringTemplate authoringTemplate =  authoringTemplateService.findById(bean.getPojo().getAuthoringTemplateId());
                 if (StringUtils.isNotBlank(authoringTemplate.getTemplateContent())) {
                     try{
                         com.banvien.portal.vms.xml.authoringtemplate.AuthoringTemplate xmlAuthoringTemplate = AuthoringTemplateUtil.parseXML(authoringTemplate.getTemplateContent());

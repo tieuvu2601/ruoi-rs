@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.banvien.portal.vms.bean.SearchBean;
 import com.banvien.portal.vms.domain.Content;
 import com.banvien.portal.vms.service.AuthoringTemplateService;
-import com.banvien.portal.vms.service.CategoryService;
 import com.banvien.portal.vms.service.ContentService;
 import com.banvien.portal.vms.util.Constants;
 import com.banvien.portal.vms.util.RequestUtil;
@@ -30,10 +29,7 @@ public class SearchController extends ApplicationObjectSupport {
 
 	@Autowired
 	private AuthoringTemplateService authoringTemplateService;
-	
-	@Autowired
-	private CategoryService categoryService;
-	
+
 	@Autowired
 	private ContentService contentService;
 	@InitBinder

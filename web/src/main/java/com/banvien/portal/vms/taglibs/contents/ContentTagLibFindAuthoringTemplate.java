@@ -12,13 +12,6 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: viennh
- * Date: 12/13/12
- * Time: 12:41 AM
- * To change this template use File | Settings | File Templates.
- */
 public class ContentTagLibFindAuthoringTemplate extends TagSupport {
     @Autowired
     private ContentService contentService;

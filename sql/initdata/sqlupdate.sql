@@ -1,43 +1,89 @@
-ALTER TABLE PortalContent MODIFY COLUMN XmlData TEXT;
+-- DROP DATABASE AND ADD NEW
+DROP DATABASE RealEstate;
+CREATE DATABASE RealEstate  DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 
-ALTER TABLE PortalCategory ADD COLUMN PrefixUrl  CHAR(255);
+DROP TABLE IF EXISTS UsersGroup;
+CREATE TABLE UsersGroup (
+  userGroupId BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  code VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  UNIQUE (code)
+);
 
+DROP TABLE IF EXISTS Users;
+CREATE TABLE Users (
+  userId BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  userGroupId BIGINT(20) DEFAULT NULL,
+  username varchar(255) DEFAULT NULL,
+  password varchar(255) DEFAULT NULL,
+  email varchar(255) DEFAULT NULL,
+  firstName varchar(255) DEFAULT NULL,
+  lastName varchar(255) DEFAULT NULL,
+  displayName varchar(255) DEFAULT NULL,
+  phoneNumber varchar(255) DEFAULT NULL,
+  status int(11) DEFAULT NULL,
+  createdDate datetime DEFAULT NULL,
+  modifiedDate datetime DEFAULT NULL,
+  avatar varchar(255) DEFAULT NULL,
+  fullAccess int(11) DEFAULT NULL,
+  UNIQUE (username),
+  FOREIGN KEY (userGroupId) REFERENCES UsersGroup(userGroupId)
+);
 
-SHOW CREATE TABLE PortalContent;
+DROP TABLE IF EXISTS ContentType;
+CREATE TABLE ContentType (
+  contentTypeId BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  code VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  displayOrder INT NOT NULL DEFAULT 0,
+  UNIQUE (code)
+);
 
-ALTER TABLE PortalContent MODIFY COLUMN Title varchar(255) NOT NULL;
+DROP TABLE IF EXISTS ContentCategory;
+CREATE TABLE ContentCategory (
+  contentCategoryId BIGINT(20) PRIMARY KEY,
+  code VARCHAR(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  displayOrder INT NOT NULL DEFAULT 0,
+  parentId BIGINT(20),
+  UNIQUE (code),
+  FOREIGN KEY (parentId) REFERENCES ContentCategory(contentCategoryId)
+);
 
-ALTER TABLE PortalContent ADD CONSTRAINT U_CONTENT_TITLE UNIQUE (Title);
+DROP TABLE IF EXISTS AuthoringTemplate;
+CREATE TABLE AuthoringTemplate (
+   authoringTemplateId BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+   code VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   templateContent TEXT NOT NULL,
+   event INT NOT NULL DEFAULT 0,
+   createdDate TIMESTAMP NOT NULL,
+   modifiedDate TIMESTAMP,
+   UNIQUE (code)
+);
 
-ALTER TABLE PortalContent MODIFY COLUMN categoryID double(19,0) NOT NULL;
-
-ALTER TABLE PortalContent ADD CONSTRAINT fk_content_category FOREIGN KEY (categoryID) REFERENCES PortalCategory(categoryID);
-
-ALTER TABLE PortalCategory DROP FOREIGN KEY `FK86B49AA5EA6EFFD`;
-
-ALTER TABLE PortalCategory MODIFY COLUMN ParentRootID double(19,0) DEFAULT NULL;
-
-ALTER TABLE PortalCategory DROP FOREIGN KEY `portalcategory_ibfk_1`;
-
-ALTER TABLE PortalCategory ADD CONSTRAINT fk_category_parent_category FOREIGN KEY (parentCatID) REFERENCES PortalCategory(categoryID) ON DELETE NO ACTION  ON UPDATE NO ACTION ;
-
--- ADD EVENT CONTENT ----
-ALTER TABLE PortalAuthoringTemplate ADD COLUMN `IsEvent` varchar(8) DEFAULT 'N';
-
-ALTER TABLE PortalContent DROP COLUMN beginDate;
-
-ALTER TABLE PortalContent DROP COLUMN endDate;
-
-ALTER TABLE PortalContent ADD COLUMN BeginDate DATETIME DEFAULT NULL;
-
-ALTER TABLE PortalContent ADD COLUMN EndDate DATETIME DEFAULT NULL;
-
---  CONVERT DATABASE TO UTF8 --
-ALTER DATABASE NttPortal CHARACTER SET UTF8 COLLATE utf8_unicode_ci;
-
-ALTER TABLE PortalContent CONVERT TO CHARACTER SET UTF8 COLLATE utf8_general_ci;
-
-ALTER TABLE PortalAuthoringTemplate ADD COLUMN PrefixUrl VARCHAR(255) DEFAULT NULL;
-
-ALTER TABLE PortalUser DROP FOREIGN KEY `FK86D8AE77E48B3625`;
+DROP TABLE IF EXISTS Content;
+CREATE TABLE Content (
+  contentId BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  contentTypeId BIGINT(20) NOT NULL,
+  contentCategoryId BIGINT(20) NOT NULL,
+  authoringTemplateId BIGINT(20) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  keyword VARCHAR(255) NOT NULL,
+  prefixUrl VARCHAR(255),
+  shortDescription VARCHAR(255) NOT NULL,
+  dataXML TEXT,
+  location VARCHAR(255),
+  locationPoint VARCHAR(255),
+  displayOrder INT NOT NULL DEFAULT 0,
+  createdDate TIMESTAMP NOT NULL,
+  modifiedDate TIMESTAMP,
+  publishedDate TIMESTAMP,
+  author BIGINT NOT NULL,
+  UNIQUE (title),
+  FOREIGN KEY (contentTypeId) REFERENCES ContentType(contentTypeId),
+  FOREIGN KEY (contentCategoryId) REFERENCES ContentCategory(contentCategoryId),
+  FOREIGN KEY (authoringTemplateId) REFERENCES AuthoringTemplate(authoringTemplateId),
+  FOREIGN KEY (author) REFERENCES Users(userId)
+);
 

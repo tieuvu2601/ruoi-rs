@@ -14,13 +14,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-/**
- * Created with IntelliJ IDEA.
- * User: BV-Dev1
- * Date: 10/6/12
- * Time: 1:12 PM
- * To change this template use File | Settings | File Templates.
- */
 @Component
 public class UserGroupValidator extends ApplicationObjectSupport implements Validator {
 
@@ -45,7 +38,7 @@ public class UserGroupValidator extends ApplicationObjectSupport implements Vali
         public void checkUnique(UserGroupBean cmd, Errors errors){
             try{
                 UserGroup group = userGroupService.findByCode(cmd.getPojo().getCode());
-                if(cmd.getPojo().getUserGroupID() == null || (cmd.getPojo().getUserGroupID() != null && (!group.getUserGroupID().equals(cmd.getPojo().getUserGroupID())))){
+                if(cmd.getPojo().getUserGroupId() == null || (cmd.getPojo().getUserGroupId() != null && (!group.getUserGroupId().equals(cmd.getPojo().getUserGroupId())))){
                     errors.rejectValue("pojo.code", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("usergroup.form.code")}, "Value has been chosen.");
                 }
 
