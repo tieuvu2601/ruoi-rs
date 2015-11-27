@@ -1,10 +1,19 @@
 package com.banvien.portal.vms.dto;
 
 import com.banvien.portal.vms.domain.AuthoringTemplate;
+import com.banvien.portal.vms.domain.RenderingTemplate;
 import java.sql.Timestamp;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created with IntelliJ IDEA.
+ * User: HauKute
+ * Date: 10/7/15
+ * Time: 3:22 PM
+ * To change this template use File | Settings | File Templates.
+ */
 public class CategoryDTO implements Serializable {
     private Long categoryID;
 
@@ -21,6 +30,8 @@ public class CategoryDTO implements Serializable {
     private Integer displayOrder;
 
     private AuthoringTemplate authoringTemplate;
+
+    private RenderingTemplate renderingTemplate;
 
     private Timestamp createdDate;
 
@@ -90,6 +101,14 @@ public class CategoryDTO implements Serializable {
 
     public void setAuthoringTemplate(AuthoringTemplate authoringTemplate) {
         this.authoringTemplate = authoringTemplate;
+    }
+
+    public RenderingTemplate getRenderingTemplate() {
+        return renderingTemplate;
+    }
+
+    public void setRenderingTemplate(RenderingTemplate renderingTemplate) {
+        this.renderingTemplate = renderingTemplate;
     }
 
     public Timestamp getCreatedDate() {

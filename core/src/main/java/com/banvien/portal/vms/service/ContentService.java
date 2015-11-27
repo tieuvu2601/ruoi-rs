@@ -2,12 +2,21 @@ package com.banvien.portal.vms.service;
 
 import com.banvien.portal.vms.bean.ContentBean;
 import com.banvien.portal.vms.domain.Content;
+import com.banvien.portal.vms.dto.TopCommentsContentDTO;
+import com.banvien.portal.vms.dto.TopViewContentDTO;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 
 import java.sql.Timestamp;
 import java.util.List;
 
+/**
+ * Copyright (c) by Ban Vien Co., Ltd.
+ * User: MBP
+ * Date: 11/13/12
+ * Time: 4:40 PM
+ * Author: vien.nguyen@banvien.com
+ */
 public interface ContentService extends GenericService<Content, Long> {
 
     void updateItem(ContentBean bean) throws ObjectNotFoundException, DuplicateException;
@@ -20,9 +29,19 @@ public interface ContentService extends GenericService<Content, Long> {
 
     Object [] findByCategoryWithMaxItem(String category, Integer startRow, Integer pageSize, Boolean isEng, Integer orderBy, Integer status);
 
+    List<Content> findByCategoryId(Long categoryId, Integer startRow, Integer pageSize, Integer status);
+
     List<Content> findByAuthoringTemplate(String authoringCode, Integer startRow, Integer pageSize);
 
+    List<TopViewContentDTO> findTopViewByAuthoringCode(String authoringCode, String category, Integer pageSize);
+
+    List<TopCommentsContentDTO> findTopCommentByAuthoringCode(String authoringCode, String category, Integer pageSize);
+
     Content saveItem(ContentBean bean) throws DuplicateException;
+
+    List<Content> findRelatedItems(String authoringTemplate, String category, Long departmentID, Timestamp modifiedDate, Integer startRow, Integer pageSize);
+
+	List<Content> findByListID(List<Long> contentIDs);
 
     List<Content> findByAuthoringTemplateAndDepartment(String authoringTemplate, String department, Integer begin, Integer pageSize);
 

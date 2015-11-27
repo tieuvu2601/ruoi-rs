@@ -57,7 +57,7 @@
                                                         <div class="details col-md-9 col-sm-8 col-xs-6">
                                                             <div class="row page-row">
                                                                 <figure class="thumb col-md-3 col-sm-4 col-xs-6">
-                                                                    <c:set var="productThumbnails" value="/themes/site/images/avatar/anonymous.png"/>
+                                                                    <c:set var="productThumbnails" value="/themes/site/images/images_not_available.png"/>
                                                                     <c:if test="${not empty projectObj.thumbnail}">
                                                                         <c:set var="productThumbnails" value="/repository${projectObj.thumbnail}"/>
                                                                     </c:if>

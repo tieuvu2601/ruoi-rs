@@ -1,0 +1,31 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.Comment" table="PortalComment">
+
+		<!--<id name="commentID">-->
+			<!--<generator class="sequence">-->
+                <!--<param name="sequence">PORTALCOMMENT_SEQ</param>-->
+            <!--</generator>-->
+		<!--</id>-->
+
+        <id name="commentID" column="CommentID">
+            <generator class="increment"/>
+        </id>
+
+		<property name="commentText" column="CommentText"/>
+
+        <many-to-one name="createdBy" column="CreatedBy"/>
+
+        <property name="status" column="Status"/>
+
+        <many-to-one name="content" column="ContentID"/>
+	
+		<property name="createdDate" column="CreatedDate"/>
+	
+		<property name="modifiedDate" column="ModifiedDate"/>
+
+	</class>
+</hibernate-mapping>

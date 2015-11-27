@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page><code>trang-chu</code><title>Trang chủ</title><layout>twocolumn</layout><theme>vms</theme><columns><column><rows><row><columns><column
+                            skin="hot_news_skin" displayItem="6"
+                            renderingTemplate="hot-news"
+                                    title="Hot News"/></columns></row><row><columns><column><rows><row><columns><column
+                                    skin="small_blue_skin"
+                                    category="tin-cong-ty"
+                                    displayItem="3"
+                                    renderingTemplate="news-vertical-scroll"
+                                    title="Tin cong ty"/></columns></row><row><columns><column
+                                    skin="small_red_skin"
+                                    category="tin-kinh-doanh"
+                                    displayItem="3"
+                                    renderingTemplate="news-vertical-scroll"
+                                    title="Tin kinh doanh"/></columns></row><row><columns><column
+                                    skin="small_red_skin"
+                                    category="cong-nghe-ky-thuat"
+                                    displayItem="3"
+                                    renderingTemplate="news-vertical-scroll"
+                                    title="Cong nghe ky thuat"/></columns></row><row><columns><column
+                                    skin="small_red_skin"
+                                    category="cham-soc-khach-hang"
+                                    displayItem="3"
+                                    renderingTemplate="news-vertical-scroll"
+                                    title="Cham soc khach hang"/></columns></row></rows></column><column><rows><row><columns><column
+                                    skin="giaitri_skin"
+                                    category="tin-giai-tri"
+                                    displayItem="3"
+                                    renderingTemplate="news-horizontal-scroll"
+                                    title="Giai tri"/></columns></row><row><columns><column
+                                    skin="giaitri_skin"
+                                    category="chan-dung"
+                                    displayItem="3"
+                                    renderingTemplate="chan-dung-template"
+                                    title="Chan dung"/></columns></row><row><columns><column
+                                    skin="giaitri_skin"
+                                    category="mobi_8"
+                                    displayItem="3"
+                                    renderingTemplate="mobi8-template"
+                                    title="Mobi 8"/></columns></row><row><columns><column
+                                    skin="giaitri_skin"
+                                    category="cong-doan"
+                                    displayItem="3"
+                                    renderingTemplate="news-horizontal-scroll"
+                                    title="Cong doan"/></columns></row><row><columns><column
+                                    skin="medium_blue_skin"
+                                    category="dang-uy"
+                                    displayItem="4"
+                                    renderingTemplate="news-dang-uy"
+                            title="Dang uy"/></columns></row></rows></column></columns></row></rows></column><column><rows><row><columns><column
+                            skin="no_skin" category="quang-cao"
+                            displayItem="1"
+                            renderingTemplate="quang-cao-template"
+                            title="Quang Cao"/></columns></row><row><columns><column
+                            skin="no_skin" category="ung_dung"
+                            displayItem="-1"
+                            renderingTemplate="ung-dung-template"
+                            title="Ung dung"/></columns></row><row><columns><column
+                            skin="thongbao_skin" category="thong_bao"
+                            displayItem="5"
+                            renderingTemplate="thong-bao-template"
+                            title="Thong bao"/></columns></row><row><columns><column
+                            skin="no_skin" category="cong-tac"
+                            displayItem="-1"
+                            renderingTemplate="cong-tac-template"
+                            title="Cong tac"/></columns></row><row><columns><column
+                            skin="document_skin" category="cong-tac"
+                            displayItem="10"
+                            renderingTemplate="tai-lieu-template"
+                            title="Tai lieu tham khao"/></columns></row><row><columns><column
+                            skin="no-skin" category="online-widget"
+                            displayItem="10"
+                            renderingTemplate="online-template" title="Thong ke truy cap"/></columns></row></rows></column></columns></page>

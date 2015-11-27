@@ -3,36 +3,51 @@ package com.banvien.portal.vms.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+/**
+ * Created by Ban Vien Ltd.
+ * User: Vien Nguyen (vien.nguyen@banvien.com)
+ * Date: 11/13/12
+ * Time: 2:51 PM
+ */
 public class User implements Serializable {
-    private Long userId;
-    private UserGroup userGroup;
+    private Long userID;
+
     private String username;
+
     private String password;
+
     private String email;
+
     private String firstName;
+
     private String lastName;
+
     private String displayName;
-    private String phoneNumber;
-    private Integer status;
-    private String avatar;
-    private Integer fullAccess;
+
+    private String mobileNumber;
+
+    private Integer status = 1;//default is active
+
+    private UserGroup userGroup;
+
+    private Department department;
+
     private Timestamp createdDate;
+
     private Timestamp modifiedDate;
+    
+    private String avatar;
 
-    public Long getUserId() {
-        return userId;
+    private Integer isShopper;
+
+    private Integer fullAccess;
+
+    public Long getUserID() {
+        return userID;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public UserGroup getUserGroup() {
-        return userGroup;
-    }
-
-    public void setUserGroup(UserGroup userGroup) {
-        this.userGroup = userGroup;
+    public void setUserID(Long userID) {
+        this.userID = userID;
     }
 
     public String getUsername() {
@@ -83,12 +98,12 @@ public class User implements Serializable {
         this.displayName = displayName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public Integer getStatus() {
@@ -99,20 +114,20 @@ public class User implements Serializable {
         this.status = status;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public UserGroup getUserGroup() {
+        return userGroup;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public void setUserGroup(UserGroup userGroup) {
+        this.userGroup = userGroup;
     }
 
-    public Integer getFullAccess() {
-        return fullAccess;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setFullAccess(Integer fullAccess) {
-        this.fullAccess = fullAccess;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Timestamp getCreatedDate() {
@@ -129,5 +144,29 @@ public class User implements Serializable {
 
     public void setModifiedDate(Timestamp modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+    public Integer getIsShopper() {
+        return isShopper;
+    }
+
+    public void setIsShopper(Integer shopper) {
+        isShopper = shopper;
+    }
+
+    public Integer getFullAccess() {
+        return fullAccess;
+    }
+
+    public void setFullAccess(Integer fullAccess) {
+        this.fullAccess = fullAccess;
     }
 }

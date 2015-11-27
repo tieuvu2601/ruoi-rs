@@ -76,9 +76,12 @@ public class DownloadFileServlet extends HttpServlet{
 				logger.error(e.getMessage(), e);
 			}
 			String contentType = fileItem.getMimeType();
-			if(!contentType.startsWith("image") && !contentType.contains("flash")) {
+            String fileNameRef = fileItem.getOriginalFilename().toLowerCase();
+
+			if(!contentType.startsWith("image") && !contentType.contains("flash") &&
+                    !(fileNameRef.contains(".png") || fileNameRef.contains(".jpg") || fileNameRef.contains(".gif") || fileNameRef.contains(".jpeg"))) {
 				response.setHeader("Content-disposition", "attachment; filename=" + fileName);
-			}else if(contentType.startsWith("image")){
+			}else if(contentType.startsWith("image") || (fileNameRef.contains(".png") || fileNameRef.contains(".jpg") || fileNameRef.contains(".gif") || fileNameRef.contains(".jpeg"))){
 				String sWidth = request.getParameter("w");
 				String sHeight = request.getParameter("h");
 				String sFit = request.getParameter("f");

@@ -3,6 +3,7 @@ package com.banvien.portal.vms.bean;
 import com.banvien.portal.vms.domain.Content;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class SearchBean extends AbstractBean<Content>{
 	

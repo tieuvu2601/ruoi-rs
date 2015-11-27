@@ -28,12 +28,10 @@
 
         <intercept-url pattern="/**" filters="none" />
 
-
-
         <custom-filter position="PRE_AUTH_FILTER" ref="myAuthenticationFilter" />
         <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp?error=1" login-processing-url="/j_security_check"/>
         <logout logout-url="/logout.jsp" invalidate-session="false" success-handler-ref="myLogoutSuccessHandler"/>
-        <!--<remember-me user-service-ref="userSecurityAdvice" key="e37f4b31-0c45-11dd-bd0b-0800200c9a66"/>-->
+        <remember-me user-service-ref="userSecurityAdvice" key="e37f4b31-0c45-11dd-bd0b-0800200c9a66"/>
 		<session-management invalid-session-url="/index.html" session-authentication-strategy-ref="concurrentSessionControlStrategy"/>
 
     </http>
@@ -52,13 +50,13 @@
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userSecurityAdvice">
             <password-encoder ref="passwordEncoder"/>
-        </authentication-provider>
+        </authentication-provider>   
     </authentication-manager>
     
     <beans:bean id="myLogoutSuccessHandler" class="com.banvien.portal.vms.security.MyLogoutSuccessHandler">
 		<beans:property name="logoutSuccessUrl" value="/login.jsp?action=logout"></beans:property>
 	</beans:bean>
-
+    
 	<beans:bean id="myAuthenticationFilter" class="com.banvien.portal.vms.security.AuthenticationProcessingFilterExtends">
 		<beans:property name="filterProcessesUrl" value="/j_security_check"></beans:property>
 		<beans:property name="authenticationManager" ref="authenticationManager"></beans:property>

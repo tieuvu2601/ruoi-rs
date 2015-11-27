@@ -17,6 +17,12 @@ public class AuthoringTemplateBean extends AbstractBean<AuthoringTemplate> {
     }
 
     private List<XmlNodeDTO> authoringTemplateNodes;
+    
+    private List<Long> checkGroupList;
+    
+    private List<Long> checkUserList;
+    
+    private Boolean displayAll;
 
     public List<XmlNodeDTO> getAuthoringTemplateNodes() {
         return authoringTemplateNodes;
@@ -25,4 +31,28 @@ public class AuthoringTemplateBean extends AbstractBean<AuthoringTemplate> {
     public void setAuthoringTemplateNodes(List<XmlNodeDTO> authoringTemplateNodes) {
         this.authoringTemplateNodes = authoringTemplateNodes;
     }
+
+	public List<Long> getCheckGroupList() {
+		return checkGroupList;
+	}
+
+	public void setCheckGroupList(List<Long> checkGroupList) {
+		this.checkGroupList = checkGroupList;
+	}
+
+	public List<Long> getCheckUserList() {
+		return checkUserList;
+	}
+
+	public void setCheckUserList(List<Long> checkUserList) {
+		this.checkUserList = checkUserList;
+	}
+
+	public Boolean getDisplayAll() {
+		return displayAll;
+	}
+
+	public void setDisplayAll(Boolean displayAll) {
+		this.displayAll = displayAll;
+	}
 }

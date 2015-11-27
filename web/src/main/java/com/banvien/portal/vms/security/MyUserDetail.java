@@ -15,8 +15,11 @@ public class MyUserDetail extends User {
 	private Long userID;
 
     private String displayName;
+	
 
-    private String email;
+	private String email;
+
+    private Long departmentID;
 
     private Boolean isFullAccessSystem;
 	
@@ -53,6 +56,14 @@ public class MyUserDetail extends User {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
+    }
+
+    public Long getDepartmentID() {
+        return departmentID;
+    }
+
+    public void setDepartmentID(Long departmentID) {
+        this.departmentID = departmentID;
     }
 
     public Boolean getFullAccessSystem() {

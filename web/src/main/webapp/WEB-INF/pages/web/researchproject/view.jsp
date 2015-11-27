@@ -24,6 +24,9 @@
                             <c:if test="${not empty products && fn:length(products) > 0}">
                                 <li><a style="font-size: 18px;" href="#tab3" data-toggle="tab"><fmt:message key="site.research.product"/></a></li>
                             </c:if>
+                            <c:if test="${not empty itemDataXML.galleryImages && fn:length(itemDataXML.galleryImages) > 0}">
+                                <li><a style="font-size: 18px;" href="#tab4" data-toggle="tab"><fmt:message key="site.research.gallery"/></a></li>
+                            </c:if>
                         </ul>
 
                         <div class="tab-content">
@@ -57,7 +60,7 @@
                                                                     <seo:url value="${researchGroup.title}" var="researchGroupUrl" prefix="/${researchGroupPrefixUrl}/${portal:convertStringToUrl(categoryObj.code)}/"/>
                                                                     <a href="${researchGroupUrl}">${researchGroupData.header[0]}</a>
                                                                 </h3>
-                                                                <p>${researchGroupData.introduce[0]}</p>
+                                                                <p>${researchGroupData.content[0]}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -80,7 +83,7 @@
                                                     <div class="details col-md-9 col-sm-8 col-xs-6">
                                                         <div class="row page-row">
                                                             <figure class="thumb col-md-3 col-sm-4 col-xs-6">
-                                                                <c:set var="productThumbnails" value="/themes/site/images/avatar/anonymous.png"/>
+                                                                <c:set var="productThumbnails" value="/themes/site/images/images_not_available.png"/>
                                                                 <c:if test="${not empty product.thumbnail}">
                                                                     <c:set var="productThumbnails" value="/repository${product.thumbnail}"/>
                                                                 </c:if>
@@ -100,6 +103,22 @@
                                                 </div>
                                             </c:forEach>
                                         </div>
+                                    </div>
+                                </div>
+                            </c:if>
+
+                            <c:if test="${not empty itemDataXML.galleryImages && fn:length(itemDataXML.galleryImages) > 0}">
+                                <div class="tab-pane" id="tab4">
+                                    <div class="row page-row">
+                                        <c:forEach var="imageUrl" items="${itemDataXML.galleryImages}">
+                                            <c:url var="imgUrl" value="/repository${imageUrl}"/>
+                                            <a class="prettyphoto col-md-3 col-sm-3 col-xs-6" rel="prettyPhoto[gallery]" href="${imgUrl}">
+                                                <span class="pretty-photo-container">
+                                                    <span class="pretty-photo-bg"></span>
+                                                    <img class="img-responsive img-thumbnail" src="${imgUrl}?w=280=280=2" alt="" />
+                                                </span>
+                                            </a>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </c:if>

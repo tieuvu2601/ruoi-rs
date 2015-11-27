@@ -1,51 +1,62 @@
 package com.banvien.portal.vms.domain;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
+/**
+ * Created by Ban Vien Ltd.
+ * User: Vien Nguyen (vien.nguyen@banvien.com)
+ * Date: 11/13/12
+ * Time: 2:58 PM
+ */
 public class ContentCategory implements Serializable {
-    private Long contentCategoryId;
-    private String code;
-    private String name;
-    private Integer displayOrder;
-    private ContentCategory parent;
+    private Long contentCategoryID;
 
-    public Long getContentCategoryId() {
-        return contentCategoryId;
+    private Content content;
+
+    private Category category;
+
+    private Timestamp createdDate;
+
+    private Timestamp modifiedDate;
+
+    public Long getContentCategoryID() {
+        return contentCategoryID;
     }
 
-    public void setContentCategoryId(Long contentCategoryId) {
-        this.contentCategoryId = contentCategoryId;
+    public void setContentCategoryID(Long contentCategoryID) {
+        this.contentCategoryID = contentCategoryID;
     }
 
-    public String getCode() {
-        return code;
+    public Content getContent() {
+        return content;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setContent(Content content) {
+        this.content = content;
     }
 
-    public String getName() {
-        return name;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public Integer getDisplayOrder() {
-        return displayOrder;
+    public Timestamp getCreatedDate() {
+        return createdDate;
     }
 
-    public void setDisplayOrder(Integer displayOrder) {
-        this.displayOrder = displayOrder;
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public ContentCategory getParent() {
-        return parent;
+    public Timestamp getModifiedDate() {
+        return modifiedDate;
     }
 
-    public void setParent(ContentCategory parent) {
-        this.parent = parent;
+    public void setModifiedDate(Timestamp modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 }

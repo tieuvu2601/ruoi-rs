@@ -47,7 +47,11 @@ public class LocaleFilter extends OncePerRequestFilter {
                 preferredLocale = new Locale(locale);
             }
         } else{
-            Object currentLocale = (request.getSession(false).getAttribute(Constants.PREFERRED_LOCALE_KEY));
+            HttpSession session = request.getSession(false);
+            Object currentLocale = null;
+            if(session != null && session.getAttribute(Constants.PREFERRED_LOCALE_KEY) != null){
+                currentLocale = session.getAttribute(Constants.PREFERRED_LOCALE_KEY);
+            }
             if(currentLocale == null){
                 preferredLocale = new Locale("vi");
             } else {
@@ -72,6 +76,7 @@ public class LocaleFilter extends OncePerRequestFilter {
         }
         chain.doFilter(request, response);
 
+        // Reset thread-bound LocaleContext.
         LocaleContextHolder.setLocaleContext(null);
     }
 }

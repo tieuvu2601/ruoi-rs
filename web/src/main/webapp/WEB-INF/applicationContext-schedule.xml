@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+    <bean id="userSecurityAdvice" class="com.banvien.portal.vms.security.MyUserDetailsService">
+        <property name="userService" ref="userService"/>
+        <property name="roleDAO" ref="roleDAO"/>
+        <property name="departmentDAO" ref="departmentDAO"/>
+        <property name="userGroupDAO" ref="userGroupDAO"/>
+    </bean>
+
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+            </list>
+        </property>
+    </bean>
+</beans>

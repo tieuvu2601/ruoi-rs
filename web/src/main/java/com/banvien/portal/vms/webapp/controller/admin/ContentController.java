@@ -28,14 +28,16 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.banvien.jcr.api.IJcrContent;
+import com.banvien.portal.vms.bean.CommentBean;
 import com.banvien.portal.vms.bean.ContentBean;
+import com.banvien.portal.vms.bean.CropImageBean;
 import com.banvien.portal.vms.bean.FileItem;
+import com.banvien.portal.vms.bean.TrackingBean;
 import com.banvien.portal.vms.bean.XmlNodeDTO;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.editor.FileItemMultipartFileEditor;
 import com.banvien.portal.vms.editor.PojoEditor;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
-
 import com.banvien.portal.vms.security.SecurityUtils;
 import com.banvien.portal.vms.webapp.jcr.JcrConstants;
 import com.banvien.portal.vms.webapp.validator.ContentValidator;
@@ -44,6 +46,12 @@ import com.banvien.portal.vms.xml.contentitem.ContentItem;
 import com.banvien.portal.vms.xml.contentitem.Item;
 import com.banvien.portal.vms.xml.contentitem.Items;
 
+/**
+ * Created with IntelliJ IDEA.
+ * User: NhuKhang
+ * Date: 10/6/12
+ * Time: 10:57 AM
+ */
 @Controller
 public class ContentController extends ApplicationObjectSupport {
 	private transient final Logger logger = Logger.getLogger(getClass());
@@ -58,11 +66,28 @@ public class ContentController extends ApplicationObjectSupport {
     private ContentValidator contentValidator;
 
     @Autowired
+    private CommentService commentService;
+
+    @Autowired
     private AuthoringTemplateService authoringTemplateService;
 
     @Autowired
-    private IJcrContent jcrContent;
+    private TrackingService trackingService;
 
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private DepartmentService departmentService;
+
+    @Autowired
+    private ContentDepartmentService contentDepartmentService;
+
+    @Autowired
+    private ContentCategoryService contentCategoryService;
+
+    @Autowired
+    private IJcrContent jcrContent;
     
     @Autowired
     private UserService userService;
@@ -70,11 +95,13 @@ public class ContentController extends ApplicationObjectSupport {
     @Autowired
     private MailEngine mailEngine;
 
+    
     @InitBinder
     public void initBinder(WebDataBinder binder) {
     	binder.registerCustomEditor(Date.class, new CustomDateEditorSQL());
         binder.registerCustomEditor(Timestamp.class, new CustomDateEditor("dd/MM/yyyy"));
         binder.registerCustomEditor(AuthoringTemplate.class, new PojoEditor(AuthoringTemplate.class, "authoringTemplateID", Long.class));
+        binder.registerCustomEditor(Comment.class, new PojoEditor(Comment.class, "commentID", Long.class));
         binder.registerCustomEditor(User.class, new PojoEditor(User.class, "userID", Long.class));
         binder.registerCustomEditor(FileItem.class, new FileItemMultipartFileEditor());
 	}
@@ -126,33 +153,33 @@ public class ContentController extends ApplicationObjectSupport {
             properties.put("keyword", bean.getPojo().getKeyword());
         }
 
-//        if (bean.getPojo().getAuthoringTemplate() != null && bean.getPojo().getAuthoringTemplate().getAuthoringTemplateID() > 0) {
-//            properties.put("authoringTemplate.authoringTemplateID", bean.getPojo().getAuthoringTemplate().getAuthoringTemplateID());
-//        }
-//
-//        if(bean.getPojo().getCategory() != null && bean.getPojo().getCategory().getCategoryID() != null && bean.getPojo().getCategory().getCategoryID() > 0){
-//            properties.put("category.categoryID", bean.getPojo().getCategory().getCategoryID());
-//        }
+        if (bean.getPojo().getAuthoringTemplate() != null && bean.getPojo().getAuthoringTemplate().getAuthoringTemplateID() > 0) {
+            properties.put("authoringTemplate.authoringTemplateID", bean.getPojo().getAuthoringTemplate().getAuthoringTemplateID());
+        }
+
+        if(bean.getPojo().getCategory() != null && bean.getPojo().getCategory().getCategoryID() != null && bean.getPojo().getCategory().getCategoryID() > 0){
+            properties.put("category.categoryID", bean.getPojo().getCategory().getCategoryID());
+        }
 
         StringBuilder whereClause = new StringBuilder();
 
-//        if(bean.getPojo().getStatus() == null){
-//            if(SecurityUtils.userHasAuthority("AUTHOR")){
-//                bean.getPojo().setStatus(Constants.CONTENT_SAVE);
-//                properties.put("status", bean.getPojo().getStatus());
-//            } else if(SecurityUtils.userHasAuthority("APPROVER")){
-//                bean.getPojo().setStatus(Constants.CONTENT_WAITING_APPROVE);
-//                properties.put("status", bean.getPojo().getStatus());
-//            } else if(SecurityUtils.userHasAuthority("PUBLISHER")){
-//                bean.getPojo().setStatus(Constants.CONTENT_APPROVE);
-//                properties.put("status", bean.getPojo().getStatus());
-//            }
-//        } else if(bean.getPojo().getStatus() != null && bean.getPojo().getStatus() > -10){
-//            if(bean.getPojo().getStatus() == Constants.CONTENT_SAVE){
-//                properties.put("createdBy.userID", SecurityUtils.getLoginUserId());
-//            }
-//            properties.put("status", bean.getPojo().getStatus());
-//        }
+        if(bean.getPojo().getStatus() == null){
+            if(SecurityUtils.userHasAuthority("AUTHOR")){
+                bean.getPojo().setStatus(Constants.CONTENT_SAVE);
+                properties.put("status", bean.getPojo().getStatus());
+            } else if(SecurityUtils.userHasAuthority("APPROVER")){
+                bean.getPojo().setStatus(Constants.CONTENT_WAITING_APPROVE);
+                properties.put("status", bean.getPojo().getStatus());
+            } else if(SecurityUtils.userHasAuthority("PUBLISHER")){
+                bean.getPojo().setStatus(Constants.CONTENT_APPROVE);
+                properties.put("status", bean.getPojo().getStatus());
+            }
+        } else if(bean.getPojo().getStatus() != null && bean.getPojo().getStatus() > -10){
+            if(bean.getPojo().getStatus() == Constants.CONTENT_SAVE){
+                properties.put("createdBy.userID", SecurityUtils.getLoginUserId());
+            }
+            properties.put("status", bean.getPojo().getStatus());
+        }
 
         Object[] results = this.contentService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems(), whereClause.toString());
         List<Content> listContent = (List<Content>)results[1];
@@ -162,21 +189,26 @@ public class ContentController extends ApplicationObjectSupport {
     }
 
     private void referenceData(ModelAndView mav) {
+        List<Category> categories = this.categoryService.findAllCategoryParent();
+        mav.addObject("categories", CategoryUtil.getAllCategoryObjectInSite(categories));
         mav.addObject("authoringTemplates", authoringTemplateService.findAll());
+        mav.addObject("currentUserID", SecurityUtils.getLoginUserId());
     }
+
+    //    redirectAttributes.addFlashAttribute("productZIPFile", (String)objects[0]);
 
     @RequestMapping("/admin/content/add.html")
     public ModelAndView add(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, BindingResult bindingResult){
         ModelAndView mav = new ModelAndView("/admin/content/add");
         String crudaction = bean.getCrudaction();
         if(StringUtils.isNotBlank(crudaction) && crudaction.equals("insert-update")) {
-//            if (bean.getPojo().getAuthoringTemplate() == null || bean.getPojo().getAuthoringTemplate().getAuthoringTemplateID() == null) {
-//                mav.addObject("messageResponse", getMessageSourceAccessor().getMessage("content.authoringtemplate.required"));
-//            }else{
-//                return new ModelAndView("redirect:/admin/content/authoring.html?authoringTemplateID="
-//                        + bean.getPojo().getAuthoringTemplate().getAuthoringTemplateID()
-//                        + "&categoryID=" + bean.getPojo().getCategory().getCategoryID() );
-//            }
+            if (bean.getPojo().getAuthoringTemplate() == null || bean.getPojo().getAuthoringTemplate().getAuthoringTemplateID() == null) {
+                mav.addObject("messageResponse", getMessageSourceAccessor().getMessage("content.authoringtemplate.required"));
+            }else{
+                return new ModelAndView("redirect:/admin/content/authoring.html?authoringTemplateID="
+                        + bean.getPojo().getAuthoringTemplate().getAuthoringTemplateID()
+                        + "&categoryID=" + bean.getPojo().getCategory().getCategoryID() );
+            }
         }
         referenceData(mav);
         mav.addObject(Constants.FORM_MODEL_KEY, bean);
@@ -210,9 +242,9 @@ public class ContentController extends ApplicationObjectSupport {
 	            mav.addObject("authoringTemplate", authoringTemplateDB);
 
 	            pojo.setAuthoringTemplate(authoringTemplateDB);
-//                Category category = new Category();
-//                category.setCategoryID(categoryID);
-//                pojo.setCategory(category);
+                Category category = new Category();
+                category.setCategoryID(categoryID);
+                pojo.setCategory(category);
             }
         }catch (Exception e) {
             logger.error("Error while parsing authoring template", e);
@@ -220,23 +252,25 @@ public class ContentController extends ApplicationObjectSupport {
 
         if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("insert-update") || crudaction.equals("insert-submit-content"))) {
             try{
-            	bean.setAuthoringTemplateId(authoringTemplateID);
+            	bean.setAuthoringTemplateID(authoringTemplateID);
             	populateContentCommand2Bean(request, authoringTemplateNodes, bean, false);
                 contentValidator.validate(bean, bindingResult);
                 if(!bindingResult.hasErrors()){
-//                    if (bean.getThumbnailFile() != null) {
-//                        String filepath = jcrContent.write(JcrConstants.CONTENT_PATH, BeanUtils.toJcrFileItem(bean.getThumbnailFile()) );
-//                        pojo.setThumbnail(filepath);
-//                    }
+                    if (bean.getThumbnailFile() != null) {
+                        String filepath = jcrContent.write(JcrConstants.CONTENT_PATH, BeanUtils.toJcrFileItem(bean.getThumbnailFile()) );
+                        pojo.setThumbnail(filepath);
+                    }
 
                     String xmlContent = ContentItemUtil.bean2Xml(bean.getContentItem());
-                    pojo.setDataXML(xmlContent);
+                    pojo.setXmlData(xmlContent);
+                    pojo.setCreatedBy(userService.findById(SecurityUtils.getLoginUserId()));
+                    pojo.setModifiedBy(userService.findById(SecurityUtils.getLoginUserId()));
 
-//                    if(crudaction.equals("insert-update")){
-//                        pojo.setStatus(Constants.CONTENT_SAVE);
-//                    }else if(crudaction.equals("insert-submit-content")){
-//                        pojo.setStatus(Constants.CONTENT_WAITING_APPROVE);
-//                    }
+                    if(crudaction.equals("insert-update")){
+                        pojo.setStatus(Constants.CONTENT_SAVE);
+                    }else if(crudaction.equals("insert-submit-content")){
+                        pojo.setStatus(Constants.CONTENT_WAITING_APPROVE);
+                    }
                     bean.setPojo(pojo);
                     pojo = this.contentService.saveItem(bean);
                     
@@ -261,9 +295,9 @@ public class ContentController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        if(!bindingResult.hasErrors() && bean.getPojo().getContentId() != null){
+        if(!bindingResult.hasErrors() && bean.getPojo().getContentID() != null){
             try{
-                bean.setPojo(contentService.findById(bean.getPojo().getContentId()));
+                bean.setPojo(contentService.findById(bean.getPojo().getContentID()));
             }catch (ObjectNotFoundException oe) {
                 logger.error(oe.getMessage(), oe);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
@@ -284,7 +318,7 @@ public class ContentController extends ApplicationObjectSupport {
         ContentItem contentItem = new ContentItem();
         List<XmlNodeDTO> authoringTemplateNodes = new ArrayList<XmlNodeDTO>();
         try{
-            dbItem = contentService.findById(bean.getPojo().getContentId());
+            dbItem = contentService.findById(bean.getPojo().getContentID());
             AuthoringTemplate authoringTemplateDB = dbItem.getAuthoringTemplate();
             String authoringTemplateXML = authoringTemplateDB.getTemplateContent();
             if (StringUtils.isNotBlank(authoringTemplateXML)) {
@@ -298,7 +332,7 @@ public class ContentController extends ApplicationObjectSupport {
                 mav.addObject("authoringTemplateNodes", authoringTemplateNodes);
             }
             mav.addObject("authoringTemplate", authoringTemplateDB);
-            contentItem = ContentItemUtil.parseXML(dbItem.getDataXML());
+            contentItem = ContentItemUtil.parseXML(dbItem.getXmlData());
             referenceData(mav);
         }catch (ObjectNotFoundException oe) {
             logger.error(oe.getMessage(), oe);
@@ -314,19 +348,21 @@ public class ContentController extends ApplicationObjectSupport {
                 if(!bindingResult.hasErrors()){
                     if (bean.getThumbnailFile() != null) {
                         String filepath = jcrContent.write(JcrConstants.CONTENT_PATH, BeanUtils.toJcrFileItem(bean.getThumbnailFile()) );
-//                        pojo.setThumbnail(filepath);
+                        pojo.setThumbnail(filepath);
                     }
                     String xmlData = ContentItemUtil.bean2Xml(bean.getContentItem());
-                    pojo.setDataXML(xmlData);
+                    pojo.setXmlData(xmlData);
                     bean.setPojo(pojo);
-                    if(pojo.getContentId() != null && pojo.getContentId() > 0){
+                    if(pojo.getContentID() != null && pojo.getContentID() > 0){
                         User user = userService.findById(SecurityUtils.getLoginUserId());
+                        pojo.setCreatedBy(dbItem.getCreatedBy());
+                        pojo.setModifiedBy(user);
 
-//                        if(crudaction.equals("update")){
-//                            pojo.setStatus(Constants.CONTENT_SAVE);
-//                        }else if(crudaction.equals("send")){
-//                            pojo.setStatus(Constants.CONTENT_WAITING_APPROVE);
-//                        }
+                        if(crudaction.equals("update")){
+                            pojo.setStatus(Constants.CONTENT_SAVE);
+                        }else if(crudaction.equals("send")){
+                            pojo.setStatus(Constants.CONTENT_WAITING_APPROVE);
+                        }
                         this.contentService.updateItem(bean);
                         mav = new ModelAndView("redirect:/admin/content/list.html");
                         return mav;
@@ -336,18 +372,34 @@ public class ContentController extends ApplicationObjectSupport {
                     }
                     mav.addObject("success", true);
                 }else {
-                    removeSessionFilesFromJCR(bean.getPojo().getContentId(), CONTENT_FILE_MAP, request);
+                    removeSessionFilesFromJCR(bean.getPojo().getContentID(), CONTENT_FILE_MAP, request);
                 }
             }catch(Exception e) {
                 logger.error(e.getMessage(), e);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        if(StringUtils.isBlank(bean.getCrudaction()) && bean.getPojo().getContentId() != null){
+        if(StringUtils.isBlank(bean.getCrudaction()) && bean.getPojo().getContentID() != null){
             bean.setPojo(dbItem);
             bean.setContentItem(contentItem);
         }
-//        mav.addObject("listCategories", CategoryUtil.getAllCategoryObjectInSite(categoryService.findAllCategoryParent()));
+        if (bean.getPojo().getContentID() != null) {
+            List<ContentCategory> contentCategories = contentCategoryService.findProperty("content.contentID", bean.getPojo().getContentID());
+            Map<Long, ContentCategory> contentCategoryMap = new HashMap<Long, ContentCategory>();
+            for (ContentCategory contentCategory : contentCategories) {
+                contentCategoryMap.put(contentCategory.getCategory().getCategoryID(), contentCategory);
+            }
+            bean.setContentCategoryMap(contentCategoryMap);
+            removeSessionFileMap(bean.getPojo().getContentID(), CONTENT_FILE_MAP, request);
+
+            List<ContentDepartment> contentDepartments = contentDepartmentService.findProperty("content.contentID", bean.getPojo().getContentID());
+            Map<Long, ContentDepartment> contentDepartmentMap = new HashMap<Long, ContentDepartment>();
+            for (ContentDepartment contentDepartment : contentDepartments) {
+                contentDepartmentMap.put(contentDepartment.getDepartment().getDepartmentID(), contentDepartment);
+            }
+            bean.setContentDepartmentMap(contentDepartmentMap);
+        }
+        mav.addObject("listCategories", CategoryUtil.getAllCategoryObjectInSite(categoryService.findAllCategoryParent()));
         mav.addObject(Constants.FORM_MODEL_KEY, bean);
         mav.addObject("currentUserID", SecurityUtils.getLoginUserId());
         referenceData(mav);
@@ -357,22 +409,22 @@ public class ContentController extends ApplicationObjectSupport {
     @RequestMapping("/admin/content/view.html")
     public ModelAndView contentView(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, HttpServletRequest request){
         ModelAndView mav = new ModelAndView("/admin/content/view");
-        Long contentID = bean.getPojo().getContentId();
+        Long contentID = bean.getPojo().getContentID();
         String crudaction = bean.getCrudaction();
 
         if(contentID != null){
             if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("send") || crudaction.equals("approve") || crudaction.equals("public") || crudaction.equals("reject"))){
                 try{
                     Content content = bean.getPojo();
-//                    if(crudaction.equals("send")){
-//                        content.setStatus(Constants.CONTENT_WAITING_APPROVE);
-//                    }else if(crudaction.equals("approve")){
-//                        content.setStatus(Constants.CONTENT_APPROVE);
-//                    } else if(crudaction.equals("public")){
-//                        content.setStatus(Constants.CONTENT_PUBLISH);
-//                    } else if(crudaction.equals("reject")){
-//                        content.setStatus(Constants.CONTENT_REJECT);
-//                    }
+                    if(crudaction.equals("send")){
+                        content.setStatus(Constants.CONTENT_WAITING_APPROVE);
+                    }else if(crudaction.equals("approve")){
+                        content.setStatus(Constants.CONTENT_APPROVE);
+                    } else if(crudaction.equals("public")){
+                        content.setStatus(Constants.CONTENT_PUBLISH);
+                    } else if(crudaction.equals("reject")){
+                        content.setStatus(Constants.CONTENT_REJECT);
+                    }
                     this.contentService.updateStatusItem(content);
                     mav = new ModelAndView("redirect:/admin/content/list.html");
                     return mav;
@@ -384,7 +436,7 @@ public class ContentController extends ApplicationObjectSupport {
                 try {
                     Content content = contentService.findById(contentID);
                     bean.setPojo(content);
-                    ContentItem contentItem = ContentItemUtil.parseXML(content.getDataXML());
+                    ContentItem contentItem = ContentItemUtil.parseXML(content.getXmlData());
                     bean.setContentItem(contentItem);
                 } catch (Exception e) {
                     logger.error("Content not found id = "+contentID, e);
@@ -444,9 +496,9 @@ public class ContentController extends ApplicationObjectSupport {
 	            	if(fileMap != null && fileMap.size() > 0) {
 	            		Map<String, List<String>> uploadedNodeFiles = null;
 	            		if(isEdit) {
-	            			uploadedNodeFiles = fileMap.get(bean.getPojo().getContentId());
+	            			uploadedNodeFiles = fileMap.get(bean.getPojo().getContentID());
 	            		}else {
-	            			uploadedNodeFiles = fileMap.get(bean.getAuthoringTemplateId());
+	            			uploadedNodeFiles = fileMap.get(bean.getAuthoringTemplateID());
 	            		}
 		            	if(uploadedNodeFiles != null && uploadedNodeFiles.size() > 0) {
 		            		List<String> nodeFiles = uploadedNodeFiles.get(nodeDTO.getName());

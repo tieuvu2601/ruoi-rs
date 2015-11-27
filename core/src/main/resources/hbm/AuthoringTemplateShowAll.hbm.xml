@@ -1,0 +1,23 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.AuthoringTemplateShowAll" table="PortalAuthoringTemplateShowAll">
+
+		<!--<id name="authoringTemplateShowAllID">-->
+			<!--<generator class="sequence">-->
+                <!--<param name="sequence">PortalATShowAll_SEQ</param>-->
+            <!--</generator>-->
+		<!--</id>-->
+
+        <id name="authoringTemplateShowAllID" column="AuthoringTemplateShowAllID">
+            <generator class="increment"/>
+        </id>
+
+		<property name="authoringTemplateID" column="AuthoringTemplateID"/>
+
+        <property name="displayAll" column="DisplayAll"/>
+
+	</class>
+</hibernate-mapping>

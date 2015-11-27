@@ -1,0 +1,23 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.CategoryUser" table="PortalCategoryUser">
+
+		<!--<id name="categoryUserID">-->
+			<!--<generator class="sequence">-->
+                <!--<param name="sequence">PORTALCATEGORYUSER_SEQ</param>-->
+            <!--</generator>-->
+		<!--</id>-->
+
+        <id name="categoryUserID" column="CategoryUserID">
+            <generator class="increment"/>
+        </id>
+
+		<property name="categoryID" column="categoryID"/>
+
+        <property name="userID" column="userID"/>
+
+	</class>
+</hibernate-mapping>

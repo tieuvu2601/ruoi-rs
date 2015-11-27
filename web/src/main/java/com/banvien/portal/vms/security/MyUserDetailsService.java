@@ -1,9 +1,11 @@
 package com.banvien.portal.vms.security;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
-
+import java.util.List;
 import java.util.Map;
 
+import com.banvien.portal.vms.dao.DepartmentDAO;
 import com.banvien.portal.vms.dao.UserDAO;
 import com.banvien.portal.vms.dao.UserGroupDAO;
 import org.apache.log4j.Logger;
@@ -16,10 +18,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-
+import com.banvien.portal.vms.dao.RoleDAO;
+import com.banvien.portal.vms.domain.Role;
 import com.banvien.portal.vms.domain.User;
 import com.banvien.portal.vms.service.UserService;
 import com.banvien.portal.vms.util.Constants;
+
+
+/**
+ * @author Nguyen Hai Vien
+ * 
+ */
 
 public class MyUserDetailsService implements UserDetailsService {
 	 private transient final Logger logger = Logger.getLogger(MyUserDetailsService.class);
@@ -28,13 +37,24 @@ public class MyUserDetailsService implements UserDetailsService {
 	
 	private UserService userService;
 
+    private RoleDAO roleDAO;
+
+    private DepartmentDAO departmentDAO;
+
     private UserGroupDAO userGroupDAO;
 
     private UserDAO userDAO;
 
-
     public void setUserService(UserService userService) {
         this.userService = userService;
+    }
+
+    public void setRoleDAO(RoleDAO roleDAO) {
+        this.roleDAO = roleDAO;
+    }
+
+    public void setDepartmentDAO(DepartmentDAO departmentDAO) {
+        this.departmentDAO = departmentDAO;
     }
 
     public void setUserGroupDAO(UserGroupDAO userGroupDAO) {
@@ -91,7 +111,7 @@ public class MyUserDetailsService implements UserDetailsService {
 		try {
 			account = userService.findByUserName(username);
 			Integer activeStatus = 1;
-			if (account == null || !activeStatus.equals(account.getStatus())) {
+			if (account == null || !activeStatus.equals(account.getStatus())) {				
 				throw new UsernameNotFoundException("UserProcessingFilter.usernameNotFound");
 			}
 			
@@ -100,7 +120,6 @@ public class MyUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException(e.getMessage());
 		}
 
-		
 		Map<String, GrantedAuthority> authorities = new HashMap<String, GrantedAuthority>();
 
 		//this line of code is used to check whether the user has login or not
@@ -109,6 +128,10 @@ public class MyUserDetailsService implements UserDetailsService {
 		    authorities.put(account.getUserGroup().getCode(), new GrantedAuthorityImpl(account.getUserGroup().getCode()));
         }
 
+        List<Role> roleList = roleDAO.findByUserID(account.getUserID());
+        for (Role role : roleList) {
+            authorities.put(role.getRole(), new GrantedAuthorityImpl(role.getRole()));
+        }
         if (account.getFullAccess() != null && account.getFullAccess().equals(1)) {
             authorities.put(Constants.FULL_ACCESS_RIGHT, new GrantedAuthorityImpl(Constants.FULL_ACCESS_RIGHT));
         }
@@ -117,6 +140,9 @@ public class MyUserDetailsService implements UserDetailsService {
 		authorities.values().toArray(grantedAuthority);
 		MyUserDetail loginUser = new MyUserDetail(username, username, true, true, true, true, grantedAuthority);
 
+        if (account != null && account.getDepartment() != null) {
+            loginUser.setDepartmentID(account.getDepartment().getDepartmentID());
+        }
         loginUser.setFullAccessSystem(account.getFullAccess() != null && account.getFullAccess().equals(1) ? true : false);
 		BeanUtils.copyProperties(account, loginUser);
 

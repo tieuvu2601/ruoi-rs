@@ -1,0 +1,5 @@
+ALTER TABLE PORTALUSER
+ADD
+(
+  FullAccess INT null
+);

@@ -68,28 +68,116 @@
             </value>
         </property>
     </bean>
-
-    <bean id="userSecurityAdvice" class="com.banvien.portal.vms.security.MyUserDetailsService">
-        <property name="userService" ref="userService"/>
+    
+	<bean id="roleService" class="com.banvien.portal.vms.service.RoleServiceImpl">
+        <property name="roleDAO" ref="roleDAO"/>
+    </bean>
+    <bean id="userGroupService" class="com.banvien.portal.vms.service.UserGroupServiceImpl">
         <property name="userGroupDAO" ref="userGroupDAO"/>
     </bean>
-
-    <bean id="userGroupService" class="com.banvien.portal.vms.service.impl.UserGroupServiceImpl">
-        <property name="userGroupDAO" ref="userGroupDAO"/>
-    </bean>
-
-    <bean id="userService" class="com.banvien.portal.vms.service.impl.UserServiceImpl">
-        <property name="userDAO" ref="userDAO"/>
-    </bean>
-
-
-    <bean id="authoringTemplateService" class="com.banvien.portal.vms.service.impl.AuthoringTemplateServiceImpl">
+    <bean id="authoringTemplateService" class="com.banvien.portal.vms.service.AuthoringTemplateServiceImpl">
         <property name="authoringTemplateDAO" ref="authoringTemplateDAO"/>
     </bean>
-
-
-    <bean id="contentService" class="com.banvien.portal.vms.service.impl.ContentServiceImpl">
+    <bean id="categoryService" class="com.banvien.portal.vms.service.CategoryServiceImpl">
+        <property name="categoryDAO" ref="categoryDAO"/>
+    </bean>
+    <bean id="opinionService" class="com.banvien.portal.vms.service.OpinionServiceImpl">
+        <property name="opinionDAO" ref="opinionDAO"/>
+    </bean>
+    <bean id="commentService" class="com.banvien.portal.vms.service.CommentServiceImpl">
+        <property name="commentDAO" ref="commentDAO"/>
+    </bean>
+    <bean id="contentService" class="com.banvien.portal.vms.service.ContentServiceImpl">
         <property name="noOfDateTracking" value="${no.of.date.tracking}"/>
         <property name="contentDAO" ref="contentDAO"/>
+        <property name="contentCategoryDAO"  ref="contentCategoryDAO"/>
+        <property name="contentDepartmentDAO" ref="contentDepartmentDAO"/>
     </bean>
+    <bean id="contentCategoryService" class="com.banvien.portal.vms.service.ContentCategoryServiceImpl">
+        <property name="contentCategoryDAO"  ref="contentCategoryDAO"/>
+    </bean>
+
+    <bean id="contentDepartmentService" class="com.banvien.portal.vms.service.ContentDepartmentServiceImpl">
+        <property name="contentDepartmentDAO"  ref="contentDepartmentDAO"/>
+    </bean>
+    <bean id="departmentService" class="com.banvien.portal.vms.service.DepartmentServiceImpl">
+        <property name="departmentDAO" ref="departmentDAO"/>
+    </bean>
+    <bean id="renderingTemplateService" class="com.banvien.portal.vms.service.RenderingTemplateServiceImpl">
+        <property name="renderingTemplateDAO" ref="renderingTemplateDAO"/>
+    </bean>
+    <bean id="trackingService" class="com.banvien.portal.vms.service.TrackingServiceImpl">
+        <property name="trackingDAO" ref="trackingDAO"/>
+    </bean>
+
+    <bean id="userService" class="com.banvien.portal.vms.service.UserServiceImpl">
+        <property name="userDAO" ref="userDAO"/>
+        <property name="userRoleDAO" ref="userRoleDAO"/>
+        <property name="userDepartmentACLDAO" ref="userDepartmentACLDAO"/>
+    </bean>
+
+    <bean id="userRoleService" class="com.banvien.portal.vms.service.UserRoleServiceImpl">
+        <property name="userRoleDAO" ref="userRoleDAO"/>
+        <property name="roleDAO" ref="roleDAO"/>
+    </bean>
+
+    <bean id="pageService" class="com.banvien.portal.vms.service.PageServiceImpl">
+        <property name="pageDAO" ref="pageDAO"/>
+    </bean>
+    <bean id="userSessionService" class="com.banvien.portal.vms.service.UserSessionServiceImpl">
+        <property name="userSessionDAO" ref="userSessionDAO"/>
+    </bean>
+    
+    <bean id="authoringTemplateUserService" class="com.banvien.portal.vms.service.AuthoringTemplateUserServiceImpl">
+        <property name="authoringTemplateUserDAO" ref="authoringTemplateUserDAO"/>
+    </bean>
+    
+    <bean id="authoringTemplateUGroupService" class="com.banvien.portal.vms.service.AuthoringTemplateUGroupServiceImpl">
+        <property name="authoringTemplateUGroupDAO" ref="authoringTemplateUGroupDAO"/>
+    </bean>
+    
+    <bean id="authoringTemplateShowAllService" class="com.banvien.portal.vms.service.AuthoringTemplateShowAllServiceImpl">
+        <property name="authoringTemplateShowAllDAO" ref="authoringTemplateShowAllDAO"/>
+    </bean>
+    
+    <bean id="categoryUserService" class="com.banvien.portal.vms.service.CategoryUserServiceImpl">
+        <property name="categoryUserDAO" ref="categoryUserDAO"/>
+    </bean>
+    
+    <bean id="categoryUserGroupService" class="com.banvien.portal.vms.service.CategoryUserGroupServiceImpl">
+        <property name="categoryUserGroupDAO" ref="categoryUserGroupDAO"/>
+    </bean>
+    
+    <bean id="categoryShowAllService" class="com.banvien.portal.vms.service.CategoryShowAllServiceImpl">
+        <property name="categoryShowAllDAO" ref="categoryShowAllDAO"/>
+    </bean>
+    
+    <bean id="reportService" class="com.banvien.portal.vms.service.ReportServiceImpl">
+        <property name="contentDAO" ref="contentDAO"/>
+    </bean>
+
+    <bean id="pageViewBean" class="com.banvien.portal.vms.filter.PageViewFilter">
+        <property name="trackingService" ref="trackingService"/>
+    </bean>
+
+    <bean id="userDepartmentACLService" class="com.banvien.portal.vms.service.UserDepartmentACLServiceImpl">
+        <property name="userDepartmentACLDAO" ref="userDepartmentACLDAO"/>
+    </bean>
+    <bean id="announcementCategoryService" class="com.banvien.portal.vms.service.AnnouncementCategoryServiceImpl">
+        <property name="announcementCategoryDAO" ref="announcementCategoryDAO"/>
+    </bean>
+
+    <bean id="feedbackCategoryService" class="com.banvien.portal.vms.service.FeedbackCategoryServiceImpl">
+        <property name="feedbackCategoryDAO" ref="feedbackCategoryDAO"/>
+    </bean>
+    <bean id="feedbackService" class="com.banvien.portal.vms.service.FeedbackServiceImpl">
+        <property name="feedbackDAO" ref="feedbackDAO"/>
+        <property name="smsDAO" ref="smsDAO"/>
+        <property name="departmentDAO" ref="departmentDAO"/>
+    </bean>
+    <bean id="feedbackReplyService" class="com.banvien.portal.vms.service.FeedbackReplyServiceImpl">
+        <property name="feedbackReplyDAO" ref="feedbackReplyDAO"/>
+    </bean>
+
+
 </beans>

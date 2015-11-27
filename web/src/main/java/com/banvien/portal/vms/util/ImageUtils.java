@@ -1,10 +1,5 @@
 package com.banvien.portal.vms.util;
 
-//import com.sun.image.codec.jpeg.JPEGCodec;
-//import com.sun.image.codec.jpeg.JPEGImageEncoder;
-
-import com.sun.imageio.plugins.jpeg.JPEGImageWriter;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +20,7 @@ public class ImageUtils {
      * @param pMaxWidth
      *                the max width in pixels, 0 means do not scale.
      * @return the resized JPG image.
-     * @throws IOException
+     * @throws java.io.IOException
      *                 if the iamge could not be manipulated correctly.
      */
     public static byte[] resizeImageAsJPG(byte[] pImageData, int pMaxWidth, int pMaxHeight, int fit) throws IOException {
@@ -34,7 +29,15 @@ public class ImageUtils {
         int width = imageIcon.getIconWidth();
         int height = imageIcon.getIconHeight();
         // If the image is larger than the max width, we need to resize it
-        if (fit == 0 && pMaxHeight > 0) {
+        if(fit == 2 && pMaxWidth > 0){
+            //double ratio = (double) pMaxHeight / imageIcon.getIconHeight();
+            double ratio = (double) pMaxWidth / imageIcon.getIconWidth();
+            width = (int) (imageIcon.getIconWidth() * ratio);
+            height = (int) (imageIcon.getIconHeight() * ratio);
+            if(pMaxWidth > 0 && width > pMaxWidth) {
+                width = pMaxWidth;
+            }
+        }else if (fit == 0 && pMaxHeight > 0) {
             // Determine the shrink ratio
             double ratio = (double) pMaxHeight / imageIcon.getIconHeight();
             width = (int) (imageIcon.getIconWidth() * ratio);
@@ -45,6 +48,13 @@ public class ImageUtils {
         }else if (fit == 1 && pMaxWidth > 0 && pMaxHeight > 0) {
             height = pMaxHeight;
             width = pMaxWidth;
+        } else if (fit == 3 && pMaxHeight > 0){
+            double ratio = (double) pMaxHeight / imageIcon.getIconHeight();
+            width = (int) (imageIcon.getIconWidth() * ratio);
+            height = (int) (imageIcon.getIconHeight() * ratio);
+            if(pMaxHeight > 0 && height > pMaxHeight) {
+                height = pMaxHeight;
+            }
         }
         // Create a new empty image buffer to "draw" the resized image into
         BufferedImage bufferedResizedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -57,10 +67,11 @@ public class ImageUtils {
         // Now our buffered image is ready
         // Encode it as a JPEG
         ByteArrayOutputStream encoderOutputStream = new ByteArrayOutputStream();
-        JPEGImageWriter imageWriter = (JPEGImageWriter) ImageIO.getImageWritersBySuffix("jpeg").next();
-        imageWriter.setOutput(bufferedResizedImage);
-        byte[] resizedImageByteArray = encoderOutputStream.toByteArray();
-        return resizedImageByteArray;
+//		JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(encoderOutputStream);
+//		encoder.encode(bufferedResizedImage);
+//		byte[] resizedImageByteArray = encoderOutputStream.toByteArray();
+        ImageIO.write(bufferedResizedImage, "jpg", encoderOutputStream);
+        return encoderOutputStream.toByteArray();
     }
 
 
@@ -69,8 +80,9 @@ public class ImageUtils {
         BufferedImage bImageFromConvert = ImageIO.read(in);
         BufferedImage bufferedCroppedImage = bImageFromConvert.getSubimage(x, y, width, height);
         ByteArrayOutputStream encoderOutputStream = new ByteArrayOutputStream();
-        JPEGImageWriter imageWriter = (JPEGImageWriter) ImageIO.getImageWritersBySuffix("jpeg").next();
-        imageWriter.setOutput(bufferedCroppedImage);
+//        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(encoderOutputStream);
+//        encoder.encode(bufferedCroppedImage);
+        ImageIO.write(bufferedCroppedImage, "jpg", encoderOutputStream);
         return encoderOutputStream.toByteArray();
     }
 }

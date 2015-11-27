@@ -2,10 +2,6 @@ package com.banvien.portal.vms.listener;
 
 
 import java.lang.reflect.Field;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,20 +57,12 @@ public class StartupListener implements ServletContextListener {
         if (context.getInitParameter(Constants.MOBI8_URL) != null) {
             config.put(Constants.MOBI8_URL, context.getInitParameter(Constants.MOBI8_URL));
         }
-        //deploy jbpm
-        try {
-        	ApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(context);
-            AppContext.setApplicationContext(ctx);
-        }catch (Throwable e) {
-        	log.error(e.getMessage(), e);
-		}
+
         context.setAttribute(Constants.CONFIG, config);
 
         setupContext(context);
-        
 
     }
-    
 	/**
      * This method uses the LookupManager to lookup available roles from the data layer.
      *
