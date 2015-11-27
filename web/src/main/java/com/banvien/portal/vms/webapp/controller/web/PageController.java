@@ -7,13 +7,13 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.banvien.portal.vms.domain.*;
+import com.banvien.portal.vms.dto.CategoryObjectDTO;
 import com.banvien.portal.vms.service.*;
 import com.banvien.portal.vms.taglibs.PortalTagLib;
 import com.banvien.portal.vms.util.CategoryUtil;
 import com.banvien.portal.vms.util.CommonUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.stereotype.Controller;
@@ -604,8 +604,8 @@ public class PageController extends ApplicationObjectSupport {
 
         try{
             Category category = this.categoryService.findByCode(categoryCode);
-            CategoryObject categoryObj = CategoryUtil.bindCategoryToCategoryObject(category.getParentCategory(), 0, null);
-            CategoryObject currentCategory = CategoryUtil.bindCategoryToCategoryObject(category, 0, categoryObj);
+            CategoryObjectDTO categoryObj = CategoryUtil.bindCategoryToCategoryObject(category.getParentCategory(), 0, null);
+            CategoryObjectDTO currentCategory = CategoryUtil.bindCategoryToCategoryObject(category, 0, categoryObj);
             mav.addObject("categoryObj", categoryObj);
             mav.addObject("currentCategory", currentCategory);
 
@@ -689,17 +689,17 @@ public class PageController extends ApplicationObjectSupport {
             categoryRootID = currentCategoryId;
         }
         Category categoryObj =  categoryService.findById(categoryRootID);
-        CategoryObject categoryObject = CategoryUtil.bindCategoryToCategoryObject(categoryObj, 0, null);
-        mav.addObject("categoryObj", categoryObject);
+        CategoryObjectDTO categoryObjectDTO = CategoryUtil.bindCategoryToCategoryObject(categoryObj, 0, null);
+        mav.addObject("categoryObj", categoryObjectDTO);
 
         if(categoryObj.getChildren() != null && categoryObj.getChildren().size() > 0){
-            List<CategoryObject> categories = new ArrayList<CategoryObject>();
-            categories = CategoryUtil.getListCategoryForBuildRightMenuForSite(categoryObj.getChildren(), categories, 0, categoryObject);
+            List<CategoryObjectDTO> categories = new ArrayList<CategoryObjectDTO>();
+            categories = CategoryUtil.getListCategoryForBuildRightMenuForSite(categoryObj.getChildren(), categories, 0, categoryObjectDTO);
             mav.addObject("categories", categories);
 
-            for(CategoryObject categoryObject1 : categories){
-                if(categoryObject1.getCategoryID().equals(currentCategoryId)){
-                    mav.addObject("currentCategory", categoryObject1);
+            for(CategoryObjectDTO categoryObjectDTO1 : categories){
+                if(categoryObjectDTO1.getCategoryID().equals(currentCategoryId)){
+                    mav.addObject("currentCategory", categoryObjectDTO1);
                 }
             }
         }

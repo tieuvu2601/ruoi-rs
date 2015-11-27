@@ -24,19 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.banvien.portal.vms.bean.AuthoringTemplateBean;
-import com.banvien.portal.vms.bean.XmlNodeDTO;
+import com.banvien.portal.vms.dto.XmlNodeDTO;
 import com.banvien.portal.vms.domain.AuthoringTemplate;
-import com.banvien.portal.vms.domain.AuthoringTemplateShowAll;
-import com.banvien.portal.vms.domain.AuthoringTemplateUGroup;
-import com.banvien.portal.vms.domain.AuthoringTemplateUser;
-import com.banvien.portal.vms.domain.User;
-import com.banvien.portal.vms.domain.UserGroup;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.AuthoringTemplateService;
-import com.banvien.portal.vms.service.AuthoringTemplateShowAllService;
-import com.banvien.portal.vms.service.AuthoringTemplateUGroupService;
-import com.banvien.portal.vms.service.AuthoringTemplateUserService;
 import com.banvien.portal.vms.service.UserGroupService;
 import com.banvien.portal.vms.service.UserService;
 import com.banvien.portal.vms.util.AuthoringTemplateUtil;
@@ -46,12 +38,6 @@ import com.banvien.portal.vms.webapp.validator.AuthoringTemplateValidator;
 import com.banvien.portal.vms.xml.authoringtemplate.Node;
 import com.banvien.portal.vms.xml.authoringtemplate.Nodes;
 
-/**
- * Created with IntelliJ IDEA.
- * User: NhuKhang
- * Date: 10/6/12
- * Time: 10:57 AM
- */
 @Controller
 public class AuthoringTemplateController extends ApplicationObjectSupport {
 	private transient final Logger logger = Logger.getLogger(getClass());
@@ -67,16 +53,6 @@ public class AuthoringTemplateController extends ApplicationObjectSupport {
     
     @Autowired
     private UserGroupService userGroupService;
-    
-    @Autowired
-    private AuthoringTemplateUserService authoringTemplateUserService;
-    
-    @Autowired
-    private AuthoringTemplateUGroupService authoringTemplateUGroupService;
-    
-    @Autowired
-    private AuthoringTemplateShowAllService authoringTemplateShowAllService;
-    
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -211,102 +187,5 @@ public class AuthoringTemplateController extends ApplicationObjectSupport {
         Object[] results = this.authoringTemplateService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
         bean.setListResult((List<AuthoringTemplate>)results[1]);
         bean.setTotalItems(Integer.valueOf(results[0].toString()));
-    }
-    
-    @RequestMapping(value={"/admin/authoringtemplate/access.html"})
-    public ModelAndView accessRole(AuthoringTemplateBean bean, HttpServletRequest request) {
-    	ModelAndView mav = new ModelAndView("/admin/authoringtemplate/access");
-    	Long authoringTemplateID = bean.getPojo().getAuthoringTemplateID();
-    	if(authoringTemplateID != null){
-    		if(StringUtils.isNotEmpty(bean.getCrudaction()) && "insert-update".equals(bean.getCrudaction())){
-    			Boolean displayAll = bean.getDisplayAll();
-    			List<Long> users = bean.getCheckUserList();
-    			List<Long> groups = bean.getCheckGroupList();
-    			try{
-    				List<AuthoringTemplateUser> authoringTemplateUsers = authoringTemplateUserService.findProperty("authoringTemplateID", authoringTemplateID);
-    				authoringTemplateUserService.deleteAll(authoringTemplateUsers);
-    				List<AuthoringTemplateUGroup> authoringTemplateUGroups = authoringTemplateUGroupService.findProperty("authoringTemplateID", authoringTemplateID);
-	    			authoringTemplateUGroupService.deleteAll(authoringTemplateUGroups);
-	    			List<AuthoringTemplateShowAll> authoringTemplateShowAlls = authoringTemplateShowAllService.findProperty("authoringTemplateID", authoringTemplateID);
-	    			authoringTemplateShowAllService.deleteAll(authoringTemplateShowAlls);
-	    			
-    				if(displayAll != null && displayAll){
-    					AuthoringTemplateShowAll authoringTemplateShowAll = new AuthoringTemplateShowAll();
-    					authoringTemplateShowAll.setAuthoringTemplateID(authoringTemplateID);
-    					authoringTemplateShowAll.setDisplayAll(Constants.FLAG_YES);
-    					authoringTemplateShowAllService.save(authoringTemplateShowAll);
-    				}else{
-    					if(users != null && users.size() > 0){
-		    				for(Long userID : users){
-		    					AuthoringTemplateUser authoringTemplateUser = new AuthoringTemplateUser();
-		    					authoringTemplateUser.setAuthoringTemplateID(authoringTemplateID);
-		    					authoringTemplateUser.setUserID(userID);
-		    					authoringTemplateUserService.save(authoringTemplateUser);
-		    				}
-		    			}
-		    			if(groups != null && groups.size() > 0){
-		    				for(Long userGroupID : groups){
-		    					AuthoringTemplateUGroup authoringTemplateUGroup = new AuthoringTemplateUGroup();
-		    					authoringTemplateUGroup.setAuthoringTemplateID(authoringTemplateID);
-		    					authoringTemplateUGroup.setUserGroupID(userGroupID);
-		    					authoringTemplateUGroupService.save(authoringTemplateUGroup);
-		    				}
-		    			}
-    				}
-	    			mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
-                    mav.addObject("success", true);
-    			}catch(Exception e){
-    				logger.error(e.getMessage(), e);
-                    mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("error.occurred"));
-    			}
-    		}
-    		referenceData(mav, bean, authoringTemplateID);
-    	}
-    	return mav;
-    }
-    
-    private void referenceData(ModelAndView mav, AuthoringTemplateBean bean, Long authoringTemplateID){
-    	try {
-			AuthoringTemplate authTemp = authoringTemplateService.findById(authoringTemplateID);
-			List<UserGroup> userGroups = userGroupService.findAll();
-			List<User> users = userService.findAll();
-			mav.addObject("userGroups", userGroups);
-			mav.addObject("users", users);
-			
-			List<AuthoringTemplateUser> authoringTemplateUsers = authoringTemplateUserService.findProperty("authoringTemplateID", authoringTemplateID);
-			Map<Long, String> mapCheckedUser = new HashMap<Long, String>();
-			for(AuthoringTemplateUser authoringTemplateUser : authoringTemplateUsers){
-				mapCheckedUser.put(authoringTemplateUser.getUserID(), "edit");
-			}
-			
-			List<AuthoringTemplateUGroup> authoringTemplateUGroups = authoringTemplateUGroupService.findProperty("authoringTemplateID", authoringTemplateID);
-			Map<Long, Boolean> mapCheckedGroup = new HashMap<Long, Boolean>();
-			for(AuthoringTemplateUGroup authoringTemplateUGroup : authoringTemplateUGroups){
-				mapCheckedGroup.put(authoringTemplateUGroup.getUserGroupID(), true);
-			}
-			
-			Set<Long> groupCheckedIDs = mapCheckedGroup.keySet();
-			Iterator<Long> iterator = groupCheckedIDs.iterator();
-			while(iterator.hasNext()){
-				Long groupID = (Long)iterator.next();
-				for(User user : users){
-					if(user.getUserGroup().getUserGroupID().equals(groupID)){
-						mapCheckedUser.put(user.getUserID(), "disabled");
-					}
-				}
-			}
-			mav.addObject("mapCheckedGroup", mapCheckedGroup);
-			mav.addObject("mapCheckedUser", mapCheckedUser);
-			try{
-				AuthoringTemplateShowAll authoringTemplateShowAll = authoringTemplateShowAllService.findEqualUnique("authoringTemplateID", authoringTemplateID);
-				mav.addObject("displayAll", authoringTemplateShowAll.getDisplayAll());
-			}catch(ObjectNotFoundException oe){}
-			
-			bean.setPojo(authTemp);
-			mav.addObject(Constants.FORM_MODEL_KEY, bean);
-		} catch (ObjectNotFoundException oe) {
-			logger.error(oe.getMessage(), oe);
-            mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
-		}
     }
 }

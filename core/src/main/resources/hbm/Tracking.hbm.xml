@@ -6,9 +6,6 @@
 	<class name="com.banvien.portal.vms.domain.Tracking" table="PortalTracking">
 
 		<id name="trackingID" column="TrackingID">
-			<!--<generator class="sequence">-->
-                <!--<param name="sequence">PORTALTRACKING_SEQ</param>-->
-            <!--</generator>-->
             <generator class="increment"/>
 		</id>
 

@@ -29,8 +29,6 @@
 
         <many-to-one name="authoringTemplate" column="AuthoringTemplateID"/>
 
-        <many-to-one name="renderingTemplate" column="RenderingTemplateID"/>
-
         <many-to-one name="parentCategory" column="ParentCatID"/>
 
         <bag name="children" table="PortalCategory" inverse="true" cascade="all-delete-orphan" lazy="false" >

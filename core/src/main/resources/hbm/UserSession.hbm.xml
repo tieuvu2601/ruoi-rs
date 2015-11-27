@@ -5,9 +5,6 @@
 <hibernate-mapping>
 	<class name="com.banvien.portal.vms.domain.UserSession" table="UserSession">
         <id name="userSessionID" column="UserSessionID">
-            <!--<generator class="sequence">-->
-                <!--<param name="sequence">PORTALUSERSESSION_SEQ</param>-->
-            <!--</generator>-->
             <generator class="increment"/>
         </id>
         <property name="numberOfVisitors" column="NumberOfVisitors" />

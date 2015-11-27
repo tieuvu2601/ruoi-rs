@@ -3,12 +3,6 @@ package com.banvien.portal.vms.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-/**
- * Created by Ban Vien Ltd.
- * User: Vien Nguyen (vien.nguyen@banvien.com)
- * Date: 11/13/12
- * Time: 2:59 PM
- */
 public class AuthoringTemplate implements Serializable {
     private Long authoringTemplateID;
 
@@ -18,7 +12,7 @@ public class AuthoringTemplate implements Serializable {
 
     private String templateContent;
     
-    private String status; // Y: allow comment, N: not comment
+    private String status;
 
     private String prefixUrl;
 
@@ -73,7 +67,6 @@ public class AuthoringTemplate implements Serializable {
     public void setTemplateContent(String templateContent) {
         this.templateContent = templateContent;
     }
-
 
     public Timestamp getCreatedDate() {
         return createdDate;

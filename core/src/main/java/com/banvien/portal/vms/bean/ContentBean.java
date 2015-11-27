@@ -5,17 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.banvien.portal.vms.domain.Content;
-import com.banvien.portal.vms.domain.ContentCategory;
-import com.banvien.portal.vms.domain.ContentDepartment;
 import com.banvien.portal.vms.xml.contentitem.ContentItem;
 
-/**
- * Copyright (c) by Ban Vien Co., Ltd.
- * User: MBP
- * Date: 11/13/12
- * Time: 5:40 PM
- * Author: vien.nguyen@banvien.com
- */
 public class ContentBean extends AbstractBean<Content> {
     private FileItem thumbnailFile;
 
@@ -33,16 +24,12 @@ public class ContentBean extends AbstractBean<Content> {
 
     private Long[] departmentIDs;
 
-    private Map<Long, ContentCategory> contentCategoryMap;
-    
     private Map<Long, Boolean> contentPublishedMap;
     
     private Map<String, List<String>> oldNodeAttachementValues;
     
     private List<String> deletedAttchments;
 
-    private Map<Long, ContentDepartment> contentDepartmentMap;
-    
     public ContentBean()
     {
         this.pojo = new Content();
@@ -97,14 +84,6 @@ public class ContentBean extends AbstractBean<Content> {
         this.categoryIDs = categoryIDs;
     }
 
-    public Map<Long, ContentCategory> getContentCategoryMap() {
-        return contentCategoryMap;
-    }
-
-    public void setContentCategoryMap(Map<Long, ContentCategory> contentCategoryMap) {
-        this.contentCategoryMap = contentCategoryMap;
-    }
-
 	public Map<Long, Boolean> getContentPublishedMap() {
 		return contentPublishedMap;
 	}
@@ -144,13 +123,5 @@ public class ContentBean extends AbstractBean<Content> {
 
     public void setDepartmentIDs(Long[] departmentIDs) {
         this.departmentIDs = departmentIDs;
-    }
-
-    public Map<Long, ContentDepartment> getContentDepartmentMap() {
-        return contentDepartmentMap;
-    }
-
-    public void setContentDepartmentMap(Map<Long, ContentDepartment> contentDepartmentMap) {
-        this.contentDepartmentMap = contentDepartmentMap;
     }
 }

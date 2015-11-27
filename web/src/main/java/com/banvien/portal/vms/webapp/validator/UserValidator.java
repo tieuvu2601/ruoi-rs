@@ -14,13 +14,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-/**
- * Created with IntelliJ IDEA.
- * User: BV-Dev1
- * Date: 10/6/12
- * Time: 1:12 PM
- * To change this template use File | Settings | File Templates.
- */
 @Component
 public class UserValidator extends ApplicationObjectSupport implements Validator {
 

@@ -5,7 +5,6 @@
     <bean id="userSecurityAdvice" class="com.banvien.portal.vms.security.MyUserDetailsService">
         <property name="userService" ref="userService"/>
         <property name="roleDAO" ref="roleDAO"/>
-        <property name="departmentDAO" ref="departmentDAO"/>
         <property name="userGroupDAO" ref="userGroupDAO"/>
     </bean>
 

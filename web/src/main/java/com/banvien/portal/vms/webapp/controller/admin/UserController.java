@@ -1,14 +1,10 @@
 package com.banvien.portal.vms.webapp.controller.admin;
 
 import com.banvien.jcr.api.IJcrContent;
-import com.banvien.jcr.api.JcrContentImpl;
 import com.banvien.portal.vms.bean.FileItem;
 import com.banvien.portal.vms.bean.RoleBean;
 import com.banvien.portal.vms.bean.UserBean;
-import com.banvien.portal.vms.bean.UserDepartmentACLBean;
 import com.banvien.portal.vms.domain.*;
-import com.banvien.portal.vms.dto.C2UserDTO;
-import com.banvien.portal.vms.dto.UserDTO;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.editor.FileItemMultipartFileEditor;
 import com.banvien.portal.vms.editor.PojoEditor;
@@ -36,7 +32,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -44,12 +39,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: NhuKhang
- * Date: 10/6/12
- * Time: 10:57 AM
- */
 @Controller
 public class UserController extends ApplicationObjectSupport {
 	private transient final Logger logger = Logger.getLogger(getClass());
@@ -64,24 +53,17 @@ public class UserController extends ApplicationObjectSupport {
     private UserValidator userValidator;
 
     @Autowired
-    private DepartmentService departmentService;
-
-    @Autowired
     private UserGroupService userGroupService;
 
     @Autowired
     private UserRoleService userRoleService;
-    
-    @Autowired
-    private UserDepartmentACLService userDepartmentACLService;
-    
+
     @Autowired
     private IJcrContent jcrContent; 
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
     	binder.registerCustomEditor(Date.class, new CustomDateEditor());
-        binder.registerCustomEditor(Department.class, new PojoEditor(RenderingTemplate.class, "departmentID", Long.class));
         binder.registerCustomEditor(UserGroup.class, new PojoEditor(AuthoringTemplate.class, "userGroupID", Long.class));
         binder.registerCustomEditor(FileItem.class, new FileItemMultipartFileEditor());
 	}
@@ -174,68 +156,12 @@ public class UserController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
             }
         }
-
-        //referenceDataContent(mav,roleBean);
         RoleBean roleBean = new RoleBean();
         executeSearchRole(roleBean, request);
         excutedSearchRole4User(bean,request);
         bean.setRoleBean(roleBean);
         mav.addObject(Constants.FORM_MODEL_KEY, bean);
         return mav;
-    }
-
-    @RequestMapping(value={"/admin/user/departmentACL.html"})
-    public ModelAndView departmentAccessACL(@ModelAttribute(Constants.FORM_MODEL_KEY) UserDepartmentACLBean bean, BindingResult bindingResult, HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("/admin/user/departmentACL");
-        RequestUtil.initSearchBean(request, bean);
-        String crudaction = bean.getCrudaction();
-        if (StringUtils.isNotBlank(crudaction) && "update".equalsIgnoreCase(crudaction)) {
-            userDepartmentACLService.updateUserACL(bean.getUserID(), bean.getDepartmentIDsInPage(), bean.getCheckList());
-        }
-        try{
-            User user = userService.findById(bean.getUserID());
-            mav.addObject("currentUser", user);
-
-            List<UserDepartmentACL> userDepartmentACLs = userDepartmentACLService.findProperty("user.userID", bean.getUserID());
-            Map<Long, UserDepartmentACL> userDepartmentACLMap = new HashMap<Long, UserDepartmentACL>();
-            for (UserDepartmentACL userDepartmentACL : userDepartmentACLs) {
-                userDepartmentACLMap.put(userDepartmentACL.getDepartment().getDepartmentID(), userDepartmentACL);
-            }
-            bean.setDepartmentACLMap(userDepartmentACLMap);
-
-            Object[] objs = departmentService.searchByProperties(new HashMap<String, Object>(), bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
-            bean.setListResult((List<Department>)objs[1]);
-            bean.setTotalItems(Integer.valueOf(objs[0].toString()));
-
-        }catch (Exception e) {
-            logger.error(e);
-        }
-        mav.addObject(Constants.FORM_MODEL_KEY, bean);
-        return mav;
-    }
-    
-    @RequestMapping(value="/ajax/searchLanId.html")
-    public void searchLanId(@RequestParam("lanid") String lanid, HttpServletRequest request, HttpServletResponse response) throws IOException{
-    	PrintWriter out = response.getWriter();
-		try{
-			response.setContentType("text/json; charset=UTF-8");
-	        JSONObject obj = new JSONObject();
-	        C2UserDTO userDTO = userService.findC2UserByUsername(lanid.toUpperCase());
-	        if(userDTO != null) {
-	        	obj.put("displayName", userDTO.getFullname());
-	        	obj.put("email", "");
-	        	obj.put("success", true);
-	        }else {
-	        	obj.put("success", false);
-	        }
-            out.print(obj);
-           
-		}catch (Exception e) {
-			logger.error(e.getMessage(), e);
-		}finally {
-			 out.flush();
-             out.close();
-		}
     }
     
     private void executeSearchRole(RoleBean bean, HttpServletRequest request) {
@@ -269,7 +195,6 @@ public class UserController extends ApplicationObjectSupport {
     }
 
     private void referenceData(ModelAndView mav) {
-        mav.addObject("departments", departmentService.findAll());
         mav.addObject("userGroups", userGroupService.findAll());
     }
 
@@ -292,10 +217,7 @@ public class UserController extends ApplicationObjectSupport {
         bean.setRoleMap(published);
         bean.setTotalItems(Integer.valueOf(results[0].toString()));
     }
-    
-    /**
-     * used support for access role AuthoringTemplate and Category
-     */
+
     @RequestMapping(value="/ajax/filterUserByGroup.html")
     public ModelAndView searchByGroup(@RequestParam(value="id", required=false) List<Long> groupIDs, 
     		@RequestParam(value="uid", required=false) List<Long> userIDs,
@@ -318,5 +240,4 @@ public class UserController extends ApplicationObjectSupport {
     	mav.addObject("mapCheckedUser", mapCheckedUser);
     	return mav;
     }
-
 }

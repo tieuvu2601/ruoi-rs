@@ -5,7 +5,6 @@ package com.banvien.portal.vms.security;
 
 import com.banvien.portal.vms.dao.UserDAO;
 import com.banvien.portal.vms.domain.User;
-import com.banvien.portal.vms.dto.C2UserDTO;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 

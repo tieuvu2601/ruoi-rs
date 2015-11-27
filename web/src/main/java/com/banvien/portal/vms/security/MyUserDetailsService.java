@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.banvien.portal.vms.dao.DepartmentDAO;
 import com.banvien.portal.vms.dao.UserDAO;
 import com.banvien.portal.vms.dao.UserGroupDAO;
 import org.apache.log4j.Logger;
@@ -24,12 +23,6 @@ import com.banvien.portal.vms.domain.User;
 import com.banvien.portal.vms.service.UserService;
 import com.banvien.portal.vms.util.Constants;
 
-
-/**
- * @author Nguyen Hai Vien
- * 
- */
-
 public class MyUserDetailsService implements UserDetailsService {
 	 private transient final Logger logger = Logger.getLogger(MyUserDetailsService.class);
 
@@ -38,8 +31,6 @@ public class MyUserDetailsService implements UserDetailsService {
 	private UserService userService;
 
     private RoleDAO roleDAO;
-
-    private DepartmentDAO departmentDAO;
 
     private UserGroupDAO userGroupDAO;
 
@@ -51,10 +42,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
     public void setRoleDAO(RoleDAO roleDAO) {
         this.roleDAO = roleDAO;
-    }
-
-    public void setDepartmentDAO(DepartmentDAO departmentDAO) {
-        this.departmentDAO = departmentDAO;
     }
 
     public void setUserGroupDAO(UserGroupDAO userGroupDAO) {
@@ -122,7 +109,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
 		Map<String, GrantedAuthority> authorities = new HashMap<String, GrantedAuthority>();
 
-		//this line of code is used to check whether the user has login or not
 		authorities.put(Constants.LOGON_ROLE, new GrantedAuthorityImpl(Constants.LOGON_ROLE));
         if (account.getUserGroup() != null) {
 		    authorities.put(account.getUserGroup().getCode(), new GrantedAuthorityImpl(account.getUserGroup().getCode()));
@@ -140,9 +126,6 @@ public class MyUserDetailsService implements UserDetailsService {
 		authorities.values().toArray(grantedAuthority);
 		MyUserDetail loginUser = new MyUserDetail(username, username, true, true, true, true, grantedAuthority);
 
-        if (account != null && account.getDepartment() != null) {
-            loginUser.setDepartmentID(account.getDepartment().getDepartmentID());
-        }
         loginUser.setFullAccessSystem(account.getFullAccess() != null && account.getFullAccess().equals(1) ? true : false);
 		BeanUtils.copyProperties(account, loginUser);
 

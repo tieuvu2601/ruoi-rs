@@ -4,13 +4,6 @@ import com.banvien.portal.vms.domain.Tracking;
 
 import java.sql.Timestamp;
 
-/**
- * Copyright (c) by Ban Vien Co., Ltd.
- * User: MBP
- * Date: 11/13/12
- * Time: 5:40 PM
- * Author: vien.nguyen@banvien.com
- */
 public class TrackingBean extends AbstractBean<Tracking> {
     public TrackingBean()
     {

@@ -28,12 +28,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.banvien.jcr.api.IJcrContent;
-import com.banvien.portal.vms.bean.CommentBean;
 import com.banvien.portal.vms.bean.ContentBean;
-import com.banvien.portal.vms.bean.CropImageBean;
 import com.banvien.portal.vms.bean.FileItem;
-import com.banvien.portal.vms.bean.TrackingBean;
-import com.banvien.portal.vms.bean.XmlNodeDTO;
+import com.banvien.portal.vms.dto.XmlNodeDTO;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.editor.FileItemMultipartFileEditor;
 import com.banvien.portal.vms.editor.PojoEditor;
@@ -46,12 +43,6 @@ import com.banvien.portal.vms.xml.contentitem.ContentItem;
 import com.banvien.portal.vms.xml.contentitem.Item;
 import com.banvien.portal.vms.xml.contentitem.Items;
 
-/**
- * Created with IntelliJ IDEA.
- * User: NhuKhang
- * Date: 10/6/12
- * Time: 10:57 AM
- */
 @Controller
 public class ContentController extends ApplicationObjectSupport {
 	private transient final Logger logger = Logger.getLogger(getClass());
@@ -66,9 +57,6 @@ public class ContentController extends ApplicationObjectSupport {
     private ContentValidator contentValidator;
 
     @Autowired
-    private CommentService commentService;
-
-    @Autowired
     private AuthoringTemplateService authoringTemplateService;
 
     @Autowired
@@ -76,15 +64,6 @@ public class ContentController extends ApplicationObjectSupport {
 
     @Autowired
     private CategoryService categoryService;
-
-    @Autowired
-    private DepartmentService departmentService;
-
-    @Autowired
-    private ContentDepartmentService contentDepartmentService;
-
-    @Autowired
-    private ContentCategoryService contentCategoryService;
 
     @Autowired
     private IJcrContent jcrContent;
@@ -101,7 +80,6 @@ public class ContentController extends ApplicationObjectSupport {
     	binder.registerCustomEditor(Date.class, new CustomDateEditorSQL());
         binder.registerCustomEditor(Timestamp.class, new CustomDateEditor("dd/MM/yyyy"));
         binder.registerCustomEditor(AuthoringTemplate.class, new PojoEditor(AuthoringTemplate.class, "authoringTemplateID", Long.class));
-        binder.registerCustomEditor(Comment.class, new PojoEditor(Comment.class, "commentID", Long.class));
         binder.registerCustomEditor(User.class, new PojoEditor(User.class, "userID", Long.class));
         binder.registerCustomEditor(FileItem.class, new FileItemMultipartFileEditor());
 	}
@@ -382,22 +360,6 @@ public class ContentController extends ApplicationObjectSupport {
         if(StringUtils.isBlank(bean.getCrudaction()) && bean.getPojo().getContentID() != null){
             bean.setPojo(dbItem);
             bean.setContentItem(contentItem);
-        }
-        if (bean.getPojo().getContentID() != null) {
-            List<ContentCategory> contentCategories = contentCategoryService.findProperty("content.contentID", bean.getPojo().getContentID());
-            Map<Long, ContentCategory> contentCategoryMap = new HashMap<Long, ContentCategory>();
-            for (ContentCategory contentCategory : contentCategories) {
-                contentCategoryMap.put(contentCategory.getCategory().getCategoryID(), contentCategory);
-            }
-            bean.setContentCategoryMap(contentCategoryMap);
-            removeSessionFileMap(bean.getPojo().getContentID(), CONTENT_FILE_MAP, request);
-
-            List<ContentDepartment> contentDepartments = contentDepartmentService.findProperty("content.contentID", bean.getPojo().getContentID());
-            Map<Long, ContentDepartment> contentDepartmentMap = new HashMap<Long, ContentDepartment>();
-            for (ContentDepartment contentDepartment : contentDepartments) {
-                contentDepartmentMap.put(contentDepartment.getDepartment().getDepartmentID(), contentDepartment);
-            }
-            bean.setContentDepartmentMap(contentDepartmentMap);
         }
         mav.addObject("listCategories", CategoryUtil.getAllCategoryObjectInSite(categoryService.findAllCategoryParent()));
         mav.addObject(Constants.FORM_MODEL_KEY, bean);

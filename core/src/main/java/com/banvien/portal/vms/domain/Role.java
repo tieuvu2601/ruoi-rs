@@ -3,12 +3,6 @@ package com.banvien.portal.vms.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-/**
- * Created by Ban Vien Ltd.
- * User: Vien Nguyen (vien.nguyen@banvien.com)
- * Date: 11/13/12
- * Time: 2:52 PM
- */
 public class Role implements Serializable {
 
     public static final String FIELD_ROLE = "role";
@@ -26,7 +20,6 @@ public class Role implements Serializable {
     private Timestamp createdDate;
 
     private Timestamp modifiedDate;
-
 
     public Long getRoleID() {
         return roleID;

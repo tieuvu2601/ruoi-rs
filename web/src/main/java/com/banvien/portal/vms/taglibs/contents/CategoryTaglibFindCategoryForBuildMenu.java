@@ -1,6 +1,6 @@
 package com.banvien.portal.vms.taglibs.contents;
 
-import com.banvien.portal.vms.domain.CategoryObject;
+import com.banvien.portal.vms.dto.CategoryObjectDTO;
 import com.banvien.portal.vms.service.CategoryService;
 import com.banvien.portal.vms.util.CommonUtil;
 import org.springframework.context.ApplicationContext;
@@ -24,12 +24,12 @@ public class CategoryTaglibFindCategoryForBuildMenu extends TagSupport {
         ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(this.pageContext.getServletContext());
 
         if(context != null) {
-            List<CategoryObject> resultList = new ArrayList<CategoryObject>();
+            List<CategoryObjectDTO> resultList = new ArrayList<CategoryObjectDTO>();
             CategoryService categoryService = context.getBean(CategoryService.class);
-            List<CategoryObject>  categoryObjects = categoryService.findCategoryForBuildMenu(CommonUtil.isEnglishLanguage());
-            for(CategoryObject categoryObject : categoryObjects){
-                if(categoryObject.getNodeLevel() != null && categoryObject.getNodeLevel() <= nodeLevel && categoryObject.getDisplayOrder() > 0){
-                    resultList.add(categoryObject);
+            List<CategoryObjectDTO> categoryObjectDTOs = categoryService.findCategoryForBuildMenu(CommonUtil.isEnglishLanguage());
+            for(CategoryObjectDTO categoryObjectDTO : categoryObjectDTOs){
+                if(categoryObjectDTO.getNodeLevel() != null && categoryObjectDTO.getNodeLevel() <= nodeLevel && categoryObjectDTO.getDisplayOrder() > 0){
+                    resultList.add(categoryObjectDTO);
                 }
             }
 

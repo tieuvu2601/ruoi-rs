@@ -13,12 +13,6 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-/**
- * Created with IntelliJ IDEA.
- * User: NhuKhang
- * Date: 10/6/12
- * Time: 11:25 AM
- */
 @Component
 public class CategoryValidator extends ApplicationObjectSupport implements Validator {
     private transient final Log log = LogFactory.getLog(CategoryValidator.class);

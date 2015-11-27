@@ -7,8 +7,6 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.banvien.portal.vms.dto.CategoryDTO;
 import com.banvien.portal.vms.util.CategoryUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -27,33 +25,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.banvien.portal.vms.bean.CategoryBean;
 import com.banvien.portal.vms.domain.AuthoringTemplate;
 import com.banvien.portal.vms.domain.Category;
-import com.banvien.portal.vms.domain.CategoryShowAll;
-import com.banvien.portal.vms.domain.CategoryUser;
-import com.banvien.portal.vms.domain.CategoryUserGroup;
-import com.banvien.portal.vms.domain.RenderingTemplate;
-import com.banvien.portal.vms.domain.User;
-import com.banvien.portal.vms.domain.UserGroup;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.editor.PojoEditor;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.AuthoringTemplateService;
 import com.banvien.portal.vms.service.CategoryService;
-import com.banvien.portal.vms.service.CategoryShowAllService;
-import com.banvien.portal.vms.service.CategoryUserGroupService;
-import com.banvien.portal.vms.service.CategoryUserService;
-import com.banvien.portal.vms.service.RenderingTemplateService;
-import com.banvien.portal.vms.service.UserGroupService;
-import com.banvien.portal.vms.service.UserService;
 import com.banvien.portal.vms.util.Constants;
 import com.banvien.portal.vms.util.RequestUtil;
 import com.banvien.portal.vms.webapp.validator.CategoryValidator;
 
-/**
- * Created with IntelliJ IDEA.
- * User: NhuKhang
- * Date: 10/6/12
- * Time: 10:57 AM
- */
 @Controller
 public class CategoryController extends ApplicationObjectSupport {
 	private transient final Logger logger = Logger.getLogger(getClass());
@@ -65,30 +45,11 @@ public class CategoryController extends ApplicationObjectSupport {
     private CategoryValidator categoryValidator;
 
     @Autowired
-    private RenderingTemplateService renderingTemplateService;
-
-    @Autowired
     private AuthoringTemplateService authoringTemplateService;
-    
-    @Autowired
-    private CategoryUserService categoryUserService;
-    
-    @Autowired
-    private CategoryUserGroupService categoryUserGroupService;
-    
-    @Autowired
-    private CategoryShowAllService categoryShowAllService;
-    
-    @Autowired
-    private UserService userService;
-    
-    @Autowired
-    private UserGroupService userGroupService;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
     	binder.registerCustomEditor(Date.class, new CustomDateEditor());
-        binder.registerCustomEditor(RenderingTemplate.class, new PojoEditor(RenderingTemplate.class, "renderingTemplateID", Long.class));
         binder.registerCustomEditor(AuthoringTemplate.class, new PojoEditor(AuthoringTemplate.class, "authoringTemplateID", Long.class));
 	}
 
@@ -155,59 +116,7 @@ public class CategoryController extends ApplicationObjectSupport {
         referenceData(mav);
         return mav;
     }
-    
-    @RequestMapping(value={"/admin/category/access.html"})
-    public ModelAndView accessRole(CategoryBean bean, HttpServletRequest request) {
-    	ModelAndView mav = new ModelAndView("/admin/category/access");
-    	Long categoryID = bean.getPojo().getCategoryID();
-    	if(categoryID != null){
-    		if(StringUtils.isNotEmpty(bean.getCrudaction()) && "insert-update".equals(bean.getCrudaction())){
-    			Boolean displayAll = bean.getDisplayAll();
-    			List<Long> users = bean.getCheckUserList();
-    			List<Long> groups = bean.getCheckGroupList();
-    			try{
-    				List<CategoryUser> categoryUsers = categoryUserService.findProperty("categoryID", categoryID);
-    				categoryUserService.deleteAll(categoryUsers);
-    				List<CategoryUserGroup> categoryUserGroups = categoryUserGroupService.findProperty("categoryID", categoryID);
-    				categoryUserGroupService.deleteAll(categoryUserGroups);
-	    			List<CategoryShowAll> categoryShowAlls = categoryShowAllService.findProperty("categoryID", categoryID);
-	    			categoryShowAllService.deleteAll(categoryShowAlls);
-	    			
-    				if(displayAll != null && displayAll){
-    					CategoryShowAll categoryShowAll = new CategoryShowAll();
-    					categoryShowAll.setCategoryID(categoryID);
-    					categoryShowAll.setDisplayAll(Constants.FLAG_YES);
-    					categoryShowAllService.save(categoryShowAll);
-    				}else{
-    					if(users != null && users.size() > 0){
-		    				for(Long userID : users){
-		    					CategoryUser categoryUser = new CategoryUser();
-		    					categoryUser.setCategoryID(categoryID);
-		    					categoryUser.setUserID(userID);
-		    					categoryUserService.save(categoryUser);
-		    				}
-		    			}
-		    			if(groups != null && groups.size() > 0){
-		    				for(Long userGroupID : groups){
-		    					CategoryUserGroup categoryUserGroup = new CategoryUserGroup();
-		    					categoryUserGroup.setCategoryID(categoryID);
-		    					categoryUserGroup.setUserGroupID(userGroupID);
-		    					categoryUserGroupService.save(categoryUserGroup);
-		    				}
-		    			}
-    				}
-	    			mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
-                    mav.addObject("success", true);
-    			}catch(Exception e){
-    				logger.error(e.getMessage(), e);
-                    mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("error.occurred"));
-    			}
-    		}
-    		referenceData(mav, bean, categoryID);
-    	}
-    	return mav;
-    }
-    
+
     @RequestMapping("/ajax/loadCategoryByAuthoringTemplate.html")
 	public void sendMessage(HttpServletRequest request, HttpServletResponse response) {
 		try{
@@ -232,51 +141,6 @@ public class CategoryController extends ApplicationObjectSupport {
 			logger.error(e.getMessage(), e);
 		}
 	}
-    
-    private void referenceData(ModelAndView mav, CategoryBean bean, Long categoryID){
-    	try {
-			Category category = categoryService.findById(categoryID);
-			List<UserGroup> userGroups = userGroupService.findAll();
-			List<User> users = userService.findAll();
-			mav.addObject("userGroups", userGroups);
-			mav.addObject("users", users);
-			
-			List<CategoryUser> categoryUsers = categoryUserService.findProperty("categoryID", categoryID);
-			Map<Long, String> mapCheckedUser = new HashMap<Long, String>();
-			for(CategoryUser categoryUser : categoryUsers){
-				mapCheckedUser.put(categoryUser.getUserID(), "edit");
-			}
-			
-			List<CategoryUserGroup> categoryUserGroups = categoryUserGroupService.findProperty("categoryID", categoryID);
-			Map<Long, Boolean> mapCheckedGroup = new HashMap<Long, Boolean>();
-			for(CategoryUserGroup categoryUserGroup : categoryUserGroups){
-				mapCheckedGroup.put(categoryUserGroup.getUserGroupID(), true);
-			}
-			
-			Set<Long> groupCheckedIDs = mapCheckedGroup.keySet();
-			Iterator<Long> iterator = groupCheckedIDs.iterator();
-			while(iterator.hasNext()){
-				Long groupID = (Long)iterator.next();
-				for(User user : users){
-					if(user.getUserGroup().getUserGroupID().equals(groupID)){
-						mapCheckedUser.put(user.getUserID(), "disabled");
-					}
-				}
-			}
-			mav.addObject("mapCheckedGroup", mapCheckedGroup);
-			mav.addObject("mapCheckedUser", mapCheckedUser);
-			try{
-				CategoryShowAll categoryShowAll = categoryShowAllService.findEqualUnique("categoryID", categoryID);
-				mav.addObject("displayAll", categoryShowAll.getDisplayAll());
-			}catch(ObjectNotFoundException oe){}
-			
-			bean.setPojo(category);
-			mav.addObject(Constants.FORM_MODEL_KEY, bean);
-		} catch (ObjectNotFoundException oe) {
-			logger.error(oe.getMessage(), oe);
-            mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
-		}
-    }
 
     private void executeSearch(CategoryBean bean, HttpServletRequest request) {
         RequestUtil.initSearchBean(request, bean);
@@ -296,7 +160,6 @@ public class CategoryController extends ApplicationObjectSupport {
     }
     private void referenceData(ModelAndView mav) {
         mav.addObject("authoringtemplates", authoringTemplateService.findAll());
-        mav.addObject("renderingtemplates", renderingTemplateService.findAll());
         List<Category> categories = this.categoryService.findAllCategoryParent();
         mav.addObject("categories", CategoryUtil.getAllCategoryObjectInSite(categories));
     }

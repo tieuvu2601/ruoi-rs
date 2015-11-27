@@ -3,12 +3,6 @@ package com.banvien.portal.vms.domain;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-/**
- * Created by Ban Vien Ltd.
- * User: Vien Nguyen (vien.nguyen@banvien.com)
- * Date: 11/13/12
- * Time: 3:15 PM
- */
 public class Tracking implements Serializable {
 
     public static final String FIELD_CONTENT = "content.contentID";

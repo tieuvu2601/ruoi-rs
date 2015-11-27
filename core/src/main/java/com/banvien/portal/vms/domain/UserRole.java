@@ -2,12 +2,6 @@ package com.banvien.portal.vms.domain;
 
 import java.io.Serializable;
 
-/**
- * Created by Ban Vien Ltd.
- * User: Vien Nguyen (vien.nguyen@banvien.com)
- * Date: 11/13/12
- * Time: 2:57 PM
- */
 public class UserRole implements Serializable {
 
     public static final String FIELD_USER= "user.userID";

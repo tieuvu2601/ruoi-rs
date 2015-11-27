@@ -5,13 +5,6 @@ import com.banvien.portal.vms.domain.Content;
 
 import java.util.List;
 
-/**
- * Copyright (c) by Ban Vien Co., Ltd.
- * User: MBP
- * Date: 11/13/12
- * Time: 4:24 PM
- * Author: vien.nguyen@banvien.com
- */
 public interface CategoryDAO extends GenericDAO<Category, Long> {
     List<Category> findByAuthoringTemplate(String authoringTemplateCode);
 

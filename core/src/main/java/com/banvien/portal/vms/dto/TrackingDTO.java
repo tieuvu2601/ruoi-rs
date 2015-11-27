@@ -2,13 +2,6 @@ package com.banvien.portal.vms.dto;
 
 import java.io.Serializable;
 
-/**
- * Created by IntelliJ IDEA.
- * User: viennh
- * Date: 1/10/13
- * Time: 1:40 PM
- * To change this template use File | Settings | File Templates.
- */
 public class TrackingDTO implements Serializable {
     private Long contentID;
 

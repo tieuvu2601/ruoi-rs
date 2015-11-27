@@ -5,12 +5,6 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
-/**
- * Created by Ban Vien Ltd.
- * User: Vien Nguyen (vien.nguyen@banvien.com)
- * Date: 11/13/12
- * Time: 3:07 PM
- */
 public class Content implements Serializable {
     private Long contentID;
 
@@ -163,7 +157,6 @@ public class Content implements Serializable {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-
 
     public User getCreatedBy() {
         return createdBy;

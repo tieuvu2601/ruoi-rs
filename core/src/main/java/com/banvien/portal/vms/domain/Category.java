@@ -4,12 +4,6 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
-/**
- * Created by Ban Vien Ltd.
- * User: Vien Nguyen (vien.nguyen@banvien.com)
- * Date: 11/13/12
- * Time: 3:05 PM
- */
 public class Category implements Serializable {
     private Long categoryID;
 
@@ -26,8 +20,6 @@ public class Category implements Serializable {
     private Integer displayOrder;
 
     private AuthoringTemplate authoringTemplate;
-
-    private RenderingTemplate renderingTemplate;
 
     private Timestamp createdDate;
 
@@ -127,14 +119,6 @@ public class Category implements Serializable {
 
     public void setAuthoringTemplate(AuthoringTemplate authoringTemplate) {
         this.authoringTemplate = authoringTemplate;
-    }
-
-    public RenderingTemplate getRenderingTemplate() {
-        return renderingTemplate;
-    }
-
-    public void setRenderingTemplate(RenderingTemplate renderingTemplate) {
-        this.renderingTemplate = renderingTemplate;
     }
 
     public Timestamp getCreatedDate() {

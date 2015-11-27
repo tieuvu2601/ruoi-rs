@@ -4,13 +4,6 @@
 
 <hibernate-mapping>
 	<class name="com.banvien.portal.vms.domain.AuthoringTemplate" table="PortalAuthoringTemplate">
-
-		<!--<id name="authoringTemplateID">-->
-            <!--<generator class="sequence">-->
-                <!--<param name="sequence">PORTALTEMPLATE_SEQ</param>-->
-            <!--</generator>-->
-		<!--</id>-->
-
         <id name="authoringTemplateID" column="AuthoringTemplateID">
             <generator class="increment"/>
         </id>

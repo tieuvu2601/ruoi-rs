@@ -1,7 +1,7 @@
 package com.banvien.portal.vms.util;
 
 import com.banvien.portal.vms.domain.Category;
-import com.banvien.portal.vms.domain.CategoryObject;
+import com.banvien.portal.vms.dto.CategoryObjectDTO;
 import com.banvien.portal.vms.dto.CategoryDTO;
 
 import java.util.ArrayList;
@@ -9,13 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: HauKute
- * Date: 10/7/15
- * Time: 5:05 PM
- * To change this template use File | Settings | File Templates.
- */
 public class CategoryUtil {
 
     public static List<CategoryDTO> buildTreeCategory(List<Category> listCats, Category parent) {
@@ -82,24 +75,23 @@ public class CategoryUtil {
         categoryDTO.setKeyword(category.getKeyword());
         categoryDTO.setModifiedDate(category.getModifiedDate());
         categoryDTO.setName(category.getName());
-        categoryDTO.setRenderingTemplate(category.getRenderingTemplate());
         return categoryDTO;
     }
 
-    public static List<CategoryObject> getAllCategoryObjectInSite(List<Category> categories){
-        List<CategoryObject> categorieObjs = new ArrayList<CategoryObject>();
+    public static List<CategoryObjectDTO> getAllCategoryObjectInSite(List<Category> categories){
+        List<CategoryObjectDTO> categorieObjs = new ArrayList<CategoryObjectDTO>();
         categorieObjs = getListChildren(categories, categorieObjs, -1, null);
         return categorieObjs;
     }
 
-    public static List<CategoryObject> getListCategoryForBuildRightMenuForSite(List<Category> categories, List<CategoryObject> returnList, Integer nodeLevel, CategoryObject parent) {
+    public static List<CategoryObjectDTO> getListCategoryForBuildRightMenuForSite(List<Category> categories, List<CategoryObjectDTO> returnList, Integer nodeLevel, CategoryObjectDTO parent) {
         Integer currentNodeLevel = nodeLevel + 1;
         for(Category children : categories){
             if(children.getDisplayOrder() > 0){
-                CategoryObject categoryObject = bindCategoryToCategoryObject(children, currentNodeLevel, parent);
-                returnList.add(categoryObject);
+                CategoryObjectDTO categoryObjectDTO = bindCategoryToCategoryObject(children, currentNodeLevel, parent);
+                returnList.add(categoryObjectDTO);
                 if(children.getChildren() != null && children.getChildren().size() > 0){
-                    getListChildren(children.getChildren(), returnList, currentNodeLevel, categoryObject);
+                    getListChildren(children.getChildren(), returnList, currentNodeLevel, categoryObjectDTO);
                 }
             }
 
@@ -107,10 +99,10 @@ public class CategoryUtil {
         return returnList;
     }
 
-    public static List<CategoryObject> getListChildren(List<Category> categories, List<CategoryObject> returnList, Integer nodeLevel, CategoryObject parent) {
+    public static List<CategoryObjectDTO> getListChildren(List<Category> categories, List<CategoryObjectDTO> returnList, Integer nodeLevel, CategoryObjectDTO parent) {
         Integer currentNodeLevel = nodeLevel + 1;
         for(Category children : categories){
-            CategoryObject categoryObject = bindCategoryToCategoryObject(children, currentNodeLevel, parent);
+            CategoryObjectDTO categoryObjectDTO = bindCategoryToCategoryObject(children, currentNodeLevel, parent);
             Integer numberOfChildren = 0;
             if(children.getChildren() != null && children.getChildren().size() > 0){
                 for(Category chid : children.getChildren()){
@@ -119,43 +111,43 @@ public class CategoryUtil {
                     }
                 }
             }
-            categoryObject.setChildrenSize(numberOfChildren);
-            returnList.add(categoryObject);
+            categoryObjectDTO.setChildrenSize(numberOfChildren);
+            returnList.add(categoryObjectDTO);
             if(children.getChildren() != null && children.getChildren().size() > 0){
-                getListChildren(children.getChildren(), returnList, currentNodeLevel, categoryObject);
+                getListChildren(children.getChildren(), returnList, currentNodeLevel, categoryObjectDTO);
             }
         }
         return returnList;
     }
 
-    public static CategoryObject bindCategoryToCategoryObject(Category category, Integer nodeLevel, CategoryObject parent){
-        CategoryObject categoryObject = new CategoryObject();
-        categoryObject.setCategoryID(category.getCategoryID());
-        categoryObject.setCode(category.getCode());
-        categoryObject.setName(category.getName());
-        categoryObject.setNodeLevel(nodeLevel);
-        categoryObject.setPrefixUrl(category.getPrefixUrl());
+    public static CategoryObjectDTO bindCategoryToCategoryObject(Category category, Integer nodeLevel, CategoryObjectDTO parent){
+        CategoryObjectDTO categoryObjectDTO = new CategoryObjectDTO();
+        categoryObjectDTO.setCategoryID(category.getCategoryID());
+        categoryObjectDTO.setCode(category.getCode());
+        categoryObjectDTO.setName(category.getName());
+        categoryObjectDTO.setNodeLevel(nodeLevel);
+        categoryObjectDTO.setPrefixUrl(category.getPrefixUrl());
         if(category.getChildren() != null && category.getChildren().size() > 0){
-            categoryObject.setChildrenSize(category.getChildren().size());
+            categoryObjectDTO.setChildrenSize(category.getChildren().size());
         } else {
-            categoryObject.setChildrenSize(0);
+            categoryObjectDTO.setChildrenSize(0);
         }
         if(parent != null && parent.getCategoryID() != null && parent.getCategoryID() > 0){
-            categoryObject.setParent(parent);
+            categoryObjectDTO.setParent(parent);
         } else {
-            categoryObject.setParent(null);
+            categoryObjectDTO.setParent(null);
         }
         if(category.getParentRootID() != null && category.getParentRootID() > 0){
-            categoryObject.setParentRootId(category.getParentRootID());
+            categoryObjectDTO.setParentRootId(category.getParentRootID());
         } else {
             if(parent != null && parent.getCategoryID() != null && parent.getCategoryID() > 0){
-                categoryObject.setParentRootId(parent.getCategoryID());
+                categoryObjectDTO.setParentRootId(parent.getCategoryID());
             } else {
-                categoryObject.setParentRootId(-1l);
+                categoryObjectDTO.setParentRootId(-1l);
             }
         }
-        categoryObject.setDisplayOrder(category.getDisplayOrder());
-        return categoryObject;
+        categoryObjectDTO.setDisplayOrder(category.getDisplayOrder());
+        return categoryObjectDTO;
     }
 
 }
