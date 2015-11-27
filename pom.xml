@@ -108,7 +108,7 @@
         <db.username>root</db.username>
         <db.password>123456</db.password>
         <db.driver>com.mysql.jdbc.Driver</db.driver>
-        <db.url>jdbc:mysql://localhost:3306/realestate?useUnicode=true&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=utf8&amp;characterEncoding=utf8</db.url>
+        <db.url>jdbc:mysql://localhost:3306/RealEstate?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;connectionCollation=utf8_general_ci&amp;characterSetResults=utf8&amp;characterEncoding=utf8</db.url>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <jpa.hibernate.dialect>org.hibernate.dialect.MySQLDialect</jpa.hibernate.dialect>
@@ -149,12 +149,12 @@
       </repository>
         <repository>
 	      	<id>jboss-release</id>
-	      	<url>http://repository.jboss.org/nexus/content/repositories/releases/</url>
+	      	<url>http://repository.jboss.org/nexus/contentEntity/repositories/releases/</url>
       	</repository>
       <repository>
 	        <id>jboss-thirdparty-releases</id>
 	        <name>JBoss Thirdparty Releases</name>
-	        <url>http://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
+	        <url>http://repository.jboss.org/nexus/contentEntity/repositories/thirdparty-releases</url>
       </repository>
       <repository>
          <id>jboss-snapshots</id>

@@ -1,11 +1,11 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="category.management"/></title>
-    <meta name="heading" content="Category Management"/>
+    <title><fmt:message key="categoryEntity.management"/></title>
+    <meta name="heading" contentEntity="Category Management"/>
 </head>
-<c:url var="url" value="/admin/category/edit.html"/>
-<c:url var="backUrl" value="/admin/category/list.html"/>
+<c:url var="url" value="/admin/categoryEntity/edit.html"/>
+<c:url var="backUrl" value="/admin/categoryEntity/list.html"/>
 
 <form:form commandName="item" action="${formUrl}" method="post" id="itemForm" cssClass="form-horizontal">
     <div class="small-header transition animated fadeIn">
@@ -15,10 +15,10 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                         <li>
-                            <span><fmt:message key="category"/></span>
+                            <span><fmt:message key="categoryEntity"/></span>
                         </li>
                         <li class="active">
-                            <span><fmt:message key="category.management"/></span>
+                            <span><fmt:message key="categoryEntity.management"/></span>
                         </li>
                     </ol>
                 </div>
@@ -26,10 +26,10 @@
                 <h2 class="font-light m-b-xs">
                     <c:choose>
                         <c:when test="${not empty item.pojo.categoryID}">
-                            <fmt:message key="category.edit"/>
+                            <fmt:message key="categoryEntity.edit"/>
                         </c:when>
                         <c:otherwise>
-                            <fmt:message key="category.add"/>
+                            <fmt:message key="categoryEntity.add"/>
                         </c:otherwise>
                     </c:choose>
                 </h2>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="content animate-panel">
+    <div class="contentEntity animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
@@ -46,7 +46,7 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="category.management"/>
+                            <fmt:message key="categoryEntity.management"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -61,16 +61,16 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.parent"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.parent"/></label>
                                 <div class="col-sm-8">
-                                    <form:select path="pojo.parentCategory.categoryID" cssClass="form-control" onchange="setParentRootIdForCategory()" id="parentCategoryID">
-                                        <form:option value="" parentRootId="-1"><fmt:message key="category.choose.parent"/></form:option>
+                                    <form:select path="pojo.parentCategoryEntity.categoryID" cssClass="form-control" onchange="setParentRootIdForCategory()" id="parentCategoryID">
+                                        <form:option value="" parentRootId="-1"><fmt:message key="categoryEntity.choose.parent"/></form:option>
                                         <c:forEach var="cat" items="${categories}">
                                             <c:set var="parentRootID" value="-1"/>
                                             <c:if test="${not empty cat.parentRootId && cat.parentRootId > 0}">
                                                 <c:set var="parentRootID" value="${cat.parentRootId}"/>
                                             </c:if>
-                                            <option value="${cat.categoryID}" parentRootId="${parentRootID}" <c:if test="${cat.categoryID == item.pojo.parentCategory.categoryID}">selected</c:if>>
+                                            <option value="${cat.categoryID}" parentRootId="${parentRootID}" <c:if test="${cat.categoryID == item.pojo.parentCategoryEntity.categoryID}">selected</c:if>>
                                                 <c:forEach begin="1" end="${cat.nodeLevel}">
                                                     - - -
                                                 </c:forEach>
@@ -82,7 +82,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.code"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.code"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.code" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.code" cssClass="validateError"/>
@@ -90,7 +90,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.name"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.name"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.name" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.name" cssClass="validateError"/>
@@ -98,7 +98,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.prefixurl"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.prefixurl"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.prefixUrl" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.prefixUrl" cssClass="validateError"/>
@@ -106,7 +106,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.keyword"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.keyword"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.keyword" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.keyword" cssClass="validateError"/>
@@ -114,7 +114,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.description"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.description"/></label>
                                 <div class="col-sm-8">
                                     <form:textarea path="pojo.description" rows="5" cssStyle="resize: vertical" cssClass="form-control"/>
                                     <form:errors path="pojo.description" cssClass="validateError"/>
@@ -122,7 +122,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.displayorder"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.displayorder"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.displayOrder" size="20" cssClass="form-control"/>
                                     <form:errors path="pojo.displayOrder" cssClass="validateError"/>
@@ -130,18 +130,18 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.authoringtemplate"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.authoringtemplate"/></label>
                                 <div class="col-sm-8">
-                                    <form:select path="pojo.authoringTemplate.authoringTemplateID" cssClass="form-control">
+                                    <form:select path="pojo.authoringTemplateEntity.authoringTemplateID" cssClass="form-control">
                                         <form:option value=""><fmt:message key="label.select"/></form:option>
                                         <form:options itemValue="authoringTemplateID" itemLabel="name" items="${authoringtemplates}"/>
                                     </form:select>
-                                    <form:errors path="pojo.authoringTemplate.authoringTemplateID" cssClass="validateError"/>
+                                    <form:errors path="pojo.authoringTemplateEntity.authoringTemplateID" cssClass="validateError"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.renderingtemplate"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.renderingtemplate"/></label>
                                 <div class="col-sm-8">
                                     <form:select path="pojo.renderingTemplate.renderingTemplateID" cssClass="form-control">
                                         <form:option value=""><fmt:message key="label.select"/></form:option>
@@ -152,7 +152,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.language.eng"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.language.eng"/></label>
                                 <div class="col-sm-8">
                                     <form:checkbox path="pojo.eng"/>
                                 </div>

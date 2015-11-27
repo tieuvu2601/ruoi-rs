@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="progress m-t-xs full progress-small">
-            <div style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" role="progressbar"
+            <div style="width: 25%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" roleEntity="progressbar"
                  class=" progress-bar progress-bar-success">
                 <span class="sr-only">35% Complete (success)</span>
             </div>
@@ -42,7 +42,7 @@
                     <div class="media-body">
                         <span class="font-bold">John Novak</span>
                         <small class="text-muted">21.03.2015</small>
-                        <div class="social-content small">
+                        <div class="social-contentEntity small">
                             Injected humour, or randomised words which don't look even slightly believable.
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                     <div class="media-body">
                         <span class="font-bold">Mark Smith</span>
                         <small class="text-muted">14.04.2015</small>
-                        <div class="social-content">
+                        <div class="social-contentEntity">
                             Many desktop publishing packages and web page editors.
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         <span class="font-bold">Marica Morgan</span>
                         <small class="text-muted">21.03.2015</small>
 
-                        <div class="social-content">
+                        <div class="social-contentEntity">
                             There are many variations of passages of Lorem Ipsum available, but the majority have
                         </div>
                     </div>

@@ -2,21 +2,14 @@ package com.banvien.portal.vms.service.impl;
 
 import com.banvien.portal.vms.dao.GenericDAO;
 import com.banvien.portal.vms.dao.RoleDAO;
-import com.banvien.portal.vms.domain.Role;
+import com.banvien.portal.vms.domain.RoleEntity;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.RoleService;
 
 import java.sql.Timestamp;
 
-/**
- * Copyright (c) by Ban Vien Co., Ltd.
- * User: MBP
- * Date: 11/13/12
- * Time: 4:57 PM
- * Author: vien.nguyen@banvien.com
- */
-public class RoleServiceImpl extends GenericServiceImpl<Role, Long> implements RoleService {
+public class RoleServiceImpl extends GenericServiceImpl<RoleEntity, Long> implements RoleService {
     private RoleDAO roleDAO;
 
     public void setRoleDAO(RoleDAO roleDAO) {
@@ -24,22 +17,22 @@ public class RoleServiceImpl extends GenericServiceImpl<Role, Long> implements R
     }
 
     @Override
-    protected GenericDAO<Role, Long> getGenericDAO() {
+    protected GenericDAO<RoleEntity, Long> getGenericDAO() {
         return roleDAO;
     }
 
     @Override
-    public Role findByRole(String role) throws ObjectNotFoundException {
-        Role res = roleDAO.findEqualUnique("role", role);
+    public RoleEntity findByRole(String role) throws ObjectNotFoundException {
+        RoleEntity res = roleDAO.findEqualUnique("role", role);
         if (res == null) throw new ObjectNotFoundException("Not found role " + role);
         return res;
     }
     
     @Override
-    public void updateItem(Role pojo) throws ObjectNotFoundException, DuplicateException {
+    public void updateItem(RoleEntity pojo) throws ObjectNotFoundException, DuplicateException {
 
-        Role dbItem = this.roleDAO.findByIdNoAutoCommit(pojo.getRoleID());
-        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getRoleID());
+        RoleEntity dbItem = this.roleDAO.findByIdNoAutoCommit(pojo.getRoleId());
+        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getRoleId());
 
         pojo.setCreatedDate(dbItem.getCreatedDate());
         pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));

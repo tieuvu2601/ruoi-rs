@@ -2,20 +2,20 @@
 <c:set var="itemDataXML" value="${portal:parseContentXML(item.xmlData)}"/>
 <style>
 </style>
-<div class="content container">
+<div class="contentEntity container">
     <div class="page-wrapper">
         <header class="page-heading clearfix">
             <h1 class="heading-title pull-left">${itemDataXML.header[0]}</h1>
             <div class="breadcrumbs pull-right">
                 <ul class="breadcrumbs-list">
                     <li><a href="index.html"><fmt:message key="site.home"/></a><i class="fa fa-angle-right"></i></li>
-                    <li style="text-transform: capitalize;"><span>${categoryObj.name}</span><i class="fa fa-angle-right"></i></li>
-                    <li class="current" style="text-transform: capitalize;"><span>${currentCategory.name}</span></li>
+                    <li style="text-transform: capitalize;"><span>${categoryEntityObj.name}</span><i class="fa fa-angle-right"></i></li>
+                    <li class="current" style="text-transform: capitalize;"><span>${currentCategoryEntity.name}</span></li>
                 </ul>
             </div>
         </header>
 
-        <div class="page-content">
+        <div class="page-contentEntity">
             <p>${itemDataXML.description[0]}</p>
             <div class="row page-row" id="list-image">
                 <c:forEach var="imageUrl" items="${imageUrls}" varStatus="statusImage">
@@ -35,7 +35,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryObj.code)}'));
+        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryEntityObj.code)}'));
         loadMore();
 
         $('#loadMore').on('click', function () {
@@ -62,7 +62,7 @@
     function loadImageForSinglePage(contentId, index, numberItem){
         $.ajax({
             method: "POST",
-            url: "<c:url value="/ajax/get-image-by-index-in-content.html"/>",
+            url: "<c:url value="/ajax/get-image-by-index-in-contentEntity.html"/>",
             data: { contentId: contentId, index: index, number: numberItem },
             dataType : "HTML",
             success: function(data){

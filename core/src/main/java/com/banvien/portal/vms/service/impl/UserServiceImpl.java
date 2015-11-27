@@ -1,8 +1,8 @@
 package com.banvien.portal.vms.service.impl;
 
 import com.banvien.portal.vms.dao.*;
-import com.banvien.portal.vms.domain.User;
-import com.banvien.portal.vms.domain.UserRole;
+import com.banvien.portal.vms.domain.UserEntity;
+import com.banvien.portal.vms.domain.UserRoleEntity;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.UserService;
@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 
-public class UserServiceImpl extends GenericServiceImpl<User, Long> implements UserService {
+public class UserServiceImpl extends GenericServiceImpl<UserEntity, Long> implements UserService {
 
     private transient final Logger logger = Logger.getLogger(getClass());
 
@@ -43,22 +43,22 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
     }
 
     @Override
-    protected GenericDAO<User, Long> getGenericDAO() {
+    protected GenericDAO<UserEntity, Long> getGenericDAO() {
         return userDAO;
     }
 
     @Override
-    public  User findByEmail(String Email) throws ObjectNotFoundException {
-        User res = userDAO.findEqualUnique("email", Email);
+    public UserEntity findByEmail(String Email) throws ObjectNotFoundException {
+        UserEntity res = userDAO.findEqualUnique("email", Email);
         if (res == null) throw new ObjectNotFoundException("Not found authoring email " + Email);
         return res;
     }
 
     @Override
-    public void updateItem(User pojo) throws ObjectNotFoundException, DuplicateException {
+    public void updateItem(UserEntity pojo) throws ObjectNotFoundException, DuplicateException {
 
-        User dbItem = this.userDAO.findByIdNoAutoCommit(pojo.getUserID());
-        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getUserID());
+        UserEntity dbItem = this.userDAO.findByIdNoAutoCommit(pojo.getUserId());
+        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getUserId());
 
         pojo.setCreatedDate(dbItem.getCreatedDate());
         pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));
@@ -72,7 +72,7 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
         if (checkList != null && checkList.length > 0) {
             res = checkList.length;
             for (String id : checkList) {
-                List<UserRole> listRoles = userRoleDAO.findByUserId(Long.parseLong(id));
+                List<UserRoleEntity> listRoles = userRoleDAO.findByUserId(Long.parseLong(id));
                 userRoleDAO.deleteAll(listRoles);
                 userDAO.delete(Long.parseLong(id));
             }
@@ -81,12 +81,12 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
     }
 
     @Override
-    public User findByUserName(String username) {
+    public UserEntity findByUserName(String username) {
         return userDAO.findByUserName(username);
     }
 
 	@Override
-	public List<User> findByListUserNameExcludeSender(
+	public List<UserEntity> findByListUserNameExcludeSender(
 			List<String> userNameList, String senderMail) {
 		return userDAO.findByListUserNameExcludeSender(userNameList, senderMail);
 	}

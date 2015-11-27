@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.banvien.portal.vms.dao.ContentDAO;
+import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.dto.TopCommentsContentDTO;
 import com.banvien.portal.vms.dto.TopViewContentDTO;
 import org.apache.commons.lang.StringUtils;
@@ -15,16 +16,15 @@ import org.hibernate.*;
 import org.hibernate.transform.Transformers;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
-import com.banvien.portal.vms.domain.Content;
 import com.banvien.portal.vms.dto.ReportDTO;
 import com.banvien.portal.vms.util.Constants;
 
-public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> implements ContentDAO {
+public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Long> implements ContentDAO {
     @Override
-    public List<Content> findByCategory(final String category, final Integer startRow, final Integer pageSize, final Boolean isEng, final Integer status) {
+    public List<ContentEntity> findByCategory(final String category, final Integer startRow, final Integer pageSize, final Boolean isEng, final Integer status) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<List<Content>>() {
-                    public List<Content> doInHibernate(Session session) throws HibernateException, SQLException {
+                new HibernateCallback<List<ContentEntity>>() {
+                    public List<ContentEntity> doInHibernate(Session session) throws HibernateException, SQLException {
                         Query query = session.createQuery("SELECT c FROM Content c WHERE lower(c.category.code) = :category AND c.category.eng = :isEng AND c.status = :status ORDER BY c.modifiedDate DESC");
                         query.setParameter("category", category.toLowerCase());
                         query.setParameter("status", status);
@@ -33,7 +33,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         if(pageSize != null && pageSize >= 0){
                             query.setMaxResults(pageSize);
                         }
-                        return (List<Content>) query.list();
+                        return (List<ContentEntity>) query.list();
                     }
                 });
     }
@@ -44,7 +44,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                 new HibernateCallback<Object[]>() {
 
                     public Object[] doInHibernate(Session session) throws HibernateException, SQLException {
-                        StringBuffer sqlQuery = new StringBuffer(" FROM Content c WHERE lower(c.category.code) = :category AND c.category.eng = :isEng AND c.status = :status");
+                        StringBuffer sqlQuery = new StringBuffer(" FROM ContentEntity c WHERE lower(c.category.code) = :category AND c.category.eng = :isEng AND c.status = :status");
                         if(orderBy != null && orderBy >= 0){
                             if(orderBy > 0){
                                 sqlQuery.append(" ORDER BY c.displayOrder DESC, ");
@@ -64,23 +64,23 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         if(pageSize != null && pageSize >= 0){
                             query.setMaxResults(pageSize);
                         }
-                        List<Content> contents = query.list();
+                        List<ContentEntity> contentEntities = query.list();
 
                         Query queryCount = session.createQuery("SELECT COUNT(*) FROM Content c WHERE lower(c.category.code) = :category  AND c.status = :status");
                         queryCount.setParameter("category", category.toLowerCase());
                         queryCount.setParameter("status", status);
                         Long count = (Long) queryCount.uniqueResult();
 
-                        return new Object[]{count, contents};
+                        return new Object[]{count, contentEntities};
                     }
                 });
     }
 
     @Override
-    public List<Content> findByCategoryId(final Long categoryID, final Integer startRow, final Integer pageSize, final Integer status) {
+    public List<ContentEntity> findByCategoryId(final Long categoryID, final Integer startRow, final Integer pageSize, final Integer status) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<List<Content>>() {
-                    public List<Content> doInHibernate(Session session)
+                new HibernateCallback<List<ContentEntity>>() {
+                    public List<ContentEntity> doInHibernate(Session session)
                             throws HibernateException, SQLException {
                         Query query = session
                                 .createQuery("SELECT c FROM Content c WHERE  c.category.categoryID = :categoryID AND c.status = :status ORDER BY c.modifiedDate DESC");
@@ -90,19 +90,19 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         if(pageSize != null && pageSize >= 0){
                             query.setMaxResults(pageSize);
                         }
-                        return (List<Content>) query.list();
+                        return (List<ContentEntity>) query.list();
                     }
                 });
     }
 
     @Override
-    public List<Content> findRelatedItems(final String authoringTemplate, final String category, final Long departmentID, final Timestamp modifiedDate, final Integer startRow, final Integer pageSize) {
+    public List<ContentEntity> findRelatedItems(final String authoringTemplate, final String category, final Long departmentID, final Timestamp modifiedDate, final Integer startRow, final Integer pageSize) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<List<Content>>() {
-                    public List<Content> doInHibernate(Session session)
+                new HibernateCallback<List<ContentEntity>>() {
+                    public List<ContentEntity> doInHibernate(Session session)
                             throws HibernateException, SQLException {
                         StringBuilder sqlQuery = new StringBuilder();
-                        sqlQuery.append("SELECT c FROM Content c WHERE c.status = :statusPublished AND c.authoringTemplate.code = :authoringTemplate AND c.modifiedDate < :modifiedDate");
+                        sqlQuery.append("SELECT c FROM ContentEntity c WHERE c.status = :statusPublished AND c.authoringTemplate.code = :authoringTemplate AND c.modifiedDate < :modifiedDate");
                         if (StringUtils.isNotBlank(category)) {
                             sqlQuery.append(" AND c.contentID IN (SELECT ca.content.contentID FROM ContentCategory ca WHERE ca.category.code = :category)");
                         }
@@ -124,7 +124,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         if(pageSize != null && pageSize >= 0){
                             query.setMaxResults(pageSize);
                         }
-                        return (List<Content>) query.list();
+                        return (List<ContentEntity>) query.list();
                     }
                 });
     }
@@ -197,13 +197,13 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
 
                         Date fromDate = cal.getTime();
 
-                        sqlQuery.append("SELECT c.contentID, c.title, COUNT(cm.commentID) FROM Content c, Comment cm WHERE c.authoringTemplate.code = :authoringCode ");
+                        sqlQuery.append("SELECT c.contentID, c.title, COUNT(cm.commentID) FROM ContentEntity c, Comment cm WHERE c.authoringTemplate.code = :authoringCode ");
                         sqlQuery.append(" AND c.status = :contentStatusPublish");
                         sqlQuery.append(" AND c.contentID = cm.content.contentID  ");
 //                        sqlQuery.append(" AND c.publishedDate BETWEEN :fromDate AND :toDate  ");
 
                         if (StringUtils.isNotBlank(category)) {
-                            sqlQuery.append(" AND c.contentID IN (SELECT contentID FROM ContentCategory ca JOIN Category cat ON ca.categoryID = cat.categoryID WHERE cat.code = :category)");
+                            sqlQuery.append(" AND c.contentID IN (SELECT contentID FROM ContentCategory ca JOIN CategoryEntity cat ON ca.categoryID = cat.categoryID WHERE cat.code = :category)");
                         }
                         sqlQuery.append(" GROUP BY c.contentID, c.title ");
                         sqlQuery.append(" ORDER BY COUNT(cm.commentID) DESC");
@@ -588,24 +588,24 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
 	}
 
 	@Override
-	public List<Content> findByListID(final List<Long> contentIDs) {
+	public List<ContentEntity> findByListID(final List<Long> contentIDs) {
 		return getHibernateTemplate().execute(
-                new HibernateCallback<List<Content>>() {
-                    public List<Content> doInHibernate(Session session)
+                new HibernateCallback<List<ContentEntity>>() {
+                    public List<ContentEntity> doInHibernate(Session session)
                             throws HibernateException, SQLException {
                         Query query = session
                                 .createQuery("FROM Content c WHERE c.contentID in(:listIDs)");
                         query.setParameterList("listIDs", contentIDs);
-                        return (List<Content>) query.list();
+                        return (List<ContentEntity>) query.list();
                     }
                 });
 	}
 
     @Override
-    public List<Content> findByAuthoringTemplateAndDepartment(final String authoringTemplate, final String department, final Integer begin, final Integer pageSize) {
+    public List<ContentEntity> findByAuthoringTemplateAndDepartment(final String authoringTemplate, final String department, final Integer begin, final Integer pageSize) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<List<Content>>() {
-                    public List<Content> doInHibernate(Session session)
+                new HibernateCallback<List<ContentEntity>>() {
+                    public List<ContentEntity> doInHibernate(Session session)
                             throws HibernateException, SQLException {
                         Query query = session
                                 .createQuery("SELECT c FROM Content c WHERE c.status = :statusPublished AND c.authoringTemplate.code = :authoringTemplate AND c.contentID IN (SELECT cd.content.contentID FROM ContentDepartment cd WHERE cd.department.code = :department) ORDER BY c.modifiedDate DESC");
@@ -614,16 +614,16 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         query.setParameter("statusPublished", Constants.CONTENT_PUBLISH);
                         query.setFirstResult(begin);
                         query.setMaxResults(pageSize);
-                        return (List<Content>) query.list();
+                        return (List<ContentEntity>) query.list();
                     }
                 });
     }
 
     @Override
-    public List<Content> findAnnouncementItemsOfOnlineUser(final String authoringCode, final Long loginUserId, final Integer begin, final Integer pageSize) {
+    public List<ContentEntity> findAnnouncementItemsOfOnlineUser(final String authoringCode, final Long loginUserId, final Integer begin, final Integer pageSize) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<List<Content>>() {
-                    public List<Content> doInHibernate(Session session)
+                new HibernateCallback<List<ContentEntity>>() {
+                    public List<ContentEntity> doInHibernate(Session session)
                             throws HibernateException, SQLException {
                         Query query = session
                                 .createQuery("SELECT c FROM Content c WHERE c.status = :statusPublished AND c.authoringTemplate.code = :authoringTemplate AND EXISTS (SELECT cd.content.contentID FROM ContentDepartment cd WHERE cd.content.contentID = c.contentID AND (EXISTS (SELECT u.department.departmentID FROM User u WHERE u.userID = :onlineUserID AND u.department.departmentID = cd.department.departmentID) OR EXISTS (SELECT ud.department.departmentID FROM UserDepartmentACL ud WHERE ud.user.userID = :onlineUserID AND ud.department.departmentID = cd.department.departmentID))) ORDER BY c.modifiedDate DESC");
@@ -632,32 +632,32 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         query.setParameter("statusPublished", Constants.CONTENT_PUBLISH);
                         query.setFirstResult(begin);
                         query.setMaxResults(pageSize);
-                        return (List<Content>) query.list();
+                        return (List<ContentEntity>) query.list();
                     }
                 });
     }
 
     @Override
-    public List<Content> findByListTitle(final List<String> title, final Integer status) {
+    public List<ContentEntity> findByListTitle(final List<String> title, final Integer status) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<List<Content>>() {
-                    public List<Content> doInHibernate(Session session)
+                new HibernateCallback<List<ContentEntity>>() {
+                    public List<ContentEntity> doInHibernate(Session session)
                             throws HibernateException, SQLException {
                         Query query = session
                                 .createQuery("SELECT c FROM Content c WHERE lower(c.title) IN  (:title) AND c.status = :status ORDER BY c.displayOrder ");
                         query.setParameterList("title", title);
                         query.setParameter("status", status);
-                        return (List<Content>) query.list();
+                        return (List<ContentEntity>) query.list();
                     }
                 });
     }
 
     @Override
-    public List<Content> findByPrefixUrl(final String prefixUrl,final  Integer startRow,final  Integer pageSize, final Boolean isEng, final Integer status) {
+    public List<ContentEntity> findByPrefixUrl(final String prefixUrl,final  Integer startRow,final  Integer pageSize, final Boolean isEng, final Integer status) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<List<Content>>() {
+                new HibernateCallback<List<ContentEntity>>() {
 
-                    public List<Content> doInHibernate(Session session) throws HibernateException, SQLException {
+                    public List<ContentEntity> doInHibernate(Session session) throws HibernateException, SQLException {
                         Query query = session.createQuery("FROM Content c WHERE lower(c.category.prefixUrl) = :prefixUrl AND c.category.eng = :isEng AND c.status = :status ORDER BY c.modifiedDate DESC");
                         query.setParameter("prefixUrl", prefixUrl.toLowerCase());
                         query.setParameter("isEng", isEng);
@@ -666,7 +666,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         if(pageSize > 0){
                             query.setMaxResults(pageSize);
                         }
-                        return (List<Content>) query.list();
+                        return (List<ContentEntity>) query.list();
 
                     }
                 });
@@ -678,8 +678,8 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                 new HibernateCallback<Object[]>() {
 
                     public Object[] doInHibernate(Session session) throws HibernateException, SQLException {
-                        StringBuilder whereSQL = new StringBuilder("FROM Content c WHERE c.beginDate IS NOT NUll AND c.category.code = :categorySearch AND c.category.eng = :isEng AND c.status = :status ");
-                        StringBuilder countSQL = new StringBuilder("SELECT COUNT(*) FROM Content c WHERE c.beginDate IS NOT NUll AND c.category.code = :categorySearch AND c.category.eng = :isEng AND c.status = :status ");
+                        StringBuilder whereSQL = new StringBuilder("FROM ContentEntity c WHERE c.beginDate IS NOT NUll AND c.category.code = :categorySearch AND c.category.eng = :isEng AND c.status = :status ");
+                        StringBuilder countSQL = new StringBuilder("SELECT COUNT(*) FROM ContentEntity c WHERE c.beginDate IS NOT NUll AND c.category.code = :categorySearch AND c.category.eng = :isEng AND c.status = :status ");
 
                         StringBuilder sortSQL = new StringBuilder("");
                         if(StringUtils.isNotEmpty(categoryType) && categoryType.equals(Constants.UP_COMING_EVENT)){
@@ -705,7 +705,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         if(pageSize != null && pageSize >= 0){
                             query.setMaxResults(pageSize);
                         }
-                        List<Content> contents = query.list();
+                        List<ContentEntity> contentEntities = query.list();
 
                         Query queryCount = session.createQuery(countSQL.toString());
                         queryCount.setParameter("categorySearch", categorySearch);
@@ -716,7 +716,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         }
                         Object count = queryCount.uniqueResult();
 
-                        return new Object[]{count, contents};
+                        return new Object[]{count, contentEntities};
                     }
                 });
     }
@@ -734,28 +734,28 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         if(pageSize != null && pageSize >= 0){
                             query.setMaxResults(pageSize);
                         }
-                        List<Content> contents = query.list();
+                        List<ContentEntity> contentEntities = query.list();
 
                         Query queryCount = session.createQuery("SELECT COUNT(*) FROM Content c WHERE lower(c.category.parentCategory.code) = :category AND c.status = :status ");
                         queryCount.setParameter("category", category.toLowerCase());
                         Long count = (Long) queryCount.uniqueResult();
 
-                        return new Object[]{count, contents};
+                        return new Object[]{count, contentEntities};
                     }
                 });
     }
 
     @Override
-    public Content findByTitle(final String title, final Boolean eng, final Integer status) {
+    public ContentEntity findByTitle(final String title, final Boolean eng, final Integer status) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<Content>() {
+                new HibernateCallback<ContentEntity>() {
 
-                    public Content doInHibernate(Session session) throws HibernateException, SQLException {
+                    public ContentEntity doInHibernate(Session session) throws HibernateException, SQLException {
                         Query query = session.createQuery("FROM Content c WHERE lower(c.title) = :title AND c.category.eng = :eng AND c.status = :status  ORDER BY c.modifiedDate DESC");
                         query.setParameter("title", title.toLowerCase());
                         query.setParameter("eng", eng);
                         query.setParameter("status", status);
-                        return (Content) query.uniqueResult();
+                        return (ContentEntity) query.uniqueResult();
 
                     }
                 });
@@ -767,7 +767,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                 new HibernateCallback<Object[]>() {
 
                     public Object[] doInHibernate(Session session) throws HibernateException, SQLException {
-                        StringBuffer sqlClause = new StringBuffer("FROM Content c WHERE 1 = 1 AND c.category.eng = :isEng  AND c.status = :status ");
+                        StringBuffer sqlClause = new StringBuffer("FROM ContentEntity c WHERE 1 = 1 AND c.category.eng = :isEng  AND c.status = :status ");
                         if(StringUtils.isNotBlank(keyword)){
                             sqlClause.append(" AND ( lower(c.keyword) LIKE '%").append(keyword).append("%' OR lower(c.title) LIKE '%").append(keyword).append("%' )");
                         }
@@ -795,7 +795,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         if(maxPageItems != null && maxPageItems > 0){
                             query.setMaxResults(maxPageItems);
                         }
-                        List<Content> contents = query.list();
+                        List<ContentEntity> contentEntities = query.list();
 
 
                         StringBuffer countClause = new StringBuffer(" SELECT COUNT(*) ");
@@ -814,17 +814,17 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         }
                         Long count = (Long) queryCount.uniqueResult();
 
-                        return new Object[]{count, contents};
+                        return new Object[]{count, contentEntities};
                     }
                 });
     }
 
     @Override
-    public List<Content> findByAuthoringPrefixUrl(final String prefixUrl,final  Integer startRow,final  Integer pageSize,final  Boolean isEng, final Integer status) {
+    public List<ContentEntity> findByAuthoringPrefixUrl(final String prefixUrl,final  Integer startRow,final  Integer pageSize,final  Boolean isEng, final Integer status) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<List<Content>>() {
+                new HibernateCallback<List<ContentEntity>>() {
 
-                    public List<Content> doInHibernate(Session session) throws HibernateException, SQLException {
+                    public List<ContentEntity> doInHibernate(Session session) throws HibernateException, SQLException {
                         Query query = session.createQuery("FROM Content c WHERE lower(c.authoringTemplate.prefixUrl) = :prefixUrl  AND c.status = :status  AND c.category.eng = :isEng ORDER BY c.modifiedDate DESC");
                         query.setParameter("prefixUrl", prefixUrl.toLowerCase());
                         query.setParameter("isEng", isEng);
@@ -833,7 +833,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<Content, Long> imp
                         if(pageSize > 0){
                             query.setMaxResults(pageSize);
                         }
-                        return (List<Content>) query.list();
+                        return (List<ContentEntity>) query.list();
 
                     }
                 });

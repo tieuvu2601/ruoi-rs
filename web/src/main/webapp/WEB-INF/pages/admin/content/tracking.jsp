@@ -2,15 +2,15 @@
 
 <head>
     <title><fmt:message key="tracking.management"/></title>
-    <meta name="heading" content="<fmt:message key="tracking.management"/>"/>
+    <meta name="heading" contentEntity="<fmt:message key="tracking.management"/>"/>
 </head>
 <div class="pathway">
-    <fmt:message key="tracking"/> ${content.title}
+    <fmt:message key="tracking"/> ${contentEntity.title}
 </div>
 
-<c:url var="url" value="/admin/content/tracking.html?contentID=${content.contentID}"/>
+<c:url var="url" value="/admin/contentEntity/tracking.html?contentID=${contentEntity.contentID}"/>
 <c:url var="editUrl" value="/admin/tracking/edit.html"/>
-<div id="content">
+<div id="contentEntity">
     <form:form commandName="items" action="${url}" method="post" id="listForm">
 
         <div class="box_container">

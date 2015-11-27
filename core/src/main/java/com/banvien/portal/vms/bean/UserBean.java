@@ -1,13 +1,13 @@
 package com.banvien.portal.vms.bean;
 
-import com.banvien.portal.vms.domain.User;
+import com.banvien.portal.vms.domain.UserEntity;
 
 import java.util.Map;
 
-public class UserBean extends AbstractBean<User> {
+public class UserBean extends AbstractBean<UserEntity> {
     public UserBean()
     {
-        this.pojo = new User();
+        this.pojo = new UserEntity();
     }
 
     public RoleBean getRoleBean() {

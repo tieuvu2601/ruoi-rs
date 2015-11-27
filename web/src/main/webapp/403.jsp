@@ -4,11 +4,11 @@
 
 <head>
     <title><fmt:message key="403.title"/></title>
-    <meta name="heading" content="<fmt:message key='403.title'/>"/>
+    <meta name="heading" contentEntity="<fmt:message key='403.title'/>"/>
 </head>
 
 <div class="pathway"><fmt:message key='403.title'/></div>
-<div id="content">
+<div id="contentEntity">
     <div>
         <fmt:message key="403.message">
             <fmt:param><c:url value="/"/></fmt:param>

@@ -183,7 +183,7 @@ CKEDITOR.lang['bg'] =
 		langCode			: 'Код за езика',
 		tabIndex			: 'Tab Index', // MISSING
 		advisoryTitle		: 'Advisory Title', // MISSING
-		advisoryContentType	: 'Advisory Content Type', // MISSING
+		advisoryContentType	: 'Advisory ContentEntity Type', // MISSING
 		cssClasses		: 'Класове за CSS',
 		charset			: 'Linked Resource Charset', // MISSING
 		styles			: 'Стил',
@@ -554,7 +554,7 @@ CKEDITOR.lang['bg'] =
 	templates :
 	{
 		button			: 'Templates', // MISSING
-		title			: 'Content Templates', // MISSING
+		title			: 'ContentEntity Templates', // MISSING
 		options : 'Template Options', // MISSING
 		insertOption	: 'Replace actual contents', // MISSING
 		selectPromptMsg	: 'Please select the template to open in the editor', // MISSING
@@ -712,7 +712,7 @@ CKEDITOR.lang['bg'] =
 		dic_restore		: 'Възтановяване',
 		dic_delete		: 'Изтриване',
 		dic_rename		: 'Преименуване',
-		dic_info		: 'Initially the User Dictionary is stored in a Cookie. However, Cookies are limited in size. When the User Dictionary grows to a point where it cannot be stored in a Cookie, then the dictionary may be stored on our server. To store your personal dictionary on our server you should specify a name for your dictionary. If you already have a stored dictionary, please type its name and click the Restore button.', // MISSING
+		dic_info		: 'Initially the UserEntity Dictionary is stored in a Cookie. However, Cookies are limited in size. When the UserEntity Dictionary grows to a point where it cannot be stored in a Cookie, then the dictionary may be stored on our server. To store your personal dictionary on our server you should specify a name for your dictionary. If you already have a stored dictionary, please type its name and click the Restore button.', // MISSING
 
 		aboutTab		: 'Относно'
 	},
@@ -722,7 +722,7 @@ CKEDITOR.lang['bg'] =
 		title		: 'Относно CKEditor',
 		dlgTitle	: 'Относно CKEditor',
 		help	: 'Проверете $1 за помощ.',
-		userGuide : 'CKEditor User\'s Guide', // MISSING
+		userGuide : 'CKEditor UserEntity\'s Guide', // MISSING
 		moreInfo	: 'За лицензионна информация моля посетете сайта ни:',
 		copy		: 'Copyright &copy; $1. All rights reserved.'
 	},

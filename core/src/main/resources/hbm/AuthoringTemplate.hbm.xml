@@ -3,26 +3,14 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-	<class name="com.banvien.portal.vms.domain.AuthoringTemplate" table="PortalAuthoringTemplate">
-        <id name="authoringTemplateID" column="AuthoringTemplateID">
+	<class name="com.banvien.portal.vms.domain.AuthoringTemplateEntity" table="AuthoringTemplate">
+        <id name="authoringTemplateId" column="AuthoringTemplateID">
             <generator class="increment"/>
         </id>
 
 		<property name="code" column="Code"/>
 
         <property name="name" column="Name"/>
-        
-        <property name="status" column="Status"/>
-
-        <property name="prefixUrl" column="PrefixUrl"/>
-
-        <property name="hasThumbnail" column="HasThumbnail"/>
-
-        <property name="hasHotItem" column="HasHotItem"/>
-
-        <property name="hasDepartment" column="HasDepartment"/>
-
-        <property name="event" column="IsEvent"/>
 
         <property name="templateContent" column="TemplateContent"/>
 

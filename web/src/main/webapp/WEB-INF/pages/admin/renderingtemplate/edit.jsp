@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="renderingtemplate.management"/></title>
-    <meta name="heading" content="Rendering Template Management"/>
+    <meta name="heading" contentEntity="Rendering Template Management"/>
 </head>
 
 <c:url var="formUrl" value="/admin/renderingtemplate/edit.html"/>
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="content animate-panel">
+    <div class="contentEntity animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">

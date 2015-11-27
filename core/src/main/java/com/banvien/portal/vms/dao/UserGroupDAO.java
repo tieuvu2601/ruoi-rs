@@ -1,6 +1,6 @@
 package com.banvien.portal.vms.dao;
 
-import com.banvien.portal.vms.domain.UserGroup;
+import com.banvien.portal.vms.domain.UserGroupEntity;
 
-public interface UserGroupDAO extends GenericDAO<UserGroup, Long> {
+public interface UserGroupDAO extends GenericDAO<UserGroupEntity, Long> {
 }

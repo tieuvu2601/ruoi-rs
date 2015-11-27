@@ -1013,7 +1013,7 @@ CKEDITOR.DIALOG_RESIZE_BOTH = 3;
 
 		/**
 		 * Adds a tabbed page into the dialog.
-		 * @param {Object} contents Content definition.
+		 * @param {Object} contents ContentEntity definition.
 		 * @example
 		 */
 		addPage : function( contents )

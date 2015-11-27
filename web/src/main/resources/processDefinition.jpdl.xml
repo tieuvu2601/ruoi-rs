@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<process key="ContentPageflow" name="content.pageflow" xmlns="http://jbpm.org/4.0/jpdl">
+<process key="ContentPageflow" name="contentEntity.pageflow" xmlns="http://jbpm.org/4.0/jpdl">
 
 		<start g="384,37,80,40" name="start">
 			<transition to="composeContent"/>

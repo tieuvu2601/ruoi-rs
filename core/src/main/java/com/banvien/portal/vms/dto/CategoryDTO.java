@@ -1,6 +1,7 @@
 package com.banvien.portal.vms.dto;
 
-import com.banvien.portal.vms.domain.AuthoringTemplate;
+import com.banvien.portal.vms.domain.AuthoringTemplateEntity;
+
 import java.sql.Timestamp;
 import java.io.Serializable;
 import java.util.List;
@@ -20,7 +21,7 @@ public class CategoryDTO implements Serializable {
 
     private Integer displayOrder;
 
-    private AuthoringTemplate authoringTemplate;
+    private AuthoringTemplateEntity authoringTemplateEntity;
 
     private Timestamp createdDate;
 
@@ -84,12 +85,12 @@ public class CategoryDTO implements Serializable {
         this.displayOrder = displayOrder;
     }
 
-    public AuthoringTemplate getAuthoringTemplate() {
-        return authoringTemplate;
+    public AuthoringTemplateEntity getAuthoringTemplateEntity() {
+        return authoringTemplateEntity;
     }
 
-    public void setAuthoringTemplate(AuthoringTemplate authoringTemplate) {
-        this.authoringTemplate = authoringTemplate;
+    public void setAuthoringTemplateEntity(AuthoringTemplateEntity authoringTemplateEntity) {
+        this.authoringTemplateEntity = authoringTemplateEntity;
     }
 
     public Timestamp getCreatedDate() {

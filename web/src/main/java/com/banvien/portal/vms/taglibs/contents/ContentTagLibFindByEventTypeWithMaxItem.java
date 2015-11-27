@@ -1,6 +1,6 @@
 package com.banvien.portal.vms.taglibs.contents;
 
-import com.banvien.portal.vms.domain.Content;
+import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.service.ContentService;
 import com.banvien.portal.vms.util.CommonUtil;
 import com.banvien.portal.vms.util.Constants;
@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
- * User: viennh
+ * UserEntity: viennh
  * Date: 12/13/12
  * Time: 12:41 AM
  * To change this template use File | Settings | File Templates.
@@ -38,9 +38,9 @@ public class ContentTagLibFindByEventTypeWithMaxItem extends TagSupport {
             }
 
             Object [] obj = contentService.findByCategoryTypeWithMaxItem(eventType, begin, pageSize, eventCategoryCode, isEng, Constants.CONTENT_PUBLISH);
-            List<Content> contentList = (List<Content>) obj[1];
-            if(contentList != null) {
-                this.pageContext.setAttribute(this.var, contentList);
+            List<ContentEntity> contentEntityList = (List<ContentEntity>) obj[1];
+            if(contentEntityList != null) {
+                this.pageContext.setAttribute(this.var, contentEntityList);
             }
         }
         return SKIP_BODY;

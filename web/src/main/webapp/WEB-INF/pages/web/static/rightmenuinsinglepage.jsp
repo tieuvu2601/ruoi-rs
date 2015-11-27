@@ -1,28 +1,28 @@
 <%@ include file="/common/taglibs.jsp"%>
 <aside class="page-sidebar  col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-1">
     <section class="widget has-divider">
-        <h3 class="title">${categoryObj.name}</h3>
+        <h3 class="title">${categoryEntityObj.name}</h3>
         <ul class="right-menu">
             <li>
                 <c:set var="currentNode" value="-1"/>
                 <c:set var="isCurrentCategory" value=""/>
 
-                <c:forEach var="category" items="${categories}">
+                <c:forEach var="categoryEntity" items="${categories}">
                     <c:set var="categoryUrl" value="#"/>
 
-                    <c:if test="${empty category.childrenSize || category.childrenSize == 0}">
+                    <c:if test="${empty categoryEntity.childrenSize || categoryEntity.childrenSize == 0}">
                         <c:choose>
-                            <c:when test="${not empty category.prefixUrl}">
-                                <seo:url value="${category.code}" var="categoryUrl" prefix="/${portal:convertStringToUrl(category.prefixUrl)}/${portal:convertStringToUrl(categoryObj.code)}/"/>
+                            <c:when test="${not empty categoryEntity.prefixUrl}">
+                                <seo:url value="${categoryEntity.code}" var="categoryUrl" prefix="/${portal:convertStringToUrl(categoryEntity.prefixUrl)}/${portal:convertStringToUrl(categoryEntityObj.code)}/"/>
                             </c:when>
                             <c:otherwise>
-                                <seo:url value="${category.code}" var="categoryUrl" prefix="/${portal:convertStringToUrl(categoryObj.code)}/"/>
+                                <seo:url value="${categoryEntity.code}" var="categoryUrl" prefix="/${portal:convertStringToUrl(categoryEntityObj.code)}/"/>
                             </c:otherwise>
                         </c:choose>
                     </c:if>
 
                     <c:choose>
-                        <c:when test="${category.categoryID == currentCategory.categoryID}">
+                        <c:when test="${categoryEntity.categoryID == currentCategoryEntity.categoryID}">
                             <c:set var="isCurrentCategory" value="current"/>
                         </c:when>
                         <c:otherwise>
@@ -31,26 +31,26 @@
                     </c:choose>
 
                     <c:choose>
-                        <c:when test="${currentNode < category.nodeLevel}">
+                        <c:when test="${currentNode < categoryEntity.nodeLevel}">
                             <ul>
                                 <li class="${isCurrentCategory}">
-                                <span><i class="fa fa-caret-right"></i> <a href="${categoryUrl}">${category.name}</a></span>
-                                <c:set var="currentNode" value="${category.nodeLevel}"/>
+                                <span><i class="fa fa-caret-right"></i> <a href="${categoryUrl}">${categoryEntity.name}</a></span>
+                                <c:set var="currentNode" value="${categoryEntity.nodeLevel}"/>
                         </c:when>
 
-                        <c:when test="${currentNode == category.nodeLevel}">
+                        <c:when test="${currentNode == categoryEntity.nodeLevel}">
                             </li>
                             <li class="${isCurrentCategory}">
-                                <span><i class="fa fa-caret-right"></i> <a href="${categoryUrl}">${category.name}</a></span>
+                                <span><i class="fa fa-caret-right"></i> <a href="${categoryUrl}">${categoryEntity.name}</a></span>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="nodeLevel" begin="${category.nodeLevel}" end="${currentNode - 1}">
+                            <c:forEach var="nodeLevel" begin="${categoryEntity.nodeLevel}" end="${currentNode - 1}">
                                     </li>
                                 </ul>
                             </c:forEach>
-                            <c:set var="currentNode" value="${category.nodeLevel}"/>
+                            <c:set var="currentNode" value="${categoryEntity.nodeLevel}"/>
                             <li class="${isCurrentCategory}">
-                                <span><i class="fa fa-caret-right"></i> <a href="${categoryUrl}">${category.name}</a></span>
+                                <span><i class="fa fa-caret-right"></i> <a href="${categoryUrl}">${categoryEntity.name}</a></span>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
@@ -73,7 +73,7 @@
 
                     <article class="news-item row">
                         <c:choose>
-                            <c:when test="${not empty relation.authoringTemplate.hasThumbnail && relation.authoringTemplate.hasThumbnail == 'Y'}">
+                            <c:when test="${not empty relation.authoringTemplateEntity.hasThumbnail && relation.authoringTemplateEntity.hasThumbnail == 'Y'}">
                                 <figure class="thumb col-md-2">
                                     <c:set var="thumbnailUrl" value="/themes/site/images/images_not_available.png"/>
                                     <c:if test="${not empty relation.thumbnail}">
@@ -82,13 +82,13 @@
                                     <img src="${thumbnailUrl}" alt=""/>
                                 </figure>
                                 <div class="details col-md-10">
-                                    <seo:url value="${relation.title}" var="relationURL" prefix="/${relation.authoringTemplate.prefixUrl}/${portal:convertStringToUrl(relation.category.code)}/"/>
+                                    <seo:url value="${relation.title}" var="relationURL" prefix="/${relation.authoringTemplateEntity.prefixUrl}/${portal:convertStringToUrl(relation.categoryEntity.code)}/"/>
                                     <h4 class="title"><a href="${relationURL}">${relationData.header[0]}</a></h4>
                                 </div>
                             </c:when>
                             <c:otherwise>
                                 <div class="details col-md-12">
-                                    <seo:url value="${relation.title}" var="relationURL" prefix="/${relation.authoringTemplate.prefixUrl}/${portal:convertStringToUrl(relation.category.code)}/"/>
+                                    <seo:url value="${relation.title}" var="relationURL" prefix="/${relation.authoringTemplateEntity.prefixUrl}/${portal:convertStringToUrl(relation.categoryEntity.code)}/"/>
                                     <h4 class="title"><a href="${relationURL}">${relationData.header[0]}</a></h4>
                                 </div>
                             </c:otherwise>
@@ -115,7 +115,7 @@
                             </p>
                         </div>
                         <div class="details col-md-9 col-sm-8 col-xs-8">
-                            <seo:url value="${eventRelation.title}" var="eventRelationURL" prefix="/${eventRelation.authoringTemplate.prefixUrl}/${portal:convertStringToUrl(eventRelation.category.code)}/"/>
+                            <seo:url value="${eventRelation.title}" var="eventRelationURL" prefix="/${eventRelation.authoringTemplateEntity.prefixUrl}/${portal:convertStringToUrl(eventRelation.categoryEntity.code)}/"/>
                             <h5 class="title"><a href="${eventRelationURL}">${eventRelationData.header[0]}</a></h5>
                             <p class="time text-muted">${eventRelationData.beginTime[0]} - ${eventRelationData.endTime[0]}
                                 <br>${eventRelationData.location[0]}</p>

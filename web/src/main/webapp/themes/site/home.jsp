@@ -3,17 +3,17 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" contentEntity="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" contentEntity="">
+    <meta name="author" contentEntity="">
 
     <title><fmt:message key="main.faculty"/> - <fmt:message key="main.school"/></title>
     <!-- Meta -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" contentEntity="IE=edge">
+    <meta name="viewport" contentEntity="width=device-width, initial-scale=1.0">
+    <meta name="description" contentEntity="">
+    <meta name="author" contentEntity="">
     <link rel="shortcut icon" href="<c:url value="/themes/site/images/favicon.ico"/>">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
 

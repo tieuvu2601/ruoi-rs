@@ -779,9 +779,9 @@
                if (matchArray == null) {
                    return false;
                }
-               var user=matchArray[1];
+               var userEntity=matchArray[1];
                var domain=matchArray[2];
-               if (user.match(userPat) == null) {
+               if (userEntity.match(userPat) == null) {
                    return false;
                }
                var IPArray = domain.match(ipDomainPat);

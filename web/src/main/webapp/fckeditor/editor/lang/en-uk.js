@@ -186,7 +186,7 @@ DlgGenTabIndex		: "Tab Index",
 DlgGenLongDescr		: "Long Description URL",
 DlgGenClass			: "Stylesheet Classes",
 DlgGenTitle			: "Advisory Title",
-DlgGenContType		: "Advisory Content Type",
+DlgGenContType		: "Advisory ContentEntity Type",
 DlgGenLinkCharset	: "Linked Resource Charset",
 DlgGenStyle			: "Style",
 
@@ -513,7 +513,7 @@ DlgDocPreview		: "Preview",
 
 // Templates Dialog
 Templates			: "Templates",
-DlgTemplatesTitle	: "Content Templates",
+DlgTemplatesTitle	: "ContentEntity Templates",
 DlgTemplatesSelMsg	: "Please select the template to open in the editor<br />(the actual contents will be lost):",
 DlgTemplatesLoading	: "Loading templates list. Please wait...",
 DlgTemplatesNoTpl	: "(No templates defined)",

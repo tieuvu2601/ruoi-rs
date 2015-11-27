@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 
 /**
  * Copyright (c) by Ban Vien Co., Ltd.
- * User: MBP
+ * UserEntity: MBP
  * Date: 5/14/13
  * Time: 6:37 AM
  * Author: vien.nguyen@banvien.com

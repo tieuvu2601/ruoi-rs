@@ -86,10 +86,6 @@
         <property name="contentDAO" ref="contentDAO"/>
     </bean>
 
-    <bean id="trackingService" class="com.banvien.portal.vms.service.impl.TrackingServiceImpl">
-        <property name="trackingDAO" ref="trackingDAO"/>
-    </bean>
-
     <bean id="userService" class="com.banvien.portal.vms.service.impl.UserServiceImpl">
         <property name="userDAO" ref="userDAO"/>
         <property name="userRoleDAO" ref="userRoleDAO"/>
@@ -100,15 +96,7 @@
         <property name="roleDAO" ref="roleDAO"/>
     </bean>
 
-    <bean id="userSessionService" class="com.banvien.portal.vms.service.impl.UserSessionServiceImpl">
-        <property name="userSessionDAO" ref="userSessionDAO"/>
-    </bean>
-
     <bean id="reportService" class="com.banvien.portal.vms.service.impl.ReportServiceImpl">
         <property name="contentDAO" ref="contentDAO"/>
-    </bean>
-
-    <bean id="pageViewBean" class="com.banvien.portal.vms.filter.PageViewFilter">
-        <property name="trackingService" ref="trackingService"/>
     </bean>
 </beans>

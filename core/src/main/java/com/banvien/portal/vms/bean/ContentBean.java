@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
-import com.banvien.portal.vms.domain.Content;
+import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.xml.contentitem.ContentItem;
 
-public class ContentBean extends AbstractBean<Content> {
+public class ContentBean extends AbstractBean<ContentEntity> {
     private FileItem thumbnailFile;
 
     private Long authoringTemplateID;
@@ -32,7 +32,7 @@ public class ContentBean extends AbstractBean<Content> {
 
     public ContentBean()
     {
-        this.pojo = new Content();
+        this.pojo = new ContentEntity();
     }
 
     public FileItem getThumbnailFile() {

@@ -53,7 +53,7 @@ public class UserDTO {
 	public String toString() {
 		StringBuffer userDTOStr = new StringBuffer("Person=[");
 		userDTOStr.append(" Common Name = " + commonName);
-		userDTOStr.append(", User Name = " + userName);
+		userDTOStr.append(", UserEntity Name = " + userName);
 		userDTOStr.append(", password = " + password);
 		userDTOStr.append(", Display Name = " + displayName);
 		userDTOStr.append(", lastname = " + lastName);

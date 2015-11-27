@@ -3,7 +3,6 @@ package com.banvien.portal.vms.bean;
 import java.sql.Timestamp;
 import java.util.List;
 
-import com.banvien.portal.vms.domain.Content;
 import com.banvien.portal.vms.dto.ReportDTO;
 
 public class ReportBean extends AbstractBean<ReportDTO>{

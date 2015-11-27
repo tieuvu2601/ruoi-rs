@@ -9,7 +9,7 @@ import java.io.IOException;
 
 /**
  * Created by viennh
- * User: Nguyen Hai Vien
+ * UserEntity: Nguyen Hai Vien
  * Date: 11/21/11
  * Time: 3:56 PM
  * To change this template use File | Settings | File Templates.

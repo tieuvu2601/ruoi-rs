@@ -1,6 +1,6 @@
 package com.banvien.portal.vms.taglibs.contents;
 
-import com.banvien.portal.vms.domain.Content;
+import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.service.ContentService;
 import com.banvien.portal.vms.util.CommonUtil;
 import com.banvien.portal.vms.util.Constants;
@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
- * User: viennh
+ * UserEntity: viennh
  * Date: 12/13/12
  * Time: 12:41 AM
  * To change this template use File | Settings | File Templates.
@@ -29,9 +29,9 @@ public class ContentTagLibFindPrefixUrlCategory extends TagSupport {
         if(context != null && prefixUrl != null && begin != null && pageSize != null && var != null) {
             ContentService contentService = context.getBean(ContentService.class);
 
-            List<Content> contentList = contentService.findByPrefixUrl(prefixUrl, begin, pageSize, CommonUtil.isEnglishLanguage(), Constants.CONTENT_PUBLISH);
-            if(contentList != null) {
-                this.pageContext.setAttribute(this.var, contentList);
+            List<ContentEntity> contentEntityList = contentService.findByPrefixUrl(prefixUrl, begin, pageSize, CommonUtil.isEnglishLanguage(), Constants.CONTENT_PUBLISH);
+            if(contentEntityList != null) {
+                this.pageContext.setAttribute(this.var, contentEntityList);
             }
         }
         return SKIP_BODY;

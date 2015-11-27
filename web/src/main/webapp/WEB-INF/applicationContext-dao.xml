@@ -34,8 +34,6 @@
                 <value>hbm/Category.hbm.xml</value>
                 <value>hbm/Content.hbm.xml</value>
                 <value>hbm/AuthoringTemplate.hbm.xml</value>
-                <value>hbm/Tracking.hbm.xml</value>
-                <value>hbm/UserSession.hbm.xml</value>
             </list>
         </property>
 
@@ -86,12 +84,4 @@
     <bean id="contentDAO" class="com.banvien.portal.vms.dao.impl.ContentHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
-    <bean id="trackingDAO" class="com.banvien.portal.vms.dao.impl.TrackingHibernateDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-    <bean id="userSessionDAO" class="com.banvien.portal.vms.dao.impl.UserSessionHibernateDAO">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
 </beans>

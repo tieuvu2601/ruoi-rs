@@ -3,15 +3,15 @@ package com.banvien.portal.vms.service.impl;
 import com.banvien.portal.vms.bean.ReportBean;
 import com.banvien.portal.vms.dao.ContentDAO;
 import com.banvien.portal.vms.dao.GenericDAO;
-import com.banvien.portal.vms.domain.Content;
+import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.service.ReportService;
 
-public class ReportServiceImpl extends GenericServiceImpl<Content, Long> implements ReportService {
+public class ReportServiceImpl extends GenericServiceImpl<ContentEntity, Long> implements ReportService {
 
 	private ContentDAO contentDAO;
 	
 	@Override
-	protected GenericDAO<Content, Long> getGenericDAO() {
+	protected GenericDAO<ContentEntity, Long> getGenericDAO() {
 		return contentDAO;
 	}
 

@@ -1,10 +1,10 @@
 package com.banvien.portal.vms.bean;
 
-import com.banvien.portal.vms.domain.UserGroup;
+import com.banvien.portal.vms.domain.UserGroupEntity;
 
-public class UserGroupBean extends AbstractBean<UserGroup> {
+public class UserGroupBean extends AbstractBean<UserGroupEntity> {
     public UserGroupBean()
     {
-        this.pojo = new UserGroup();
+        this.pojo = new UserGroupEntity();
     }
 }

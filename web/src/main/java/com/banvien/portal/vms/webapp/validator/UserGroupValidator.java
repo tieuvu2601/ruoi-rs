@@ -1,7 +1,7 @@
 package com.banvien.portal.vms.webapp.validator;
 
 import com.banvien.portal.vms.bean.UserGroupBean;
-import com.banvien.portal.vms.domain.UserGroup;
+import com.banvien.portal.vms.domain.UserGroupEntity;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.UserGroupService;
 import org.apache.commons.lang.StringUtils;
@@ -37,13 +37,13 @@ public class UserGroupValidator extends ApplicationObjectSupport implements Vali
 
         public void checkUnique(UserGroupBean cmd, Errors errors){
             try{
-                UserGroup group = userGroupService.findByCode(cmd.getPojo().getCode());
-                if(cmd.getPojo().getUserGroupID() == null || (cmd.getPojo().getUserGroupID() != null && (!group.getUserGroupID().equals(cmd.getPojo().getUserGroupID())))){
+                UserGroupEntity group = userGroupService.findByCode(cmd.getPojo().getCode());
+                if(cmd.getPojo().getUserGroupId() == null || (cmd.getPojo().getUserGroupId() != null && (!group.getUserGroupId().equals(cmd.getPojo().getUserGroupId())))){
                     errors.rejectValue("pojo.code", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("usergroup.form.code")}, "Value has been chosen.");
                 }
 
             }catch (ObjectNotFoundException ex) {
-                //User group not exist
+                //UserEntity group not exist
             }
         }
 

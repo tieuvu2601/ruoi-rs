@@ -6,7 +6,7 @@
 	<script type="text/javascript" src="../../utils/mctabs.js"></script>
 	<script type="text/javascript" src="js/color_picker.js"></script>
 </head>
-<body id="colorpicker" style="display: none" role="application" aria-labelledby="app_label">
+<body id="colorpicker" style="display: none" roleEntity="application" aria-labelledby="app_label">
 	<span class="mceVoiceLabel" id="app_label" style="display:none;">{#advanced_dlg.colorpicker_title}</span>
 <form onsubmit="insertAction();return false" action="#">
 	<div class="tabs">
@@ -47,7 +47,7 @@
 		<div id="named_panel" class="panel">
 			<fieldset id="named_picker_label">
 				<legend id="named_title">{#advanced_dlg.colorpicker_named_title}</legend>
-				<div id="namedcolors" role="listbox" tabindex="0" aria-labelledby="named_picker_label">
+				<div id="namedcolors" roleEntity="listbox" tabindex="0" aria-labelledby="named_picker_label">
 					<!-- Gets filled with named colors-->
 				</div>
 

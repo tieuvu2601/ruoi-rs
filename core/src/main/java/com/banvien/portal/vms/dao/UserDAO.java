@@ -2,19 +2,12 @@ package com.banvien.portal.vms.dao;
 
 import java.util.List;
 
-import com.banvien.portal.vms.domain.User;
+import com.banvien.portal.vms.domain.UserEntity;
 
-public interface UserDAO extends GenericDAO<User, Long> {
-    User findByUserName(String username);
+public interface UserDAO extends GenericDAO<UserEntity, Long> {
+    UserEntity findByUserName(String username);
 
-    List<User> findByGroupCode(String groupCode);
+    public UserEntity findUserByUsernameAndPasswordFromDB(String username, String password);
 
-    List<User> findByListUserName(List<String> userNameList);
-
-    List<User> findByListGroupCode(List<String> groupCodeList);
-
-    public User findUserByUsernameAndPasswordFromDB(String username, String password);
-
-
-    List<User> findByListUserNameExcludeSender(List<String> userNameList, String senderMail);
+    List<UserEntity> findByListUserNameExcludeSender(List<String> userNameList, String senderMail);
 }

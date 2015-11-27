@@ -16,7 +16,7 @@
 </div>
 <div style="float:right;margin-top: 10px;margin-right: 10px;">
     <%pageContext.setAttribute("onlineUser", SecurityUtils.getPrincipal() != null ? SecurityUtils.getPrincipal().getDisplayName() : "");%>
-    <fmt:message key="welcome.user">
+    <fmt:message key="welcome.userEntity">
         <fmt:param value="${onlineUser}"/>
     </fmt:message>
     | <a href="<c:url value="/logout.jsp"/>"><fmt:message key="logout"/></a>

@@ -1,23 +1,23 @@
 <%@ include file="/common/taglibs.jsp"%>
-<div class="content container content-container">
+<div class="contentEntity container contentEntity-container">
     <div class="page-wrapper">
         <header class="page-heading clearfix">
-            <h1 class="heading-title pull-left">${currentCategory.name}</h1>
+            <h1 class="heading-title pull-left">${currentCategoryEntity.name}</h1>
             <div class="breadcrumbs pull-right">
                 <ul class="breadcrumbs-list">
                     <li><a href="<c:url value="/index.html"/>"><fmt:message key="site.home"/></a><i class="fa fa-angle-right"></i></li>
-                    <li style="text-transform: capitalize;"><span>${categoryObj.name}</span><i class="fa fa-angle-right"></i></li>
-                    <li class="current" style="text-transform: capitalize;"><span>${currentCategory.name}</span></li>
+                    <li style="text-transform: capitalize;"><span>${categoryEntityObj.name}</span><i class="fa fa-angle-right"></i></li>
+                    <li class="current" style="text-transform: capitalize;"><span>${currentCategoryEntity.name}</span></li>
                 </ul>
             </div>
         </header>
-        <div class="page-content">
+        <div class="page-contentEntity">
             <div class="row page-row">
                 <div class="team-wrapper col-md-8 col-sm-7">
                     <c:if test="${fn:length(items) > 0}">
                         <c:forEach var="person" items="${items}">
                             <c:set var="personData" value="${portal:parseContentXML(person.xmlData)}"/>
-                            <seo:url value="${person.title}" var="personUrl" prefix="/${person.authoringTemplate.prefixUrl}/${portal:convertStringToUrl(person.category.code)}/"/>
+                            <seo:url value="${person.title}" var="personUrl" prefix="/${person.authoringTemplateEntity.prefixUrl}/${portal:convertStringToUrl(person.categoryEntity.code)}/"/>
 
                             <div class="row page-row">
                                 <figure class="thumb col-md-3 col-sm-4 col-xs-6">
@@ -30,7 +30,7 @@
 
                                 <div class="details col-md-9 col-sm-8 col-xs-6">
                                     <h4 class="title"><a href="${personUrl}">${personData.header[0]}</a></h4>
-                                    <h5><strong><fmt:message key="site.role"/></strong>: ${personData.role[0]}</h5>
+                                    <h5><strong><fmt:message key="site.roleEntity"/></strong>: ${personData.roleEntity[0]}</h5>
                                     <h6><strong><fmt:message key="site.degree"/></strong>: ${personData.degree[0]}</h6>
                                     <h6><strong><fmt:message key="site.email"/></strong>: <a href="mailto:${personData.email[0]}">${personData.email[0]}</a></h6>
                                     <c:if test="${not empty personData.phonenumb[0]}">
@@ -42,11 +42,11 @@
 
                         <ul class="pagination">
                             <c:choose>
-                                <c:when test="${not empty currentCategory.prefixUrl}">
-                                    <seo:url value="${currentCategory.code}" var="seoURL" prefix="/${currentCategory.prefixUrl}/${portal:convertStringToUrl(categoryObj.code)}/"/>
+                                <c:when test="${not empty currentCategoryEntity.prefixUrl}">
+                                    <seo:url value="${currentCategoryEntity.code}" var="seoURL" prefix="/${currentCategoryEntity.prefixUrl}/${portal:convertStringToUrl(categoryEntityObj.code)}/"/>
                                 </c:when>
                                 <c:otherwise>
-                                    <seo:url value="${currentCategory.code}" var="seoURL" prefix="/${portal:convertStringToUrl(categoryObj.code)}/"/>
+                                    <seo:url value="${currentCategoryEntity.code}" var="seoURL" prefix="/${portal:convertStringToUrl(categoryEntityObj.code)}/"/>
                                 </c:otherwise>
                             </c:choose>
 
@@ -90,7 +90,7 @@
 
 <script>
     $(document).ready(function() {
-        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryObj.code)}'));
+        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryEntityObj.code)}'));
     });
     function setSelectedMenu(parent, element){
         $(parent).find('.active').removeClass('active');

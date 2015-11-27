@@ -1,7 +1,7 @@
 package com.banvien.portal.vms.webapp.controller.admin;
 
 import com.banvien.portal.vms.bean.UserGroupBean;
-import com.banvien.portal.vms.domain.UserGroup;
+import com.banvien.portal.vms.domain.UserGroupEntity;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.UserGroupService;
@@ -29,7 +29,7 @@ import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
- * User: NhuKhang
+ * UserEntity: NhuKhang
  * Date: 10/6/12
  * Time: 10:57 AM
  */
@@ -52,12 +52,12 @@ public class UserGroupController extends ApplicationObjectSupport {
     public ModelAndView edit(@ModelAttribute(Constants.FORM_MODEL_KEY) UserGroupBean bean, BindingResult bindingResult){
         ModelAndView mav = new ModelAndView("/admin/usergroup/edit");
         String crudaction = bean.getCrudaction();
-        UserGroup pojo = bean.getPojo();
+        UserGroupEntity pojo = bean.getPojo();
         if(StringUtils.isNotBlank(crudaction) && crudaction.equals("insert-update")) {
             try{
                 userGroupValidator.validate(bean, bindingResult);
                 if(!bindingResult.hasErrors()){
-                    if(pojo.getUserGroupID() != null && pojo.getUserGroupID() >0 ){
+                    if(pojo.getUserGroupId() != null && pojo.getUserGroupId() >0 ){
                         this.userGroupService.updateItem(pojo);
                         mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
                     }else{
@@ -73,10 +73,10 @@ public class UserGroupController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        if(!bindingResult.hasErrors() && bean.getPojo().getUserGroupID() != null){
+        if(!bindingResult.hasErrors() && bean.getPojo().getUserGroupId() != null){
 
             try{
-                bean.setPojo(userGroupService.findById(bean.getPojo().getUserGroupID()));
+                bean.setPojo(userGroupService.findById(bean.getPojo().getUserGroupId()));
             }catch (ObjectNotFoundException oe) {
                 logger.error(oe.getMessage(), oe);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
@@ -116,7 +116,7 @@ public class UserGroupController extends ApplicationObjectSupport {
             properties.put("code", bean.getPojo().getCode());
         }
         Object[] results = this.userGroupService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
-        bean.setListResult((List<UserGroup>)results[1]);
+        bean.setListResult((List<UserGroupEntity>)results[1]);
         bean.setTotalItems(Integer.valueOf(results[0].toString()));
     }
 }

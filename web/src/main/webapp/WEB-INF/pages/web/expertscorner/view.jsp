@@ -1,5 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
-<div class="content container content-container">
+<div class="contentEntity container contentEntity-container">
     <div class="page-wrapper">
         <c:set var="itemXMLData" value="${portal:parseContentXML(item.xmlData)}"/>
         <header class="page-heading clearfix">
@@ -7,20 +7,20 @@
             <div class="breadcrumbs pull-right">
                 <ul class="breadcrumbs-list">
                     <li><a href="<c:url value="/index.html"/>"><fmt:message key="site.home"/></a><i class="fa fa-angle-right"></i></li>
-                    <li style="text-transform: capitalize;"><span>${categoryObj.name}</span><i class="fa fa-angle-right"></i></li>
-                    <c:if test="${ not empty currentCategory && currentCategory.categoryID > 0}">
-                        <li class="current" style="text-transform: capitalize;"><span>${currentCategory.name}</span></li>
+                    <li style="text-transform: capitalize;"><span>${categoryEntityObj.name}</span><i class="fa fa-angle-right"></i></li>
+                    <c:if test="${ not empty currentCategoryEntity && currentCategoryEntity.categoryID > 0}">
+                        <li class="current" style="text-transform: capitalize;"><span>${currentCategoryEntity.name}</span></li>
                     </c:if>
                 </ul>
             </div>
         </header>
-        <div class="page-content">
+        <div class="page-contentEntity">
             <div class="row page-row">
-                <div class="section-content col-md-8 col-sm-7">
+                <div class="section-contentEntity col-md-8 col-sm-7">
                     <div class="row">
-                        <div class="section-content col-md-12">
+                        <div class="section-contentEntity col-md-12">
                             <article class="welcome">
-                                ${itemXMLData.content[0]}
+                                ${itemXMLData.contentEntity[0]}
                             </article>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryObj.code)}'));
+        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryEntityObj.code)}'));
         $('video,audio').mediaelementplayer({
             enableAutosize: true,
             pauseOtherPlayers: true

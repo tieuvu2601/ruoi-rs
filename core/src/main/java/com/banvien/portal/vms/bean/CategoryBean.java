@@ -2,12 +2,12 @@ package com.banvien.portal.vms.bean;
 
 import java.util.List;
 
-import com.banvien.portal.vms.domain.Category;
+import com.banvien.portal.vms.domain.CategoryEntity;
 
-public class CategoryBean extends AbstractBean<Category> {
+public class CategoryBean extends AbstractBean<CategoryEntity> {
     public CategoryBean()
     {
-        this.pojo = new Category();
+        this.pojo = new CategoryEntity();
     }
     
     private List<Long> checkGroupList;

@@ -190,7 +190,7 @@ public class JSONML {
 	                    	}
 	                    }
 
-// Content, between <...> and </...>
+// ContentEntity, between <...> and </...>
 
 	                } else {
 	                	if (token != XML.GT) {

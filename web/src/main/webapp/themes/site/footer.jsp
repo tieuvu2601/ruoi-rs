@@ -1,11 +1,11 @@
 <%@ include file="/common/taglibs.jsp" %>
 <footer class="footer">
-    <div class="footer-content">
+    <div class="footer-contentEntity">
         <div class="container">
-            <content:findByContentTitle title="home footer" var="footer"/>
+            <contentEntity:findByContentTitle title="home footer" var="footer"/>
             <oscache:cache key="footer_homes_${footer.contentID}_${footer.modifiedDate}" duration="1">
                 <c:set var="footerXMLData" value="${portal:parseContentXML(footer.xmlData)}"/>
-                ${footerXMLData.content[0]}
+                ${footerXMLData.contentEntity[0]}
             </oscache:cache>
         </div>
     </div>

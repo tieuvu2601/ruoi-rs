@@ -1,6 +1,6 @@
 package com.banvien.portal.vms.taglibs.contents;
 
-import com.banvien.portal.vms.domain.Content;
+import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.security.SecurityUtils;
 import com.banvien.portal.vms.service.ContentService;
 import com.banvien.portal.vms.util.Constants;
@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
- * User: viennh
+ * UserEntity: viennh
  * Date: 12/13/12
  * Time: 12:41 AM
  * To change this template use File | Settings | File Templates.
@@ -33,14 +33,14 @@ public class ContentTagLibFindAuthoringTemplate extends TagSupport {
                 if (SecurityUtils.userHasAuthority(Constants.LOGON_ROLE)) {
                     userId = SecurityUtils.getLoginUserId();
                 }
-                List<Content> contentList = contentService.findAnnouncementItemsOfOnlineUser(authoringCode, userId, begin, pageSize);
-                if(contentList != null) {
-                    this.pageContext.setAttribute(this.var, contentList);
+                List<ContentEntity> contentEntityList = contentService.findAnnouncementItemsOfOnlineUser(authoringCode, userId, begin, pageSize);
+                if(contentEntityList != null) {
+                    this.pageContext.setAttribute(this.var, contentEntityList);
                 }
             }else{
-                List<Content> contentList = contentService.findByAuthoringTemplate(authoringCode, begin, pageSize);
-                if(contentList != null) {
-                    this.pageContext.setAttribute(this.var, contentList);
+                List<ContentEntity> contentEntityList = contentService.findByAuthoringTemplate(authoringCode, begin, pageSize);
+                if(contentEntityList != null) {
+                    this.pageContext.setAttribute(this.var, contentEntityList);
                 }
             }
         }

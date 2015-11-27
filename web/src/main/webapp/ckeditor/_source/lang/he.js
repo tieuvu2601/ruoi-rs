@@ -183,7 +183,7 @@ CKEDITOR.lang['he'] =
 		langCode			: 'קוד שפה',
 		tabIndex			: 'מספר טאב',
 		advisoryTitle		: 'כותרת מוצעת',
-		advisoryContentType	: 'Content Type מוצע',
+		advisoryContentType	: 'ContentEntity Type מוצע',
 		cssClasses		: 'גיליונות עיצוב קבוצות',
 		charset			: 'קידוד המשאב המקושר',
 		styles			: 'סגנון',

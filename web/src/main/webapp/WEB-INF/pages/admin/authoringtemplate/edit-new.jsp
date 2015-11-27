@@ -4,8 +4,8 @@
 <head>
     <title><fmt:message key="authoringtemplate.template"/></title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" contentEntity="IE=edge,chrome=1">
+    <meta name="viewport" contentEntity="width=device-width, initial-scale=1.0">
     <!-- Jquery step -->
     <style>
         table.tableNodeElements tr.selected .node_label{
@@ -37,7 +37,7 @@
 <c:url var="formlUrl" value="/admin/authoringtemplate/edit.html"/>
 <body>
 <form:form commandName="item" id="formItem" action="${formUrl}" method="post" cssClass="form-horizontal" novalidate="novalidate">
-<section class="content">
+<section class="contentEntity">
     <c:if test="${not empty messageResponse}">
         <div class="alert alert-message  alert-${alertType}">
             <a class="close" data-dismiss="alert" href="#">&times;</a> ${messageResponse}
@@ -70,9 +70,9 @@
                 </div>
             </fieldset>
 
-            <h3><fmt:message key="content.manager.xmldata"/></h3>
+            <h3><fmt:message key="contentEntity.manager.xmldata"/></h3>
             <fieldset>
-                <legend><fmt:message key="content.manager.xmldata"/></legend>
+                <legend><fmt:message key="contentEntity.manager.xmldata"/></legend>
                 <div class="box box-solid box-primary" id="xmlNodeTemplate" numberRow="${fn:length(item.authoringTemplateNodes)}">
                     <div class="box-header with-border">
                         <h3 class="box-title"><fmt:message key="authoringtemplate.manager.node.template"/></h3>

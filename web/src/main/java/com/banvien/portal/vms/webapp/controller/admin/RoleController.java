@@ -1,7 +1,7 @@
 package com.banvien.portal.vms.webapp.controller.admin;
 
 import com.banvien.portal.vms.bean.RoleBean;
-import com.banvien.portal.vms.domain.Role;
+import com.banvien.portal.vms.domain.RoleEntity;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.RoleService;
 import com.banvien.portal.vms.util.Constants;
@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
- * User: NhuKhang
+ * UserEntity: NhuKhang
  * Date: 10/6/12
  * Time: 10:57 AM
  */
@@ -43,12 +43,12 @@ public class RoleController extends ApplicationObjectSupport {
     public ModelAndView edit(@ModelAttribute(Constants.FORM_MODEL_KEY) RoleBean bean, BindingResult bindingResult){
         ModelAndView mav = new ModelAndView("/admin/role/edit");
         String crudaction = bean.getCrudaction();
-        Role pojo = bean.getPojo();
+        RoleEntity pojo = bean.getPojo();
         if(StringUtils.isNotBlank(crudaction) && crudaction.equals("insert-update")) {
             try{
                 roleValidator.validate(bean, bindingResult);
                 if(!bindingResult.hasErrors()){
-                    if(pojo.getRoleID() != null && pojo.getRoleID() >0 ){
+                    if(pojo.getRoleId() != null && pojo.getRoleId() >0 ){
                         this.roleService.updateItem(pojo);
                         mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
                     }
@@ -69,9 +69,9 @@ public class RoleController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        if(!bindingResult.hasErrors() && pojo.getRoleID() != null){
+        if(!bindingResult.hasErrors() && pojo.getRoleId() != null){
             try{
-                bean.setPojo(roleService.findById(pojo.getRoleID()));
+                bean.setPojo(roleService.findById(pojo.getRoleId()));
             }catch (ObjectNotFoundException ex) {
                 logger.error(ex.getMessage(), ex);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
@@ -105,14 +105,14 @@ public class RoleController extends ApplicationObjectSupport {
     private void executeSearch(RoleBean bean, HttpServletRequest request) {
         RequestUtil.initSearchBean(request, bean);
         Map<String, Object> properties = new HashMap<String, Object>();
-        if(StringUtils.isNotBlank(bean.getPojo().getName())){
-            properties.put(Role.FIELD_NAME, bean.getPojo().getName());
-        }
         if(StringUtils.isNotBlank(bean.getPojo().getRole())){
-            properties.put(Role.FIELD_ROLE, bean.getPojo().getRole());
+            properties.put("code", bean.getPojo().getRole());
+        }
+        if(StringUtils.isNotBlank(bean.getPojo().getName())){
+            properties.put("name", bean.getPojo().getName());
         }
         Object[] results = this.roleService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
-        bean.setListResult((List<Role>)results[1]);
+        bean.setListResult((List<RoleEntity>)results[1]);
         bean.setTotalItems(Integer.valueOf(results[0].toString()));
     }
 }

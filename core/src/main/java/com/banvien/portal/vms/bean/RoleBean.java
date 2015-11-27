@@ -1,10 +1,10 @@
 package com.banvien.portal.vms.bean;
 
-import com.banvien.portal.vms.domain.Role;
+import com.banvien.portal.vms.domain.RoleEntity;
 
-public class RoleBean extends AbstractBean<Role> {
+public class RoleBean extends AbstractBean<RoleEntity> {
     public RoleBean()
     {
-        this.pojo = new Role();
+        this.pojo = new RoleEntity();
     }
 }

@@ -1,5 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
-<div class="content container content-container">
+<div class="contentEntity container contentEntity-container">
     <div class="page-wrapper">
         <c:set var="itemDataXML" value="${portal:parseContentXML(item.xmlData)}"/>
 
@@ -8,13 +8,13 @@
             <div class="breadcrumbs pull-right">
                 <ul class="breadcrumbs-list">
                     <li><a href="<c:url value="/index.html"/>"><fmt:message key="site.home"/></a><i class="fa fa-angle-right"></i></li>
-                    <li style="text-transform: capitalize;"><span>${categoryObj.name}</span><i class="fa fa-angle-right"></i></li>
-                    <li class="current" style="text-transform: capitalize;"><span>${currentCategory.name}</span></li>
+                    <li style="text-transform: capitalize;"><span>${categoryEntityObj.name}</span><i class="fa fa-angle-right"></i></li>
+                    <li class="current" style="text-transform: capitalize;"><span>${currentCategoryEntity.name}</span></li>
                 </ul>
             </div>
         </header>
 
-        <div class="page-content">
+        <div class="page-contentEntity">
             <div class="row page-row">
                 <div class="courses-wrapper col-md-8 col-sm-7">
                     <div class="featured-courses tabbed-info page-row">
@@ -32,11 +32,11 @@
                             <li><a style="font-size: 18px;" href="#tab4" data-toggle="tab"><fmt:message key="site.research.group.gallery"/></a></li>
                         </ul>
 
-                        <div class="tab-content">
+                        <div class="tab-contentEntity">
                             <div class="tab-pane active" id="tab1">
                                 <div class="row">
                                     <div class="courses-wrapper col-md-12">
-                                        ${itemDataXML.content[0]}
+                                        ${itemDataXML.contentEntity[0]}
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
 
                                                 <c:if test="${not empty projectObj && projectObj.contentID > 0}">
                                                     <c:set var="projectData" value="${portal:parseContentXML(projectObj.xmlData)}"/>
-                                                    <seo:url value="${projectObj.title}" var="productUrl" prefix="/${productPrefixUrl}/${portal:convertStringToUrl(currentCategory.code)}/"/>
+                                                    <seo:url value="${projectObj.title}" var="productUrl" prefix="/${productPrefixUrl}/${portal:convertStringToUrl(currentCategoryEntity.code)}/"/>
 
                                                     <div class="row page-row">
                                                         <div class="details col-md-9 col-sm-8 col-xs-6">
@@ -92,7 +92,7 @@
                                                 <c:if test="${not empty personObj && personObj.contentID > 0}">
 
                                                     <c:set var="personData" value="${portal:parseContentXML(personObj.xmlData)}"/>
-                                                    <seo:url value="${personObj.title}"  var="personUrl" prefix="/${personObj.authoringTemplate.prefixUrl}/${portal:convertStringToUrl(personObj.category.code)}/"/>
+                                                    <seo:url value="${personObj.title}"  var="personUrl" prefix="/${personObj.authoringTemplateEntity.prefixUrl}/${portal:convertStringToUrl(personObj.categoryEntity.code)}/"/>
                                                     <div class="row page-row">
                                                         <div class="details col-md-9 col-sm-8 col-xs-6">
                                                             <div class="row page-row">
@@ -106,7 +106,7 @@
 
                                                                 <div class="details col-md-9 col-sm-8 col-xs-6">
                                                                     <h4 class="title"><a href="${personUrl}">${personData.header[0]}</a></h4>
-                                                                    <h5><fmt:message key="site.role"/>:</strong> ${personData.role[0]}</h5>
+                                                                    <h5><fmt:message key="site.roleEntity"/>:</strong> ${personData.roleEntity[0]}</h5>
                                                                     <h6><fmt:message key="site.degree"/>: ${personData.degree[0]}</h6>
                                                                     <h6><fmt:message key="site.email"/>: <a href="mailto:${personData.email[0]}">${personData.email[0]}</a></h6>
                                                                     <c:if test="${not empty itemXMLData.phonenumb[0]}">--%>
@@ -148,7 +148,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryObj.code)}'));
+        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryEntityObj.code)}'));
     });
     function setSelectedMenu(parent, element){
         $(parent).find('.active').removeClass('active');

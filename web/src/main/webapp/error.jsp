@@ -14,7 +14,7 @@
 <body id="error">
     <div id="page">
         <div class="pathway"><h1><fmt:message key="errorPage.heading"/></h1></div>
-        <div id="content" class="clearfix">
+        <div id="contentEntity" class="clearfix">
             <div id="main">
 
                 <fmt:message key="errorPage.unexpectedMessage"></fmt:message>

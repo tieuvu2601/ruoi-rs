@@ -1,10 +1,10 @@
 package com.banvien.portal.vms.bean;
 
-import com.banvien.portal.vms.domain.UserRole;
+import com.banvien.portal.vms.domain.UserRoleEntity;
 
-public class UserRoleBean extends AbstractBean<UserRole> {
+public class UserRoleBean extends AbstractBean<UserRoleEntity> {
     public UserRoleBean()
     {
-        this.pojo = new UserRole();
+        this.pojo = new UserRoleEntity();
     }
 }

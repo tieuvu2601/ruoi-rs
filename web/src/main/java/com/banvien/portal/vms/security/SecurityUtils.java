@@ -7,7 +7,7 @@ import java.util.List;
 
 public class SecurityUtils {
 	/**
-	 * This method to retrieve the current online User Detail 
+	 * This method to retrieve the current online UserEntity Detail
 	 * @return the current online MyUserDetail object
 	 */
 	public static MyUserDetail getPrincipal() {

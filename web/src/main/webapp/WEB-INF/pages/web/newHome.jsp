@@ -1,15 +1,15 @@
 <%@ taglib prefix="oscache" uri="http://www.opensymphony.com/oscache" %>
 <%@ include file="/common/taglibs.jsp"%>
-<div class="content container">
+<div class="contentEntity container">
     <div class="row cols-wrapper">
         <div class="col-md-3 welcome-container static-containers">
-            <content:findByContentTitle title="welcome" var="welcome"/>
+            <contentEntity:findByContentTitle title="welcome" var="welcome"/>
             <oscache:cache key="welcome_home_${welcome.contentID}_${welcome.modifiedDate}" duration="1">
                 <c:set var="welcomeData" value="${portal:parseContentXML(welcome.xmlData)}"/>
                 <div class="static-container">
                     <h3><span class="line">${welcomeData.header[0]}</span></h3>
-                    <div class="static-content">
-                        ${welcomeData.content[0]}
+                    <div class="static-contentEntity">
+                        ${welcomeData.contentEntity[0]}
                     </div>
                 </div>
             </oscache:cache>
@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div id="promo-slider" class="slider flexslider">
-                        <content:findByContentTitle title="homeSlider" var="homeSlider"/>
+                        <contentEntity:findByContentTitle title="homeSlider" var="homeSlider"/>
                         <oscache:cache key="slide_home_${homeSlider.contentID}_${homeSlider.modifiedDate}" duration="1">
                             <c:set var="sliderData" value="${portal:parseContentXML(homeSlider.xmlData)}"/>
                             <c:set var="headerSlider" value="${sliderData.header}"/>
@@ -53,33 +53,33 @@
 
     <div class="row cols-wrapper">
         <div class="col-md-3 information-container static-containers">
-            <content:findByContentTitle title="information" var="information"/>
+            <contentEntity:findByContentTitle title="information" var="information"/>
             <oscache:cache key="information_home__${information.contentID}_${information.modifiedDate}" duration="1">
                 <c:set var="informationData" value="${portal:parseContentXML(information.xmlData)}"/>
                 <div class="static-container">
                     <h3><span class="line">${informationData.header[0]}</span></h3>
-                    <div class="static-content">
-                        ${informationData.content[0]}
+                    <div class="static-contentEntity">
+                        ${informationData.contentEntity[0]}
                     </div>
                 </div>
             </oscache:cache>
         </div>
 
         <div class="col-md-3 academic-programs-container static-containers">
-            <content:findByContentTitle title="academic programs" var="academicProgram"/>
+            <contentEntity:findByContentTitle title="academic programs" var="academicProgram"/>
             <oscache:cache key="academic_program_home_${academicProgram.contentID}_${academicProgram.modifiedDate}" duration="1">
                 <c:set var="academicProgramData" value="${portal:parseContentXML(academicProgram.xmlData)}"/>
                 <div class="static-container">
                     <h3><span class="line">${academicProgramData.header[0]}</span></h3>
-                    <div class="static-content">
-                            ${academicProgramData.content[0]}
+                    <div class="static-contentEntity">
+                            ${academicProgramData.contentEntity[0]}
                     </div>
                 </div>
             </oscache:cache>
         </div>
 
         <div class="col-md-3">
-            <content:findByCategory category="recent news" begin="0" pageSize="9" var="recentNews"/>
+            <contentEntity:findByCategory categoryEntity="recent news" begin="0" pageSize="9" var="recentNews"/>
             <c:set var="numberOfItemInContainer" value="3"/>
             <section class="news">
                 <h1 class="section-heading text-highlight"><span class="line"><fmt:message key="site.news"/></span></h1>
@@ -89,13 +89,13 @@
                     <a class="next" href="#news-carousel" data-slide="next"><i class="fa fa-caret-right"></i></a>
                 </div>
 
-                <div class="section-content clearfix">
+                <div class="section-contentEntity clearfix">
                     <div id="news-carousel" class="news-carousel carousel slide">
                         <div class="carousel-inner">
                             <oscache:cache key="news_${recentNews[0].contentID}_${recentNews[0].modifiedDate}" duration="1">
                                 <c:forEach var="news" items="${recentNews}" varStatus="status">
                                     <c:set var="newXMLData" value="${portal:parseContentXML(news.xmlData)}"/>
-                                    <seo:url value="${news.title}" var="newUrl" prefix="/${news.authoringTemplate.prefixUrl}/${portal:convertStringToUrl(news.category.code)}/"/>
+                                    <seo:url value="${news.title}" var="newUrl" prefix="/${news.authoringTemplateEntity.prefixUrl}/${portal:convertStringToUrl(news.categoryEntity.code)}/"/>
 
                                     <c:if test="${status.index % numberOfItemInContainer == 0}">
                                         <div class="item <c:if test="${status.index == 0}">active</c:if>">
@@ -132,8 +132,8 @@
         <div class="col-md-3">
             <section class="events">
                 <h1 class="section-heading text-highlight"><span class="line"><fmt:message key="site.events"/></span></h1>
-                <content:findByEventTypeWithMaxItem eventType="upcoming" begin="0" pageSize="3" var="events"/>
-                <div class="section-content">
+                <contentEntity:findByEventTypeWithMaxItem eventType="upcoming" begin="0" pageSize="3" var="events"/>
+                <div class="section-contentEntity">
                     <c:forEach var="event" items="${events}">
                         <c:set var="eventData" value="${portal:parseContentXML(event.xmlData)}"/>
                         <fmt:formatDate var="eventBeginDate" value="${event.beginDate}" pattern="dd-MM-yyyy"/>
@@ -143,7 +143,7 @@
                                 <span class="date-number">${portal:getDateVariableByIndexAndParameter(eventBeginDate, 0, "-")}</span>
                             </p>
                             <div class="details">
-                                <seo:url value="${event.title}" var="eventURL" prefix="/${event.authoringTemplate.prefixUrl}/${portal:convertStringToUrl(event.category.code)}/"/>
+                                <seo:url value="${event.title}" var="eventURL" prefix="/${event.authoringTemplateEntity.prefixUrl}/${portal:convertStringToUrl(event.categoryEntity.code)}/"/>
                                 <h2 class="title"><a href="${eventURL}">${eventData.header[0]}</a></h2>
                                 <p class="time"><i class="fa fa-clock-o"></i>${eventData.beginTime[0]} - ${eventData.endTime[0]}</p>
                                 <p class="location"><i class="fa fa-map-marker"></i>${eventData.location[0]}</p>
@@ -159,13 +159,13 @@
 
     <div class="row cols-wrapper">
         <div class="col-md-3 research-themes static-containers">
-            <content:findByContentTitle title="research themes" var="researchThemes"/>
+            <contentEntity:findByContentTitle title="research themes" var="researchThemes"/>
             <oscache:cache key="research_themes_home_${researchThemes.contentID}_${researchThemes.modifiedDate}" duration="1">
                 <c:set var="researchThemesData" value="${portal:parseContentXML(researchThemes.xmlData)}"/>
                 <div class="static-container">
                     <h3><span class="line">${researchThemesData.header[0]}</span></h3>
-                    <div class="static-content">
-                        ${researchThemesData.content[0]}
+                    <div class="static-contentEntity">
+                        ${researchThemesData.contentEntity[0]}
                     </div>
                 </div>
             </oscache:cache>
@@ -173,7 +173,7 @@
 
         <div class="col-md-9">
             <section class="news">
-                <content:findByPrefixUrlCategory prefixUrl="researches" begin="0" pageSize="3" var="researchProject"/>
+                <contentEntity:findByPrefixUrlCategory prefixUrl="researches" begin="0" pageSize="3" var="researchProject"/>
                 <h1 class="section-heading text-highlight"><span class="line"><fmt:message key="site.research.project"/></span></h1>
                 <c:if test="${fn:length(researchProject) > 3}">
                     <div class="carousel-controls">
@@ -181,14 +181,14 @@
                         <a class="next" href="#research-carousel" data-slide="next"><i class="fa fa-caret-right"></i></a>
                     </div>
                 </c:if>
-                <div class="section-content clearfix">
+                <div class="section-contentEntity clearfix">
                     <div id="research-carousel" class="news-carousel carousel slide">
                         <div class="carousel-inner">
                             <div class="item active">
                                 <oscache:cache key="news_${researchProject[0].contentID}_${researchProject[0].modifiedDate}" duration="1">
                                     <c:forEach var="project" items="${researchProject}">
                                         <c:set var="projectData" value="${portal:parseContentXML(project.xmlData)}"/>
-                                        <seo:url value="${project.title}" var="projectUrl" prefix="/${project.authoringTemplate.prefixUrl}/${portal:convertStringToUrl(project.category.parentCategory.code)}/"/>
+                                        <seo:url value="${project.title}" var="projectUrl" prefix="/${project.authoringTemplateEntity.prefixUrl}/${portal:convertStringToUrl(project.categoryEntity.parentCategoryEntity.code)}/"/>
                                         <div class="col-md-4 research-item">
                                             <h2 class="title"><a href="${projectUrl}">${projectData.header[0]}</a></h2>
 

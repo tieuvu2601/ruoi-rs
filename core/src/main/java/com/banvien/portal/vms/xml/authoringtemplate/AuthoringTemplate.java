@@ -4,12 +4,12 @@ import javax.xml.bind.annotation.*;
 
 
 /**
- * <p>Java class for AuthoringTemplate complex type.
+ * <p>Java class for AuthoringTemplateEntity complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="AuthoringTemplate">
+ * &lt;complexType name="AuthoringTemplateEntity">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>

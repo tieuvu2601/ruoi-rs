@@ -7,17 +7,17 @@
     <tlibversion>1.0</tlibversion>
     <jspversion>1.1</jspversion>
     <shortname>curl</shortname>
-    <uri>http://www.banvien.com/tags/content</uri>
+    <uri>http://www.banvien.com/tags/contentEntity</uri>
     <info>
         Content Tag Lib
     </info>
 
     <tag>
         <name>findByCategory</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibFindCategory</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindCategory</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
-            <name>category</name>
+            <name>categoryEntity</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
@@ -41,7 +41,7 @@
 
     <tag>
         <name>findByAuthoringTemplate</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibFindAuthoringTemplate</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindAuthoringTemplate</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>authoringCode</name>
@@ -68,7 +68,7 @@
 
     <tag>
         <name>findTopViews</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibFindTopView</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindTopView</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>authoringCode</name>
@@ -76,7 +76,7 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-            <name>category</name>
+            <name>categoryEntity</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
@@ -100,7 +100,7 @@
 
     <tag>
         <name>findTopComments</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibFindTopComment</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindTopComment</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>authoringCode</name>
@@ -108,7 +108,7 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-            <name>category</name>
+            <name>categoryEntity</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
@@ -132,7 +132,7 @@
 
     <tag>
         <name>findCategoryByAuthoringTemplate</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.CategoryTaglibFindCategory</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.CategoryTaglibFindCategory</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>authoringCode</name>
@@ -148,7 +148,7 @@
 
     <tag>
         <name>findCategoryForBuildMenu</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.CategoryTaglibFindCategoryForBuildMenu</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.CategoryTaglibFindCategoryForBuildMenu</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>nodeLevel</name>
@@ -165,7 +165,7 @@
 
     <tag>
         <name>getLocale</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.LocaleTagLib</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.LocaleTagLib</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>var</name>
@@ -176,7 +176,7 @@
 
     <tag>
         <name>findByDepartmentAndAuthoringTemplate</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibFindByDepartment</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindByDepartment</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>department</name>
@@ -184,7 +184,7 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-            <name>authoringTemplate</name>
+            <name>authoringTemplateEntity</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
@@ -208,7 +208,7 @@
 
     <tag>
         <name>findDepartment</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.DepartmentTaglib</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.DepartmentTaglib</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>var</name>
@@ -220,7 +220,7 @@
 
     <tag>
         <name>findByContentTitle</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTaglibFindByContentTitle</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTaglibFindByContentTitle</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>title</name>
@@ -236,7 +236,7 @@
 
     <tag>
         <name>findByPrefixUrlCategory</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibFindPrefixUrlCategory</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindPrefixUrlCategory</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>prefixUrl</name>
@@ -262,7 +262,7 @@
 
     <tag>
         <name>findByEventTypeWithMaxItem</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibFindByEventTypeWithMaxItem</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindByEventTypeWithMaxItem</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>eventType</name>

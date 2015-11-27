@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="usergroup.management"/></title>
-    <meta name="heading" content="User Group Management"/>
+    <meta name="heading" contentEntity="User Group Management"/>
 </head>
 <c:url var="formUrl" value="/admin/usergroup/list.html"/>
 <c:url var="editUrl" value="/admin/usergroup/edit.html"/>
@@ -28,7 +28,7 @@
     </div>
 </div>
 
-<div class="content animate-panel">
+<div class="contentEntity animate-panel">
 <form:form commandName="items" action="${formUrl}" method="post" id="listForm" cssClass="form-horizontal">
     <div>
         <div class="row">

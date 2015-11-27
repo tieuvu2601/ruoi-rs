@@ -2,7 +2,7 @@
 
 <head>
     <title>Comment Management</title>
-    <meta name="heading" content="Comment Management"/>
+    <meta name="heading" contentEntity="Comment Management"/>
 </head>
 <div class="pathway">
     Comment Management
@@ -10,7 +10,7 @@
 
 <c:url var="url" value="/admin/comment/list.html"/>
 <c:url var="editUrl" value="/admin/comment/edit.html"/>
-<div id="content">
+<div id="contentEntity">
     <form:form commandName="items" action="${url}" method="post" id="listForm">
         <div class="box_container">
             <div class="header">
@@ -20,7 +20,7 @@
                 <table width="100%" cellpadding="5" cellspacing="5" border="0">
                     <tr>
                         <td>Content</td>
-                        <td><form:input path="pojo.content" size="40"/></td>
+                        <td><form:input path="pojo.contentEntity" size="40"/></td>
                         <td>Comment Text</td>
                         <td><form:input path="pojo.commentText" size="40"/></td>
                     </tr>
@@ -45,7 +45,7 @@
                             <input type="checkbox" name="checkList" value="${tableList.commentID}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
                 </display:column>
 
-                <display:column headerClass="table_header" property="content" escapeXml="true" sortable="true" sortName="content" titleKey="Content" style="width: 20%"/>
+                <display:column headerClass="table_header" property="contentEntity" escapeXml="true" sortable="true" sortName="contentEntity" titleKey="Content" style="width: 20%"/>
                 <display:column headerClass="table_header" property="commentText" escapeXml="true" sortable="true" sortName="commentText" titleKey="Comment Text" style="width: 20%"/>
                 <display:column headerClass="table_header" property="status" escapeXml="true" sortable="true" sortName="status" titleKey="Status" style="width: 10%"/>
                 <display:column headerClass="table_header" property="createdDate" sortable="true" sortName="createdDate" titleKey="Created Date" style="width: 20%" format="{0,date,dd/MM/yyyy}"/>
@@ -59,7 +59,7 @@
 
                 </display:column>
                 <display:setProperty name="paging.banner.item_name"><fmt:message key=""/></display:setProperty>
-                <display:setProperty name="paging.banner.items_name"><fmt:message key="category"/></display:setProperty>
+                <display:setProperty name="paging.banner.items_name"><fmt:message key="categoryEntity"/></display:setProperty>
                 <display:setProperty name="paging.banner.placement" value="bottom"/>
                 <display:setProperty name="paging.banner.no_items_found" value=""/>
                 <display:setProperty name="paging.banner.onepage" value=""/>

@@ -3,14 +3,13 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-	<class name="com.banvien.portal.vms.domain.UserRole" table="PortalUserRole">
-		<id name="userRoleID" column="UserRoleID">
+	<class name="com.banvien.portal.vms.domain.UserRoleEntity" table="UserRole">
+		<id name="userRoleId" column="UserRoleID">
             <generator class="increment"/>
 		</id>
-
 		<many-to-one name="user" column="UserID"/>
 
-        <many-to-one name="role" column="roleID"/>
+        <many-to-one name="role" column="RoleID"/>
 
 	</class>
 </hibernate-mapping>

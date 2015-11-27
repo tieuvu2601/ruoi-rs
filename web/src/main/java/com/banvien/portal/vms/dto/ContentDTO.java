@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * Created by Ban Vien Co., Ltd.
- * User: viennh
+ * UserEntity: viennh
  * Email: vien.nguyen@banvien.com
  * Date: 1/23/13
  * Time: 8:37 AM

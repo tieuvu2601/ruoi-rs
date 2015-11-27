@@ -186,7 +186,7 @@ DlgGenTabIndex		: "מספר טאב",
 DlgGenLongDescr		: "קישור לתיאור מפורט",
 DlgGenClass			: "גיליונות עיצוב קבוצות",
 DlgGenTitle			: "כותרת מוצעת",
-DlgGenContType		: "Content Type מוצע",
+DlgGenContType		: "ContentEntity Type מוצע",
 DlgGenLinkCharset	: "קידוד המשאב המקושר",
 DlgGenStyle			: "סגנון",
 

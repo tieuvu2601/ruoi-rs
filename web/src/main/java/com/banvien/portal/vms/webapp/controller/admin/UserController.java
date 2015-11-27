@@ -17,7 +17,6 @@ import com.banvien.portal.vms.webapp.jcr.JcrConstants;
 import com.banvien.portal.vms.webapp.validator.UserValidator;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.stereotype.Controller;
@@ -64,7 +63,7 @@ public class UserController extends ApplicationObjectSupport {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
     	binder.registerCustomEditor(Date.class, new CustomDateEditor());
-        binder.registerCustomEditor(UserGroup.class, new PojoEditor(AuthoringTemplate.class, "userGroupID", Long.class));
+        binder.registerCustomEditor(UserGroupEntity.class, new PojoEditor(AuthoringTemplateEntity.class, "userGroupID", Long.class));
         binder.registerCustomEditor(FileItem.class, new FileItemMultipartFileEditor());
 	}
 
@@ -72,7 +71,7 @@ public class UserController extends ApplicationObjectSupport {
     public ModelAndView edit(@ModelAttribute(Constants.FORM_MODEL_KEY) UserBean bean, BindingResult bindingResult){
         ModelAndView mav = new ModelAndView("/admin/user/edit");
         String crudaction = bean.getCrudaction();
-        User pojo = bean.getPojo();
+        UserEntity pojo = bean.getPojo();
         if(StringUtils.isNotBlank(crudaction) && crudaction.equals("insert-update")) {
             try{
                 userValidator.validate(bean, bindingResult);
@@ -83,7 +82,7 @@ public class UserController extends ApplicationObjectSupport {
                 	}catch(Exception e){
                 		logger.error("Could not save file to Jcr");
                 	}
-                    if(pojo.getUserID() != null && pojo.getUserID() >0 ){
+                    if(pojo.getUserId() != null && pojo.getUserId() >0 ){
                         this.userService.updateItem(pojo);
                         mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
                     }else{
@@ -98,10 +97,10 @@ public class UserController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        if(!bindingResult.hasErrors() && bean.getPojo().getUserID() != null){
+        if(!bindingResult.hasErrors() && bean.getPojo().getUserId() != null){
 
             try{
-                bean.setPojo(userService.findById(bean.getPojo().getUserID()));
+                bean.setPojo(userService.findById(bean.getPojo().getUserId()));
             }catch (ObjectNotFoundException oe) {
                 logger.error(oe.getMessage(), oe);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
@@ -147,10 +146,10 @@ public class UserController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        if(!bindingResult.hasErrors() && bean.getPojo().getUserID() != null){
+        if(!bindingResult.hasErrors() && bean.getPojo().getUserId() != null){
 
             try{
-                bean.setPojo(userService.findById(bean.getPojo().getUserID()));
+                bean.setPojo(userService.findById(bean.getPojo().getUserId()));
             }catch (ObjectNotFoundException oe) {
                 logger.error(oe.getMessage(), oe);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
@@ -169,7 +168,7 @@ public class UserController extends ApplicationObjectSupport {
         Map<String, Object> properties = new HashMap<String, Object>();
 
         Object[] results = this.roleService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
-        bean.setListResult((List<Role>)results[1]);
+        bean.setListResult((List<RoleEntity>)results[1]);
         bean.setTotalItems(Integer.valueOf(results[0].toString()));
     }
 
@@ -185,12 +184,12 @@ public class UserController extends ApplicationObjectSupport {
         if(StringUtils.isNotBlank(bean.getPojo().getUsername())){
             properties.put("username", bean.getPojo().getUsername());
         }
-        UserGroup userGroup = bean.getPojo().getUserGroup(); 
-        if(userGroup != null && userGroup.getUserGroupID() != null){
-        	properties.put("userGroup.userGroupID", userGroup.getUserGroupID());
+        UserGroupEntity userGroupEntity = bean.getPojo().getUserGroup();
+        if(userGroupEntity != null && userGroupEntity.getUserGroupId() != null){
+        	properties.put("userGroupEntity.userGroupID", userGroupEntity.getUserGroupId());
         }
         Object[] results = this.userService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
-        bean.setListResult((List<User>)results[1]);
+        bean.setListResult((List<UserEntity>)results[1]);
         bean.setTotalItems(Integer.valueOf(results[0].toString()));
     }
 
@@ -201,17 +200,17 @@ public class UserController extends ApplicationObjectSupport {
     private void excutedSearchRole4User(UserBean bean, HttpServletRequest request) {
         RequestUtil.initSearchBean(request, bean);
         Map<String, Object> properties = new HashMap<String, Object>();
-        if(bean.getPojo().getUserID() != null && bean.getPojo().getUserID() > 0)
+        if(bean.getPojo().getUserId() != null && bean.getPojo().getUserId() > 0)
         {
-            properties.put(UserRole.FIELD_USER, bean.getPojo().getUserID());
+            properties.put("userId", bean.getPojo().getUserId());
         }
         Object[] results = this.userRoleService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), 0, -1);
-        List<UserRole> lst = new ArrayList<UserRole>();
-        lst = (List<UserRole>)results[1];
+        List<UserRoleEntity> lst = new ArrayList<UserRoleEntity>();
+        lst = (List<UserRoleEntity>)results[1];
         Map<Long, Boolean> published = new HashMap<Long, Boolean>();
         if(lst.size() > 0){
-        	for(UserRole userrole: lst){
-        		published.put(userrole.getRole().getRoleID(), true);
+        	for(UserRoleEntity userrole: lst){
+        		published.put(userrole.getRole().getRoleId(), true);
         	}
         }
         bean.setRoleMap(published);
@@ -223,8 +222,8 @@ public class UserController extends ApplicationObjectSupport {
     		@RequestParam(value="uid", required=false) List<Long> userIDs,
     		HttpServletRequest request, HttpServletResponse response) throws IOException{
     	ModelAndView mav = new ModelAndView("/admin/user/ajax");
-    	List<User> users = userService.findAll();
-    	mav.addObject("users", users);
+    	List<UserEntity> userEntities = userService.findAll();
+    	mav.addObject("users", userEntities);
     	mav.addObject("success", true);
     	Map<Long, String> mapCheckedUser = new HashMap<Long, String>();
     	if(groupIDs != null && groupIDs.size() > 0){

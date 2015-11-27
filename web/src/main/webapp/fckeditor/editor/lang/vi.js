@@ -186,7 +186,7 @@ DlgGenTabIndex		: "Chỉ số của Tab",
 DlgGenLongDescr		: "Mô tả URL",
 DlgGenClass			: "Lớp Stylesheet",
 DlgGenTitle			: "Advisory Title",
-DlgGenContType		: "Advisory Content Type",
+DlgGenContType		: "Advisory ContentEntity Type",
 DlgGenLinkCharset	: "Bảng mã của tài nguyên được liên kết đến",
 DlgGenStyle			: "Mẫu",
 

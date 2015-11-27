@@ -1,6 +1,6 @@
 <cfsetting enablecfoutputonly="true">
 <!---
-This code uses a CF User Defined Function and should work in CF version 5.0
+This code uses a CF UserEntity Defined Function and should work in CF version 5.0
 and up without alteration.
 
 Also if you are hosting your site at an ISP, you will have to check with them
@@ -103,7 +103,7 @@ others files in certain cases.
 
 <cfoutput><html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" contentEntity="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="#spellercss#" />
 <script language="javascript" src="#word_win_src#"></script>
 <script language="javascript">

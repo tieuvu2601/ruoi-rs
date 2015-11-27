@@ -1,12 +1,12 @@
 package com.banvien.portal.vms.security;
 
-import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.banvien.portal.vms.dao.UserDAO;
 import com.banvien.portal.vms.dao.UserGroupDAO;
+import com.banvien.portal.vms.domain.UserEntity;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataAccessException;
@@ -18,8 +18,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.banvien.portal.vms.dao.RoleDAO;
-import com.banvien.portal.vms.domain.Role;
-import com.banvien.portal.vms.domain.User;
+import com.banvien.portal.vms.domain.RoleEntity;
 import com.banvien.portal.vms.service.UserService;
 import com.banvien.portal.vms.util.Constants;
 
@@ -92,8 +91,8 @@ public class MyUserDetailsService implements UserDetailsService {
 	 */
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException, DataAccessException {
-        logger.warn("=================User " + username + " try to login");
-		User account = null;
+        logger.warn("=================UserEntity " + username + " try to login");
+		UserEntity account = null;
 
 		try {
 			account = userService.findByUserName(username);
@@ -114,9 +113,9 @@ public class MyUserDetailsService implements UserDetailsService {
 		    authorities.put(account.getUserGroup().getCode(), new GrantedAuthorityImpl(account.getUserGroup().getCode()));
         }
 
-        List<Role> roleList = roleDAO.findByUserID(account.getUserID());
-        for (Role role : roleList) {
-            authorities.put(role.getRole(), new GrantedAuthorityImpl(role.getRole()));
+        List<RoleEntity> roleEntityList = roleDAO.findByUserID(account.getUserId());
+        for (RoleEntity roleEntity : roleEntityList) {
+            authorities.put(roleEntity.getRole(), new GrantedAuthorityImpl(roleEntity.getRole()));
         }
         if (account.getFullAccess() != null && account.getFullAccess().equals(1)) {
             authorities.put(Constants.FULL_ACCESS_RIGHT, new GrantedAuthorityImpl(Constants.FULL_ACCESS_RIGHT));

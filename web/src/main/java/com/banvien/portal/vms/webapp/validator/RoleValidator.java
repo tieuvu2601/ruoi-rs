@@ -1,7 +1,7 @@
 package com.banvien.portal.vms.webapp.validator;
 
 import com.banvien.portal.vms.bean.RoleBean;
-import com.banvien.portal.vms.domain.Role;
+import com.banvien.portal.vms.domain.RoleEntity;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.RoleService;
 import org.apache.commons.logging.Log;
@@ -37,10 +37,10 @@ public class RoleValidator extends ApplicationObjectSupport implements Validator
 
     private void checkUnique(RoleBean bean, Errors errors){
         try{
-            Role role = roleService.findByRole(bean.getPojo().getRole());
+            RoleEntity roleEntity = roleService.findByRole(bean.getPojo().getRole());
 
-            if(bean.getPojo().getRoleID() == null || (bean.getPojo().getRoleID() != null && !role.getRoleID().equals(bean.getPojo().getRoleID()))){
-                errors.rejectValue("pojo.role", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("role.form.role")}, "Value has been chosen.");
+            if(bean.getPojo().getRoleId() == null || (bean.getPojo().getRoleId() != null && !roleEntity.getRoleId().equals(bean.getPojo().getRoleId()))){
+                errors.rejectValue("pojo.roleEntity", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("role.form.role")}, "Value has been chosen.");
             }
         }catch (ObjectNotFoundException ex) {
          //Object not found

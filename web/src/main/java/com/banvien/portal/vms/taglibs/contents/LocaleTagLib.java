@@ -9,7 +9,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 
 /**
  * Created with IntelliJ IDEA.
- * User: HauKute
+ * UserEntity: HauKute
  * Date: 10/20/15
  * Time: 11:35 AM
  * To change this template use File | Settings | File Templates.

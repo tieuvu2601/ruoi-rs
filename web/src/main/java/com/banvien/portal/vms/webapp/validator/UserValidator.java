@@ -1,7 +1,7 @@
 package com.banvien.portal.vms.webapp.validator;
 
 import com.banvien.portal.vms.bean.UserBean;
-import com.banvien.portal.vms.domain.User;
+import com.banvien.portal.vms.domain.UserEntity;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.UserService;
 import com.banvien.portal.vms.util.CommonUtil;
@@ -35,19 +35,19 @@ public class UserValidator extends ApplicationObjectSupport implements Validator
        }
 
         public void checkUnique(UserBean cmd, Errors errors){
-            User user = userService.findByUserName(cmd.getPojo().getUsername());
-            if(user != null && cmd.getPojo().getUserID() == null || (cmd.getPojo().getUserID() != null && (!user.getUserID().equals(cmd.getPojo().getUserID())))){
+            UserEntity userEntity = userService.findByUserName(cmd.getPojo().getUsername());
+            if(userEntity != null && cmd.getPojo().getUserId() == null || (cmd.getPojo().getUserId() != null && (!userEntity.getUserId().equals(cmd.getPojo().getUserId())))){
                 errors.rejectValue("pojo.username", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("user.username")}, "is duplicate.");
             }
 
             try{
-                User group = userService.findByEmail(cmd.getPojo().getEmail());
-                if(cmd.getPojo().getUserID() == null || (cmd.getPojo().getUserID() != null && (!group.getUserID().equals(cmd.getPojo().getUserID())))){
+                UserEntity group = userService.findByEmail(cmd.getPojo().getEmail());
+                if(cmd.getPojo().getUserId() == null || (cmd.getPojo().getUserId() != null && (!group.getUserId().equals(cmd.getPojo().getUserId())))){
                     errors.rejectValue("pojo.email", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("user.email")}, "is duplicate.");
                 }
 
             }catch (ObjectNotFoundException ex) {
-                //User not exist
+                //UserEntity not exist
             }
         }
 

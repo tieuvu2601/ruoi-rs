@@ -3,8 +3,8 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-	<class name="com.banvien.portal.vms.domain.Role" table="PortalRole">
-		<id name="roleID" column="RoleID">
+	<class name="com.banvien.portal.vms.domain.RoleEntity" table="Role">
+		<id name="role" column="RoleID">
             <generator class="increment"/>
 		</id>
 
@@ -17,6 +17,5 @@
 		<property name="createdDate" column="CreatedDate"/>
 	
 		<property name="modifiedDate" column="ModifiedDate"/>
-
 	</class>
 </hibernate-mapping>

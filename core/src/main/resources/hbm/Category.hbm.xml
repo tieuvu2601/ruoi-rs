@@ -3,9 +3,9 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-	<class name="com.banvien.portal.vms.domain.Category" table="PortalCategory">
+	<class name="com.banvien.portal.vms.domain.CategoryEntity" table="Category">
 
-        <id name="categoryID" column="CategoryID">
+        <id name="categoryId" column="CategoryID">
             <generator class="increment"/>
         </id>
 
@@ -15,8 +15,6 @@
 
         <property name="prefixUrl" column="PrefixUrl"/>
 
-        <property name="keyword" column="Keyword"/>
-	
 		<property name="description" column="Description"/>
 
         <property name="displayOrder" column="DisplayOrder"/>
@@ -25,17 +23,13 @@
 	
 		<property name="modifiedDate" column="ModifiedDate"/>
 
-		<property name="parentRootID" column="ParentRootID"/>
-
         <many-to-one name="authoringTemplate" column="AuthoringTemplateID"/>
 
-        <many-to-one name="parentCategory" column="ParentCatID"/>
+        <many-to-one name="parent" column="ParentID"/>
 
         <bag name="children" table="PortalCategory" inverse="true" cascade="all-delete-orphan" lazy="false" >
-            <key column="ParentCatID"/>
-            <many-to-many column="CategoryID" order-by="displayOrder" class="com.banvien.portal.vms.domain.Category"/>
+            <key column="ParentID"/>
+            <many-to-many column="CategoryID" order-by="displayOrder" class="com.banvien.portal.vms.domain.CategoryEntity"/>
         </bag>
-
-        <property name="eng" column="IsEng"/>
 	</class>
 </hibernate-mapping>

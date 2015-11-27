@@ -2,7 +2,7 @@
 
 <head>
     <title>Comment Management</title>
-    <meta name="heading" content="Comment Management"/>
+    <meta name="heading" contentEntity="Comment Management"/>
 </head>
 <div class="pathway">
    <c:choose>
@@ -15,9 +15,9 @@
    </c:choose>
 </div>
 <c:url var="url" value="/admin/comment/edit.html"/>
-<c:url var="backUrl" value="/admin/content/approve.html"/>
+<c:url var="backUrl" value="/admin/contentEntity/approve.html"/>
 
-<div id="content">
+<div id="contentEntity">
     <form:form commandName="item" action="${url}" method="post" id="itemForm">
         <div class="box_container">
             <div class="header">
@@ -29,8 +29,8 @@
                     <tr>
                         <td>Content</td>
                         <td>
-                            <form:input path="pojo.content.title" size="40" readonly="true"/>
-                            <form:errors path="pojo.content" cssClass="validateError"/>
+                            <form:input path="pojo.contentEntity.title" size="40" readonly="true"/>
+                            <form:errors path="pojo.contentEntity" cssClass="validateError"/>
                         </td>
                     </tr>
                     <tr>
@@ -54,7 +54,7 @@
                             <form:hidden path="crudaction" id="crudaction" value="insert-update"/>
                             <form:hidden path="pojo.commentID"/>
                             <input type="button" value="<fmt:message key="button.save"/>" onclick="$('#itemForm').submit();"/>
-                            <input type="button" value="<fmt:message key="button.back"/>" onclick="document.location.href='${backUrl}?pojo.contentID=${item.pojo.content.contentID}';"/>
+                            <input type="button" value="<fmt:message key="button.back"/>" onclick="document.location.href='${backUrl}?pojo.contentID=${item.pojo.contentEntity.contentID}';"/>
 
                         </td>
                     </tr>

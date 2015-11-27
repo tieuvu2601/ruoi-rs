@@ -15,7 +15,7 @@ import org.apache.commons.lang.StringUtils;
 import java.sql.Timestamp;
 import java.util.*;
 
-public class ContentServiceImpl extends GenericServiceImpl<Content, Long> implements ContentService {
+public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> implements ContentService {
     private Integer noOfDateTracking;
 
     public void setNoOfDateTracking(Integer noOfDateTracking) {
@@ -29,18 +29,18 @@ public class ContentServiceImpl extends GenericServiceImpl<Content, Long> implem
     }
 
     @Override
-    protected GenericDAO<Content, Long> getGenericDAO() {
+    protected GenericDAO<ContentEntity, Long> getGenericDAO() {
         return contentDAO;
     }
     
     @Override
     public void updateItem(ContentBean bean) throws ObjectNotFoundException, DuplicateException {
-        Content pojo = bean.getPojo();
-        Content dbItem = this.contentDAO.findByIdNoAutoCommit(pojo.getContentID());
-        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getContentID());
+        ContentEntity pojo = bean.getPojo();
+        ContentEntity dbItem = this.contentDAO.findByIdNoAutoCommit(pojo.getContentId());
+        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getContentId());
 
-        if (StringUtils.isBlank(pojo.getThumbnail())) {
-            pojo.setThumbnail(dbItem.getThumbnail());
+        if (StringUtils.isBlank(pojo.getThumbnails())) {
+            pojo.setThumbnails(dbItem.getThumbnails());
         }
         pojo.setAuthoringTemplate(dbItem.getAuthoringTemplate());
         Timestamp now = new Timestamp(System.currentTimeMillis());
@@ -61,12 +61,12 @@ public class ContentServiceImpl extends GenericServiceImpl<Content, Long> implem
     }
 
     @Override
-    public void updateStatusItem(Content content) throws ObjectNotFoundException, DuplicateException {
-        Content dbItem = this.contentDAO.findByIdNoAutoCommit(content.getContentID());
-        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + content.getContentID());
+    public void updateStatusItem(ContentEntity contentEntity) throws ObjectNotFoundException, DuplicateException {
+        ContentEntity dbItem = this.contentDAO.findByIdNoAutoCommit(contentEntity.getContentId());
+        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + contentEntity.getContentId());
         Timestamp now = new Timestamp(System.currentTimeMillis());
-        Content newItem = dbItem;
-        newItem.setStatus(content.getStatus());
+        ContentEntity newItem = dbItem;
+        newItem.setStatus(contentEntity.getStatus());
         if(newItem.getStatus() == Constants.CONTENT_PUBLISH){
             if(dbItem.getStatus() == Constants.CONTENT_PUBLISH){
                 newItem.setPublishedDate(dbItem.getPublishedDate());
@@ -92,7 +92,7 @@ public class ContentServiceImpl extends GenericServiceImpl<Content, Long> implem
     }
 
     @Override
-    public List<Content> findByCategory(String category, Integer startRow, Integer pageSize, Boolean isEng, Integer status) {
+    public List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Boolean isEng, Integer status) {
         category = category.replaceAll("-", " ");
         return this.contentDAO.findByCategory(category, startRow, pageSize, isEng, status);
     }
@@ -102,24 +102,24 @@ public class ContentServiceImpl extends GenericServiceImpl<Content, Long> implem
         category = category.replaceAll("-", " ");
 
         Object [] result =  this.contentDAO.findByCategoryWithMaxItem(category, startRow, pageSize, isEng, orderBy, status);
-        List<Content> listContent = new ArrayList<Content>();
-        for(Content content : (List<Content>) result[1]){
-            Content contentObj = content;
-            Category categoryObj = content.getCategory();
-            if(categoryObj.getParentCategory() != null && categoryObj.getParentCategory().getCategoryID() != null && categoryObj.getParentCategory().getCategoryID() > 0){
-                Category parent = categoryObj.getParentCategory();
-                categoryObj.setParentCategory(parent);
+        List<ContentEntity> listContentEntity = new ArrayList<ContentEntity>();
+        for(ContentEntity contentEntity : (List<ContentEntity>) result[1]){
+            ContentEntity contentEntityObj = contentEntity;
+            CategoryEntity categoryEntityObj = contentEntity.getCategory();
+            if(categoryEntityObj.getParent() != null && categoryEntityObj.getParent().getCategoryId() != null && categoryEntityObj.getParent().getCategoryId() > 0){
+                CategoryEntity parent = categoryEntityObj.getParent();
+                categoryEntityObj.setParent(parent);
             } else {
-                categoryObj.setParentCategory(null);
+                categoryEntityObj.setParent(null);
             }
-            listContent.add(contentObj);
+            listContentEntity.add(contentEntityObj);
         }
-        return new Object [] {result[0], listContent};
+        return new Object [] {result[0], listContentEntity};
     }
 
 
     @Override
-    public List<Content> findByAuthoringTemplate(String authoringCode, Integer startRow, Integer pageSize) {
+    public List<ContentEntity> findByAuthoringTemplate(String authoringCode, Integer startRow, Integer pageSize) {
         Map<String, Object> properties = new HashMap<String, Object>();
         properties.put("authoringTemplate.code", authoringCode);
         properties.put("status", Constants.CONTENT_PUBLISH);
@@ -137,8 +137,8 @@ public class ContentServiceImpl extends GenericServiceImpl<Content, Long> implem
     }
 
     @Override
-    public Content saveItem(ContentBean bean) throws DuplicateException {
-        Content pojo = bean.getPojo();
+    public ContentEntity saveItem(ContentBean bean) throws DuplicateException {
+        ContentEntity pojo = bean.getPojo();
         Timestamp now = new Timestamp(System.currentTimeMillis());
 
         pojo.setCreatedDate(new Timestamp(System.currentTimeMillis()));
@@ -153,34 +153,34 @@ public class ContentServiceImpl extends GenericServiceImpl<Content, Long> implem
     }
 
     @Override
-    public List<Content> findByAuthoringTemplateAndDepartment(String authoringTemplate, String department, Integer begin, Integer pageSize) {
+    public List<ContentEntity> findByAuthoringTemplateAndDepartment(String authoringTemplate, String department, Integer begin, Integer pageSize) {
         return this.contentDAO.findByAuthoringTemplateAndDepartment(authoringTemplate, department, begin, pageSize);
     }
 
     @Override
-    public List<Content> findAnnouncementItemsOfOnlineUser(String authoringCode, Long loginUserId, Integer begin, Integer pageSize) {
+    public List<ContentEntity> findAnnouncementItemsOfOnlineUser(String authoringCode, Long loginUserId, Integer begin, Integer pageSize) {
         return this.contentDAO.findAnnouncementItemsOfOnlineUser(authoringCode, loginUserId, begin, pageSize);
     }
 
     @Override
-    public List<Content> findByListTitle(List<String> title, Integer status) {
+    public List<ContentEntity> findByListTitle(List<String> title, Integer status) {
         return this.contentDAO.findByListTitle(title, status);
     }
 
     @Override
-    public Content findByTitle(String title, Boolean isEng, Integer status) {
+    public ContentEntity findByTitle(String title, Boolean isEng, Integer status) {
         title = title.replaceAll("-", " ");
         return this.contentDAO.findByTitle(title, isEng, status);
     }
 
     @Override
-    public List<Content> findByPrefixUrl(String prefixUrl, Integer startRow, Integer pageSize, Boolean isEng, Integer status) {
+    public List<ContentEntity> findByPrefixUrl(String prefixUrl, Integer startRow, Integer pageSize, Boolean isEng, Integer status) {
         return this.contentDAO.findByPrefixUrl(prefixUrl, startRow, pageSize, isEng, status);
     }
 
 
     @Override
-    public List<Content> findByAuthoringPrefixUrl(String prefixUrl, Integer startRow, Integer pageSize, Boolean isEng, Integer status) {
+    public List<ContentEntity> findByAuthoringPrefixUrl(String prefixUrl, Integer startRow, Integer pageSize, Boolean isEng, Integer status) {
         return this.contentDAO.findByAuthoringPrefixUrl(prefixUrl, startRow, pageSize, isEng, status);
     }
 
@@ -196,10 +196,10 @@ public class ContentServiceImpl extends GenericServiceImpl<Content, Long> implem
     }
 
     @Override
-    public Content findByTitle(String title) throws ObjectNotFoundException {
+    public ContentEntity findByTitle(String title) throws ObjectNotFoundException {
         title = title.replaceAll("-", " ");
-        Content content =  this.contentDAO.findEqualUnique("title", title);
-        if(content == null) throw new ObjectNotFoundException("Not found Content with Title " + title);
-        return content;
+        ContentEntity contentEntity =  this.contentDAO.findEqualUnique("title", title);
+        if(contentEntity == null) throw new ObjectNotFoundException("Not found ContentEntity with Title " + title);
+        return contentEntity;
     }
 }

@@ -1,6 +1,6 @@
 package com.banvien.portal.vms.dto;
 
-import com.banvien.portal.vms.domain.AuthoringTemplate;
+import com.banvien.portal.vms.domain.AuthoringTemplateEntity;
 
 public class CategoryObjectDTO {
     private Long categoryID;
@@ -21,7 +21,7 @@ public class CategoryObjectDTO {
 
     private Long parentRootId;
 
-    private AuthoringTemplate authoringTemplate;
+    private AuthoringTemplateEntity authoringTemplateEntity;
 
     public Long getCategoryID() {
         return categoryID;
@@ -55,12 +55,12 @@ public class CategoryObjectDTO {
         this.parent = parent;
     }
 
-    public AuthoringTemplate getAuthoringTemplate() {
-        return authoringTemplate;
+    public AuthoringTemplateEntity getAuthoringTemplateEntity() {
+        return authoringTemplateEntity;
     }
 
-    public void setAuthoringTemplate(AuthoringTemplate authoringTemplate) {
-        this.authoringTemplate = authoringTemplate;
+    public void setAuthoringTemplateEntity(AuthoringTemplateEntity authoringTemplateEntity) {
+        this.authoringTemplateEntity = authoringTemplateEntity;
     }
 
     public Integer getNodeLevel() {

@@ -17,11 +17,11 @@
         <intercept-url pattern="/mysite/**" access="LOGON" />
 
         <intercept-url pattern="/admin/authoringtemplate/**" access="AUTHORING_TEMPLATE"/>
-        <intercept-url pattern="/admin/category/**" access="CATEGORY"/>
-        <intercept-url pattern="/admin/content/**" access="CONTENT"/>
+        <intercept-url pattern="/admin/categoryEntity/**" access="CATEGORY"/>
+        <intercept-url pattern="/admin/contentEntity/**" access="CONTENT"/>
         <intercept-url pattern="/admin/department/**" access="DEPARTMENT"/>
         <intercept-url pattern="/admin/renderingtemplate/**" access="RENDERING_TEMPLATE"/>
-        <intercept-url pattern="/admin/role/**" access="ROLE"/>
+        <intercept-url pattern="/admin/roleEntity/**" access="ROLE"/>
         <intercept-url pattern="/admin/user/**" access="USER"/>
         <intercept-url pattern="/admin/usergroup/**" access="USERGROUP"/>
 
@@ -67,7 +67,7 @@
 
 	<beans:bean id="myAuthenticationSuccessHandler" class="com.banvien.portal.vms.security.MyAuthenticationSuccessHandler">
 		<beans:property name="alwaysUseDefaultTargetUrl" value="false"/>
-        <beans:property name="defaultTargetUrl" value="/admin/content/list.html"/>
+        <beans:property name="defaultTargetUrl" value="/admin/dashboard.html"/>
 	</beans:bean>
 
 	<beans:bean id="myAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">

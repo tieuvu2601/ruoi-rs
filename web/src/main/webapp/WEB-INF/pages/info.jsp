@@ -2,7 +2,7 @@
 
 <head>
     <title>Server Information</title>
-    <meta name="menu" content="Server Info"/>
+    <meta name="menu" contentEntity="Server Info"/>
 </head>
 
 <body class="sub_page">

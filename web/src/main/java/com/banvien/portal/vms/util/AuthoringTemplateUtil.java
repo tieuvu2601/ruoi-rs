@@ -15,7 +15,7 @@ import java.io.*;
 
 /**
  * Created by Ban Vien Ltd.
- * User: Vien Nguyen (vien.nguyen@banvien.com)
+ * UserEntity: Vien Nguyen (vien.nguyen@banvien.com)
  * Date: 11/22/12
  * Time: 3:17 PM
  */

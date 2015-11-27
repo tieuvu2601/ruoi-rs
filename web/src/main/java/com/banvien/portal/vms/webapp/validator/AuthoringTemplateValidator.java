@@ -1,7 +1,7 @@
 package com.banvien.portal.vms.webapp.validator;
 
 import com.banvien.portal.vms.bean.AuthoringTemplateBean;
-import com.banvien.portal.vms.domain.AuthoringTemplate;
+import com.banvien.portal.vms.domain.AuthoringTemplateEntity;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.AuthoringTemplateService;
 import org.apache.commons.lang.StringUtils;
@@ -45,17 +45,13 @@ public class AuthoringTemplateValidator extends ApplicationObjectSupport impleme
         if(StringUtils.isNotBlank(bean.getPojo().getName())){
             bean.getPojo().setName(bean.getPojo().getName().trim());
         }
-        if(StringUtils.isNotBlank(bean.getPojo().getPrefixUrl())){
-            bean.getPojo().setPrefixUrl(bean.getPojo().getPrefixUrl().trim());
-        }
-
     }
 
     private void checkUnique(AuthoringTemplateBean bean, Errors errors){
         try{
-            AuthoringTemplate authoringTemplate = authoringTemplateService.findByCode(bean.getPojo().getCode());
+            AuthoringTemplateEntity authoringTemplateEntity = authoringTemplateService.findByCode(bean.getPojo().getCode());
 
-            if(bean.getPojo().getAuthoringTemplateID() == null || (bean.getPojo().getAuthoringTemplateID() != null && !authoringTemplate.getAuthoringTemplateID().equals(bean.getPojo().getAuthoringTemplateID()))){
+            if(bean.getPojo().getAuthoringTemplateId() == null || (bean.getPojo().getAuthoringTemplateId() != null && !authoringTemplateEntity.getAuthoringTemplateId().equals(bean.getPojo().getAuthoringTemplateId()))){
                 errors.rejectValue("pojo.code", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("authoringtemplate.code")}, "Value has been chosen.");
             }
         }catch (ObjectNotFoundException ex) {

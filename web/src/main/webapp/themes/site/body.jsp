@@ -1,5 +1,5 @@
 <%@ include file="/common/taglibs.jsp" %>
-<div class="content container">
+<div class="contentEntity container">
     <div id="promo-slider" class="slider flexslider">
         <ul class="slides">
             <li>
@@ -45,7 +45,7 @@
         <div class="col-md-3">
             <section class="events">
                 <h1 class="section-heading text-highlight"><span class="line">Events</span></h1>
-                <div class="section-content">
+                <div class="section-contentEntity">
                     <div class="event-item">
                         <p class="date-label">
                             <span class="month">FEB</span>
@@ -91,13 +91,13 @@
                         </div><!--//details-->
                     </div><!--event-item-->
                     <a class="read-more" href="events.html">All events<i class="fa fa-chevron-right"></i></a>
-                </div><!--//section-content-->
+                </div><!--//section-contentEntity-->
             </section><!--//events-->
         </div><!--//col-md-3-->
         <div class="col-md-6">
             <section class="course-finder">
                 <h1 class="section-heading text-highlight"><span class="line">Course Finder</span></h1>
-                <div class="section-content">
+                <div class="section-contentEntity">
                     <form class="course-finder-form" action="#" method="get">
                         <div class="row">
                             <div class="col-md-5 col-sm-5 subject">
@@ -131,7 +131,7 @@
                         </div>
                     </form><!--//course-finder-form-->
                     <a class="read-more" href="courses.html">View all our courses<i class="fa fa-chevron-right"></i></a>
-                </div><!--//section-content-->
+                </div><!--//section-contentEntity-->
             </section><!--//course-finder-->
             <section class="video">
                 <h1 class="section-heading text-highlight"><span class="line">Video Tour</span></h1>
@@ -140,7 +140,7 @@
                     <a class="next" href="#videos-carousel" data-slide="next"><i class="fa fa-caret-right"></i></a>
                 </div><!--//carousel-controls-->
 
-                <div class="section-content">
+                <div class="section-contentEntity">
                     <div id="videos-carousel" class="videos-carousel carousel slide">
                         <div class="carousel-inner">
                             <div class="item active">
@@ -155,18 +155,18 @@
                         </div><!--//carousel-inner-->
                     </div><!--//videos-carousel-->
                     <p class="description">Aenean feugiat a diam tempus sodales. Quisque lorem nulla, ultrices imperdiet malesuada at, suscipit vel lorem. Nulla dignissim nisi ac aliquet semper.</p>
-                </div><!--//section-content-->
+                </div><!--//section-contentEntity-->
             </section><!--//video-->
         </div>
         <div class="col-md-3">
             <section class="links">
                 <h1 class="section-heading text-highlight"><span class="line">Quick Links</span></h1>
-                <div class="section-content">
+                <div class="section-contentEntity">
                     <p><a href="#"><i class="fa fa-caret-right"></i>E-learning Portal</a></p>
                     <p><a href="#"><i class="fa fa-caret-right"></i>Gallery</a></p>
                     <p><a href="#"><i class="fa fa-caret-right"></i>Job Vacancies</a></p>
                     <p><a href="#"><i class="fa fa-caret-right"></i>Contact</a></p>
-                </div><!--//section-content-->
+                </div><!--//section-contentEntity-->
             </section><!--//links-->
             <section class="testimonials">
                 <h1 class="section-heading text-highlight"><span class="line"> Testimonials</span></h1>
@@ -174,7 +174,7 @@
                     <a class="prev" href="#testimonials-carousel" data-slide="prev"><i class="fa fa-caret-left"></i></a>
                     <a class="next" href="#testimonials-carousel" data-slide="next"><i class="fa fa-caret-right"></i></a>
                 </div><!--//carousel-controls-->
-                <div class="section-content">
+                <div class="section-contentEntity">
                     <div id="testimonials-carousel" class="testimonials-carousel carousel slide">
                         <div class="carousel-inner">
                             <div class="item active">
@@ -209,7 +209,7 @@
 
                         </div><!--//carousel-inner-->
                     </div><!--//testimonials-carousel-->
-                </div><!--//section-content-->
+                </div><!--//section-contentEntity-->
             </section><!--//testimonials-->
         </div><!--//col-md-3-->
     </div><!--//cols-wrapper-->
@@ -272,4 +272,4 @@
 
         </div>
     </section>
-</div><!--//content-->
+</div><!--//contentEntity-->

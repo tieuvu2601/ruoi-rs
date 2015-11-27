@@ -4,9 +4,9 @@ import com.banvien.portal.vms.bean.UserBean;
 import com.banvien.portal.vms.dao.GenericDAO;
 import com.banvien.portal.vms.dao.RoleDAO;
 import com.banvien.portal.vms.dao.UserRoleDAO;
-import com.banvien.portal.vms.domain.Role;
-import com.banvien.portal.vms.domain.User;
-import com.banvien.portal.vms.domain.UserRole;
+import com.banvien.portal.vms.domain.RoleEntity;
+import com.banvien.portal.vms.domain.UserEntity;
+import com.banvien.portal.vms.domain.UserRoleEntity;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.UserRoleService;
@@ -16,14 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Copyright (c) by Ban Vien Co., Ltd.
- * User: MBP
- * Date: 11/13/12
- * Time: 4:59 PM
- * Author: vien.nguyen@banvien.com
- */
-public class UserRoleServiceImpl extends GenericServiceImpl<UserRole, Long> implements UserRoleService {
+public class UserRoleServiceImpl extends GenericServiceImpl<UserRoleEntity, Long> implements UserRoleService {
     private transient final Logger logger = Logger.getLogger(getClass());
 
     private UserRoleDAO userRoleDAO;
@@ -43,15 +36,15 @@ public class UserRoleServiceImpl extends GenericServiceImpl<UserRole, Long> impl
     }
 
     @Override
-    protected GenericDAO<UserRole, Long> getGenericDAO() {
+    protected GenericDAO<UserRoleEntity, Long> getGenericDAO() {
         return userRoleDAO;
     }
 
     @Override
-    public void updateItem(UserRole pojo) throws ObjectNotFoundException, DuplicateException {
+    public void updateItem(UserRoleEntity pojo) throws ObjectNotFoundException, DuplicateException {
 
-        UserRole dbItem = this.userRoleDAO.findByIdNoAutoCommit(pojo.getUserRoleID());
-        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getUserRoleID());
+        UserRoleEntity dbItem = this.userRoleDAO.findByIdNoAutoCommit(pojo.getUserRoleId());
+        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getUserRoleId());
 
         this.userRoleDAO.detach(dbItem);
         this.userRoleDAO.update(pojo);
@@ -77,8 +70,8 @@ public class UserRoleServiceImpl extends GenericServiceImpl<UserRole, Long> impl
         Map<String, Object> properties = new HashMap<String, Object>();
         StringBuffer whereClause = new StringBuffer(" 1 = 1 ");
 
-        if (usr.getPojo().getUserID() != null) {
-            properties.put("user.userID", usr.getPojo().getUserID());
+        if (usr.getPojo().getUserId() != null) {
+            properties.put("user.userID", usr.getPojo().getUserId());
         }
 
         Object obj[] = roleDAO.searchByProperties(new HashMap<String, Object>(), usr.getFirstItem(), usr.getMaxPageItems() , null, null, true, whereClause.toString());
@@ -86,47 +79,40 @@ public class UserRoleServiceImpl extends GenericServiceImpl<UserRole, Long> impl
         {
             obj = roleDAO.searchByProperties(new HashMap<String, Object>(), usr.getRoleBean().getFirstItem(), usr.getRoleBean().getMaxPageItems(), usr.getRoleBean().getSortExpression(), usr.getRoleBean().getSortDirection(), true, whereClause.toString());
         }
-        List<Role> _lstRole = (List<Role>)obj[1];
+        List<RoleEntity> _lstRoleEntity = (List<RoleEntity>)obj[1];
 
         Object objs[] = userRoleDAO.searchByProperties(properties, 0, -1 , "userRoleID","DESC" ,true, whereClause.toString());
-        List<UserRole> lst = (List<UserRole>)objs[1];
+        List<UserRoleEntity> lst = (List<UserRoleEntity>)objs[1];
 
 
-        for(int i = 0; i < lst.size(); i ++)
-        {
-            for(int j = 0; j < _lstRole.size(); j ++)
-            {
-                if(lst.get(i).getUser().getUserID().equals(usr.getPojo().getUserID()) && lst.get(i).getRole().getRoleID() == _lstRole.get(j).getRoleID())
-                {
-                    try
-                    {
-                        userRoleDAO.delete(lst.get(i).getUserRoleID());
+        for(int i = 0; i < lst.size(); i ++){
+            for(int j = 0; j < _lstRoleEntity.size(); j ++){
+                if(lst.get(i).getUser().getUserId().equals(usr.getPojo().getUserId()) && lst.get(i).getRole().getRoleId() == _lstRoleEntity.get(j).getRoleId()){
+                    try{
+                        userRoleDAO.delete(lst.get(i).getUserRoleId());
                         res ++;
                     }
                     catch(Exception e)
                     {
                         logger.error(e.getMessage(), e);
                     }
-
                 }
             }
         }
 
 
         if (usr.getRoleBean() != null && usr.getRoleBean().getCheckList() != null) {
-
             for (String id : usr.getRoleBean().getCheckList()) {
-                UserRole usrl = new UserRole();
+                UserRoleEntity usrl = new UserRoleEntity();
 
-                User usradd = new User();
-                usradd.setUserID(usr.getPojo().getUserID());
+                UserEntity usradd = new UserEntity();
+                usradd.setUserId(usr.getPojo().getUserId());
 
-                Role r = new Role();
-                r.setRoleID(Long.parseLong(id));
+                RoleEntity r = new RoleEntity();
+                r.setRoleId(Long.parseLong(id));
 
                 usrl.setUser(usradd);
                 usrl.setRole(r);
-
                 userRoleDAO.save(usrl);
             }
         }

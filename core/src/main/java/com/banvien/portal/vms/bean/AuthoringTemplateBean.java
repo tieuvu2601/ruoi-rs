@@ -1,13 +1,13 @@
 package com.banvien.portal.vms.bean;
 
-import com.banvien.portal.vms.domain.AuthoringTemplate;
+import com.banvien.portal.vms.domain.AuthoringTemplateEntity;
 import com.banvien.portal.vms.dto.XmlNodeDTO;
 
 import java.util.List;
 
-public class AuthoringTemplateBean extends AbstractBean<AuthoringTemplate> {
+public class AuthoringTemplateBean extends AbstractBean<AuthoringTemplateEntity> {
     public AuthoringTemplateBean(){
-        this.pojo = new AuthoringTemplate();
+        this.pojo = new AuthoringTemplateEntity();
     }
 
     private List<XmlNodeDTO> authoringTemplateNodes;

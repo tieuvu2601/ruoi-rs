@@ -1,6 +1,6 @@
 package com.banvien.portal.vms.taglibs.contents;
 
-import com.banvien.portal.vms.domain.Content;
+import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
- * User: viennh
+ * UserEntity: viennh
  * Date: 12/13/12
  * Time: 12:41 AM
  * To change this template use File | Settings | File Templates.
@@ -27,9 +27,9 @@ public class ContentTagLibFindByDepartment extends TagSupport {
         if(context != null && department != null && begin != null && pageSize != null && var != null) {
             ContentService contentService = context.getBean(ContentService.class);
 
-            List<Content> contentList = contentService.findByAuthoringTemplateAndDepartment(authoringTemplate, department, begin, pageSize);
-            if(contentList != null) {
-                this.pageContext.setAttribute(this.var, contentList);
+            List<ContentEntity> contentEntityList = contentService.findByAuthoringTemplateAndDepartment(authoringTemplate, department, begin, pageSize);
+            if(contentEntityList != null) {
+                this.pageContext.setAttribute(this.var, contentEntityList);
             }
         }
         return SKIP_BODY;

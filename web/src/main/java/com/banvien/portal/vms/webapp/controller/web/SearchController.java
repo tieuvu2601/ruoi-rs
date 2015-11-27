@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.util.CommonUtil;
 import org.apache.commons.lang.StringUtils;
@@ -18,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.banvien.portal.vms.bean.SearchBean;
-import com.banvien.portal.vms.domain.Content;
 import com.banvien.portal.vms.service.AuthoringTemplateService;
 import com.banvien.portal.vms.service.CategoryService;
 import com.banvien.portal.vms.service.ContentService;
@@ -57,7 +57,7 @@ public class SearchController extends ApplicationObjectSupport {
 
             Object[] objs = contentService.searchInSite(bean.getKeyword(), bean.getFromDate(), bean.getToDate(), bean.getFirstItem(), bean.getMaxPageItems(), CommonUtil.isEnglishLanguage(), Constants.CONTENT_PUBLISH);
 
-            bean.setListResult((List<Content>) objs[1]);
+            bean.setListResult((List<ContentEntity>) objs[1]);
 //            bean.setTotalItems((Integer) objs[0]);
 
 

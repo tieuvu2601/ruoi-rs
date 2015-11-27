@@ -4,10 +4,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.banvien.portal.vms.bean.AuthoringTemplateBean;
 import com.banvien.portal.vms.dto.XmlNodeDTO;
-import com.banvien.portal.vms.domain.AuthoringTemplate;
+import com.banvien.portal.vms.domain.AuthoringTemplateEntity;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.AuthoringTemplateService;
@@ -63,7 +61,7 @@ public class AuthoringTemplateController extends ApplicationObjectSupport {
     public ModelAndView edit(@ModelAttribute(Constants.FORM_MODEL_KEY) AuthoringTemplateBean bean, BindingResult bindingResult, HttpServletRequest request){
         ModelAndView mav = new ModelAndView("/admin/authoringtemplate/edit");
         String crudaction = bean.getCrudaction();
-        AuthoringTemplate pojo = bean.getPojo();
+        AuthoringTemplateEntity pojo = bean.getPojo();
         if(StringUtils.isNotBlank(crudaction) && crudaction.equals("insert-update")) {
             try{
                 authoringTemplateValidator.validate(bean, bindingResult);
@@ -73,7 +71,7 @@ public class AuthoringTemplateController extends ApplicationObjectSupport {
                 	}else{
 	                    String xmlTemplateContent = convertIntoXMLTemplateContent(bean.getAuthoringTemplateNodes());
 	                    pojo.setTemplateContent(xmlTemplateContent);
-	                    if(pojo.getAuthoringTemplateID() != null && pojo.getAuthoringTemplateID() > 0 ){
+	                    if(pojo.getAuthoringTemplateId() != null && pojo.getAuthoringTemplateId() > 0 ){
 	                        this.authoringTemplateService.updateItem(pojo);
 	                        mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
 	                    }else{
@@ -89,12 +87,12 @@ public class AuthoringTemplateController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        if(!bindingResult.hasErrors() && bean.getPojo().getAuthoringTemplateID() != null){
+        if(!bindingResult.hasErrors() && bean.getPojo().getAuthoringTemplateId() != null){
             try{
-                AuthoringTemplate authoringTemplate =  authoringTemplateService.findById(bean.getPojo().getAuthoringTemplateID());
-                if (StringUtils.isNotBlank(authoringTemplate.getTemplateContent())) {
+                AuthoringTemplateEntity authoringTemplateEntity =  authoringTemplateService.findById(bean.getPojo().getAuthoringTemplateId());
+                if (StringUtils.isNotBlank(authoringTemplateEntity.getTemplateContent())) {
                     try{
-                        com.banvien.portal.vms.xml.authoringtemplate.AuthoringTemplate xmlAuthoringTemplate = AuthoringTemplateUtil.parseXML(authoringTemplate.getTemplateContent());
+                        com.banvien.portal.vms.xml.authoringtemplate.AuthoringTemplate xmlAuthoringTemplate = AuthoringTemplateUtil.parseXML(authoringTemplateEntity.getTemplateContent());
                         List<XmlNodeDTO> authoringTemplateNodes = new ArrayList<XmlNodeDTO>();
                         int index = 0;
                         for (Node node : xmlAuthoringTemplate.getNodes().getNode()) {
@@ -107,7 +105,7 @@ public class AuthoringTemplateController extends ApplicationObjectSupport {
                         logger.error(e);
                     }
                 }
-                bean.setPojo(authoringTemplate);
+                bean.setPojo(authoringTemplateEntity);
             }catch (ObjectNotFoundException oe) {
                 logger.error(oe.getMessage(), oe);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
@@ -185,7 +183,7 @@ public class AuthoringTemplateController extends ApplicationObjectSupport {
             properties.put("code", bean.getPojo().getCode());
         }
         Object[] results = this.authoringTemplateService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
-        bean.setListResult((List<AuthoringTemplate>)results[1]);
+        bean.setListResult((List<AuthoringTemplateEntity>)results[1]);
         bean.setTotalItems(Integer.valueOf(results[0].toString()));
     }
 }

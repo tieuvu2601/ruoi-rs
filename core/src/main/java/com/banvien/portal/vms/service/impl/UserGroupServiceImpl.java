@@ -2,21 +2,14 @@ package com.banvien.portal.vms.service.impl;
 
 import com.banvien.portal.vms.dao.GenericDAO;
 import com.banvien.portal.vms.dao.UserGroupDAO;
-import com.banvien.portal.vms.domain.UserGroup;
+import com.banvien.portal.vms.domain.UserGroupEntity;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.UserGroupService;
 
 import java.sql.Timestamp;
 
-/**
- * Copyright (c) by Ban Vien Co., Ltd.
- * User: MBP
- * Date: 11/13/12
- * Time: 4:58 PM
- * Author: vien.nguyen@banvien.com
- */
-public class UserGroupServiceImpl extends GenericServiceImpl<UserGroup, Long> implements UserGroupService {
+public class UserGroupServiceImpl extends GenericServiceImpl<UserGroupEntity, Long> implements UserGroupService {
     private UserGroupDAO userGroupDAO;
 
     public void setUserGroupDAO(UserGroupDAO userGroupDAO) {
@@ -24,22 +17,22 @@ public class UserGroupServiceImpl extends GenericServiceImpl<UserGroup, Long> im
     }
 
     @Override
-    protected GenericDAO<UserGroup, Long> getGenericDAO() {
+    protected GenericDAO<UserGroupEntity, Long> getGenericDAO() {
         return userGroupDAO;
     }
 
     @Override
-    public UserGroup findByCode(String code) throws ObjectNotFoundException {
-        UserGroup res = this.userGroupDAO.findEqualUnique("code", code);
+    public UserGroupEntity findByCode(String code) throws ObjectNotFoundException {
+        UserGroupEntity res = this.userGroupDAO.findEqualUnique("code", code);
         if (res == null) throw  new ObjectNotFoundException("Not found user group with code " + code);
         return res;
     }
     
     @Override
-    public void updateItem(UserGroup pojo) throws ObjectNotFoundException, DuplicateException {
+    public void updateItem(UserGroupEntity pojo) throws ObjectNotFoundException, DuplicateException {
 
-        UserGroup dbItem = this.userGroupDAO.findByIdNoAutoCommit(pojo.getUserGroupID());
-        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getUserGroupID());
+        UserGroupEntity dbItem = this.userGroupDAO.findByIdNoAutoCommit(pojo.getUserGroupId());
+        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getUserGroupId());
 
         pojo.setCreatedDate(dbItem.getCreatedDate());
         pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));

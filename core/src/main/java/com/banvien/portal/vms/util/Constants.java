@@ -66,7 +66,7 @@ public class Constants {
     public static final String FILE_SEP = System.getProperty("file.separator");
 
     /**
-     * User home from System properties
+     * UserEntity home from System properties
      */
     public static final String USER_HOME = System.getProperty("user.home") + FILE_SEP;
 
@@ -177,7 +177,7 @@ public class Constants {
     public static final String JBPM_USER_ADMIN = "_jbpm_temp_user_admin_";
 
     /**
-     * Content Type
+     * ContentEntity Type
      */
     public static final String CONTENT_TYPE_BOOLEAN = "BOOLEAN";
     public static final String CONTENT_TYPE_NUMERIC = "NUMERIC";

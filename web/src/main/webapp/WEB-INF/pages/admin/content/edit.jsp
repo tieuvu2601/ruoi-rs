@@ -1,8 +1,8 @@
 ﻿<%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="content.management"/></title>
-    <meta name="heading" content="Content Management"/>
+    <title><fmt:message key="contentEntity.management"/></title>
+    <meta name="heading" contentEntity="Content Management"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/swfupload/default.css'/>" />
 	<script type="text/javascript" src="<c:url value='/swfupload/swfupload.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/swfupload/fileprogress.js' />"></script>
@@ -21,7 +21,7 @@
                 <c:if test="${node.itemType == 'IMAGE' or node.itemType == 'ATTACHMENT'}">
                     var settings${node.itemKey} = {
                             flash_url : "<c:url value='/swfupload/swfupload.swf'/>",
-                            upload_url: "<c:url value='/ajax/content/uploadfile.html;jsessionid=${pageContext.session.id}'/>",
+                            upload_url: "<c:url value='/ajax/contentEntity/uploadfile.html;jsessionid=${pageContext.session.id}'/>",
                             post_params: {'nodename' : '${node.itemKey}', 'contentID': '${item.pojo.contentID}'},
                             file_size_limit : "500 MB",
                             file_types : "*.*",
@@ -59,8 +59,8 @@
         };
     </script>
 </head>
-<c:url var="formUrl" value="/admin/content/edit.html"/>
-<c:url var="backUrl" value="/admin/content/list.html"/>
+<c:url var="formUrl" value="/admin/contentEntity/edit.html"/>
+<c:url var="backUrl" value="/admin/contentEntity/list.html"/>
 
 <form:form commandName="item" action="${formUrl}" method="post" id="itemForm" cssClass="form-horizontal" enctype="multipart/form-data">
     <div class="small-header transition animated fadeIn">
@@ -70,22 +70,22 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                         <li>
-                            <span><fmt:message key="content"/></span>
+                            <span><fmt:message key="contentEntity"/></span>
                         </li>
                         <li class="active">
-                            <span><fmt:message key="content.management"/></span>
+                            <span><fmt:message key="contentEntity.management"/></span>
                         </li>
                     </ol>
                 </div>
 
                 <h2 class="font-light m-b-xs">
-                    <fmt:message key="content.edit"/>
+                    <fmt:message key="contentEntity.edit"/>
                 </h2>
             </div>
         </div>
     </div>
 
-    <div class="content animate-panel">
+    <div class="contentEntity animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
@@ -94,7 +94,7 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="content.management"/>
+                            <fmt:message key="contentEntity.management"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -111,15 +111,15 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.template"/></label>
                                 <div class="col-sm-8">
-                                    <label class="col-sm-12 control-label text-default">${authoringTemplate.name}</label>
-                                    <form:hidden path="pojo.authoringTemplate"/>
+                                    <label class="col-sm-12 control-label text-default">${authoringTemplateEntity.name}</label>
+                                    <form:hidden path="pojo.authoringTemplateEntity"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity"/></label>
                                 <div class="col-sm-8">
-                                    <form:select path="pojo.category.categoryID" cssClass="form-control">
+                                    <form:select path="pojo.categoryEntity.categoryID" cssClass="form-control">
                                         <c:forEach var="cat" items="${listCategories}">
                                             <form:option value="${cat.categoryID}">
                                                 <c:forEach begin="1" end="${cat.nodeLevel}">
@@ -133,7 +133,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.title"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="contentEntity.title"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.title" size="40" maxlength="160" cssClass="form-control" id="title"/>
                                     <form:errors path="pojo.title" cssClass="validateError"/>
@@ -141,16 +141,16 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.keyword"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="contentEntity.keyword"/></label>
                                 <div class="col-sm-8">
                                     <form:textarea path="pojo.keyword" rows="3" cssClass="form-control" id="keyword"/>
                                     <form:errors path="pojo.keyword" cssClass="validateError"/>
                                 </div>
                             </div>
 
-                            <c:if test="${authoringTemplate.hasThumbnail == 'Y'}">
+                            <c:if test="${authoringTemplateEntity.hasThumbnail == 'Y'}">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.thumbnail"/></label>
+                                    <label class="col-sm-2 control-label"><fmt:message key="contentEntity.thumbnail"/></label>
                                     <div class="col-sm-8">
                                         <input type="file" name="thumbnailFile"  class="form-control"/><i>(Kích thước chuẩn 410 x 390)</i>
                                         <form:hidden path="pojo.thumbnail" cssClass="form-control" id="thumbnail"/>
@@ -159,15 +159,15 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.accesspolicy"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="contentEntity.accesspolicy"/></label>
                                 <div class="col-sm-8">
-                                    <form:radiobutton path="pojo.accessPolicy" value="1"/><fmt:message key="content.accesspolicy.allowshare"/>
-                                    <form:radiobutton path="pojo.accessPolicy" value="2"/><fmt:message key="content.accesspolicy.notallowshare"/>
+                                    <form:radiobutton path="pojo.accessPolicy" value="1"/><fmt:message key="contentEntity.accesspolicy.allowshare"/>
+                                    <form:radiobutton path="pojo.accessPolicy" value="2"/><fmt:message key="contentEntity.accesspolicy.notallowshare"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.displayorder"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="contentEntity.displayorder"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.displayOrder" size="40"  cssClass="form-control"/>
                                 </div>
@@ -175,7 +175,7 @@
 
                             <security:authorize ifAllGranted="FULL_ACCESS_RIGHT">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.status"/></label>
+                                    <label class="col-sm-2 control-label"><fmt:message key="contentEntity.status"/></label>
                                     <div class="col-sm-8">
                                         <form:checkbox path="pojo.status" value="2"/>
                                     </div>
@@ -183,9 +183,9 @@
                             </security:authorize>
 
                             <security:authorize ifAllGranted="PUBLISHER">
-                                <c:if test="${authoringTemplate.hasHotItem == 'Y'}">
+                                <c:if test="${authoringTemplateEntity.hasHotItem == 'Y'}">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label"><fmt:message key="content.hot"/></label>
+                                        <label class="col-sm-2 control-label"><fmt:message key="contentEntity.hot"/></label>
                                         <div class="col-sm-8">
                                             <form:checkbox path="pojo.hot" value="1"/>
                                         </div>
@@ -193,10 +193,10 @@
                                 </c:if>
                             </security:authorize>
 
-                            <c:if test="${authoringTemplate.hasDepartment == 'Y'}">
+                            <c:if test="${authoringTemplateEntity.hasDepartment == 'Y'}">
                                 <c:if test="${fn:length(departments) > 0}">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label"><fmt:message key="content.department"/></label>
+                                        <label class="col-sm-2 control-label"><fmt:message key="contentEntity.department"/></label>
                                         <div class="col-sm-8">
                                             <c:forEach items="${departments}" var="department">
                                                 <input type="checkbox" name="departmentIDs" value="${department.departmentID}" <c:if test="${not empty item.contentDepartmentMap[department.departmentID]}">checked</c:if>/>
@@ -207,9 +207,9 @@
                                 </c:if>
                             </c:if>
 
-                            <c:if test="${authoringTemplate.event == 'Y'}">
+                            <c:if test="${authoringTemplateEntity.event == 'Y'}">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.event"/></label>
+                                    <label class="col-sm-2 control-label"><fmt:message key="contentEntity.event"/></label>
                                     <div class="col-sm-5">
                                         <div class="input-daterange input-group" id="contentEvent">
                                             <input name="pojo.beginDate" class="input-sm form-control" id="beginDate" value="<fmt:formatDate value="${item.pojo.beginDate}" pattern="dd-MM-yyyy"/>"/>
@@ -256,7 +256,7 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="content.authoringcontent"/>
+                            <fmt:message key="contentEntity.authoringcontent"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -410,7 +410,7 @@ var timeout;
 function submitContentForm(crudaction) {
 	if(validateAuthoringForm()) {
 		$('#crudaction').val(crudaction);
-		$("#content").fadeTo('slow',.3);
+		$("#contentEntity").fadeTo('slow',.3);
 		<c:forEach items="${item.contentItem.items.item}" var="node">
 			<c:if test="${node.itemType == 'IMAGE' or node.itemType == 'ATTACHMENT'}">
 				swfu_${node.itemKey}.startUpload();

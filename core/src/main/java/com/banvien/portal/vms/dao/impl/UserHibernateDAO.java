@@ -1,103 +1,59 @@
 package com.banvien.portal.vms.dao.impl;
 
 import com.banvien.portal.vms.dao.UserDAO;
-import com.banvien.portal.vms.domain.User;
+import com.banvien.portal.vms.domain.UserEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.transform.Transformers;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserHibernateDAO extends AbstractHibernateDAO<User, Long> implements UserDAO {
+public class UserHibernateDAO extends AbstractHibernateDAO<UserEntity, Long> implements UserDAO {
 
     @Override
-    public User findByUserName(final String username) {
+    public UserEntity findByUserName(final String userName) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<User>() {
-                    public User doInHibernate(Session session)
+                new HibernateCallback<UserEntity>() {
+                    public UserEntity doInHibernate(Session session)
                             throws HibernateException, SQLException {
                         Query query = session
-                                .createQuery("FROM User u WHERE LOWER(u.username) = :username");
-                        query.setParameter("username", username.toLowerCase());
-                        return (User) query.uniqueResult();
+                                .createQuery("FROM UserEntity u WHERE LOWER(u.username) = :userName");
+                        query.setParameter("userName", userName.toLowerCase());
+                        return (UserEntity) query.uniqueResult();
                     }
                 });
     }
 
 	@Override
-	public List<User> findByGroupCode(final String groupCode) {
-		return getHibernateTemplate().execute(
-                new HibernateCallback<List<User>>() {
-                    public List<User> doInHibernate(Session session)
-                            throws HibernateException, SQLException {
-                        Query query = session
-                                .createQuery("FROM User u WHERE u.userGroup.code = :groupCode");
-                        query.setParameter("groupCode", groupCode);
-                        return (List<User>) query.list();
-                    }
-                });
-	}
-
-	@Override
-	public List<User> findByListUserName(final List<String> userNameList) {
-		return getHibernateTemplate().execute(
-                new HibernateCallback<List<User>>() {
-                    public List<User> doInHibernate(Session session)
-                            throws HibernateException, SQLException {
-                        Query query = session
-                                .createQuery("FROM User u WHERE u.username in(:userNames)");
-                        query.setParameterList("userNames", userNameList);
-                        return (List<User>) query.list();
-                    }
-                });
-	}
-
-	@Override
-	public List<User> findByListGroupCode(final List<String> groupCodeList) {
-		return getHibernateTemplate().execute(
-                new HibernateCallback<List<User>>() {
-                    public List<User> doInHibernate(Session session)
-                            throws HibernateException, SQLException {
-                        Query query = session
-                                .createQuery("FROM User u WHERE u.userGroup.code in(:groupCodeList)");
-                        query.setParameterList("groupCodeList", groupCodeList);
-                        return (List<User>) query.list();
-                    }
-                });
-	}
-
-	@Override
-	public List<User> findByListUserNameExcludeSender(
+	public List<UserEntity> findByListUserNameExcludeSender(
 			final List<String> userNameList, final String senderMail) {
 			return getHibernateTemplate().execute(
-                new HibernateCallback<List<User>>() {
-                    public List<User> doInHibernate(Session session)
+                new HibernateCallback<List<UserEntity>>() {
+                    public List<UserEntity> doInHibernate(Session session)
                             throws HibernateException, SQLException {
                         Query query = session
-                                .createQuery("FROM User u WHERE u.username in(:userNames) AND u.email <> :sender");
+                                .createQuery("FROM UserEntity u WHERE u.userName in(:username) AND u.email <> :sender");
                         query.setParameterList("userNames", userNameList);
                         query.setParameter("sender", senderMail);
-                        return (List<User>) query.list();
+                        return (List<UserEntity>) query.list();
                     }
                 });
 	}
 
 
     @Override
-    public User findUserByUsernameAndPasswordFromDB(final String username, final String password) {
+    public UserEntity findUserByUsernameAndPasswordFromDB(final String username, final String password) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<User>() {
-                    public User doInHibernate(Session session)
+                new HibernateCallback<UserEntity>() {
+                    public UserEntity doInHibernate(Session session)
                             throws HibernateException, SQLException {
                         Query query = session
-                                .createQuery("FROM User u WHERE u.username = :username AND u.password = :password");
+                                .createQuery("FROM UserEntity u WHERE u.username = :username AND u.password = :password");
                         query.setParameter("username", username);
                         query.setParameter("password", password);
-                        return (User) query.uniqueResult();
+                        return (UserEntity) query.uniqueResult();
                     }
                 });
     }

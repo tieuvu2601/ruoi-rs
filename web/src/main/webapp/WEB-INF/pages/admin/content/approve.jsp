@@ -2,17 +2,17 @@
 
 <head>
     <title><fmt:message key="comment.management" /></title>
-    <meta name="heading" content="<fmt:message key="comment.management" />"/>
+    <meta name="heading" contentEntity="<fmt:message key="comment.management" />"/>
 </head>
 <div class="pathway">
-    <fmt:message key="comment.management" /> ${content.title}
+    <fmt:message key="comment.management" /> ${contentEntity.title}
 </div>
 
-<c:url var="url" value="/admin/content/approve.html?contentID=${content.contentID}"/>
+<c:url var="url" value="/admin/contentEntity/approve.html?contentID=${contentEntity.contentID}"/>
 <c:url var="editUrl" value="/admin/comment/edit.html"/>
 <c:url var="publishUrl" value="/admin/comment/publish.html"/>
 <c:url var="rejectUrl" value="/admin/comment/reject.html"/>
-<div id="content">
+<div id="contentEntity">
     <form:form commandName="items" action="${url}" method="post" id="listForm">
         <div class="box_container">
             <div class="header">
@@ -71,11 +71,11 @@
                         <a href="${rejectUrl}?pojo.commentID=${tableList.commentID}"><img src="<c:url value='/themes/admin/images/ico_reject.png'/>"/></a>
                     </c:if>
 
-                    <a name="deleteLink" id="d_${tableList.commentID}_a" href="<c:url value='/admin/content/approve.html?contentID=${content.contentID}'><c:param name="checkList" value="${tableList.commentID}"/><c:param name="crudaction" value="delete"/></c:url>"><img id="d_${tableList.commentID}" src="<c:url value='/themes/vms/images/no.png'/>"/></a>
+                    <a name="deleteLink" id="d_${tableList.commentID}_a" href="<c:url value='/admin/contentEntity/approve.html?contentID=${contentEntity.contentID}'><c:param name="checkList" value="${tableList.commentID}"/><c:param name="crudaction" value="delete"/></c:url>"><img id="d_${tableList.commentID}" src="<c:url value='/themes/vms/images/no.png'/>"/></a>
 
                 </display:column>
                 <display:setProperty name="paging.banner.item_name"><fmt:message key="comment"/></display:setProperty>
-                <display:setProperty name="paging.banner.items_name"><fmt:message key="content"/></display:setProperty>
+                <display:setProperty name="paging.banner.items_name"><fmt:message key="contentEntity"/></display:setProperty>
                 <display:setProperty name="paging.banner.placement" value="bottom"/>
                 <display:setProperty name="paging.banner.no_items_found" value=""/>
                 <display:setProperty name="paging.banner.onepage" value=""/>

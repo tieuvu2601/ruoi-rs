@@ -1,11 +1,8 @@
 package com.banvien.portal.vms.taglibs.contents;
 
-import com.banvien.portal.vms.domain.Content;
 import com.banvien.portal.vms.dto.TopViewContentDTO;
 import com.banvien.portal.vms.service.ContentService;
-import com.banvien.portal.vms.service.TrackingService;
 import com.banvien.portal.vms.util.CacheUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
@@ -15,7 +12,7 @@ import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
- * User: viennh
+ * UserEntity: viennh
  * Date: 12/13/12
  * Time: 12:41 AM
  * To change this template use File | Settings | File Templates.

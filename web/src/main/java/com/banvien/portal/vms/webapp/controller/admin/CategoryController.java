@@ -7,6 +7,8 @@ import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.banvien.portal.vms.domain.CategoryEntity;
 import com.banvien.portal.vms.util.CategoryUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -23,8 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.banvien.portal.vms.bean.CategoryBean;
-import com.banvien.portal.vms.domain.AuthoringTemplate;
-import com.banvien.portal.vms.domain.Category;
+import com.banvien.portal.vms.domain.AuthoringTemplateEntity;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.editor.PojoEditor;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
@@ -50,19 +51,19 @@ public class CategoryController extends ApplicationObjectSupport {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
     	binder.registerCustomEditor(Date.class, new CustomDateEditor());
-        binder.registerCustomEditor(AuthoringTemplate.class, new PojoEditor(AuthoringTemplate.class, "authoringTemplateID", Long.class));
+        binder.registerCustomEditor(AuthoringTemplateEntity.class, new PojoEditor(AuthoringTemplateEntity.class, "authoringTemplateID", Long.class));
 	}
 
     @RequestMapping("/admin/category/edit.html")
     public ModelAndView edit(@ModelAttribute(Constants.FORM_MODEL_KEY) CategoryBean bean, BindingResult bindingResult){
         ModelAndView mav = new ModelAndView("/admin/category/edit");
         String crudaction = bean.getCrudaction();
-        Category pojo = bean.getPojo();
+        CategoryEntity pojo = bean.getPojo();
         if(StringUtils.isNotBlank(crudaction) && crudaction.equals("insert-update")) {
             try{
                 categoryValidator.validate(bean, bindingResult);
                 if(!bindingResult.hasErrors()){
-                    if(pojo.getCategoryID() != null && pojo.getCategoryID() >0 ){
+                    if(pojo.getCategoryId() != null && pojo.getCategoryId() >0 ){
                         pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));
                         pojo = this.categoryService.updateItem(pojo);
                         mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
@@ -70,10 +71,6 @@ public class CategoryController extends ApplicationObjectSupport {
                         pojo.setCreatedDate(new Timestamp(System.currentTimeMillis()));
                         pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));
                         pojo = this.categoryService.save(pojo);
-                        if(pojo.getParentRootID() == null || pojo.getParentRootID() < 0){
-                            pojo.setParentRootID(pojo.getCategoryID());
-                            pojo = this.categoryService.updateItem(pojo);
-                        }
                         mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.add.successful"));
                     }
                     bean.setPojo(pojo);
@@ -84,9 +81,9 @@ public class CategoryController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
-        if(!bindingResult.hasErrors() && bean.getPojo().getCategoryID() != null){
+        if(!bindingResult.hasErrors() && bean.getPojo().getCategoryId() != null){
             try{
-                bean.setPojo(categoryService.findById(bean.getPojo().getCategoryID()));
+                bean.setPojo(categoryService.findById(bean.getPojo().getCategoryId()));
             }catch (ObjectNotFoundException oe) {
                 logger.error(oe.getMessage(), oe);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
@@ -127,9 +124,9 @@ public class CategoryController extends ApplicationObjectSupport {
 			String authoringTemplateIDstr = request.getParameter("au");
 			if(StringUtils.isNotBlank(authoringTemplateIDstr)){
 				Long authoringTemplateID = Long.valueOf(authoringTemplateIDstr);
-				List<Category> categories = categoryService.findProperty("authoringTemplate.authoringTemplateID", authoringTemplateID);
-				for(Category category : categories){
-					array.put(new JSONArray(new Object[]{category.getCategoryID(), category.getName()}));
+				List<CategoryEntity> categories = categoryService.findProperty("authoringTemplate.authoringTemplateID", authoringTemplateID);
+				for(CategoryEntity categoryEntity : categories){
+					array.put(new JSONArray(new Object[]{categoryEntity.getCategoryId(), categoryEntity.getName()}));
 				}
 			}
 			object.put("array", array);
@@ -151,16 +148,16 @@ public class CategoryController extends ApplicationObjectSupport {
         if(StringUtils.isNotBlank(bean.getPojo().getName())){
             properties.put("name", bean.getPojo().getName());
         }
-        if(bean.getPojo().getParentCategory() != null && bean.getPojo().getParentCategory() != null && bean.getPojo().getParentCategory().getCategoryID() > 0){
-            properties.put("parentCategory.categoryID", bean.getPojo().getParentCategory().getCategoryID());
+        if(bean.getPojo().getParent() != null && bean.getPojo().getParent() != null && bean.getPojo().getParent().getCategoryId() > 0){
+            properties.put("parentCategory.categoryID", bean.getPojo().getParent().getCategoryId());
         }
         Object[] results = this.categoryService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
-        bean.setListResult((List<Category>)results[1]);
+        bean.setListResult((List<CategoryEntity>)results[1]);
         bean.setTotalItems(Integer.valueOf(results[0].toString()));
     }
     private void referenceData(ModelAndView mav) {
         mav.addObject("authoringtemplates", authoringTemplateService.findAll());
-        List<Category> categories = this.categoryService.findAllCategoryParent();
+        List<CategoryEntity> categories = this.categoryService.findAllCategoryParent();
         mav.addObject("categories", CategoryUtil.getAllCategoryObjectInSite(categories));
     }
 

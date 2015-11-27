@@ -1,14 +1,13 @@
 package com.banvien.portal.vms.bean;
 
-import com.banvien.portal.vms.domain.Content;
+import com.banvien.portal.vms.domain.ContentEntity;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
-public class SearchBean extends AbstractBean<Content>{
+public class SearchBean extends AbstractBean<ContentEntity>{
 	
 	public SearchBean(){
-		this.pojo = new Content();
+		this.pojo = new ContentEntity();
 	}
 
 	private Long categoryID;

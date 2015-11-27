@@ -26,8 +26,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="robots" content="noindex, nofollow" />
+	<meta http-equiv="Content-Type" contentEntity="text/html; charset=utf-8" />
+	<meta name="robots" contentEntity="noindex, nofollow" />
 	<script src="common/fck_dialog_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 var dialog = window.parent ;
@@ -70,7 +70,7 @@ window.onload = function ()
 
 		if ( !oEditor.FCK_IS_CUSTOM_DOMAIN || !FCKBrowserInfo.IsIE )
 		{
-			// Avoid errors if the pasted content has any script that fails: #389
+			// Avoid errors if the pasted contentEntity has any script that fails: #389
 			var oDoc = oFrame.contentWindow.document ;
 			oDoc.open() ;
 			oDoc.write('<html><head><scr' + 'ipt>window.onerror = function() { return true ; };<\/script><\/head><body><\/body><\/html>') ;

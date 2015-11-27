@@ -1,16 +1,16 @@
 <%@ include file="/common/taglibs.jsp"%>
 <head>
     <title><fmt:message key="opinion.title"/></title>
-    <meta name="heading" content="Category Management"/>
+    <meta name="heading" contentEntity="Category Management"/>
 </head>
 <c:url var="formUrl" value="/dong-gop-y-kien.html"/>
 <c:url var="backUrl" value="/"/>
-<div class="content container">
+<div class="contentEntity container">
     <div class="page-wrapper">
         <header class="page-heading clearfix">
             <h1 class="heading-title pull-left"><fmt:message key="site.opinion"/></h1>
         </header>
-        <div class="page-content">
+        <div class="page-contentEntity">
             <div class="row">
                 <article class="contact-form col-md-8 col-sm-7  page-row">
                     <fmt:message key="site.opinion.description"/>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group message">
-                            <label for="description"><fmt:message key="site.opinion.content"/><span class="required">*</span></label>
+                            <label for="description"><fmt:message key="site.opinion.contentEntity"/><span class="required">*</span></label>
                             <form:textarea id="description" path="pojo.description" cssClass="form-control" rows="10" />
                             <form:errors path="pojo.description" cssClass="validateError"/>
                         </div>

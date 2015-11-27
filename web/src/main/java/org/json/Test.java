@@ -269,7 +269,7 @@ public class Test {
             System.out.println("   ten: " + j.getInt("ten"));
             System.out.println("  oops: " + j.optBoolean("oops"));
 
-            s = "<xml one = 1 two=' \"2\" '><five></five>First \u0009&lt;content&gt;<five></five> This is \"content\". <three>  3  </three>JSON does not preserve the sequencing of elements and contents.<three>  III  </three>  <three>  T H R E E</three><four/>Content text is an implied structure in XML. <six content=\"6\"/>JSON does not have implied structure:<seven>7</seven>everything is explicit.<![CDATA[CDATA blocks<are><supported>!]]></xml>";
+            s = "<xml one = 1 two=' \"2\" '><five></five>First \u0009&lt;content&gt;<five></five> This is \"content\". <three>  3  </three>JSON does not preserve the sequencing of elements and contents.<three>  III  </three>  <three>  T H R E E</three><four/>ContentEntity text is an implied structure in XML. <six content=\"6\"/>JSON does not have implied structure:<seven>7</seven>everything is explicit.<![CDATA[CDATA blocks<are><supported>!]]></xml>";
             j = XML.toJSONObject(s);
             System.out.println(j.toString(2));
             System.out.println(XML.toString(j));
@@ -322,12 +322,12 @@ public class Test {
             System.out.println(XML.toString(j));
             System.out.println("");
 
-            j = HTTP.toJSONObject("GET / HTTP/1.0\nAccept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/vnd.ms-excel, application/msword, */*\nAccept-Language: en-us\nUser-Agent: Mozilla/4.0 (compatible; MSIE 5.5; Windows 98; Win 9x 4.90; T312461; Q312461)\nHost: www.nokko.com\nConnection: keep-alive\nAccept-encoding: gzip, deflate\n");
+            j = HTTP.toJSONObject("GET / HTTP/1.0\nAccept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/vnd.ms-powerpoint, application/vnd.ms-excel, application/msword, */*\nAccept-Language: en-us\nUserEntity-Agent: Mozilla/4.0 (compatible; MSIE 5.5; Windows 98; Win 9x 4.90; T312461; Q312461)\nHost: www.nokko.com\nConnection: keep-alive\nAccept-encoding: gzip, deflate\n");
             System.out.println(j.toString(2));
             System.out.println(HTTP.toString(j));
             System.out.println("");
 
-            j = HTTP.toJSONObject("HTTP/1.1 200 Oki Doki\nDate: Sun, 26 May 2002 17:38:52 GMT\nServer: Apache/1.3.23 (Unix) mod_perl/1.26\nKeep-Alive: timeout=15, max=100\nConnection: Keep-Alive\nTransfer-Encoding: chunked\nContent-Type: text/html\n");
+            j = HTTP.toJSONObject("HTTP/1.1 200 Oki Doki\nDate: Sun, 26 May 2002 17:38:52 GMT\nServer: Apache/1.3.23 (Unix) mod_perl/1.26\nKeep-Alive: timeout=15, max=100\nConnection: Keep-Alive\nTransfer-Encoding: chunked\nContentEntity-Type: text/html\n");
             System.out.println(j.toString(2));
             System.out.println(HTTP.toString(j));
             System.out.println("");
@@ -478,7 +478,7 @@ public class Test {
             System.out.println(j.toString(4));
             System.out.println(XML.toString(j));
             
-            s = "<book><chapter>Content of the first chapter</chapter><chapter>Content of the second chapter      <chapter>Content of the first subchapter</chapter>      <chapter>Content of the second subchapter</chapter></chapter><chapter>Third Chapter</chapter></book>";
+            s = "<book><chapter>ContentEntity of the first chapter</chapter><chapter>ContentEntity of the second chapter      <chapter>ContentEntity of the first subchapter</chapter>      <chapter>ContentEntity of the second subchapter</chapter></chapter><chapter>Third Chapter</chapter></book>";
             j = XML.toJSONObject(s);
             System.out.println(j.toString(4));
             System.out.println(XML.toString(j));

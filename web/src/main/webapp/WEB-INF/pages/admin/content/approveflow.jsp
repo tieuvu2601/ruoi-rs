@@ -1,20 +1,20 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="content.management"/></title>
-    <meta name="heading" content="Content Management"/>
+    <title><fmt:message key="contentEntity.management"/></title>
+    <meta name="heading" contentEntity="Content Management"/>
 </head>
 <div class="pathway">
-    <fmt:message key="content.edit"/>
+    <fmt:message key="contentEntity.edit"/>
 </div>
-<c:url var="url" value="/admin/content/approveflow.html"/>
-<c:url var="backUrl" value="/admin/content/list.html"/>
+<c:url var="url" value="/admin/contentEntity/approveflow.html"/>
+<c:url var="backUrl" value="/admin/contentEntity/list.html"/>
 
-<div id="content">
+<div id="contentEntity">
     <form:form commandName="item" action="${url}" method="post" id="itemForm" enctype="multipart/form-data">
         <div class="box_container">
             <div class="header">
-                <fmt:message key="content.management"/>
+                <fmt:message key="contentEntity.management"/>
             </div>
 
             <div class="form">
@@ -22,26 +22,26 @@
                     <tr class="odd">
                         <td><fmt:message key="authoringtemplate.template"/></td>
                         <td>
-                            <form:hidden path="pojo.authoringTemplate"/>
-                            ${authoringTemplate.name}
+                            <form:hidden path="pojo.authoringTemplateEntity"/>
+                            ${authoringTemplateEntity.name}
                         </td>
                     </tr>
                     <tr class="even">
-                        <td width="15%"><fmt:message key="content.title"/></td>
+                        <td width="15%"><fmt:message key="contentEntity.title"/></td>
                         <td>
                             <form:input path="pojo.title" size="40" cssStyle="width: 98%;"/>
                             <form:errors path="pojo.title" cssClass="validateError"/>
                         </td>
                     </tr>
                     <tr class="odd">
-                        <td valign="top"><fmt:message key="content.keyword"/></td>
+                        <td valign="top"><fmt:message key="contentEntity.keyword"/></td>
                         <td>
                             <form:textarea path="pojo.keyword" rows="3" cssStyle="width:98%"/>
                             <form:errors path="pojo.keyword" cssClass="validateError"/>
                         </td>
                     </tr>
                     <tr class="even">
-                        <td><fmt:message key="content.thumbnail"/></td>
+                        <td><fmt:message key="contentEntity.thumbnail"/></td>
                         <td>
                             <input type="file" name="thumbnailFile"/>
                         </td>
@@ -49,35 +49,35 @@
 
 
                     <tr class="odd">
-                        <td><fmt:message key="content.accesspolicy"/></td>
+                        <td><fmt:message key="contentEntity.accesspolicy"/></td>
                         <td>
-                            <form:radiobutton path="pojo.accessPolicy" value="1"/><fmt:message key="content.accesspolicy.allowshare"/>
-                            <form:radiobutton path="pojo.accessPolicy" value="2"/><fmt:message key="content.accesspolicy.notallowshare"/>
+                            <form:radiobutton path="pojo.accessPolicy" value="1"/><fmt:message key="contentEntity.accesspolicy.allowshare"/>
+                            <form:radiobutton path="pojo.accessPolicy" value="2"/><fmt:message key="contentEntity.accesspolicy.notallowshare"/>
                         </td>
                     </tr>
                     <tr class="even">
-                        <td><fmt:message key="content.displayorder"/></td>
+                        <td><fmt:message key="contentEntity.displayorder"/></td>
                         <td>
                             <form:input path="pojo.displayOrder" size="40"/>
                         </td>
                     </tr>
                     <tr class="odd">
-                        <td><fmt:message key="content.hot"/></td>
+                        <td><fmt:message key="contentEntity.hot"/></td>
                         <td>
                             <form:checkbox path="pojo.hot" value="1"/>
                         </td>
                     </tr>
                     <tr class="even">
-                        <td><fmt:message key="content.category"/></td>
+                        <td><fmt:message key="contentEntity.categoryEntity"/></td>
                         <td>
-                            <c:forEach items="${categories}" var="category">
-                                <input type="checkbox" name="categoryIDs" value="${category.categoryID}" <c:if test="${not empty item.contentCategoryMap[category.categoryID]}">checked</c:if>/>
-                                ${category.name}<br/>
+                            <c:forEach items="${categories}" var="categoryEntity">
+                                <input type="checkbox" name="categoryIDs" value="${categoryEntity.categoryID}" <c:if test="${not empty item.contentCategoryMap[categoryEntity.categoryID]}">checked</c:if>/>
+                                ${categoryEntity.name}<br/>
                             </c:forEach>
                         </td>
                     </tr>
                     <tr class="odd">
-                        <td colspan="2"><fmt:message key="content.authoringcontent"/></td>
+                        <td colspan="2"><fmt:message key="contentEntity.authoringcontent"/></td>
                     </tr>
                     <tr class="even">
                         <td colspan="2">
@@ -143,13 +143,13 @@
                         <td>
                             <form:hidden path="crudaction" id="crudaction"/>
                             <form:hidden path="pojo.contentID"/>
-                            <fmt:message key="content.approve" var="submitLabel"/>
+                            <fmt:message key="contentEntity.approve" var="submitLabel"/>
                             <security:authorize ifAnyGranted="AUTHOR">
                             	<fmt:message key="button.send" var="submitLabel"/>
                             </security:authorize>
                             <input type="button" value="${submitLabel}" onclick="submitForm('approve');"/>
                             <security:authorize ifAnyGranted="APPROVER,EDITOR,PUBLISHER">
-                            	<input type="button" value="<fmt:message key="content.reject"/>" onclick="submitForm('reject');"/>
+                            	<input type="button" value="<fmt:message key="contentEntity.reject"/>" onclick="submitForm('reject');"/>
                             </security:authorize>
                             <input type="button" value="<fmt:message key="button.back"/>" onclick="document.location.href='${backUrl}';"/>
                         </td>

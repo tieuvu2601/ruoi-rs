@@ -3,15 +3,15 @@
 
 <head>
     <title><fmt:message key="404.title"/></title>
-    <meta name="heading" content="<fmt:message key='404.title'/>"/>
+    <meta name="heading" contentEntity="<fmt:message key='404.title'/>"/>
 </head>
 
-<div class="content container">
+<div class="contentEntity container">
     <div class="page-wrapper">
         <header class="page-heading clearfix">
             <h1 class="heading-title pull-left"><fmt:message key="404.title"/></h1>
         </header>
-        <div class="page-content">
+        <div class="page-contentEntity">
             <div class="page-row">
                 <fmt:message key="404.message">
                     <fmt:param><c:url value="/index.html"/></fmt:param>

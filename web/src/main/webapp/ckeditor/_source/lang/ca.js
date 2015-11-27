@@ -722,7 +722,7 @@ CKEDITOR.lang['ca'] =
 		title		: 'Quant al CKEditor',
 		dlgTitle	: 'Quant al CKEditor',
 		help	: 'Check $1 for help.', // MISSING
-		userGuide : 'CKEditor User\'s Guide', // MISSING
+		userGuide : 'CKEditor UserEntity\'s Guide', // MISSING
 		moreInfo	: 'Per informació sobre llicències visiteu el web:',
 		copy		: 'Copyright &copy; $1. Tots els drets reservats.'
 	},

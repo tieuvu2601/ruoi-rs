@@ -1,11 +1,11 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="category.management"/></title>
-    <meta name="heading" content="<fmt:message key="category.management"/>"/>
+    <title><fmt:message key="categoryEntity.management"/></title>
+    <meta name="heading" contentEntity="<fmt:message key="categoryEntity.management"/>"/>
 </head>
-<c:url var="formUrl" value="/admin/category/access.html"/>
-<c:url var="backUrl" value="/admin/category/list.html"/>
+<c:url var="formUrl" value="/admin/categoryEntity/access.html"/>
+<c:url var="backUrl" value="/admin/categoryEntity/list.html"/>
 
 <form:form commandName="item" action="${formUrl}" method="post" id="itemForm" cssClass="form-horizontal">
     <div class="small-header transition animated fadeIn">
@@ -15,21 +15,21 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                         <li>
-                            <span><fmt:message key="category"/></span>
+                            <span><fmt:message key="categoryEntity"/></span>
                         </li>
                         <li class="active">
-                            <span><fmt:message key="category.management"/></span>
+                            <span><fmt:message key="categoryEntity.management"/></span>
                         </li>
                     </ol>
                 </div>
                 <h2 class="font-light m-b-xs">
-                    <fmt:message key="category.access"/>
+                    <fmt:message key="categoryEntity.access"/>
                 </h2>
             </div>
         </div>
     </div>
 
-    <div class="content animate-panel">
+    <div class="contentEntity animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
@@ -54,14 +54,14 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.code"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.code"/></label>
                                 <div class="col-sm-8">
                                     <label class="col-sm-12 control-label text-default">${item.pojo.code}</label>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.name"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity.name"/></label>
                                 <div class="col-sm-8">
                                     <label class="col-sm-12 control-label text-default">${item.pojo.name}</label>
                                 </div>
@@ -96,10 +96,10 @@
                         </div>
                         <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                                <display:table name="userGroups" uid="userGroup" cellspacing="0" cellpadding="0"
+                                <display:table name="userGroups" uid="userGroupEntity" cellspacing="0" cellpadding="0"
                                                class="table table-striped table-bordered table-hover no-footer" export="false">
                                     <display:column headerClass="table_header" sortable="false" style="width: 3%" title="#" >
-                                        <input class="userGroupCheckbox" id="${userGroup.userGroupID}chkBox" type="checkbox" name="checkGroupList" value="${userGroup.userGroupID}" <c:if test="${!empty mapCheckedGroup[userGroup.userGroupID]}">checked="checked"</c:if> >
+                                        <input class="userGroupCheckbox" id="${userGroupEntity.userGroupID}chkBox" type="checkbox" name="checkGroupList" value="${userGroupEntity.userGroupID}" <c:if test="${!empty mapCheckedGroup[userGroupEntity.userGroupID]}">checked="checked"</c:if> >
                                     </display:column>
                                     <display:column style="width: 48%" headerClass="table_header" property="code" titleKey="usergroup.code"></display:column>
                                     <display:column headerClass="table_header" property="name" titleKey="usergroup.name"></display:column>
@@ -117,19 +117,19 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="user.list"/>
+                            <fmt:message key="userEntity.list"/>
                         </div>
                         <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                                <display:table name="users" uid="user" cellspacing="0" cellpadding="0"
+                                <display:table name="userEntities" uid="userEntity" cellspacing="0" cellpadding="0"
                                                class="table table-striped table-bordered table-hover no-footer" export="false">
                                     <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheckUser\" id=\"allCheckUser\" onclick=\"checkAll('itemForm', 'checkUserList', this)\">">
-                                        <input type="checkbox" name="checkUserList" value="${user.userID}"
-                                               <c:if test="${mapCheckedUser[user.userID] eq 'disabled'}">checked="checked" disabled="disabled"</c:if>
-                                               <c:if test="${mapCheckedUser[user.userID] eq 'edit'}">checked="checked"</c:if> >
+                                        <input type="checkbox" name="checkUserList" value="${userEntity.userID}"
+                                               <c:if test="${mapCheckedUser[userEntity.userID] eq 'disabled'}">checked="checked" disabled="disabled"</c:if>
+                                               <c:if test="${mapCheckedUser[userEntity.userID] eq 'edit'}">checked="checked"</c:if> >
                                     </display:column>
-                                    <display:column  style="width: 48%" headerClass="table_header" property="username" titleKey="user.username"></display:column>
-                                    <display:column headerClass="table_header" property="displayName" titleKey="user.displayname"></display:column>
+                                    <display:column  style="width: 48%" headerClass="table_header" property="username" titleKey="userEntity.username"></display:column>
+                                    <display:column headerClass="table_header" property="displayName" titleKey="userEntity.displayname"></display:column>
                                 </display:table>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 package com.banvien.portal.vms.taglibs.contents;
 
-import com.banvien.portal.vms.domain.Content;
+import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.service.ContentService;
 import com.banvien.portal.vms.util.CommonUtil;
 import com.banvien.portal.vms.util.Constants;
@@ -22,9 +22,9 @@ public class ContentTaglibFindByContentTitle extends TagSupport {
             if(isEng){
                 title  = title + Constants.PREFIX_ENGLISH_LANGUAGE;
             }
-            Content content = contentService.findByTitle(title, isEng, Constants.CONTENT_PUBLISH);
-            if(content != null) {
-                this.pageContext.setAttribute(this.var, content);
+            ContentEntity contentEntity = contentService.findByTitle(title, isEng, Constants.CONTENT_PUBLISH);
+            if(contentEntity != null) {
+                this.pageContext.setAttribute(this.var, contentEntity);
             }
         }
         return SKIP_BODY;

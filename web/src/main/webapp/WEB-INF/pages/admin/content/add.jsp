@@ -1,11 +1,11 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="content.management"/></title>
-    <meta name="heading" content="Content Management"/>
+    <title><fmt:message key="contentEntity.management"/></title>
+    <meta name="heading" contentEntity="Content Management"/>
 </head>
-<c:url var="formUrl" value="/admin/content/add.html"/>
-<c:url var="backUrl" value="/admin/content/list.html"/>
+<c:url var="formUrl" value="/admin/contentEntity/add.html"/>
+<c:url var="backUrl" value="/admin/contentEntity/list.html"/>
 
 <form:form commandName="item" action="${formUrl}" method="post" id="itemForm" cssClass="form-horizontal">
     <div class="small-header transition animated fadeIn">
@@ -15,10 +15,10 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                         <li>
-                            <span><fmt:message key="content"/></span>
+                            <span><fmt:message key="contentEntity"/></span>
                         </li>
                         <li class="active">
-                            <span><fmt:message key="content.management"/></span>
+                            <span><fmt:message key="contentEntity.management"/></span>
                         </li>
                     </ol>
                 </div>
@@ -26,10 +26,10 @@
                 <h2 class="font-light m-b-xs">
                     <c:choose>
                         <c:when test="${not empty item.pojo.contentID}">
-                            <fmt:message key="content.edit"/>
+                            <fmt:message key="contentEntity.edit"/>
                         </c:when>
                         <c:otherwise>
-                            <fmt:message key="content.add"/>
+                            <fmt:message key="contentEntity.add"/>
                         </c:otherwise>
                     </c:choose>
                 </h2>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="content animate-panel">
+    <div class="contentEntity animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
@@ -46,7 +46,7 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="role.management"/>
+                            <fmt:message key="roleEntity.management"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -61,9 +61,9 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="categoryEntity"/></label>
                                 <div class="col-sm-8">
-                                    <form:select path="pojo.category.categoryID" cssClass="form-control">
+                                    <form:select path="pojo.categoryEntity.categoryID" cssClass="form-control">
                                         <c:forEach var="cat" items="${categories}">
                                             <form:option value="${cat.categoryID}">
                                                 <c:forEach begin="1" end="${cat.nodeLevel}">
@@ -79,7 +79,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.template"/></label>
                                 <div class="col-sm-8">
-                                    <form:select path="pojo.authoringTemplate" cssClass="form-control">
+                                    <form:select path="pojo.authoringTemplateEntity" cssClass="form-control">
                                         <form:options items="${authoringTemplates}" itemLabel="name" itemValue="authoringTemplateID"/>
                                     </form:select>
                                 </div>

@@ -1,6 +1,6 @@
 package com.banvien.portal.vms.taglibs.contents;
 
-import com.banvien.portal.vms.domain.Content;
+import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.service.ContentService;
 import com.banvien.portal.vms.util.CommonUtil;
 import com.banvien.portal.vms.util.Constants;
@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
- * User: viennh
+ * UserEntity: viennh
  * Date: 12/13/12
  * Time: 12:41 AM
  * To change this template use File | Settings | File Templates.
@@ -32,9 +32,9 @@ public class ContentTagLibFindCategory extends TagSupport {
             if(isEng){
                 category = category + Constants.PREFIX_ENGLISH_LANGUAGE;
             }
-            List<Content> contentList = contentService.findByCategory(category, begin, pageSize, isEng, Constants.CONTENT_PUBLISH);
-            if(contentList != null) {
-                this.pageContext.setAttribute(this.var, contentList);
+            List<ContentEntity> contentEntityList = contentService.findByCategory(category, begin, pageSize, isEng, Constants.CONTENT_PUBLISH);
+            if(contentEntityList != null) {
+                this.pageContext.setAttribute(this.var, contentEntityList);
             }
         }
         return SKIP_BODY;

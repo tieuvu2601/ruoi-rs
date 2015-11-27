@@ -23,7 +23,7 @@
         <xsd:attribute name="title" type="xsd:string"/>
         <xsd:attribute name="renderingTemplate" type="xsd:string"/>
         <xsd:attribute name="displayItem" type="xsd:int"/>
-        <xsd:attribute name="category" type="xsd:string"/>
+        <xsd:attribute name="categoryEntity" type="xsd:string"/>
         <xsd:attribute name="skin" type="xsd:string"/>
     </xsd:complexType>
     <xsd:complexType name="Rows">
