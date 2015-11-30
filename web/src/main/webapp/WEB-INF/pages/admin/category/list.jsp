@@ -1,12 +1,12 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="categoryEntity.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="categoryEntity.management"/>"/>
+    <title><fmt:message key="category.management"/></title>
+    <meta name="heading" content="<fmt:message key="category.management"/>"/>
 </head>
-<c:url var="formUrl" value="/admin/categoryEntity/list.html"/>
-<c:url var="editUrl" value="/admin/categoryEntity/edit.html"/>
-<c:url var="accessUrl" value="/admin/categoryEntity/access.html"/>
+<c:url var="formUrl" value="/admin/category/list.html"/>
+<c:url var="editUrl" value="/admin/category/edit.html"/>
+<c:url var="accessUrl" value="/admin/category/access.html"/>
 
 <div class="small-header transition animated fadeIn">
     <div class="hpanel">
@@ -15,21 +15,21 @@
                 <ol class="hbreadcrumb breadcrumb">
                     <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                     <li>
-                        <span><fmt:message key="categoryEntity"/></span>
+                        <span><fmt:message key="category"/></span>
                     </li>
                     <li class="active">
-                        <span><fmt:message key="categoryEntity.management"/></span>
+                        <span><fmt:message key="category.management"/></span>
                     </li>
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
-                <fmt:message key="categoryEntity.management"/>
+                <fmt:message key="category.management"/>
             </h2>
         </div>
     </div>
 </div>
 
-<div class="contentEntity animate-panel">
+<div class="content animate-panel">
     <form:form commandName="items" action="${formUrl}" method="post" id="listForm" cssClass="form-horizontal">
         <div>
             <div class="row">
@@ -56,7 +56,7 @@
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="categoryEntity.code"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="category.code"/></label>
                                     <div class="col-sm-8">
                                         <form:input path="pojo.code" size="40" cssClass="form-control"/>
                                     </div>
@@ -65,7 +65,7 @@
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="categoryEntity.name"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="category.name"/></label>
                                     <div class="col-sm-8">
                                         <form:input path="pojo.name" size="40" cssClass="form-control"/>
                                     </div>
@@ -74,16 +74,16 @@
 
                              <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="categoryEntity.parent"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="category.parent"/></label>
                                     <div class="col-sm-8">
-                                        <form:select path="pojo.parentCategoryEntity.categoryID" cssClass="form-control" id="parentCategoryID">
-                                            <form:option value="-1" parentRootId="-1"><fmt:message key="categoryEntity.choose.parent"/></form:option>
+                                        <form:select path="pojo.parentCategory.categoryID" cssClass="form-control" id="parentCategoryID">
+                                            <form:option value="-1" parentRootId="-1"><fmt:message key="category.choose.parent"/></form:option>
                                             <c:forEach var="cat" items="${categories}">
                                                 <c:set var="parentRootID" value="-1"/>
                                                 <c:if test="${not empty cat.parentRootId && cat.parentRootId > 0}">
                                                     <c:set var="parentRootID" value="${cat.parentRootId}"/>
                                                 </c:if>
-                                                <option value="${cat.categoryID}" parentRootId="${parentRootID}" <c:if test="${cat.categoryID == items.pojo.parentCategoryEntity.categoryID}">selected</c:if>>
+                                                <option value="${cat.categoryID}" parentRootId="${parentRootID}" <c:if test="${cat.categoryID == items.pojo.parentCategory.categoryID}">selected</c:if>>
                                                     <c:forEach begin="1" end="${cat.nodeLevel}">
                                                         - - -
                                                     </c:forEach>
@@ -115,7 +115,7 @@
                                 <a href="${editUrl}"class=""><i class="fa fa-plus"></i> <fmt:message key="button.add"/></a>
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="categoryEntity.list"/>
+                            <fmt:message key="category.list"/>
                         </div>
                         <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
@@ -125,9 +125,9 @@
                                     <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
                                         <input type="checkbox" name="checkList" value="${tableList.categoryID}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
                                     </display:column>
-                                    <display:column headerClass="table_header" property="code" escapeXml="false" sortable="true" sortName="code" titleKey="categoryEntity.code" style="width: 15%" />
-                                    <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="categoryEntity.name" style="width: 20%"/>
-                                    <display:column headerClass="table_header" property="displayOrder" escapeXml="true" sortable="true" sortName="displayOrder" titleKey="categoryEntity.displayorder" style="width: 10%"/>
+                                    <display:column headerClass="table_header" property="code" escapeXml="false" sortable="true" sortName="code" titleKey="category.code" style="width: 15%" />
+                                    <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="category.name" style="width: 20%"/>
+                                    <display:column headerClass="table_header" property="displayOrder" escapeXml="true" sortable="true" sortName="displayOrder" titleKey="category.displayorder" style="width: 10%"/>
                                     <display:column headerClass="table_header" property="createdDate" sortable="true" sortName="createdDate" titleKey="createdDate" style="width: 20%" format="{0,date,dd/MM/yyyy}"/>
                                     <display:column headerClass="table_header" property="modifiedDate" sortable="true" sortName="modifiedDate" titleKey="modifiedDate" style="width: 20%" format="{0,date,dd/MM/yyyy}"/>
 
@@ -136,8 +136,8 @@
                                         <a href="${editUrl}?pojo.categoryID=${tableList.categoryID}"><i class="fa fa-edit"></i></a> |
                                         <a class="deleteLink" id="${tableList.categoryID}"><i class="fa fa-remove"></i></a>
                                     </display:column>
-                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="categoryEntity"/></display:setProperty>
-                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="categoryEntity"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="category"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="category"/></display:setProperty>
                                     <display:setProperty name="paging.banner.placement" value="bottom"/>
                                     <display:setProperty name="paging.banner.no_items_found" value=""/>
                                     <display:setProperty name="paging.banner.onepage" value=""/>

@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="department.management"/></title>
-    <meta name="heading" contentEntity="Department Management"/>
+    <meta name="heading" content="Department Management"/>
 </head>
 <c:url var="formUrl" value="/admin/department/edit.html"/>
 <c:url var="backUrl" value="/admin/department/list.html"/>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="contentEntity animate-panel">
+    <div class="content animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
@@ -46,7 +46,7 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="roleEntity.management"/>
+                            <fmt:message key="role.management"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">

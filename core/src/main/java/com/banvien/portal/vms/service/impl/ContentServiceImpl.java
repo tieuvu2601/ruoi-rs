@@ -4,8 +4,6 @@ import com.banvien.portal.vms.bean.ContentBean;
 import com.banvien.portal.vms.dao.ContentDAO;
 import com.banvien.portal.vms.dao.GenericDAO;
 import com.banvien.portal.vms.domain.*;
-import com.banvien.portal.vms.dto.TopCommentsContentDTO;
-import com.banvien.portal.vms.dto.TopViewContentDTO;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.ContentService;
@@ -98,42 +96,11 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
     }
 
     @Override
-    public Object [] findByCategoryWithMaxItem(String category, Integer startRow, Integer pageSize, Boolean isEng, Integer orderBy, Integer status) {
-        category = category.replaceAll("-", " ");
-
-        Object [] result =  this.contentDAO.findByCategoryWithMaxItem(category, startRow, pageSize, isEng, orderBy, status);
-        List<ContentEntity> listContentEntity = new ArrayList<ContentEntity>();
-        for(ContentEntity contentEntity : (List<ContentEntity>) result[1]){
-            ContentEntity contentEntityObj = contentEntity;
-            CategoryEntity categoryEntityObj = contentEntity.getCategory();
-            if(categoryEntityObj.getParent() != null && categoryEntityObj.getParent().getCategoryId() != null && categoryEntityObj.getParent().getCategoryId() > 0){
-                CategoryEntity parent = categoryEntityObj.getParent();
-                categoryEntityObj.setParent(parent);
-            } else {
-                categoryEntityObj.setParent(null);
-            }
-            listContentEntity.add(contentEntityObj);
-        }
-        return new Object [] {result[0], listContentEntity};
-    }
-
-
-    @Override
     public List<ContentEntity> findByAuthoringTemplate(String authoringCode, Integer startRow, Integer pageSize) {
         Map<String, Object> properties = new HashMap<String, Object>();
         properties.put("authoringTemplate.code", authoringCode);
         properties.put("status", Constants.CONTENT_PUBLISH);
         return this.contentDAO.findByProperties(properties, "modifiedDate", Constants.SORT_DESC, true, true, startRow, pageSize);
-    }
-
-    @Override
-    public List<TopViewContentDTO> findTopViewByAuthoringCode(String authoringCode, String category, Integer pageSize){
-        return contentDAO.findTopViewByAuthoringCode(authoringCode, category, pageSize, noOfDateTracking);
-    }
-
-    @Override
-    public List<TopCommentsContentDTO> findTopCommentByAuthoringCode(String authoringCode, String category, Integer pageSize){
-        return contentDAO.findTopCommentByAuthoringCode(authoringCode, category, pageSize, noOfDateTracking);
     }
 
     @Override
@@ -163,11 +130,6 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
     }
 
     @Override
-    public List<ContentEntity> findByListTitle(List<String> title, Integer status) {
-        return this.contentDAO.findByListTitle(title, status);
-    }
-
-    @Override
     public ContentEntity findByTitle(String title, Boolean isEng, Integer status) {
         title = title.replaceAll("-", " ");
         return this.contentDAO.findByTitle(title, isEng, status);
@@ -178,21 +140,10 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
         return this.contentDAO.findByPrefixUrl(prefixUrl, startRow, pageSize, isEng, status);
     }
 
-
-    @Override
-    public List<ContentEntity> findByAuthoringPrefixUrl(String prefixUrl, Integer startRow, Integer pageSize, Boolean isEng, Integer status) {
-        return this.contentDAO.findByAuthoringPrefixUrl(prefixUrl, startRow, pageSize, isEng, status);
-    }
-
     @Override
     public Object[] findByCategoryTypeWithMaxItem(String categoryType, Integer startRow, Integer maxPageItems, String categorySearch, Boolean isEng, Integer status) {
         Date toDate = new Date(System.currentTimeMillis());
         return this.contentDAO.findByCategoryTypeWithMaxItem(categoryType, startRow, maxPageItems, toDate, categorySearch, isEng, status);
-    }
-
-    @Override
-    public Object[] searchInSite(String keyword, Timestamp fromDate, Timestamp toDate, Integer startRow, Integer maxPageItems, Boolean isEng, Integer status) {
-        return this.contentDAO.searchInSite(keyword, fromDate, toDate, startRow, maxPageItems, isEng, status);
     }
 
     @Override

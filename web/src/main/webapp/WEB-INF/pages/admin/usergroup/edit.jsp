@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="usergroup.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="usergroup.management"/>"/>
+    <meta name="heading" content="<fmt:message key="usergroup.management"/>"/>
 </head>
 
 <c:url var="formUrl" value="/admin/usergroup/edit.html"/>
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="contentEntity animate-panel">
+    <div class="content animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">

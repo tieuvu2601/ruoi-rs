@@ -168,7 +168,7 @@ public class FileUtils {
 				fileName = filePath.substring(lastSlash + 1, filePath.length());
 			}
 			response.setContentType(String.format("application/octet-stream; name=\"{0}\"", fileName));
-			response.setHeader("ContentEntity-Disposition", String.format("attachment; filename=\"{0}\"", fileName));
+			response.setHeader("Content-Disposition", String.format("attachment; filename=\"{0}\"", fileName));
 			response.setContentLength(in.available());
 
 			byte[] buf = new byte[BUFSIZE];
@@ -193,7 +193,7 @@ public class FileUtils {
 			out = response.getOutputStream();
 			
 			response.setContentType(String.format("application/octet-stream; name=%s", downloadFileName));
-			response.setHeader("ContentEntity-Disposition", String.format("attachment; filename=%s", downloadFileName));
+			response.setHeader("Content-Disposition", String.format("attachment; filename=%s", downloadFileName));
 			response.setContentLength(in.available());
 
 			byte[] buf = new byte[BUFSIZE];

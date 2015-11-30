@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="opinion.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="opinion.management"/>"/>
+    <meta name="heading" content="<fmt:message key="opinion.management"/>"/>
 </head>
 <c:url var="formUrl" value="/admin/opinion/list.html"/>
 <c:url var="viewUrl" value="/admin/opinion/view.html"/>
@@ -28,7 +28,7 @@
     </div>
 </div>
 
-<div class="contentEntity animate-panel">
+<div class="content animate-panel">
 <form:form commandName="items" action="${formUrl}" method="post" id="listForm" cssClass="form-horizontal">
     <div>
         <div class="row">

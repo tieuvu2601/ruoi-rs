@@ -80,7 +80,7 @@ public class DownloadFileServlet extends HttpServlet{
 
 			if(!contentType.startsWith("image") && !contentType.contains("flash") &&
                     !(fileNameRef.contains(".png") || fileNameRef.contains(".jpg") || fileNameRef.contains(".gif") || fileNameRef.contains(".jpeg"))) {
-				response.setHeader("ContentEntity-disposition", "attachment; filename=" + fileName);
+				response.setHeader("Content-disposition", "attachment; filename=" + fileName);
 			}else if(contentType.startsWith("image") || (fileNameRef.contains(".png") || fileNameRef.contains(".jpg") || fileNameRef.contains(".gif") || fileNameRef.contains(".jpeg"))){
 				String sWidth = request.getParameter("w");
 				String sHeight = request.getParameter("h");

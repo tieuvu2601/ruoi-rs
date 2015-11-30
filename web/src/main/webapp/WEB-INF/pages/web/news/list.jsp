@@ -1,20 +1,20 @@
 <%@ include file="/common/taglibs.jsp"%>
-<div class="contentEntity container contentEntity-container">
+<div class="content container content-container">
     <div class="page-wrapper">
         <header class="page-heading clearfix">
-            <h1 class="heading-title pull-left">${currentCategoryEntity.name}</h1>
+            <h1 class="heading-title pull-left">${currentCategory.name}</h1>
             <div class="breadcrumbs pull-right">
                 <div class="breadcrumbs pull-right">
                     <ul class="breadcrumbs-list">
                         <li><a href="<c:url value="/index.html"/>"><fmt:message key="site.home"/></a><i class="fa fa-angle-right"></i></li>
-                        <li style="text-transform: capitalize;"><span>${categoryEntityObj.name}</span><i class="fa fa-angle-right"></i></li>
-                        <li class="current" style="text-transform: capitalize;"><span>${currentCategoryEntity.name}</span></li>
+                        <li style="text-transform: capitalize;"><span>${categoryObj.name}</span><i class="fa fa-angle-right"></i></li>
+                        <li class="current" style="text-transform: capitalize;"><span>${currentCategory.name}</span></li>
                     </ul>
                 </div>
             </div>
         </header>
 
-        <div class="page-contentEntity">
+        <div class="page-content">
             <div class="row page-row">
                 <div class="news-wrapper col-md-8 col-sm-7">
                     <c:forEach var="item" items="${items}">
@@ -31,7 +31,7 @@
 
                             <div class="details col-md-10 col-sm-9 col-xs-8">
                                 <h3 class="title">
-                                    <seo:url value="${item.title}" var="seoURL" prefix="/${item.authoringTemplateEntity.prefixUrl}/${portal:convertStringToUrl(item.categoryEntity.code)}/"/>
+                                    <seo:url value="${item.title}" var="seoURL" prefix="/${item.authoringTemplate.prefixUrl}/${portal:convertStringToUrl(item.category.code)}/"/>
                                     <a href="${seoURL}">${itemData.header[0]}</a>
                                 </h3>
                                 <p>${itemData.description[0]}</p>
@@ -49,7 +49,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryEntityObj.code)}'));
+        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryObj.code)}'));
     });
     function setSelectedMenu(parent, element){
         $(parent).find('.active').removeClass('active');

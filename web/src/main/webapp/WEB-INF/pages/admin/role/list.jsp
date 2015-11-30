@@ -1,11 +1,11 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="roleEntity.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="roleEntity.management"/>"/>
+    <title><fmt:message key="role.management"/></title>
+    <meta name="heading" content="<fmt:message key="role.management"/>"/>
 </head>
-<c:url var="formUrl" value="/admin/roleEntity/list.html"/>
-<c:url var="editUrl" value="/admin/roleEntity/edit.html"/>
+<c:url var="formUrl" value="/admin/role/list.html"/>
+<c:url var="editUrl" value="/admin/role/edit.html"/>
 
 <div class="small-header transition animated fadeIn">
     <div class="hpanel">
@@ -14,21 +14,21 @@
                 <ol class="hbreadcrumb breadcrumb">
                     <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                     <li>
-                        <span><fmt:message key="roleEntity"/></span>
+                        <span><fmt:message key="role"/></span>
                     </li>
                     <li class="active">
-                        <span><fmt:message key="roleEntity.management"/></span>
+                        <span><fmt:message key="role.management"/></span>
                     </li>
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
-                <fmt:message key="roleEntity.management"/>
+                <fmt:message key="role.management"/>
             </h2>
         </div>
     </div>
 </div>
 
-<div class="contentEntity animate-panel">
+<div class="content animate-panel">
     <form:form commandName="items" action="${formUrl}" method="post" id="listForm" cssClass="form-horizontal">
         <div>
             <div class="row">
@@ -55,16 +55,16 @@
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="roleEntity.roleEntity"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="role.role"/></label>
                                     <div class="col-sm-8">
-                                        <form:input path="pojo.roleEntity" size="40" cssClass="form-control"/>
+                                        <form:input path="pojo.role" size="40" cssClass="form-control"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="roleEntity.name"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="role.name"/></label>
                                     <div class="col-sm-8">
                                         <form:input path="pojo.name" size="40" cssClass="form-control"/>
                                     </div>
@@ -91,7 +91,7 @@
                                 <a href="${editUrl}"class=""><i class="fa fa-plus"></i> <fmt:message key="button.add"/></a>
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="roleEntity.list"/>
+                            <fmt:message key="role.list"/>
                         </div>
                         <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
@@ -102,12 +102,12 @@
                                     <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
                                         <input type="checkbox" name="checkList" value="${tableList.roleID}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
                                     </display:column>
-                                    <display:column headerClass="table_header" property="roleEntity" escapeXml="false" sortable="true" sortName="roleEntity" titleKey="roleEntity.roleEntity" style="width: 15%"/>
+                                    <display:column headerClass="table_header" property="role" escapeXml="false" sortable="true" sortName="role" titleKey="role.role" style="width: 15%"/>
 
-                                    <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="roleEntity.name" style="width: 20%"/>
+                                    <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="role.name" style="width: 20%"/>
 
 
-                                    <display:column headerClass="table_header" property="description" escapeXml="true" sortable="true" sortName="description" titleKey="roleEntity.description" style="width: 25%"/>
+                                    <display:column headerClass="table_header" property="description" escapeXml="true" sortable="true" sortName="description" titleKey="role.description" style="width: 25%"/>
                                     <display:column headerClass="table_header" property="createdDate" sortable="true" sortName="createdDate" titleKey="createdDate" style="width: 15%" format="{0,date,dd/MM/yyyy}"/>
                                     <display:column headerClass="table_header" property="modifiedDate" sortable="true" sortName="modifiedDate" titleKey="modifiedDate" style="width: 15%" format="{0,date,dd/MM/yyyy}"/>
 
@@ -116,8 +116,8 @@
                                         <a class="deleteLink" id="${tableList.roleID}"><i class="fa fa-remove"></i></a>
                                     </display:column>
 
-                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="roleEntity"/></display:setProperty>
-                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="roleEntity"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="role"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="role"/></display:setProperty>
                                     <display:setProperty name="paging.banner.placement" value="bottom"/>
                                     <display:setProperty name="paging.banner.no_items_found" value=""/>
                                     <display:setProperty name="paging.banner.onepage" value=""/>

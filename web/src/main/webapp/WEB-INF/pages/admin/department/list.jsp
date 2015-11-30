@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="department.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="department.management"/>"/>
+    <meta name="heading" content="<fmt:message key="department.management"/>"/>
 </head>
 <c:url var="formUrl" value="/admin/department/list.html"/>
 <c:url var="editUrl" value="/admin/department/edit.html"/>
@@ -28,7 +28,7 @@
     </div>
 </div>
 
-<div class="contentEntity animate-panel">
+<div class="content animate-panel">
     <form:form commandName="items" action="${formUrl}" method="post" id="listForm" cssClass="form-horizontal">
         <div>
             <div class="row">
@@ -91,7 +91,7 @@
                                 <a href="${editUrl}"class=""><i class="fa fa-plus"></i> <fmt:message key="button.add"/></a>
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="roleEntity.list"/>
+                            <fmt:message key="role.list"/>
                         </div>
                         <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">

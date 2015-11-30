@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  * Created by Ban Vien Ltd.
- * UserEntity: Vien Nguyen (vien.nguyen@banvien.com)
+ * User: Vien Nguyen (vien.nguyen@banvien.com)
  * Date: 7/2/12
  * Time: 2:56 PM
  */

@@ -1,8 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="roleEntity.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="roleEntity.management"/>"/>
+    <title><fmt:message key="role.management"/></title>
+    <meta name="heading" content="<fmt:message key="role.management"/>"/>
 </head>
 <c:url var="backUrl" value="/admin/user/list.html"/>
 <c:url var="formUrl" value="/admin/user/departmentACL.html"/>
@@ -14,21 +14,21 @@
                 <ol class="hbreadcrumb breadcrumb">
                     <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                     <li>
-                        <span><fmt:message key="userEntity"/></span>
+                        <span><fmt:message key="user"/></span>
                     </li>
                     <li class="active">
-                        <span><fmt:message key="userEntity.management"/></span>
+                        <span><fmt:message key="user.management"/></span>
                     </li>
                 </ol>
             </div>
             <h2 class="font-light m-b-xs">
-                <fmt:message key="userEntity.access"/>
+                <fmt:message key="user.access"/>
             </h2>
         </div>
     </div>
 </div>
 
-<div class="contentEntity animate-panel">
+<div class="content animate-panel">
     <div>
         <div class="row">
             <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
@@ -53,14 +53,14 @@
                         </c:if>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><fmt:message key="userEntity.username"/></label>
+                            <label class="col-sm-2 control-label"><fmt:message key="user.username"/></label>
                             <div class="col-sm-8">
                                 <label class="col-sm-12 control-label text-default">${currentUser.username}</label>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><fmt:message key="userEntity.displayname"/></label>
+                            <label class="col-sm-2 control-label"><fmt:message key="user.displayname"/></label>
                             <div class="col-sm-8">
                                 <label class="col-sm-12 control-label text-default">${currentUser.displayName}</label>
                             </div>
@@ -84,7 +84,7 @@
                         <div class="panel-tools">
                             <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                         </div>
-                        <fmt:message key="userEntity.list"/>
+                        <fmt:message key="user.list"/>
                     </div>
                     <div class="panel-body">
                         <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
@@ -99,7 +99,7 @@
                                             >
                                     <input type="hidden" name="departmentIDsInPage" value="${tableList.departmentID}"/>
                                 </display:column>
-                                <display:column headerClass="table_header"  escapeXml="false" sortable="true" sortName="roleEntity" titleKey="department.code" style="width: 10%" >
+                                <display:column headerClass="table_header"  escapeXml="false" sortable="true" sortName="role" titleKey="department.code" style="width: 10%" >
                                     ${tableList.code}
                                 </display:column>
                                 <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="department.name" style="width: 10%"/>

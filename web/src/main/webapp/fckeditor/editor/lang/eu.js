@@ -187,7 +187,7 @@ DlgGenTabIndex		: "Tabulazio Indizea",
 DlgGenLongDescr		: "URL Deskribapen Luzea",
 DlgGenClass			: "Estilo-orriko Klaseak",
 DlgGenTitle			: "Izenburua",
-DlgGenContType		: "Eduki Mota (ContentEntity Type)",
+DlgGenContType		: "Eduki Mota (Content Type)",
 DlgGenLinkCharset	: "Estekatutako Karaktere Multzoa",
 DlgGenStyle			: "Estiloa",
 

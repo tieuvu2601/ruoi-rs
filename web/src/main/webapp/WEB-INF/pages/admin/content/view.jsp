@@ -1,8 +1,8 @@
 ﻿<%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="contentEntity.management"/></title>
-    <meta name="heading" contentEntity="Content Management"/>
+    <title><fmt:message key="content.management"/></title>
+    <meta name="heading" content="Content Management"/>
     <link rel="stylesheet" type="text/css" href="<c:url value='/swfupload/default.css'/>" />
 	<script type="text/javascript" src="<c:url value='/swfupload/swfupload.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/swfupload/fileprogress.js' />"></script>
@@ -10,8 +10,8 @@
 	
 </head>
 
-<c:url var="formUrl" value="/admin/contentEntity/view.html"/>
-<c:url var="backUrl" value="/admin/contentEntity/list.html"/>
+<c:url var="formUrl" value="/admin/content/view.html"/>
+<c:url var="backUrl" value="/admin/content/list.html"/>
 
 <form:form commandName="item" action="${formUrl}" method="post" id="itemForm" cssClass="form-horizontal">
     <div class="small-header transition animated fadeIn">
@@ -21,21 +21,21 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                         <li>
-                            <span><fmt:message key="contentEntity"/></span>
+                            <span><fmt:message key="content"/></span>
                         </li>
                         <li class="active">
-                            <span><fmt:message key="contentEntity.management"/></span>
+                            <span><fmt:message key="content.management"/></span>
                         </li>
                     </ol>
                 </div>
                 <h2 class="font-light m-b-xs">
-                    <fmt:message key="contentEntity.management"/>
+                    <fmt:message key="content.management"/>
                 </h2>
             </div>
         </div>
     </div>
 
-    <div class="contentEntity animate-panel">
+    <div class="content animate-panel">
         <div>
             <c:if test="${empty ITEM_NOT_FOUND}">
                 <div class="row">
@@ -66,14 +66,14 @@
                                             <fmt:message key="authoringtemplate.template"/>
                                         </td>
                                         <td>
-                                            ${item.pojo.authoringTemplateEntity.name}
-                                            <form:hidden path="pojo.authoringTemplateEntity"/>
+                                            ${item.pojo.authoringTemplate.name}
+                                            <form:hidden path="pojo.authoringTemplate"/>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td style="width: 20%; vertical-align: middle; text-align: right">
-                                            <fmt:message key="contentEntity.title"/>
+                                            <fmt:message key="content.title"/>
                                         </td>
                                         <td>
                                             ${item.pojo.title}
@@ -82,7 +82,7 @@
 
                                     <tr>
                                         <td style="width: 20%; vertical-align: middle; text-align: right">
-                                            <fmt:message key="contentEntity.keyword"/>
+                                            <fmt:message key="content.keyword"/>
                                         </td>
                                         <td>
                                             ${item.pojo.keyword}
@@ -92,7 +92,7 @@
                                     <c:if test="${authoring.hasThumbnail == 'Y'}">
                                         <tr>
                                             <td style="width: 20%; vertical-align: middle; text-align: right">
-                                                <fmt:message key="contentEntity.thumbnail"/>
+                                                <fmt:message key="content.thumbnail"/>
                                             </td>
                                             <td>
                                                 <rep:href value="${item.pojo.thumbnail}" var="imgURL"/>
@@ -103,17 +103,17 @@
 
                                     <tr>
                                         <td style="width: 20%; vertical-align: middle; text-align: right">
-                                            <fmt:message key="contentEntity.accesspolicy"/>
+                                            <fmt:message key="content.accesspolicy"/>
                                         </td>
                                         <td>
-                                            <c:if test="${item.pojo.accessPolicy eq 1 }"><fmt:message key="contentEntity.accesspolicy.allowshare"/></c:if>
-                                            <c:if test="${item.pojo.accessPolicy eq 2 }"><fmt:message key="contentEntity.accesspolicy.notallowshare"/></c:if>
+                                            <c:if test="${item.pojo.accessPolicy eq 1 }"><fmt:message key="content.accesspolicy.allowshare"/></c:if>
+                                            <c:if test="${item.pojo.accessPolicy eq 2 }"><fmt:message key="content.accesspolicy.notallowshare"/></c:if>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td style="width: 20%; vertical-align: middle; text-align: right">
-                                            <fmt:message key="contentEntity.displayorder"/>
+                                            <fmt:message key="content.displayorder"/>
                                         </td>
                                         <td>
                                                 ${item.pojo.displayOrder}
@@ -123,7 +123,7 @@
                                     <c:if test="${authoring.hasHotItem == 'Y'}">
                                         <tr>
                                             <td style="width: 20%; vertical-align: middle; text-align: right">
-                                                <fmt:message key="contentEntity.hot"/>
+                                                <fmt:message key="content.hot"/>
                                             </td>
                                             <td>
                                                 <c:choose>
@@ -136,12 +136,12 @@
 
                                     <tr>
                                         <td style="width: 20%; vertical-align: middle; text-align: right">
-                                            <fmt:message key="contentEntity.categoryEntity"/>
+                                            <fmt:message key="content.category"/>
                                         </td>
                                         <td>
                                             <ul>
-                                                <c:forEach items="${categories}" var="categoryEntity">
-                                                    <li>${categoryEntity.name}</li>
+                                                <c:forEach items="${categories}" var="category">
+                                                    <li>${category.name}</li>
                                                 </c:forEach>
                                             </ul>
                                         </td>
@@ -163,7 +163,7 @@
                                                 <security:authorize ifAnyGranted="APPROVER,FULL_ACCESS_RIGHT">
                                                     <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.approve"/>" onclick="submitContentForm('approve');"/>
 
-                                                    <input class="btn w-xs btn-danger2" type="button" value="<fmt:message key="contentEntity.reject"/>" onclick="submitContentForm('reject');"/>
+                                                    <input class="btn w-xs btn-danger2" type="button" value="<fmt:message key="content.reject"/>" onclick="submitContentForm('reject');"/>
                                                 </security:authorize>
                                             </c:when>
 
@@ -171,7 +171,7 @@
                                                 <security:authorize ifAnyGranted="PUBLISHER,FULL_ACCESS_RIGHT">
                                                     <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.public"/>" onclick="submitContentForm('public');"/>
 
-                                                    <input class="btn w-xs btn-danger2" type="button" value="<fmt:message key="contentEntity.reject"/>" onclick="submitContentForm('reject');"/>
+                                                    <input class="btn w-xs btn-danger2" type="button" value="<fmt:message key="content.reject"/>" onclick="submitContentForm('reject');"/>
                                                 </security:authorize>
                                             </c:when>
 
@@ -197,7 +197,7 @@
                                 <div class="panel-tools">
                                     <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                                 </div>
-                                <fmt:message key="contentEntity.authoringcontent"/>
+                                <fmt:message key="content.authoringcontent"/>
                             </div>
 
                             <div class="panel-body" style="display: block;">

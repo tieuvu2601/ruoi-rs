@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="feedbackcategory.management"/></title>
-    <meta name="heading" contentEntity="Feedback Category Management"/>
+    <meta name="heading" content="Feedback Category Management"/>
 </head>
 <div class="pathway">
    <c:choose>
@@ -18,7 +18,7 @@
 <c:url var="backUrl" value="/admin/feedback/list.html"/>
 <c:url var="replyUrl" value="/admin/feedback/reply.html"/>
 
-<div id="contentEntity">
+<div id="content">
     <form:form commandName="item" action="${replyUrl}" method="post" id="itemForm">
         <div class="box_container">
             <div class="header">
@@ -28,9 +28,9 @@
             <div class="form">
                 <table width="100%" cellpadding="5" cellspacing="5" border="0">
                     <tr>
-                        <td valign="top"><fmt:message key="feedback.contentEntity"/></td>
+                        <td valign="top"><fmt:message key="feedback.content"/></td>
                         <td>
-                            <form:textarea path="feedback.contentEntity" readonly="true" rows="5" cssStyle="width:98%;"/>
+                            <form:textarea path="feedback.content" readonly="true" rows="5" cssStyle="width:98%;"/>
                         </td>
                     </tr>
                 </table>
@@ -38,8 +38,8 @@
             <div class="box_container" >
                 <display:table name="item.listResult" cellspacing="0" cellpadding="0" requestURI="${url}"
                                partialList="true" sort="external" size="${item.totalItems}" defaultsort="2" uid="tableList" pagesize="${item.maxPageItems}" class="table bright_blue_body" export="false" excludedParams="crudaction">
-                    <display:column headerClass="table_header"  escapeXml="false" sortable="true" titleKey="feedbackreply.contentEntity" style="width: 15%" >
-                        <a href="${editUrl}?pojo.feedbackReplyID=${tableList.feedbackReplyID}">${tableList.contentEntity}</a>
+                    <display:column headerClass="table_header"  escapeXml="false" sortable="true" titleKey="feedbackreply.content" style="width: 15%" >
+                        <a href="${editUrl}?pojo.feedbackReplyID=${tableList.feedbackReplyID}">${tableList.content}</a>
                     </display:column>
                     <display:column headerClass="table_header" property="createdBy.username"  escapeXml="false" sortable="true" sortName="createdBy.username" titleKey="feedback.username" style="width: 15%" />
                     <display:column headerClass="table_header" escapeXml="false" sortable="true" sortName="createdDate" titleKey="feedback.createdDate" style="width: 15%" >
@@ -58,9 +58,9 @@
             <div class="form">
                 <table width="100%" cellpadding="5" cellspacing="5" border="0">
                     <tr>
-                        <td valign="top"><fmt:message key="feedback.contentEntity"/></td>
+                        <td valign="top"><fmt:message key="feedback.content"/></td>
                         <td>
-                            <form:textarea path="pojo.contentEntity" rows="5" cssStyle="width:98%;"/>
+                            <form:textarea path="pojo.content" rows="5" cssStyle="width:98%;"/>
                         </td>
                     </tr>
                     <tr>

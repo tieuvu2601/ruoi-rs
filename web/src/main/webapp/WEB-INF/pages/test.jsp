@@ -24,7 +24,7 @@
 	<table width="100%">
 		<tr>
 			<td width="120px;">Phone number:</td>
-			<td><input type="text" id="phone" value="${userEntity.phone}"/></td>
+			<td><input type="text" id="phone" value="${user.phone}"/></td>
 		</tr>
 		<tr>
 			<td>Message:</td>

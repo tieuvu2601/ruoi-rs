@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="page.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="page.management"/>"/>
+    <meta name="heading" content="<fmt:message key="page.management"/>"/>
 </head>
 <div class="pathway">
     <fmt:message key="page.management"/>
@@ -10,7 +10,7 @@
 
 <c:url var="url" value="/admin/page/list.html"/>
 <c:url var="editUrl" value="/admin/page/edit.html"/>
-<div id="contentEntity">
+<div id="content">
     <form:form commandName="items" action="${url}" method="post" id="listForm">
         <div class="box_container">
             <div class="header">

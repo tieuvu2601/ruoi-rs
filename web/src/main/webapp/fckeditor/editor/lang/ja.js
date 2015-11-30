@@ -186,7 +186,7 @@ DlgGenTabIndex		: "タブインデックス",
 DlgGenLongDescr		: "longdesc属性(長文説明)",
 DlgGenClass			: "スタイルシートクラス",
 DlgGenTitle			: "Title属性",
-DlgGenContType		: "ContentEntity Type属性",
+DlgGenContType		: "Content Type属性",
 DlgGenLinkCharset	: "リンクcharset属性",
 DlgGenStyle			: "スタイルシート",
 

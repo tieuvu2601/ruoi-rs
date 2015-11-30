@@ -245,7 +245,7 @@ public class XML {
                     }
                     return false;
 
-// ContentEntity, between <...> and </...>
+// Content, between <...> and </...>
 
                 } else if (t == GT) {
                     for (;;) {
@@ -292,7 +292,7 @@ public class XML {
      * elements, attributes, and content text, while JSON uses unordered
      * collections of name/value pairs and arrays of values. JSON does not
      * does not like to distinguish between elements and attributes.
-     * Sequences of similar elements are represented as JSONArrays. ContentEntity
+     * Sequences of similar elements are represented as JSONArrays. Content
      * text may be placed in a "content" member. Comments, prologs, DTDs, and
      * <code>&lt;[ [ ]]></code> are ignored.
      * @param string The source string.

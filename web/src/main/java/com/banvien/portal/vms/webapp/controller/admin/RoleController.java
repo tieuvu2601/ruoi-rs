@@ -23,12 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * UserEntity: NhuKhang
- * Date: 10/6/12
- * Time: 10:57 AM
- */
 @Controller
 public class RoleController extends ApplicationObjectSupport {
 	private transient final Logger logger = Logger.getLogger(getClass());
@@ -105,11 +99,11 @@ public class RoleController extends ApplicationObjectSupport {
     private void executeSearch(RoleBean bean, HttpServletRequest request) {
         RequestUtil.initSearchBean(request, bean);
         Map<String, Object> properties = new HashMap<String, Object>();
-        if(StringUtils.isNotBlank(bean.getPojo().getRole())){
-            properties.put("code", bean.getPojo().getRole());
-        }
         if(StringUtils.isNotBlank(bean.getPojo().getName())){
-            properties.put("name", bean.getPojo().getName());
+            properties.put("pojo.name", bean.getPojo().getName());
+        }
+        if(StringUtils.isNotBlank(bean.getPojo().getRole())){
+            properties.put("pojo.code", bean.getPojo().getRole());
         }
         Object[] results = this.roleService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
         bean.setListResult((List<RoleEntity>)results[1]);

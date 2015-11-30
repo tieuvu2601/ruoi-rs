@@ -37,10 +37,10 @@ public class RoleValidator extends ApplicationObjectSupport implements Validator
 
     private void checkUnique(RoleBean bean, Errors errors){
         try{
-            RoleEntity roleEntity = roleService.findByRole(bean.getPojo().getRole());
+            RoleEntity role = roleService.findByRole(bean.getPojo().getRole());
 
-            if(bean.getPojo().getRoleId() == null || (bean.getPojo().getRoleId() != null && !roleEntity.getRoleId().equals(bean.getPojo().getRoleId()))){
-                errors.rejectValue("pojo.roleEntity", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("role.form.role")}, "Value has been chosen.");
+            if(bean.getPojo().getRoleId() == null || (bean.getPojo().getRoleId() != null && !role.getRoleId().equals(bean.getPojo().getRoleId()))){
+                errors.rejectValue("pojo.role", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("role.form.role")}, "Value has been chosen.");
             }
         }catch (ObjectNotFoundException ex) {
          //Object not found

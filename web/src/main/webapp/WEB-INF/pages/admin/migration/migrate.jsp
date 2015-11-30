@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="migration.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="migration.management"/>"/>
+    <meta name="heading" content="<fmt:message key="migration.management"/>"/>
 </head>
 <div class="pathway">
 
@@ -10,7 +10,7 @@
 
 </div>
 <c:url var="url" value="/admin/migration/migrate.html"/>
-<div id="contentEntity">
+<div id="content">
     <form:form commandName="item" action="${url}" method="post" id="itemForm">
         <div class="box_container">
             <div class="header">
@@ -36,12 +36,12 @@
 
                     </tr>
                     <tr>
-                        <td valign="top"><fmt:message key="migration.categoryEntity"/></td>
+                        <td valign="top"><fmt:message key="migration.category"/></td>
                         <td>
                             <select name="categoryID" id="contentCategoryID">
                                 <option value="">---Chọn danh mục tin---</option>
-                                <c:forEach items="${categories}" var="categoryEntity">
-                                    <option value="${categoryEntity.categoryID}" <c:if test="${item.categoryID == categoryEntity.categoryID}">selected</c:if>>${categoryEntity.name}</option>
+                                <c:forEach items="${categories}" var="category">
+                                    <option value="${category.categoryID}" <c:if test="${item.categoryID == category.categoryID}">selected</c:if>>${category.name}</option>
                                 </c:forEach>
                             </select>
                             <form:errors path="categoryID" cssClass="validateError"/>

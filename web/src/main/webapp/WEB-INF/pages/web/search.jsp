@@ -2,7 +2,7 @@
 <c:url var="searchByKeyword" value="/search.html"/>
 <head>
     <title><fmt:message key="label.search"/></title>
-    <meta name="heading" contentEntity="Home Page"/>
+    <meta name="heading" content="Home Page"/>
 
     <link rel="stylesheet" href="<c:url value="/themes/themeadmin/vendor/bootstrap/dist/css/bootstrap.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/themes/themeadmin/vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css"/>"/>
@@ -20,13 +20,13 @@
 </head>
 
 
-<div class="contentEntity container">
+<div class="content container">
     <div class="page-wrapper">
         <header class="page-heading clearfix">
             <h1 class="heading-title pull-left">Search in site</h1>
         </header>
 
-        <div class="page-contentEntity">
+        <div class="page-content">
             <div class="row">
                 <article class="contact-form col-md-8 col-sm-7  page-row">
                     <div class="table-responsive">
@@ -38,7 +38,7 @@
                             </tr>
                             <c:forEach var="result" items="${item.listResult}" varStatus="itemStatus">
                                 <c:set var="resultDataXML" value="${portal:parseContentXML(result.xmlData)}"/>
-                                <seo:url value="${result.title}" var="resultUrl" prefix="/${result.authoringTemplateEntity.prefixUrl}/${portal:convertStringToUrl(result.categoryEntity.code)}/"/>
+                                <seo:url value="${result.title}" var="resultUrl" prefix="/${result.authoringTemplate.prefixUrl}/${portal:convertStringToUrl(result.category.code)}/"/>
                                 <tr>
                                     <td style="text-align: center;">${item.firstItem + itemStatus.count}</td>
                                     <td><a href="${resultUrl}">${resultDataXML.header[0]}</a></td>

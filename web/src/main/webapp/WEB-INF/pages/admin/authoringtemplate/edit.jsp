@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="authoringtemplate.template"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="authoringtemplate.management"/>"/>
+    <meta name="heading" content="<fmt:message key="authoringtemplate.management"/>"/>
 </head>
 <script type="text/javascript" language="javascript" src="<c:url value="/scripts/authoringtemplate.js"/>"></script>
 <!-- Dependencies -->
@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    <div class="contentEntity animate-panel">
+    <div class="content animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">

@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="authoringtemplate.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="authoringtemplate.management"/>"/>
+    <meta name="heading" content="<fmt:message key="authoringtemplate.management"/>"/>
 </head>
 <c:url var="formUrl" value="/admin/authoringtemplate/list.html"/>
 <c:url var="editUrl" value="/admin/authoringtemplate/edit.html"/>
@@ -29,7 +29,7 @@
     </div>
 </div>
 
-<div class="contentEntity animate-panel">
+<div class="content animate-panel">
     <form:form commandName="items" action="${formUrl}" method="post" id="listForm" cssClass="form-horizontal">
         <div>
             <div class="row">

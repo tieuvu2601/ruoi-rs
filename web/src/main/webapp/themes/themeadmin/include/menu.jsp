@@ -8,11 +8,11 @@
             </security:authorize>
 
             <security:authorize ifAllGranted="CATEGORY">
-                <li><a class="first" href="<c:url value="/admin/categoryEntity/list.html"/>" ><span class="nav-label"><fmt:message key="menu.categoryEntity"/></span></a></li>
+                <li><a class="first" href="<c:url value="/admin/category/list.html"/>" ><span class="nav-label"><fmt:message key="menu.category"/></span></a></li>
             </security:authorize>
 
             <security:authorize ifAllGranted="CONTENT">
-                <li><a class="first" href="<c:url value="/admin/contentEntity/list.html"/>" ><span class="nav-label"><fmt:message key="menu.contentEntity"/></span></a></li>
+                <li><a class="first" href="<c:url value="/admin/content/list.html"/>" ><span class="nav-label"><fmt:message key="menu.content"/></span></a></li>
             </security:authorize>
 
             <security:authorize ifAllGranted="DEPARTMENT">
@@ -24,11 +24,11 @@
             </security:authorize>
 
             <security:authorize ifAllGranted="ROLE">
-                <li><a class="first" href="<c:url value="/admin/roleEntity/list.html"/>" ><span class="nav-label"><fmt:message key="menu.roleEntity"/></span></a></li>
+                <li><a class="first" href="<c:url value="/admin/role/list.html"/>" ><span class="nav-label"><fmt:message key="menu.role"/></span></a></li>
             </security:authorize>
 
             <security:authorize ifAllGranted="USER">
-                <li><a class="first" href="<c:url value="/admin/user/list.html"/>" ><span class="nav-label"><fmt:message key="menu.userEntity"/></span></a></li>
+                <li><a class="first" href="<c:url value="/admin/user/list.html"/>" ><span class="nav-label"><fmt:message key="menu.user"/></span></a></li>
             </security:authorize>
 
             <security:authorize ifAllGranted="USERGROUP">

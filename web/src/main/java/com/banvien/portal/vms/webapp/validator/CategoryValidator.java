@@ -42,9 +42,9 @@ public class CategoryValidator extends ApplicationObjectSupport implements Valid
 
     private void checkUnique(CategoryBean bean, Errors errors){
         try{
-            CategoryEntity categoryEntity = categoryService.findByCode(bean.getPojo().getCode());
+            CategoryEntity category = categoryService.findByCode(bean.getPojo().getCode());
 
-            if(bean.getPojo().getCategoryId() == null || (bean.getPojo().getCategoryId() != null && !categoryEntity.getCategoryId().equals(bean.getPojo().getCategoryId()))){
+            if(bean.getPojo().getCategoryId() == null || (bean.getPojo().getAuthoringTemplate() != null && !category.getCategoryId().equals(bean.getPojo().getCategoryId()))){
                 errors.rejectValue("pojo.code", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("category.code")}, "Value has been chosen.");
             }
         }catch (ObjectNotFoundException ex) {

@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="migration.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="migration.management"/>"/>
+    <meta name="heading" content="<fmt:message key="migration.management"/>"/>
 </head>
 <div class="pathway">
     <fmt:message key="migration.management"/>
@@ -10,7 +10,7 @@
 
 <c:url var="url" value="/admin/migration/list.html"/>
 <c:url var="backURL" value="/admin/migration/migrate.html"/>
-<div id="contentEntity">
+<div id="content">
     <form:form commandName="items" action="${url}" method="post" id="listForm">
         <div class="box_container">
             <div class="header">
@@ -22,16 +22,16 @@
                         <td><fmt:message key="migration.authoringtemplate"/></td>
                         <td>
                             <form:hidden path="authoringTemplateID"/>
-                            ${authoringTemplateEntity.name}
+                            ${authoringTemplate.name}
                         </td>
 
 
-                        <td valign="top"><fmt:message key="migration.categoryEntity"/></td>
+                        <td valign="top"><fmt:message key="migration.category"/></td>
                         <td>
                             <select name="categoryID" id="contentCategoryID">
                                 <option value="">---Chọn danh mục tin---</option>
-                                <c:forEach items="${categories}" var="categoryEntity">
-                                    <option value="${categoryEntity.categoryID}" <c:if test="${items.categoryID == categoryEntity.categoryID}">selected</c:if>>${categoryEntity.name}</option>
+                                <c:forEach items="${categories}" var="category">
+                                    <option value="${category.categoryID}" <c:if test="${items.categoryID == category.categoryID}">selected</c:if>>${category.name}</option>
                                 </c:forEach>
                             </select>
                             <form:errors path="categoryID" cssClass="validateError"/>
@@ -76,7 +76,7 @@
                         </display:column>
                     </c:when>
                     <c:otherwise>
-                        <display:column headerClass="table_header"  escapeXml="false" sortable="false" sortName="title" titleKey="contentEntity.title" style="width: 40%" >
+                        <display:column headerClass="table_header"  escapeXml="false" sortable="false" sortName="title" titleKey="content.title" style="width: 40%" >
                             ${tableList.title}
                         </display:column>
                         <display:column headerClass="table_header" escapeXml="false" sortable="false" sortName="name" title="Liên kết" style="width: 40%">
@@ -98,8 +98,8 @@
 
 
 
-                <display:setProperty name="paging.banner.item_name"><fmt:message key="contentEntity"/></display:setProperty>
-                <display:setProperty name="paging.banner.items_name"><fmt:message key="contentEntity"/></display:setProperty>
+                <display:setProperty name="paging.banner.item_name"><fmt:message key="content"/></display:setProperty>
+                <display:setProperty name="paging.banner.items_name"><fmt:message key="content"/></display:setProperty>
                 <display:setProperty name="paging.banner.placement" value="bottom"/>
                 <display:setProperty name="paging.banner.no_items_found" value=""/>
                 <display:setProperty name="paging.banner.onepage" value=""/>

@@ -8,7 +8,7 @@
     <!-- Hibernate SessionFactory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="lobHandler" ref="lobHandler"/>
+        <!--<property name="lobHandler" ref="lobHandler"/>-->
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -27,9 +27,9 @@
 		</property>
         <property name="mappingResources">
             <list>
-                <value>hbm/UserGroup.hbm.xml</value>
                 <value>hbm/User.hbm.xml</value>
                 <value>hbm/Role.hbm.xml</value>
+                <value>hbm/UserGroup.hbm.xml</value>
                 <value>hbm/UserRole.hbm.xml</value>
                 <value>hbm/Category.hbm.xml</value>
                 <value>hbm/Content.hbm.xml</value>
@@ -52,24 +52,25 @@
 		</property>
 	</bean>
 	
-	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler">
-        <property name="nativeJdbcExtractor" ref="nativeJdbcExtractor"/>
+	<!--<bean id="lobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler">-->
+        <!--<property name="nativeJdbcExtractor" ref="nativeJdbcExtractor"/>-->
+    <!--</bean>-->
+
+    <!--<bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"/>-->
+
+    <bean id="userGroupDAO" class="com.banvien.portal.vms.dao.impl.UserGroupHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
     </bean>
-    <bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"/>
 
 	<bean id="roleDAO" class="com.banvien.portal.vms.dao.impl.RoleHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-    <bean id="userGroupDAO" class="com.banvien.portal.vms.dao.impl.UserGroupHibernateDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	
-	<bean id="userDAO" class="com.banvien.portal.vms.dao.impl.UserHibernateDAO">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
     <bean id="userRoleDAO" class="com.banvien.portal.vms.dao.impl.UserRoleHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+	<bean id="userDAO" class="com.banvien.portal.vms.dao.impl.UserHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 

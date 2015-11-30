@@ -8,6 +8,7 @@ public interface UserGroupService extends GenericService<UserGroupEntity, Long> 
     UserGroupEntity findByCode(String code) throws ObjectNotFoundException;
 
     void updateItem(UserGroupEntity bean) throws ObjectNotFoundException, DuplicateException;
+
     Integer deleteItems(String[] checkList);
 
 }

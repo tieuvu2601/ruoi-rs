@@ -7,165 +7,16 @@
     <tlibversion>1.0</tlibversion>
     <jspversion>1.1</jspversion>
     <shortname>curl</shortname>
-    <uri>http://www.banvien.com/tags/contentEntity</uri>
+    <uri>http://www.banvien.com/tags/content</uri>
     <info>
         Content Tag Lib
     </info>
 
-    <tag>
-        <name>findByCategory</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindCategory</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>categoryEntity</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>begin</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>pageSize</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
 
-    </tag>
-
-    <tag>
-        <name>findByAuthoringTemplate</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindAuthoringTemplate</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>authoringCode</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>begin</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>pageSize</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-
-    </tag>
-
-    <tag>
-        <name>findTopViews</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindTopView</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>authoringCode</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>categoryEntity</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>pageSize</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>numOfDaysAgo</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-
-    </tag>
-
-    <tag>
-        <name>findTopComments</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindTopComment</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>authoringCode</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>categoryEntity</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>pageSize</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>numOfDaysAgo</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-
-    </tag>
-
-    <tag>
-        <name>findCategoryByAuthoringTemplate</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.CategoryTaglibFindCategory</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>authoringCode</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
-
-    <tag>
-        <name>findCategoryForBuildMenu</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.CategoryTaglibFindCategoryForBuildMenu</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>nodeLevel</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-
-    </tag>
 
     <tag>
         <name>getLocale</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.LocaleTagLib</tagclass>
+        <tagclass>com.banvien.portal.vms.taglibs.contents.LocaleTagLib</tagclass>
         <bodycontent>JSP</bodycontent>
         <attribute>
             <name>var</name>
@@ -174,115 +25,31 @@
         </attribute>
     </tag>
 
-    <tag>
-        <name>findByDepartmentAndAuthoringTemplate</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindByDepartment</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>department</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>authoringTemplateEntity</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>begin</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>pageSize</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
+    <!---->
 
-    </tag>
-
-    <tag>
-        <name>findDepartment</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.DepartmentTaglib</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-
-    </tag>
-
-    <tag>
-        <name>findByContentTitle</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTaglibFindByContentTitle</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>title</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
-
-    <tag>
-        <name>findByPrefixUrlCategory</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindPrefixUrlCategory</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>prefixUrl</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>begin</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>pageSize</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
-
-    <tag>
-        <name>findByEventTypeWithMaxItem</name>
-        <tagclass>com.banvien.portal.vms.taglibs.contentEntities.ContentTagLibFindByEventTypeWithMaxItem</tagclass>
-        <bodycontent>JSP</bodycontent>
-        <attribute>
-            <name>eventType</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>begin</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>pageSize</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>var</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-    </tag>
+    <!--<tag>-->
+        <!--<name>findByEventTypeWithMaxItem</name>-->
+        <!--<tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibFindByEventTypeWithMaxItem</tagclass>-->
+        <!--<bodycontent>JSP</bodycontent>-->
+        <!--<attribute>-->
+            <!--<name>eventType</name>-->
+            <!--<required>true</required>-->
+            <!--<rtexprvalue>true</rtexprvalue>-->
+        <!--</attribute>-->
+        <!--<attribute>-->
+            <!--<name>begin</name>-->
+            <!--<required>true</required>-->
+            <!--<rtexprvalue>true</rtexprvalue>-->
+        <!--</attribute>-->
+        <!--<attribute>-->
+            <!--<name>pageSize</name>-->
+            <!--<required>true</required>-->
+            <!--<rtexprvalue>true</rtexprvalue>-->
+        <!--</attribute>-->
+        <!--<attribute>-->
+            <!--<name>var</name>-->
+            <!--<required>true</required>-->
+            <!--<rtexprvalue>true</rtexprvalue>-->
+        <!--</attribute>-->
+    <!--</tag>-->
 </taglib>

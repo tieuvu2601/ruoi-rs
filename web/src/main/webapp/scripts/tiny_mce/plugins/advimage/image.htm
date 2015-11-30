@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="js/image.js"></script>
 	<link href="css/advimage.css" rel="stylesheet" type="text/css" />
 </head>
-<body id="advimage" style="display: none" roleEntity="application" aria-labelledby="app_title">
+<body id="advimage" style="display: none" role="application" aria-labelledby="app_title">
 	<span id="app_title" style="display:none">{#advimage_dlg.dialog_title}</span>
 	<form onsubmit="ImageDialog.insert();return false;" action="#"> 
 		<div class="tabs">
@@ -26,10 +26,10 @@
 				<fieldset>
 						<legend>{#advimage_dlg.general}</legend>
 
-						<table roleEntity="presentation" class="properties">
+						<table role="presentation" class="properties">
 							<tr>
 								<td class="column1"><label id="srclabel" for="src">{#advimage_dlg.src}</label></td>
-								<td colspan="2"><table roleEntity="presentation" border="0" cellspacing="0" cellpadding="0">
+								<td colspan="2"><table role="presentation" border="0" cellspacing="0" cellpadding="0">
 									<tr> 
 										<td><input name="src" type="text" id="src" value="" class="mceFocus" onchange="ImageDialog.showPreviewImage(this.value);" aria-required="true" /></td> 
 										<td id="srcbrowsercontainer">&nbsp;</td>
@@ -61,7 +61,7 @@
 				<fieldset>
 					<legend>{#advimage_dlg.tab_appearance}</legend>
 
-					<table roleEntity="presentation" border="0" cellpadding="4" cellspacing="0">
+					<table role="presentation" border="0" cellpadding="4" cellspacing="0">
 						<tr> 
 							<td class="column1"><label id="alignlabel" for="align">{#advimage_dlg.align}</label></td> 
 							<td><select id="align" name="align" onchange="ImageDialog.updateStyle('align');ImageDialog.changeAppearance();"> 
@@ -87,7 +87,7 @@
 							</td>
 						</tr>
 
-						<tr roleEntity="group" aria-labelledby="widthlabel">
+						<tr role="group" aria-labelledby="widthlabel">
 							<td class="column1"><label id="widthlabel" for="width">{#advimage_dlg.dimensions}</label></td>
 							<td class="nowrap">
 								<span style="display:none" id="width_voiceLabel">{#advimage_dlg.width}</span>
@@ -99,7 +99,7 @@
 
 						<tr>
 							<td>&nbsp;</td>
-							<td><table roleEntity="presentation" border="0" cellpadding="0" cellspacing="0">
+							<td><table role="presentation" border="0" cellpadding="0" cellspacing="0">
 									<tr>
 										<td><input id="constrain" type="checkbox" name="constrain" class="checkbox" /></td>
 										<td><label id="constrainlabel" for="constrain">{#advimage_dlg.constrain_proportions}</label></td>
@@ -148,10 +148,10 @@
 					<input type="checkbox" id="onmousemovecheck" name="onmousemovecheck" class="checkbox" onclick="ImageDialog.setSwapImage(this.checked);" aria-controls="onmouseoversrc onmouseoutsrc" />
 					<label id="onmousemovechecklabel" for="onmousemovecheck">{#advimage_dlg.alt_image}</label>
 
-					<table roleEntity="presentation" border="0" cellpadding="4" cellspacing="0" width="100%">
+					<table role="presentation" border="0" cellpadding="4" cellspacing="0" width="100%">
 							<tr>
 								<td class="column1"><label id="onmouseoversrclabel" for="onmouseoversrc">{#advimage_dlg.mouseover}</label></td> 
-								<td><table roleEntity="presentation" border="0" cellspacing="0" cellpadding="0">
+								<td><table role="presentation" border="0" cellspacing="0" cellpadding="0"> 
 									<tr> 
 										<td><input id="onmouseoversrc" name="onmouseoversrc" type="text" value="" /></td> 
 										<td id="onmouseoversrccontainer">&nbsp;</td>
@@ -164,7 +164,7 @@
 							</tr>
 							<tr> 
 								<td class="column1"><label id="onmouseoutsrclabel" for="onmouseoutsrc">{#advimage_dlg.mouseout}</label></td> 
-								<td class="column2"><table roleEntity="presentation" border="0" cellspacing="0" cellpadding="0">
+								<td class="column2"><table role="presentation" border="0" cellspacing="0" cellpadding="0"> 
 									<tr> 
 										<td><input id="onmouseoutsrc" name="onmouseoutsrc" type="text" value="" /></td> 
 										<td id="onmouseoutsrccontainer">&nbsp;</td>
@@ -181,7 +181,7 @@
 				<fieldset>
 					<legend>{#advimage_dlg.misc}</legend>
 
-					<table roleEntity="presentation" border="0" cellpadding="4" cellspacing="0">
+					<table role="presentation" border="0" cellpadding="4" cellspacing="0">
 						<tr>
 							<td class="column1"><label id="idlabel" for="id">{#advimage_dlg.id}</label></td> 
 							<td><input id="id" name="id" type="text" value="" /></td> 
@@ -214,7 +214,7 @@
 
 						<tr>
 							<td class="column1"><label id="longdesclabel" for="longdesc">{#advimage_dlg.long_desc}</label></td>
-							<td><table roleEntity="presentation" border="0" cellspacing="0" cellpadding="0">
+							<td><table role="presentation" border="0" cellspacing="0" cellpadding="0">
 									<tr>
 										<td><input id="longdesc" name="longdesc" type="text" value="" /></td>
 										<td id="longdesccontainer">&nbsp;</td>

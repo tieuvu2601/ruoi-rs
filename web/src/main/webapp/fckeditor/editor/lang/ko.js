@@ -186,7 +186,7 @@ DlgGenTabIndex		: "탭 순서",
 DlgGenLongDescr		: "URL 설명",
 DlgGenClass			: "Stylesheet Classes",
 DlgGenTitle			: "Advisory Title",
-DlgGenContType		: "Advisory ContentEntity Type",
+DlgGenContType		: "Advisory Content Type",
 DlgGenLinkCharset	: "Linked Resource Charset",
 DlgGenStyle			: "Style",
 

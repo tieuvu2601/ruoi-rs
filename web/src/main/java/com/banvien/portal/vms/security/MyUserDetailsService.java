@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.banvien.portal.vms.dao.UserDAO;
 import com.banvien.portal.vms.dao.UserGroupDAO;
+import com.banvien.portal.vms.domain.RoleEntity;
 import com.banvien.portal.vms.domain.UserEntity;
 import org.apache.log4j.Logger;
 import org.springframework.beans.BeanUtils;
@@ -18,7 +19,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.banvien.portal.vms.dao.RoleDAO;
-import com.banvien.portal.vms.domain.RoleEntity;
 import com.banvien.portal.vms.service.UserService;
 import com.banvien.portal.vms.util.Constants;
 
@@ -91,7 +91,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	 */
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException, DataAccessException {
-        logger.warn("=================UserEntity " + username + " try to login");
+        logger.warn("=================User " + username + " try to login");
 		UserEntity account = null;
 
 		try {
@@ -113,9 +113,9 @@ public class MyUserDetailsService implements UserDetailsService {
 		    authorities.put(account.getUserGroup().getCode(), new GrantedAuthorityImpl(account.getUserGroup().getCode()));
         }
 
-        List<RoleEntity> roleEntityList = roleDAO.findByUserID(account.getUserId());
-        for (RoleEntity roleEntity : roleEntityList) {
-            authorities.put(roleEntity.getRole(), new GrantedAuthorityImpl(roleEntity.getRole()));
+        List<RoleEntity> roleList = roleDAO.findByUserID(account.getUserId());
+        for (RoleEntity role : roleList) {
+            authorities.put(role.getRole(), new GrantedAuthorityImpl(role.getRole()));
         }
         if (account.getFullAccess() != null && account.getFullAccess().equals(1)) {
             authorities.put(Constants.FULL_ACCESS_RIGHT, new GrantedAuthorityImpl(Constants.FULL_ACCESS_RIGHT));
@@ -124,10 +124,8 @@ public class MyUserDetailsService implements UserDetailsService {
 		GrantedAuthority[] grantedAuthority = new GrantedAuthority[authorities.size()];
 		authorities.values().toArray(grantedAuthority);
 		MyUserDetail loginUser = new MyUserDetail(username, username, true, true, true, true, grantedAuthority);
-
         loginUser.setFullAccessSystem(account.getFullAccess() != null && account.getFullAccess().equals(1) ? true : false);
 		BeanUtils.copyProperties(account, loginUser);
-
 		return loginUser;
 	}
 }

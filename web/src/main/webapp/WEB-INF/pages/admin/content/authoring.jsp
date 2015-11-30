@@ -6,8 +6,8 @@
 	<script type="text/javascript" src="<c:url value='/swfupload/fileprogress.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/swfupload/handlers.js' />"></script>
 	<script type="text/javascript" src="<c:url value='/scripts/flash_detect_min.js' />"></script>
-    <title><fmt:message key="contentEntity.management"/></title>
-    <meta name="heading" contentEntity="Content Management"/>
+    <title><fmt:message key="content.management"/></title>
+    <meta name="heading" content="Content Management"/>
 <script type="text/javascript">
 <c:forEach items="${authoringTemplateNodes}" var="node">
 	<c:if test="${node.type == 'IMAGE' or node.type == 'ATTACHMENT'}">
@@ -19,8 +19,8 @@ window.onload = function() {
 		<c:if test="${node.type == 'IMAGE' or node.type == 'ATTACHMENT'}">
 			var settings${node.name} = {
 					flash_url : "<c:url value='/swfupload/swfupload.swf'/>",
-					upload_url: "<c:url value='/ajax/contentEntity/uploadfile.html;jsessionid=${pageContext.session.id}'/>",
-					post_params: {'nodename' : '${node.name}', 'authoringTemplateID': '${item.pojo.authoringTemplateEntity.authoringTemplateID}','categoryID': '${item.pojo.categoryEntity.categoryID}'},
+					upload_url: "<c:url value='/ajax/content/uploadfile.html;jsessionid=${pageContext.session.id}'/>",
+					post_params: {'nodename' : '${node.name}', 'authoringTemplateID': '${item.pojo.authoringTemplate.authoringTemplateID}','categoryID': '${item.pojo.category.categoryID}'},
 					file_size_limit : "500 MB",
 					file_types : "*.*",
 					file_types_description : "All Files",
@@ -59,8 +59,8 @@ window.onload = function() {
 
 </script>
 </head>
-<c:url var="formUrl" value="/admin/contentEntity/authoring.html"/>
-<c:url var="backUrl" value="/admin/contentEntity/list.html"/>
+<c:url var="formUrl" value="/admin/content/authoring.html"/>
+<c:url var="backUrl" value="/admin/content/list.html"/>
 
 <form:form commandName="item" action="${formUrl}" method="post" id="itemForm" cssClass="form-horizontal" enctype="multipart/form-data">
     <div class="small-header transition animated fadeIn">
@@ -70,10 +70,10 @@ window.onload = function() {
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                         <li>
-                            <span><fmt:message key="contentEntity"/></span>
+                            <span><fmt:message key="content"/></span>
                         </li>
                         <li class="active">
-                            <span><fmt:message key="contentEntity.management"/></span>
+                            <span><fmt:message key="content.management"/></span>
                         </li>
                     </ol>
                 </div>
@@ -81,10 +81,10 @@ window.onload = function() {
                 <h2 class="font-light m-b-xs">
                     <c:choose>
                         <c:when test="${not empty item.pojo.contentID}">
-                            <fmt:message key="contentEntity.edit"/>
+                            <fmt:message key="content.edit"/>
                         </c:when>
                         <c:otherwise>
-                            <fmt:message key="contentEntity.add"/>
+                            <fmt:message key="content.add"/>
                         </c:otherwise>
                     </c:choose>
                 </h2>
@@ -92,7 +92,7 @@ window.onload = function() {
         </div>
     </div>
 
-    <div class="contentEntity animate-panel">
+    <div class="content animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
@@ -101,7 +101,7 @@ window.onload = function() {
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="contentEntity.management"/>
+                            <fmt:message key="content.management"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -118,15 +118,15 @@ window.onload = function() {
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.template"/></label>
                                 <div class="col-sm-8">
-                                    <label class="col-sm-12 control-label text-default">${authoringTemplateEntity.name}</label>
+                                    <label class="col-sm-12 control-label text-default">${authoringTemplate.name}</label>
 
-                                    <input type="hidden" name="pojo.authoringTemplateEntity" value="${item.pojo.authoringTemplateEntity.authoringTemplateID}" id="pojo_authoringTemplate"/>
+                                    <input type="hidden" name="pojo.authoringTemplate" value="${item.pojo.authoringTemplate.authoringTemplateID}" id="pojo_authoringTemplate"/>
                                     <form:hidden path="authoringTemplateID" id="authoringTemplateID"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="contentEntity.title"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="content.title"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.title" size="40" maxlength="160" cssClass="form-control" id="title"/>
                                     <form:errors path="pojo.title" cssClass="validateError"/>
@@ -135,16 +135,16 @@ window.onload = function() {
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="contentEntity.keyword"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="content.keyword"/></label>
                                 <div class="col-sm-8">
                                     <form:textarea path="pojo.keyword" rows="3" cssStyle="resize: vertical" id="keyword" cssClass="form-control"/>
                                     <form:errors path="pojo.keyword" cssClass="validateError"/>
                                 </div>
                             </div>
 
-                            <c:if test="${authoringTemplateEntity.hasThumbnail == 'Y'}">
+                            <c:if test="${authoringTemplate.hasThumbnail == 'Y'}">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="contentEntity.thumbnail"/></label>
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.thumbnail"/></label>
                                     <div class="col-sm-8">
                                         <input type="file" name="thumbnailFile" id="thumbnailFile" class="form-control"/> <i>(Kích thước chuẩn 410 x 390)</i>
                                     </div>
@@ -152,33 +152,33 @@ window.onload = function() {
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="contentEntity.accesspolicy"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="content.accesspolicy"/></label>
                                 <div class="col-sm-8">
-                                    <form:radiobutton path="pojo.accessPolicy" value="1"/><fmt:message key="contentEntity.accesspolicy.allowshare"/><br />
-                                    <form:radiobutton path="pojo.accessPolicy" value="2"/><fmt:message key="contentEntity.accesspolicy.notallowshare"/>
+                                    <form:radiobutton path="pojo.accessPolicy" value="1"/><fmt:message key="content.accesspolicy.allowshare"/><br />
+                                    <form:radiobutton path="pojo.accessPolicy" value="2"/><fmt:message key="content.accesspolicy.notallowshare"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="contentEntity.displayorder"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="content.displayorder"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.displayOrder" size="40" id="displayOrder" cssClass="form-control"/>
                                 </div>
                             </div>
 
-                            <c:if test="${authoringTemplateEntity.hasHotItem == 'Y'}">
+                            <c:if test="${authoringTemplate.hasHotItem == 'Y'}">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="contentEntity.hot"/></label>
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.hot"/></label>
                                     <div class="col-sm-8">
                                         <form:checkbox path="pojo.hot" value="1" id="hot"/>
                                     </div>
                                 </div>
                             </c:if>
 
-                            <c:if test="${authoringTemplateEntity.hasDepartment == 'Y'}">
+                            <c:if test="${authoringTemplate.hasDepartment == 'Y'}">
                                 <c:if test="${fn:length(departments) gt 0 }">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label"><fmt:message key="contentEntity.department"/></label>
+                                        <label class="col-sm-2 control-label"><fmt:message key="content.department"/></label>
                                         <div class="col-sm-8">
                                             <c:forEach items="${departments}" var="department">
                                                 <input type="checkbox" name="departmentIDs" value="${department.departmentID}"/>
@@ -189,9 +189,9 @@ window.onload = function() {
                                 </c:if>
                             </c:if>
 
-                            <c:if test="${authoringTemplateEntity.event == 'Y'}">
+                            <c:if test="${authoringTemplate.event == 'Y'}">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="contentEntity.event"/></label>
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.event"/></label>
                                     <div class="col-sm-5">
                                         <div class="input-daterange input-group" id="contentEvent">
                                             <input name="pojo.beginDate" class="input-sm form-control" id="beginDate" value="<fmt:formatDate value="${item.pojo.beginDate}" pattern="dd-mm-yyyy"/>"/>
@@ -206,7 +206,7 @@ window.onload = function() {
                                 <div class="col-sm-8 col-sm-offset-2">
                                     <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
                                         <input type="button" class="btn w-xs btn-primary" value="<fmt:message key="button.save"/>" onclick="submitAuthoringForm('insert-update');"/>
-                                        <input type="button" class="btn w-xs btn-success" value="<fmt:message key="button.send"/>" onclick="submitAuthoringForm('insert-submit-contentEntity');"/>
+                                        <input type="button" class="btn w-xs btn-success" value="<fmt:message key="button.send"/>" onclick="submitAuthoringForm('insert-submit-content');"/>
                                         <a href="${backUrl}"class="btn w-xs btn-default"><fmt:message key="button.back"/></a>
                                     </security:authorize>
 
@@ -224,7 +224,7 @@ window.onload = function() {
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="contentEntity.authoringcontent"/>
+                            <fmt:message key="content.authoringcontent"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -349,7 +349,7 @@ window.onload = function() {
     function submitAuthoringForm(crudaction) {
         if(validateAuthoringForm()) {
             $("#crudaction").val(crudaction);
-            $("#contentEntity").fadeTo('slow',.3);
+            $("#content").fadeTo('slow',.3);
             <c:forEach items="${authoringTemplateNodes}" var="node">
             <c:if test="${node.type == 'IMAGE' or node.type == 'ATTACHMENT'}">
             swfu_${node.name}.startUpload();

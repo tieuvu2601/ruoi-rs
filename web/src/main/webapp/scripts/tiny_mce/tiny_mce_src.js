@@ -1228,7 +1228,7 @@ tinymce.create('static tinymce.util.XHR', {
 			x.open(o.type || (o.data ? 'POST' : 'GET'), o.url, o.async);
 
 			if (o.content_type)
-				x.setRequestHeader('ContentEntity-Type', o.content_type);
+				x.setRequestHeader('Content-Type', o.content_type);
 
 			x.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 
@@ -10468,7 +10468,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 			}
 
 
-			// UserEntity specified a document.domain value
+			// User specified a document.domain value
 			if (document.domain && location.hostname != document.domain)
 				tinymce.relaxedDomain = document.domain;
 
@@ -10502,7 +10502,7 @@ tinymce.create('tinymce.ui.Toolbar:tinymce.ui.Container', {
 			else
 				t.iframeHTML += '<meta http-equiv="X-UA-Compatible" content="IE=edge" />';
 
-			t.iframeHTML += '<meta http-equiv="ContentEntity-Type" content="text/html; charset=UTF-8" />';
+			t.iframeHTML += '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />';
 
 			// Firefox 2 doesn't load stylesheets correctly this way
 			if (!isGecko || !/Firefox\/2/.test(navigator.userAgent)) {

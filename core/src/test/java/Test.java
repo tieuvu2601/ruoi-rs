@@ -3,7 +3,7 @@ import org.apache.http.protocol.HTTP;
 
 /**
  * Created by Ban Vien Co., Ltd.
- * UserEntity: viennh
+ * User: viennh
  * Email: vien.nguyen@banvien.com
  * Date: 1/25/13
  * Time: 3:33 PM

@@ -24,8 +24,8 @@
 <html>
 <head>
 	<title></title>
-	<meta http-equiv="Content-Type" contentEntity="text/html; charset=utf-8" >
-	<meta contentEntity="noindex, nofollow" name="robots" >
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+	<meta content="noindex, nofollow" name="robots" >
 	<script src="common/fck_dialog_common.js" type="text/javascript"></script>
 	<script type="text/javascript">
 
@@ -100,9 +100,9 @@ function AppendMetaCollection( targetObject, metaCollection )
 //#### END
 
 // Set a META tag in the document.
-function SetMetadata( name, contentEntity, isHttp )
+function SetMetadata( name, content, isHttp )
 {
-	if ( contentEntity.length == 0 )
+	if ( content.length == 0 )
 	{
 		RemoveMetadata( name ) ;
 		return ;
@@ -130,8 +130,8 @@ function SetMetadata( name, contentEntity, isHttp )
 		oMetaTags[ name.toLowerCase() ] = oMeta ;
 	}
 
-	SetAttribute( oMeta, 'contentEntity', contentEntity ) ;
-//	oMeta.contentEntity = contentEntity ;
+	SetAttribute( oMeta, 'content', content ) ;
+//	oMeta.content = content ;
 }
 
 function RemoveMetadata( name )
@@ -150,7 +150,7 @@ function GetMetadata( name )
 	var oMeta = oMetaTags[ name.toLowerCase() ] ;
 
 	if ( oMeta && oMeta != null )
-		return oMeta.getAttribute( 'contentEntity', 2 ) ;
+		return oMeta.getAttribute( 'content', 2 ) ;
 	else
 		return '' ;
 }

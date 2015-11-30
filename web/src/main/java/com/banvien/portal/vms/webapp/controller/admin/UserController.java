@@ -4,7 +4,10 @@ import com.banvien.jcr.api.IJcrContent;
 import com.banvien.portal.vms.bean.FileItem;
 import com.banvien.portal.vms.bean.RoleBean;
 import com.banvien.portal.vms.bean.UserBean;
-import com.banvien.portal.vms.domain.*;
+import com.banvien.portal.vms.domain.RoleEntity;
+import com.banvien.portal.vms.domain.UserEntity;
+import com.banvien.portal.vms.domain.UserGroupEntity;
+import com.banvien.portal.vms.domain.UserRoleEntity;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.editor.FileItemMultipartFileEditor;
 import com.banvien.portal.vms.editor.PojoEditor;
@@ -63,7 +66,7 @@ public class UserController extends ApplicationObjectSupport {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
     	binder.registerCustomEditor(Date.class, new CustomDateEditor());
-        binder.registerCustomEditor(UserGroupEntity.class, new PojoEditor(AuthoringTemplateEntity.class, "userGroupID", Long.class));
+        binder.registerCustomEditor(UserGroupEntity.class, new PojoEditor(UserGroupEntity.class, "userGroupId", Long.class));
         binder.registerCustomEditor(FileItem.class, new FileItemMultipartFileEditor());
 	}
 
@@ -155,6 +158,7 @@ public class UserController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
             }
         }
+
         RoleBean roleBean = new RoleBean();
         executeSearchRole(roleBean, request);
         excutedSearchRole4User(bean,request);
@@ -162,7 +166,7 @@ public class UserController extends ApplicationObjectSupport {
         mav.addObject(Constants.FORM_MODEL_KEY, bean);
         return mav;
     }
-    
+
     private void executeSearchRole(RoleBean bean, HttpServletRequest request) {
         RequestUtil.initSearchBean(request, bean);
         Map<String, Object> properties = new HashMap<String, Object>();
@@ -184,9 +188,9 @@ public class UserController extends ApplicationObjectSupport {
         if(StringUtils.isNotBlank(bean.getPojo().getUsername())){
             properties.put("username", bean.getPojo().getUsername());
         }
-        UserGroupEntity userGroupEntity = bean.getPojo().getUserGroup();
-        if(userGroupEntity != null && userGroupEntity.getUserGroupId() != null){
-        	properties.put("userGroupEntity.userGroupID", userGroupEntity.getUserGroupId());
+        UserGroupEntity userGroup = bean.getPojo().getUserGroup();
+        if(userGroup != null && userGroup.getUserGroupId() != null){
+        	properties.put("userGroup.userGroupID", userGroup.getUserGroupId());
         }
         Object[] results = this.userService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
         bean.setListResult((List<UserEntity>)results[1]);
@@ -200,9 +204,8 @@ public class UserController extends ApplicationObjectSupport {
     private void excutedSearchRole4User(UserBean bean, HttpServletRequest request) {
         RequestUtil.initSearchBean(request, bean);
         Map<String, Object> properties = new HashMap<String, Object>();
-        if(bean.getPojo().getUserId() != null && bean.getPojo().getUserId() > 0)
-        {
-            properties.put("userId", bean.getPojo().getUserId());
+        if(bean.getPojo().getUserId() != null && bean.getPojo().getUserId() > 0){
+            properties.put("pojo.userId", bean.getPojo().getUserId());
         }
         Object[] results = this.userRoleService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), 0, -1);
         List<UserRoleEntity> lst = new ArrayList<UserRoleEntity>();
@@ -222,8 +225,8 @@ public class UserController extends ApplicationObjectSupport {
     		@RequestParam(value="uid", required=false) List<Long> userIDs,
     		HttpServletRequest request, HttpServletResponse response) throws IOException{
     	ModelAndView mav = new ModelAndView("/admin/user/ajax");
-    	List<UserEntity> userEntities = userService.findAll();
-    	mav.addObject("users", userEntities);
+    	List<UserEntity> users = userService.findAll();
+    	mav.addObject("users", users);
     	mav.addObject("success", true);
     	Map<Long, String> mapCheckedUser = new HashMap<Long, String>();
     	if(groupIDs != null && groupIDs.size() > 0){
@@ -239,4 +242,5 @@ public class UserController extends ApplicationObjectSupport {
     	mav.addObject("mapCheckedUser", mapCheckedUser);
     	return mav;
     }
+
 }

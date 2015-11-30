@@ -1,11 +1,11 @@
 <%@ include file="/common/taglibs.jsp"%>
 <ul class="pagination">
     <c:choose>
-        <c:when test="${not empty currentCategoryEntity.prefixUrl}">
-            <seo:url value="${currentCategoryEntity.code}" var="seoURL" prefix="/${currentCategoryEntity.prefixUrl}/${portal:convertStringToUrl(categoryEntityObj.code)}/"/>
+        <c:when test="${not empty currentCategory.prefixUrl}">
+            <seo:url value="${currentCategory.code}" var="seoURL" prefix="/${currentCategory.prefixUrl}/${portal:convertStringToUrl(categoryObj.code)}/"/>
         </c:when>
         <c:otherwise>
-            <seo:url value="${currentCategoryEntity.code}" var="seoURL" prefix="/${portal:convertStringToUrl(categoryEntityObj.code)}/"/>
+            <seo:url value="${currentCategory.code}" var="seoURL" prefix="/${portal:convertStringToUrl(categoryObj.code)}/"/>
         </c:otherwise>
     </c:choose>
 

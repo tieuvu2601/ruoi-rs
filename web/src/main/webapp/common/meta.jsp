@@ -1,9 +1,9 @@
         <!-- HTTP 1.1 -->
-        <meta http-equiv="Cache-Control" contentEntity="no-store"/>
+        <meta http-equiv="Cache-Control" content="no-store"/>
         <!-- HTTP 1.0 -->
-        <meta http-equiv="Pragma" contentEntity="no-cache"/>
+        <meta http-equiv="Pragma" content="no-cache"/>
         <!-- Prevents caching at the Proxy Server -->
-        <meta http-equiv="Expires" contentEntity="0"/>
-        <meta http-equiv="Content-Type" contentEntity="text/html; charset=utf-8"/>
-        <meta name="generator" contentEntity="Ban Vien Co., Ltd" />
+        <meta http-equiv="Expires" content="0"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="generator" content="Ban Vien Co., Ltd" />
         <link rel="icon" href="<c:url value="/images/favicon.png"/>"/>

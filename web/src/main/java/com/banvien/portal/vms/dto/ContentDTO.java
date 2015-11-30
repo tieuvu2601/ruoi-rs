@@ -3,13 +3,6 @@ package com.banvien.portal.vms.dto;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by Ban Vien Co., Ltd.
- * UserEntity: viennh
- * Email: vien.nguyen@banvien.com
- * Date: 1/23/13
- * Time: 8:37 AM
- */
 public class ContentDTO implements Serializable {
     private String title;
 

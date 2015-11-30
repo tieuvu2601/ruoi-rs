@@ -49,14 +49,12 @@ public class AuthoringTemplateValidator extends ApplicationObjectSupport impleme
 
     private void checkUnique(AuthoringTemplateBean bean, Errors errors){
         try{
-            AuthoringTemplateEntity authoringTemplateEntity = authoringTemplateService.findByCode(bean.getPojo().getCode());
+            AuthoringTemplateEntity authoringTemplate = authoringTemplateService.findByCode(bean.getPojo().getCode());
 
-            if(bean.getPojo().getAuthoringTemplateId() == null || (bean.getPojo().getAuthoringTemplateId() != null && !authoringTemplateEntity.getAuthoringTemplateId().equals(bean.getPojo().getAuthoringTemplateId()))){
+            if(bean.getPojo().getAuthoringTemplateId() == null || (bean.getPojo().getAuthoringTemplateId() != null && !authoringTemplate.getAuthoringTemplateId().equals(bean.getPojo().getAuthoringTemplateId()))){
                 errors.rejectValue("pojo.code", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("authoringtemplate.code")}, "Value has been chosen.");
             }
-        }catch (ObjectNotFoundException ex) {
-         //Object not found
-        }
+        }catch (ObjectNotFoundException ex) { }
     }
 
 

@@ -183,7 +183,7 @@ CKEDITOR.lang['ja'] =
 		langCode			: '言語コード',
 		tabIndex			: 'タブインデックス',
 		advisoryTitle		: 'Title属性',
-		advisoryContentType	: 'ContentEntity Type属性',
+		advisoryContentType	: 'Content Type属性',
 		cssClasses		: 'スタイルシートクラス',
 		charset			: 'リンクcharset属性',
 		styles			: 'スタイルシート',
@@ -722,7 +722,7 @@ CKEDITOR.lang['ja'] =
 		title		: 'CKEditorバージョン情報',
 		dlgTitle	: 'CKEditorバージョン情報',
 		help	: 'Check $1 for help.', // MISSING
-		userGuide : 'CKEditor UserEntity\'s Guide', // MISSING
+		userGuide : 'CKEditor User\'s Guide', // MISSING
 		moreInfo	: 'ライセンス情報の詳細はウェブサイトにて確認してください:',
 		copy		: 'Copyright &copy; $1. All rights reserved.'
 	},

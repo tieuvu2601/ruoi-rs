@@ -1,10 +1,8 @@
 package com.banvien.portal.vms.taglibs;
-
 import com.banvien.portal.vms.util.ContentItemUtil;
 import com.banvien.portal.vms.xml.contentitem.ContentItem;
 import com.banvien.portal.vms.xml.contentitem.Item;
 import org.apache.commons.lang.StringUtils;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

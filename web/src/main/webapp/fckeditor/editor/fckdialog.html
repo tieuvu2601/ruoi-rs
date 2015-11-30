@@ -24,8 +24,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<title></title>
-		<meta http-equiv="Content-Type" contentEntity="text/html; charset=utf-8" />
-		<meta name="robots" contentEntity="noindex, nofollow" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="robots" content="noindex, nofollow" />
 		<script type="text/javascript">
 // <![CDATA[
 
@@ -100,7 +100,7 @@ var Sizer = function()
 	var bAutoSize = false ;
 
 	var retval = {
-		// Sets whether the dialog should auto-resize according to its contentEntity's height.
+		// Sets whether the dialog should auto-resize according to its content's height.
 		SetAutoSize : function( autoSize )
 		{
 			bAutoSize = autoSize ;
@@ -115,7 +115,7 @@ var Sizer = function()
 			if ( frmMain )
 			{
 				// Get the container size.
-				var height = $( 'contentEntities' ).offsetHeight ;
+				var height = $( 'contents' ).offsetHeight ;
 
 				// Subtract the size of other elements.
 				height -= $( 'TitleArea' ).offsetHeight ;
@@ -153,7 +153,7 @@ var Sizer = function()
 				var innerDoc	= frmMain.contentWindow.document ;
 				var isStrict	= FCKTools.IsStrictMode( innerDoc ) ;
 
-				// Get the size of the frame contentEntities.
+				// Get the size of the frame contents.
 				var innerWidth	= isStrict ? innerDoc.documentElement.scrollWidth : innerDoc.body.scrollWidth ;
 				var innerHeight	= isStrict ? innerDoc.documentElement.scrollHeight : innerDoc.body.scrollHeight ;
 
@@ -163,7 +163,7 @@ var Sizer = function()
 				var deltaWidth	= innerWidth - frameSize.Width ;
 				var deltaHeight	= innerHeight - frameSize.Height ;
 
-				// If the contentEntities fits the current size.
+				// If the contents fits the current size.
 				if ( deltaWidth <= 0 && deltaHeight <= 0 )
 					return ;
 
@@ -193,7 +193,7 @@ var Sizer = function()
 	}
 
 	/**
-	 * IE6 has a similar bug where it sometimes thinks $('contentEntities') has an
+	 * IE6 has a similar bug where it sometimes thinks $('contents') has an
 	 * offsetHeight of 0 (#2114).
 	 */
 	if ( FCKBrowserInfo.IsIE && !FCKBrowserInfo.IsIE7 )
@@ -256,7 +256,7 @@ var Throbber = function()
 			}
 
 			// Center the throbber.
-			var frm = $( 'contentEntities' ) ;
+			var frm = $( 'contents' ) ;
 			var frmCoords = FCKTools.GetDocumentPosition( window, frm ) ;
 			var x = frmCoords.x + ( frm.offsetWidth - throbberParent.offsetWidth ) / 2 ;
 			var y = frmCoords.y + ( frm.offsetHeight - throbberParent.offsetHeight ) / 2 ;
@@ -578,7 +578,7 @@ var onReadyRegister = function()
 	// Program entry point.
 	window.Init = function()
 	{
-		$( 'contentEntities' ).dir = langDir;
+		$( 'contents' ).dir = langDir;
 
 		// Start the throbber timer.
 		Throbber.Show( 1000 ) ;
@@ -644,10 +644,10 @@ var onReadyRegister = function()
 		if ( window.onresize )
 			window.onresize() ;
 
-		// First of all, translate the dialog box contentEntities.
+		// First of all, translate the dialog box contents.
 		E.FCKLanguageManager.TranslatePage( document ) ;
 
-		// Create the IFRAME that holds the dialog contentEntities.
+		// Create the IFRAME that holds the dialog contents.
 		$( 'innerContents' ).innerHTML = '<iframe id="frmMain" src="' + Args().Page + '" name="frmMain" frameborder="0" width="100%" height="100%" scrolling="auto" style="visibility: hidden;" allowtransparency="true"><\/iframe>' ;
 	} ;
 
@@ -762,7 +762,7 @@ var onReadyRegister = function()
 		</script>
 	</head>
 	<body onload="Init();" class="PopupBody">
-		<div class="contentEntities" id="contentEntities">
+		<div class="contents" id="contents">
 			<div id="header">
 				<div id="TitleArea" class="PopupTitle PopupTitleBorder">
 					<script type="text/javascript">

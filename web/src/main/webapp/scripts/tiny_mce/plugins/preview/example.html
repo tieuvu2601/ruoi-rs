@@ -11,17 +11,17 @@ tinyMCEPopup.onInit.add(function(ed) {
 		dom.loadCSS(ed.documentBaseURI.toAbsolute(u));
 	});
 
-	// Place contentEntities inside div container
-	dom.setHTML('contentEntity', ed.getContent());
+	// Place contents inside div container
+	dom.setHTML('content', ed.getContent());
 });
 </script>
 <title>Example of a custom preview page</title>
 </head>
 <body>
 
-Editor contentEntities: <br />
-<div id="contentEntity">
-<!-- Gets filled with editor contentEntities -->
+Editor contents: <br />
+<div id="content">
+<!-- Gets filled with editor contents -->
 </div>
 
 </body>

@@ -2,14 +2,14 @@
 
 <head>
     <title><fmt:message key="report.by.posttime.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="report.by.posttime.management"/>"/>
+    <meta name="heading" content="<fmt:message key="report.by.posttime.management"/>"/>
 </head>
 <div class="pathway">
     <fmt:message key="report.by.posttime.management"/>
 </div>
 
 <c:url var="url" value="/admin/report/posttime.html"/>
-<div id="contentEntity">
+<div id="content">
     <form:form commandName="items" action="${url}" method="post" id="listForm">
         <div class="box_container">
             <div class="header">
@@ -18,7 +18,7 @@
             <div class="form">
                 <table width="100%" cellpadding="5" cellspacing="5" border="0">
                 	<tr>
-                		<td colspan="4"><b><fmt:message key="contentEntity.published.date" />:</b></td>
+                		<td colspan="4"><b><fmt:message key="content.published.date" />:</b></td>
                 	</tr>
                     <tr>
                         <td><fmt:message key="fromDate" /></td>
@@ -53,13 +53,13 @@
             <display:table name="items.listResult" cellspacing="0" cellpadding="0" requestURI="${url}"
                 partialList="true" sort="external" size="${items.totalItems}" defaultsort="7" defaultorder="descending" uid="tableList" pagesize="${items.maxPageItems}" class="table bright_blue_body" export="false">
 
-                <display:column headerClass="table_header" sortable="true" sortName="title" titleKey="contentEntity.title">
-                	<c:url value="/admin/contentEntity/view.html" var="viewUrl">
+                <display:column headerClass="table_header" sortable="true" sortName="title" titleKey="content.title">
+                	<c:url value="/admin/content/view.html" var="viewUrl">
 	               		<c:param name="pojo.contentID" value="${tableList.contentID }"></c:param>
 	               	</c:url>
                 	<a href="${viewUrl}">${tableList.title }</a>
                 </display:column>
-                <display:column headerClass="table_header" titleKey="contentEntity.thumbnail" style="width: 10%">
+                <display:column headerClass="table_header" titleKey="content.thumbnail" style="width: 10%">
                      <c:if test="${not empty tableList.thumbnail}">
                         <rep:href value="${tableList.thumbnail}" var="imgURL"/>
                         <img src="<c:url value="${imgURL}?w=100"/>" style="max-width: 100px;max-height: 100px;"/>
@@ -70,7 +70,7 @@
                 <display:column headerClass="table_header" property="likes" sortable="true" sortName="likes" titleKey="tracking.liked" style="width: 7%"/>
                 <display:column headerClass="table_header" property="comments" sortable="true" sortName="comments" titleKey="comment" style="width: 7%"/>
                 <display:column headerClass="table_header" property="createdDate" sortable="true" sortName="createdDate" titleKey="createdDate" style="width: 10%" format="{0,date,dd/MM/yyyy}"/>
-                <display:column headerClass="table_header" property="publishedDate" sortable="true" sortName="publishedDate" titleKey="contentEntity.published.date" style="width: 10%" format="{0,date,dd/MM/yyyy}"/>
+                <display:column headerClass="table_header" property="publishedDate" sortable="true" sortName="publishedDate" titleKey="content.published.date" style="width: 10%" format="{0,date,dd/MM/yyyy}"/>
 
                 <display:setProperty name="paging.banner.item_name"><fmt:message key="tracking"/></display:setProperty>
                 <display:setProperty name="paging.banner.items_name"><fmt:message key="tracking"/></display:setProperty>

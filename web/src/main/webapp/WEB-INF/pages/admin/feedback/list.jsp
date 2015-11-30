@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="feedback.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="feedback.management"/>"/>
+    <meta name="heading" content="<fmt:message key="feedback.management"/>"/>
 </head>
 
 <c:url var="formUrl" value="/admin/feedback/list.html"/>
@@ -29,7 +29,7 @@
     </div>
 </div>
 
-<div class="contentEntity animate-panel">
+<div class="content animate-panel">
     <form:form commandName="items" action="${formUrl}" method="post" id="listForm" cssClass="form-horizontal">
         <div>
             <div class="row">
@@ -89,12 +89,12 @@
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="feedback.categoryEntity"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="feedback.category"/></label>
                                     <div class="col-sm-8">
                                         <select path="pojo.feedbackCategory" class="form-control">
                                             <option value="" <c:if test="${empty items.pojo.feedbackCategory}">selected</c:if>><fmt:message key="label.all"/></option>
-                                            <c:forEach items="${feedbackCategories}" var="categoryEntity">
-                                                <option value="${categoryEntity.feedbackCategoryID}" <c:if test="${items.pojo.feedbackCategory.feedbackCategoryID == categoryEntity.feedbackCategoryID}">selected</c:if>>${categoryEntity.name}</option>
+                                            <c:forEach items="${feedbackCategories}" var="category">
+                                                <option value="${category.feedbackCategoryID}" <c:if test="${items.pojo.feedbackCategory.feedbackCategoryID == category.feedbackCategoryID}">selected</c:if>>${category.name}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -146,7 +146,7 @@
                                 <a href="${editUrl}"class=""><i class="fa fa-plus"></i> <fmt:message key="button.add"/></a>
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="roleEntity.list"/>
+                            <fmt:message key="role.list"/>
                         </div>
                         <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">

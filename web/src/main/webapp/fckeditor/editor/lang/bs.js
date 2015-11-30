@@ -513,7 +513,7 @@ DlgDocPreview		: "Preview",	//MISSING
 
 // Templates Dialog
 Templates			: "Templates",	//MISSING
-DlgTemplatesTitle	: "ContentEntity Templates",	//MISSING
+DlgTemplatesTitle	: "Content Templates",	//MISSING
 DlgTemplatesSelMsg	: "Please select the template to open in the editor<br />(the actual contents will be lost):",	//MISSING
 DlgTemplatesLoading	: "Loading templates list. Please wait...",	//MISSING
 DlgTemplatesNoTpl	: "(No templates defined)",	//MISSING

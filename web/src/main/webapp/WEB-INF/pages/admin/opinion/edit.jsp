@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="opinion.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="opinion.management"/>"/>
+    <meta name="heading" content="<fmt:message key="opinion.management"/>"/>
 </head>
 
 <c:url var="formUrl" value="/admin/opinion/view.html"/>
@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <div class="contentEntity animate-panel">
+    <div class="content animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">

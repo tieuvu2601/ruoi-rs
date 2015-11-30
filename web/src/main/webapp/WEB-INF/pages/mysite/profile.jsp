@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="mysite.profile"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="mysite.profile"/>"/>
+    <meta name="heading" content="<fmt:message key="mysite.profile"/>"/>
 </head>
 <c:url var="url" value="/mysite/profile.html"/>
 <body class="sub_page">
@@ -22,44 +22,44 @@
                             <div class="form">
                                 <table width="100%" cellpadding="5" cellspacing="5" border="0">
                                     <tr>
-                                        <td width="150px"><fmt:message key="userEntity.form.username"/></td>
+                                        <td width="150px"><fmt:message key="user.form.username"/></td>
                                         <td>${item.pojo.username }</td>
                                     </tr>
                                     <tr>
 	                                    <td><fmt:message key="usergroup"/></td>
-				                        <td>${item.pojo.userGroupEntity.name }</td>
+				                        <td>${item.pojo.userGroup.name }</td>
 			                        </tr>
 			                        <tr>
 	                                    <td><fmt:message key="department"/></td>
 				                        <td>${item.pojo.department.name }</td>
 			                        </tr>
                                     <tr>
-                                    	<td><fmt:message key="userEntity.email"/></td>
+                                    	<td><fmt:message key="user.email"/></td>
                                         <td>
                                         	<form:input path="pojo.email" size="40"/>
                                         	<form:errors path="pojo.email" cssClass="validateError"/>
                                        	</td>
                                     </tr>
                                     <tr>
-                                        <td><fmt:message key="userEntity.firstname"/></td>
+                                        <td><fmt:message key="user.firstname"/></td>
                                         <td><form:input path="pojo.firstName" size="40"/></td>
                                         
                                     </tr>
                                     <tr>
-                                    	<td><fmt:message key="userEntity.lastname"/></td>
+                                    	<td><fmt:message key="user.lastname"/></td>
                                         <td><form:input path="pojo.lastName" size="40"/></td>
                                     </tr>
                                     <tr>
-                                        <td><fmt:message key="userEntity.displayname"/></td>
+                                        <td><fmt:message key="user.displayname"/></td>
                                         <td><form:input path="pojo.displayName" size="40"/></td>
                                         
                                     </tr>
                                     <tr>
-                                    	<td><fmt:message key="userEntity.mobile"/></td>
+                                    	<td><fmt:message key="user.mobile"/></td>
                                         <td><form:input path="pojo.mobileNumber" size="40"/></td>
                                     </tr>
                                     <tr>
-                                        <td><fmt:message key="userEntity.form.avatar"/></td>
+                                        <td><fmt:message key="user.form.avatar"/></td>
                                         <td>
                                         	<div id="defaultAvatar" style="display:none;">
 	                                        	<c:forEach items="${avatars }" var="avatar">

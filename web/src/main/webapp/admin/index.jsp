@@ -1,2 +1,2 @@
 <%@ include file="/common/taglibs.jsp" %>
-<c:redirect url="/admin/contentEntity/list.html"/>
+<c:redirect url="/admin/content/list.html"/>

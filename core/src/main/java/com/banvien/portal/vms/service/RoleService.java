@@ -8,6 +8,7 @@ public interface RoleService extends GenericService<RoleEntity, Long> {
     RoleEntity findByRole(String role) throws ObjectNotFoundException;
 
     void updateItem(RoleEntity bean) throws ObjectNotFoundException, DuplicateException;
+
     Integer deleteItems(String[] checkList);
 
 }

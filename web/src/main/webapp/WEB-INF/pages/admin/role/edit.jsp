@@ -1,11 +1,11 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="roleEntity.management"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="roleEntity.management"/>"/>
+    <title><fmt:message key="role.management"/></title>
+    <meta name="heading" content="<fmt:message key="role.management"/>"/>
 </head>
-<c:url var="formUrl" value="/admin/roleEntity/edit.html"/>
-<c:url var="backUrl" value="/admin/roleEntity/list.html"/>
+<c:url var="formUrl" value="/admin/role/edit.html"/>
+<c:url var="backUrl" value="/admin/role/list.html"/>
 
 <form:form commandName="item" action="${formUrl}" method="post" id="itemForm" cssClass="form-horizontal">
     <div class="small-header transition animated fadeIn">
@@ -15,10 +15,10 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                         <li>
-                            <span><fmt:message key="roleEntity"/></span>
+                            <span><fmt:message key="role"/></span>
                         </li>
                         <li class="active">
-                            <span><fmt:message key="roleEntity.management"/></span>
+                            <span><fmt:message key="role.management"/></span>
                         </li>
                     </ol>
                 </div>
@@ -26,10 +26,10 @@
                 <h2 class="font-light m-b-xs">
                     <c:choose>
                         <c:when test="${not empty item.pojo.roleID}">
-                            <fmt:message key="roleEntity.edit"/>
+                            <fmt:message key="role.edit"/>
                         </c:when>
                         <c:otherwise>
-                            <fmt:message key="roleEntity.add"/>
+                            <fmt:message key="role.add"/>
                         </c:otherwise>
                     </c:choose>
                 </h2>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="contentEntity animate-panel">
+    <div class="content animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
@@ -46,7 +46,7 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="roleEntity.management"/>
+                            <fmt:message key="role.management"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -61,15 +61,15 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="roleEntity.roleEntity"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="role.role"/></label>
                                 <div class="col-sm-8">
-                                    <form:input path="pojo.roleEntity" size="40" cssClass="form-control"/>
-                                    <form:errors path="pojo.roleEntity" cssClass="validateError"/>
+                                    <form:input path="pojo.role" size="40" cssClass="form-control"/>
+                                    <form:errors path="pojo.role" cssClass="validateError"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="roleEntity.name"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="role.name"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.name" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.name" cssClass="validateError"/>
@@ -77,7 +77,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="roleEntity.description"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="role.description"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.description" size="40" cssClass="form-control"/>
                                 </div>

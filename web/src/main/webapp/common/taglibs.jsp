@@ -14,7 +14,7 @@
 <%@ taglib prefix="rep" uri="http://banvien.com/tags/repository" %>
 <%@ taglib uri="http://www.banvien.com/portal-taglibs" prefix="portal" %>
 <%@ taglib uri="http://www.banvien.com/tags/seo" prefix="seo" %>
-<%@ taglib uri="http://www.banvien.com/tags/contentEntity" prefix="contentEntity" %>
+<%@ taglib uri="http://www.banvien.com/tags/content" prefix="content" %>
 <%@ taglib prefix="oscache" uri="http://www.opensymphony.com/oscache" %>
 
 <%@ taglib uri="http://java.fckeditor.net" prefix="FCK" %>

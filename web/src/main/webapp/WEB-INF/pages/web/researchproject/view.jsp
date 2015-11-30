@@ -1,5 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
-<div class="contentEntity container contentEntity-container">
+<div class="content container content-container">
     <div class="page-wrapper">
         <c:set var="itemDataXML" value="${portal:parseContentXML(item.xmlData)}"/>
         <header class="page-heading clearfix">
@@ -7,12 +7,12 @@
             <div class="breadcrumbs pull-right">
                 <ul class="breadcrumbs-list">
                     <li><a href="<c:url value="/index.html"/>"><fmt:message key="site.home"/></a><i class="fa fa-angle-right"></i></li>
-                    <li style="text-transform: capitalize;"><span>${categoryEntityObj.name}</span><i class="fa fa-angle-right"></i></li>
-                    <li class="current" style="text-transform: capitalize;"><span>${currentCategoryEntity.name}</span></li>
+                    <li style="text-transform: capitalize;"><span>${categoryObj.name}</span><i class="fa fa-angle-right"></i></li>
+                    <li class="current" style="text-transform: capitalize;"><span>${currentCategory.name}</span></li>
                 </ul>
             </div>
         </header>
-        <div class="page-contentEntity">
+        <div class="page-content">
             <div class="row page-row">
                 <div class="courses-wrapper col-md-8 col-sm-7">
                     <div class="featured-courses tabbed-info page-row">
@@ -29,11 +29,11 @@
                             </c:if>
                         </ul>
 
-                        <div class="tab-contentEntity">
+                        <div class="tab-content">
                             <div class="tab-pane active" id="tab1">
                                 <div class="row">
                                     <div class="courses-wrapper col-md-12">
-                                        ${itemDataXML.contentEntity[0]}
+                                        ${itemDataXML.content[0]}
                                     </div>
                                 </div>
                             </div>
@@ -57,10 +57,10 @@
 
                                                             <div class="details col-md-9 col-sm-8 col-xs-6">
                                                                 <h3 class="title">
-                                                                    <seo:url value="${researchGroup.title}" var="researchGroupUrl" prefix="/${researchGroupPrefixUrl}/${portal:convertStringToUrl(categoryEntityObj.code)}/"/>
+                                                                    <seo:url value="${researchGroup.title}" var="researchGroupUrl" prefix="/${researchGroupPrefixUrl}/${portal:convertStringToUrl(categoryObj.code)}/"/>
                                                                     <a href="${researchGroupUrl}">${researchGroupData.header[0]}</a>
                                                                 </h3>
-                                                                <p>${researchGroupData.contentEntity[0]}</p>
+                                                                <p>${researchGroupData.content[0]}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -77,7 +77,7 @@
                                         <div class="courses-wrapper col-md-12 item ">
                                             <c:forEach var="product" items="${products}" varStatus="productStatus">
                                                 <c:set var="productData" value="${portal:parseContentXML(product.xmlData)}"/>
-                                                <seo:url value="${product.title}" var="productUrl" prefix="/product/${portal:convertStringToUrl(currentCategoryEntity.code)}/"/>
+                                                <seo:url value="${product.title}" var="productUrl" prefix="/product/${portal:convertStringToUrl(currentCategory.code)}/"/>
 
                                                 <div class="row page-row">
                                                     <div class="details col-md-9 col-sm-8 col-xs-6">
@@ -132,7 +132,7 @@
 </div>
 <script>
     $(document).ready(function() {
-        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryEntityObj.code)}'));
+        setSelectedMenu($('#navbar-collapse'), $('#${portal:convertStringToUrl(categoryObj.code)}'));
     });
     function setSelectedMenu(parent, element){
         $(parent).find('.active').removeClass('active');

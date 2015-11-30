@@ -8,7 +8,7 @@
         </span>
     </div>
 
-    <nav roleEntity="navigation">
+    <nav role="navigation">
         <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
         <div class="small-logo">
             <span class="text-primary">HOMER APP</span>

@@ -53,14 +53,14 @@ public class ContentValidator extends ApplicationObjectSupport implements Valida
 
     public void checkUnique(ContentBean cmd, Errors errors){
         try{
-            ContentEntity contentEntity = contentService.findByTitle(cmd.getPojo().getTitle());
+            ContentEntity content = contentService.findByTitle(cmd.getPojo().getTitle());
 
-            if(contentEntity != null && contentEntity.getContentId() != null && contentEntity.getContentId() > 0 && !contentEntity.getContentId().equals(cmd.getPojo().getContentId())){
+            if(content != null && content.getContentId() != null && content.getContentId() > 0 && !content.getContentId().equals(cmd.getPojo().getContentId())){
                 errors.rejectValue("pojo.title", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("content.title")}, "Value has been chosen.");
             }
 
         }catch (ObjectNotFoundException ex) {
-            //UserEntity group not exist
+            //User group not exist
         }
     }
 }

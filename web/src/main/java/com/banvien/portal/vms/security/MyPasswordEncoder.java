@@ -8,10 +8,6 @@ import com.banvien.portal.vms.domain.UserEntity;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 
-/**
- * @author Nguyen Hai Vien
- *
- */
 public class MyPasswordEncoder implements PasswordEncoder {
     private UserDAO userDAO;
 
@@ -28,8 +24,8 @@ public class MyPasswordEncoder implements PasswordEncoder {
 			throws DataAccessException {
         boolean res = false;
         if(!res){
-            UserEntity userEntity = userDAO.findUserByUsernameAndPasswordFromDB(encPass, rawPass);
-            if (userEntity != null && userEntity.getStatus() != null && userEntity.getStatus().toString().equals("1")) {
+            UserEntity user = userDAO.findUserByUsernameAndPasswordFromDB(encPass, rawPass);
+            if (user != null && user.getStatus() != null && user.getStatus().toString().equals("1")) {
                 res = true;
             }
         }

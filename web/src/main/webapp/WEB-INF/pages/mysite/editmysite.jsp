@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="mysite.document"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="mysite.document"/>"/>
+    <meta name="heading" content="<fmt:message key="mysite.document"/>"/>
 </head>
 <c:url var="url" value="/mysite/edit.html"/>
 <c:url var="backUrl" value="/mysite/home.html"/>
@@ -19,35 +19,35 @@
                     <form:form commandName="item" action="${url}" method="post" id="itemForm" enctype="multipart/form-data">
                         <div class="box_container">
                             <div class="header">
-                                <fmt:message key="contentEntity.management"/>
+                                <fmt:message key="content.management"/>
                             </div>
 
                             <div class="form">
                                 <table width="100%" cellpadding="0" cellspacing="0" border="0" class="table bright_blue_body">
 
                                     <tr class="odd">
-                                        <td width="15%"><fmt:message key="contentEntity.title"/></td>
+                                        <td width="15%"><fmt:message key="content.title"/></td>
                                         <td>
                                             <form:input path="pojo.title" size="40" cssStyle="width: 98%;"/>
                                             <form:errors path="pojo.title" cssClass="validateError"/>
                                         </td>
                                     </tr>
                                     <tr class="even">
-                                        <td valign="top"><fmt:message key="contentEntity.keyword"/></td>
+                                        <td valign="top"><fmt:message key="content.keyword"/></td>
                                         <td>
                                             <form:textarea path="pojo.keyword" rows="3" cssStyle="width:98%"/>
                                             <form:errors path="pojo.keyword" cssClass="validateError"/>
                                         </td>
                                     </tr>
                                     <tr class="odd">
-                                        <td><fmt:message key="contentEntity.accesspolicy"/></td>
+                                        <td><fmt:message key="content.accesspolicy"/></td>
                                         <td>
-                                            <form:radiobutton path="pojo.accessPolicy" value="1"/><fmt:message key="contentEntity.accesspolicy.everyone"/>
-                                            <form:radiobutton path="pojo.accessPolicy" value="2"/><fmt:message key="contentEntity.accesspolicy.private"/>
+                                            <form:radiobutton path="pojo.accessPolicy" value="1"/><fmt:message key="content.accesspolicy.everyone"/>
+                                            <form:radiobutton path="pojo.accessPolicy" value="2"/><fmt:message key="content.accesspolicy.private"/>
                                         </td>
                                     </tr>
                                     <tr class="even">
-                                        <td colspan="2"><fmt:message key="contentEntity.authoringcontent"/></td>
+                                        <td colspan="2"><fmt:message key="content.authoringcontent"/></td>
                                     </tr>
 
 
@@ -113,7 +113,7 @@
                                     <tr class="even">
                                         <td></td>
                                         <td>
-                                            <input type="hidden" name="pojo.authoringTemplateEntity" value="${item.pojo.authoringTemplateEntity.authoringTemplateID}"/>
+                                            <input type="hidden" name="pojo.authoringTemplate" value="${item.pojo.authoringTemplate.authoringTemplateID}"/>
                                             <form:hidden path="authoringTemplateID"/>
                                             <form:hidden path="crudaction" id="crudaction" value="insert-update"/>
                                             <form:hidden path="pojo.contentID"/>

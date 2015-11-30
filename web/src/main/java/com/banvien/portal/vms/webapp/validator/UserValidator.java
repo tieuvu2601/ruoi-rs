@@ -19,59 +19,40 @@ public class UserValidator extends ApplicationObjectSupport implements Validator
 
     private transient final Log log = LogFactory.getLog(UserValidator.class);
 
-        @Autowired
-        private UserService userService;
+    @Autowired
+    private UserService userService;
 
-       public boolean supports(Class<?> aClass) {
-           return UserBean.class.isAssignableFrom(aClass);
-       }
-       /**
-        * This method is called for validating Model Attribute
-        */
-       public void validate(Object o, Errors errors) {
-           UserBean cmd = (UserBean)o;
-           validateRequiredValues(cmd, errors);
-           checkUnique(cmd, errors);
-       }
+    public boolean supports(Class<?> aClass) {
+        return UserBean.class.isAssignableFrom(aClass);
+    }
+   /**
+    * This method is called for validating Model Attribute
+    */
+    public void validate(Object o, Errors errors) {
+       UserBean cmd = (UserBean)o;
+       validateRequiredValues(cmd, errors);
+       checkUnique(cmd, errors);
+    }
 
-        public void checkUnique(UserBean cmd, Errors errors){
-            UserEntity userEntity = userService.findByUserName(cmd.getPojo().getUsername());
-            if(userEntity != null && cmd.getPojo().getUserId() == null || (cmd.getPojo().getUserId() != null && (!userEntity.getUserId().equals(cmd.getPojo().getUserId())))){
-                errors.rejectValue("pojo.username", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("user.username")}, "is duplicate.");
-            }
-
-            try{
-                UserEntity group = userService.findByEmail(cmd.getPojo().getEmail());
-                if(cmd.getPojo().getUserId() == null || (cmd.getPojo().getUserId() != null && (!group.getUserId().equals(cmd.getPojo().getUserId())))){
-                    errors.rejectValue("pojo.email", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("user.email")}, "is duplicate.");
-                }
-
-            }catch (ObjectNotFoundException ex) {
-                //UserEntity not exist
-            }
+    public void checkUnique(UserBean cmd, Errors errors){
+        UserEntity user = userService.findByUserName(cmd.getPojo().getUsername());
+        if(user != null && cmd.getPojo().getUserId() == null || (cmd.getPojo().getUserId() != null && (!user.getUserId().equals(cmd.getPojo().getUserId())))){
+            errors.rejectValue("pojo.username", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("user.username")}, "is duplicate.");
         }
 
-        public void checkValid(UserBean cmd, Errors errors)
-        {
-            try{
-                if(CommonUtil.isValidEmail(cmd.getPojo().getEmail()) == false)
-                {
-                    errors.rejectValue("pojo.email", "error.email", new String[] {this.getMessageSourceAccessor().getMessage("user.email")}, "is not valid");
-                }
-                if(CommonUtil.isValidUsername(cmd.getPojo().getUsername()) == false)
-                {
-                    errors.rejectValue("pojo.username", "error.username", new String[] {this.getMessageSourceAccessor().getMessage("user.username")}, "is not valid");
-                }
-            }
-            catch (Exception ex)
-            {
-                // todo
+        try{
+            UserEntity group = userService.findByEmail(cmd.getPojo().getEmail());
+            if(cmd.getPojo().getUserId() == null || (cmd.getPojo().getUserId() != null && (!group.getUserId().equals(cmd.getPojo().getUserId())))){
+                errors.rejectValue("pojo.email", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("user.email")}, "is duplicate.");
             }
 
+        }catch (ObjectNotFoundException ex) {
+            //User not exist
         }
+    }
 
-       private void validateRequiredValues(UserBean cmd, Errors errors) {
-           ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.username", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("user.username")}, "non-empty value required.");
-           ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.email", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("user.email")}, "non-empty value required.");
-       }
+    private void validateRequiredValues(UserBean cmd, Errors errors) {
+       ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.username", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("user.username")}, "non-empty value required.");
+       ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.email", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("user.email")}, "non-empty value required.");
+    }
 }

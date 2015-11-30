@@ -1,8 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="userEntity.management"/></title>
-    <meta name="heading" contentEntity="User Management"/>
+    <title><fmt:message key="user.management"/></title>
+    <meta name="heading" content="User Management"/>
 </head>
 
 <c:url var="formUrl" value="/admin/user/edit.html"/>
@@ -16,20 +16,20 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                         <li>
-                            <span><fmt:message key="userEntity"/></span>
+                            <span><fmt:message key="user"/></span>
                         </li>
                         <li class="active">
-                            <span><fmt:message key="userEntity.management"/></span>
+                            <span><fmt:message key="user.management"/></span>
                         </li>
                     </ol>
                 </div>
                 <h2 class="font-light m-b-xs">
                     <c:choose>
                         <c:when test="${not empty item.pojo.userID}">
-                            <fmt:message key="userEntity.edit"/>
+                            <fmt:message key="user.edit"/>
                         </c:when>
                         <c:otherwise>
-                            <fmt:message key="userEntity.add"/>
+                            <fmt:message key="user.add"/>
                         </c:otherwise>
                     </c:choose>
                 </h2>
@@ -37,7 +37,7 @@
         </div>
     </div>
 
-    <div class="contentEntity animate-panel">
+    <div class="content animate-panel">
         <div>
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
@@ -46,7 +46,7 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="userEntity.management"/>
+                            <fmt:message key="user.management"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -61,7 +61,7 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="userEntity.username"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.username"/></label>
                                 <div class="col-sm-8">
                                     <form:input id="username" path="pojo.username" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.username" cssClass="validateError"/>
@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="userEntity.password"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.password"/></label>
                                 <div class="col-sm-8">
                                     <form:password id="password" path="pojo.password" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.password" cssClass="validateError"/>
@@ -77,7 +77,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="userEntity.email"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.email"/></label>
                                 <div class="col-sm-8">
                                     <form:input id="email" path="pojo.email" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.email" cssClass="validateError"/>
@@ -85,43 +85,43 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="userEntity.firstname"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.firstname"/></label>
                                 <div class="col-sm-8">
                                     <form:input id="firstName" path="pojo.firstName" size="40" cssClass="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="userEntity.lastname"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.lastname"/></label>
                                 <div class="col-sm-8">
                                     <form:input id="lastName" path="pojo.lastName" size="40" cssClass="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="userEntity.displayname"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.displayname"/></label>
                                 <div class="col-sm-8">
                                     <form:input id="displayName" path="pojo.displayName" size="40" cssClass="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="userEntity.mobile"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.mobile"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.mobileNumber" size="40" cssClass="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="userEntity.status"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.status"/></label>
                                 <div class="col-sm-8">
-                                    <form:radiobutton path="pojo.status" value="1" cssClass="radio-primary"/><fmt:message key="userEntity.status.active"/>
-                                    <form:radiobutton path="pojo.status" value="0" cssClass="radio-primary"/><fmt:message key="userEntity.stauts.disable"/>
+                                    <form:radiobutton path="pojo.status" value="1" cssClass="radio-primary"/><fmt:message key="user.status.active"/>
+                                    <form:radiobutton path="pojo.status" value="0" cssClass="radio-primary"/><fmt:message key="user.stauts.disable"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="userEntity.fullaccess"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.fullaccess"/></label>
                                 <div class="col-sm-8">
                                     <form:checkbox path="pojo.fullAccess" value="1"/>
                                 </div>
@@ -130,9 +130,9 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="usergroup"/></label>
                                 <div class="col-sm-8">
-                                    <select name="pojo.userGroupEntity.userGroupID" class="form-control">
+                                    <select name="pojo.userGroup.userGroupID" class="form-control">
                                         <c:forEach items="${userGroups}" var="usg">
-                                            <option value="${usg.userGroupID}" <c:if test="${not empty item.pojo.userGroupEntity && item.pojo.userGroupEntity.userGroupID == usg.userGroupID}">selected</c:if>>${usg.name}</option>
+                                            <option value="${usg.userGroupID}" <c:if test="${not empty item.pojo.userGroup && item.pojo.userGroup.userGroupID == usg.userGroupID}">selected</c:if>>${usg.name}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -150,7 +150,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="userEntity.form.avatar"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.form.avatar"/></label>
                                 <div class="col-sm-8">
                                     <input type="file" name="fileItem" class="form-control"/>
                                     <c:if test="${!empty item.pojo.avatar }">

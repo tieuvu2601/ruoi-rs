@@ -39,10 +39,10 @@
                     </div>
                     <div class="col-md-6">
                         <div class="text-center small">
-                            <i class="fa fa-laptop"></i> Active userEntities in current month (December)
+                            <i class="fa fa-laptop"></i> Active users in current month (December)
                         </div>
                         <div class="flot-chart" style="height: 160px">
-                            <div class="flot-chart-contentEntity" id="flot-line-chart"></div>
+                            <div class="flot-chart-content" id="flot-line-chart"></div>
                         </div>
                     </div>
                     <div class="col-md-3 text-center">
@@ -101,12 +101,12 @@
                 <div class="m-t-xl">
                     <h3 class="m-b-xs">210</h3>
                             <span class="font-bold no-margins">
-                                Social userEntities
+                                Social users
                             </span>
 
                     <div class="progress m-t-xs full progress-small">
                         <div style="width: 55%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="55"
-                             roleEntity="progressbar" class=" progress-bar progress-bar-success">
+                             role="progressbar" class=" progress-bar progress-bar-success">
                             <span class="sr-only">35% Complete (success)</span>
                         </div>
                     </div>
@@ -141,7 +141,7 @@
                 <div class="m-t-xl">
                     <h1 class="text-success">860k+</h1>
                             <span class="font-bold no-margins">
-                                Social userEntities
+                                Social users
                             </span>
                     <br/>
                     <small>
@@ -166,7 +166,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="flot-chart">
-                    <div class="flot-chart-contentEntity" id="flot-income-chart"></div>
+                    <div class="flot-chart-content" id="flot-income-chart"></div>
                 </div>
                 <div class="m-t-xs">
 
@@ -207,7 +207,7 @@
                 </div>
                 <div class="m-t-xl">
                                     <span class="font-bold no-margins">
-                                        Social userEntities
+                                        Social users
                                     </span>
                     <br/>
                     <small>

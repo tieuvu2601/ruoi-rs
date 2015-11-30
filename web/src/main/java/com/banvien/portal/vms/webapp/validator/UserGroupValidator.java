@@ -43,7 +43,7 @@ public class UserGroupValidator extends ApplicationObjectSupport implements Vali
                 }
 
             }catch (ObjectNotFoundException ex) {
-                //UserEntity group not exist
+                //User group not exist
             }
         }
 

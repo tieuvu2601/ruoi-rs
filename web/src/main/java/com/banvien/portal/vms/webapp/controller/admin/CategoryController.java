@@ -8,7 +8,9 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.banvien.portal.vms.domain.AuthoringTemplateEntity;
 import com.banvien.portal.vms.domain.CategoryEntity;
+import com.banvien.portal.vms.dto.CategoryDTO;
 import com.banvien.portal.vms.util.CategoryUtil;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -25,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.banvien.portal.vms.bean.CategoryBean;
-import com.banvien.portal.vms.domain.AuthoringTemplateEntity;
 import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.editor.PojoEditor;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
@@ -51,7 +52,7 @@ public class CategoryController extends ApplicationObjectSupport {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
     	binder.registerCustomEditor(Date.class, new CustomDateEditor());
-        binder.registerCustomEditor(AuthoringTemplateEntity.class, new PojoEditor(AuthoringTemplateEntity.class, "authoringTemplateID", Long.class));
+        binder.registerCustomEditor(AuthoringTemplateEntity.class, new PojoEditor(AuthoringTemplateEntity.class, "authoringTemplateId", Long.class));
 	}
 
     @RequestMapping("/admin/category/edit.html")
@@ -113,7 +114,7 @@ public class CategoryController extends ApplicationObjectSupport {
         referenceData(mav);
         return mav;
     }
-
+    
     @RequestMapping("/ajax/loadCategoryByAuthoringTemplate.html")
 	public void sendMessage(HttpServletRequest request, HttpServletResponse response) {
 		try{
@@ -124,9 +125,9 @@ public class CategoryController extends ApplicationObjectSupport {
 			String authoringTemplateIDstr = request.getParameter("au");
 			if(StringUtils.isNotBlank(authoringTemplateIDstr)){
 				Long authoringTemplateID = Long.valueOf(authoringTemplateIDstr);
-				List<CategoryEntity> categories = categoryService.findProperty("authoringTemplate.authoringTemplateID", authoringTemplateID);
-				for(CategoryEntity categoryEntity : categories){
-					array.put(new JSONArray(new Object[]{categoryEntity.getCategoryId(), categoryEntity.getName()}));
+				List<CategoryEntity> categories = categoryService.findProperty("authoringTemplate.authoringTemplateId", authoringTemplateID);
+				for(CategoryEntity category : categories){
+					array.put(new JSONArray(new Object[]{category.getCategoryId(), category.getName()}));
 				}
 			}
 			object.put("array", array);
@@ -148,7 +149,7 @@ public class CategoryController extends ApplicationObjectSupport {
         if(StringUtils.isNotBlank(bean.getPojo().getName())){
             properties.put("name", bean.getPojo().getName());
         }
-        if(bean.getPojo().getParent() != null && bean.getPojo().getParent() != null && bean.getPojo().getParent().getCategoryId() > 0){
+        if(bean.getPojo().getParent() != null && bean.getPojo().getParent().getCategoryId() != null && bean.getPojo().getParent().getCategoryId() > 0){
             properties.put("parentCategory.categoryID", bean.getPojo().getParent().getCategoryId());
         }
         Object[] results = this.categoryService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
@@ -160,6 +161,4 @@ public class CategoryController extends ApplicationObjectSupport {
         List<CategoryEntity> categories = this.categoryService.findAllCategoryParent();
         mav.addObject("categories", CategoryUtil.getAllCategoryObjectInSite(categories));
     }
-
-
 }

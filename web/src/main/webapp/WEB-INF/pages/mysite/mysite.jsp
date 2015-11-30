@@ -2,7 +2,7 @@
 
 <head>
     <title><fmt:message key="mysite.document"/></title>
-    <meta name="heading" contentEntity="<fmt:message key="mysite.document"/>"/>
+    <meta name="heading" content="<fmt:message key="mysite.document"/>"/>
 </head>
 <c:url var="url" value="/mysite/home.html"/>
 <c:url var="addUrl" value="/mysite/addmysite.html?authoringTemplateID=${authoringTemplateDocumentID}"/>
@@ -61,9 +61,9 @@
                             <div class="form">
                                 <table width="100%" cellpadding="5" cellspacing="5" border="0">
                                     <tr>
-                                        <td><fmt:message key="contentEntity.title"/></td>
+                                        <td><fmt:message key="content.title"/></td>
                                         <td><form:input path="pojo.title" size="40"/></td>
-                                        <td><fmt:message key="contentEntity.keyword"/></td>
+                                        <td><fmt:message key="content.keyword"/></td>
                                         <td><form:input path="pojo.keyword" size="40"/></td>
                                     </tr>
                                     <tr>
@@ -82,27 +82,27 @@
 
                              <display:table name="items.listResult" cellspacing="0" cellpadding="0" requestURI="${url}"
                                  partialList="true" sort="external" excludedParams="crudaction" size="${items.totalItems}" defaultsort="2" uid="tableList" pagesize="${items.maxPageItems}" class="table bright_blue_body" export="false">
-                                 <display:column headerClass="table_header" property="title" escapeXml="true" sortable="true" sortName="title" titleKey="contentEntity.title" style="width: 30%"/>
-                                 <display:column headerClass="table_header" escapeXml="true" titleKey="contentEntity.accesspolicy" style="width: 30%">
+                                 <display:column headerClass="table_header" property="title" escapeXml="true" sortable="true" sortName="title" titleKey="content.title" style="width: 30%"/>
+                                 <display:column headerClass="table_header" escapeXml="true" titleKey="content.accesspolicy" style="width: 30%">
                                     <c:if test="${tableList.accessPolicy == 1}">
-                                        <fmt:message key="contentEntity.accesspolicy.allowshare" />
+                                        <fmt:message key="content.accesspolicy.allowshare" />
                                     </c:if>
                                     <c:if test="${tableList.accessPolicy == 0}">
-                                        <fmt:message key="contentEntity.accesspolicy.notallowshare" />
+                                        <fmt:message key="content.accesspolicy.notallowshare" />
                                     </c:if>
                                  </display:column>
                                  <display:column headerClass="table_header" property="createdDate" sortable="true" sortName="createdDate" titleKey="createdDate" style="width: 20%" format="{0,date,dd/MM/yyyy HH:mm:ss}"/>
 
-                                 <display:column headerClass="table_header" url="/admin/contentEntity/edit.html"
+                                 <display:column headerClass="table_header" url="/admin/content/edit.html"
                                                              titleKey="action" style="width: 20%">
                                      <div class="toolbar">
-                                         <a title="<fmt:message key="contentEntity.edit"/>" href="${editUrl}?pojo.contentID=${tableList.contentID}" class="edit">&nbsp;</a>
-                                         <a name="deleteLink" id="d_${tableList.contentID}_a" title="<fmt:message key="contentEntity.delete"/>"  class="delete" href="<c:url value='/mysite/home.html'><c:param name="checkList" value="${tableList.contentID}"/><c:param name="crudaction" value="delete"/></c:url>">&nbsp;</a>
+                                         <a title="<fmt:message key="content.edit"/>" href="${editUrl}?pojo.contentID=${tableList.contentID}" class="edit">&nbsp;</a>
+                                         <a name="deleteLink" id="d_${tableList.contentID}_a" title="<fmt:message key="content.delete"/>"  class="delete" href="<c:url value='/mysite/home.html'><c:param name="checkList" value="${tableList.contentID}"/><c:param name="crudaction" value="delete"/></c:url>">&nbsp;</a>
                                          <%--<a name="deleteLink" id="d_${tableList.contentID}_a" href="<c:url value='/mysite/home.html'><c:param name="checkList" value="${tableList.contentID}"/><c:param name="crudaction" value="delete"/></c:url>"><img id="d_${tableList.contentID}" src="<c:url value='/themes/admin/images/no.png'/>"/></a>--%>
                                      </div>
                                  </display:column>
-                                 <display:setProperty name="paging.banner.item_name"><fmt:message key="contentEntity"/></display:setProperty>
-                                 <display:setProperty name="paging.banner.items_name"><fmt:message key="contentEntity"/></display:setProperty>
+                                 <display:setProperty name="paging.banner.item_name"><fmt:message key="content"/></display:setProperty>
+                                 <display:setProperty name="paging.banner.items_name"><fmt:message key="content"/></display:setProperty>
                                  <display:setProperty name="paging.banner.placement" value="bottom"/>
                                  <display:setProperty name="paging.banner.no_items_found" value=""/>
                                  <display:setProperty name="paging.banner.onepage" value=""/>

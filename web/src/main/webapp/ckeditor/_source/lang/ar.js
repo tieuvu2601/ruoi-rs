@@ -712,7 +712,7 @@ CKEDITOR.lang['ar'] =
 		dic_restore		: 'Restore', // MISSING
 		dic_delete		: 'Delete', // MISSING
 		dic_rename		: 'Rename', // MISSING
-		dic_info		: 'Initially the UserEntity Dictionary is stored in a Cookie. However, Cookies are limited in size. When the UserEntity Dictionary grows to a point where it cannot be stored in a Cookie, then the dictionary may be stored on our server. To store your personal dictionary on our server you should specify a name for your dictionary. If you already have a stored dictionary, please type its name and click the Restore button.', // MISSING
+		dic_info		: 'Initially the User Dictionary is stored in a Cookie. However, Cookies are limited in size. When the User Dictionary grows to a point where it cannot be stored in a Cookie, then the dictionary may be stored on our server. To store your personal dictionary on our server you should specify a name for your dictionary. If you already have a stored dictionary, please type its name and click the Restore button.', // MISSING
 
 		aboutTab		: 'عن'
 	},
@@ -722,7 +722,7 @@ CKEDITOR.lang['ar'] =
 		title		: 'عن CKEditor',
 		dlgTitle	: 'عن CKEditor',
 		help	: 'Check $1 for help.', // MISSING
-		userGuide : 'CKEditor UserEntity\'s Guide', // MISSING
+		userGuide : 'CKEditor User\'s Guide', // MISSING
 		moreInfo	: 'للحصول على معلومات الترخيص ، يرجى زيارة موقعنا على شبكة الانترنت:',
 		copy		: 'حقوق النشر &copy; $1. جميع الحقوق محفوظة.'
 	},
