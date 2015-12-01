@@ -100,43 +100,18 @@
                                                partialList="true" sort="external" size="${items.totalItems}" defaultsort="2" uid="tableList" pagesize="${items.maxPageItems}"
                                                class="table table-striped table-bordered table-hover no-footer" export="false" >
                                     <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
-                                        <input type="checkbox" name="checkList" value="${tableList.authoringTemplateID}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
+                                        <input type="checkbox" name="checkList" value="${tableList.authoringTemplateId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
                                     </display:column>
 
                                     <display:column headerClass="table_header" property="code" escapeXml="false" sortable="true" sortName="code" titleKey="authoringtemplate.code" style="width: 10%"/>
                                     <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="authoringtemplate.name" style="width: 25%"/>
-
-                                    <display:column headerClass="table_header" escapeXml="true" sortable="true" sortName="hasThumbnail" titleKey="authoringtemplate.hasthumbnail" style="width: 10%">
-                                        <c:choose>
-                                            <c:when test="${tableList.hasThumbnail eq 'Y' }"><fmt:message key="label.yes"/></c:when>
-                                            <c:otherwise><fmt:message key="label.no"/></c:otherwise>
-                                        </c:choose>
-                                    </display:column>
-
-                                    <display:column headerClass="table_header" escapeXml="true" sortable="true" sortName="hasHotItem" titleKey="authoringtemplate.hashotitem" style="width: 10%">
-                                        <c:choose>
-                                            <c:when test="${tableList.hasHotItem eq 'Y' }"><fmt:message key="label.yes"/></c:when>
-                                            <c:otherwise><fmt:message key="label.no"/></c:otherwise>
-                                        </c:choose>
-                                    </display:column>
-
-                                    <display:column headerClass="table_header" escapeXml="true" sortable="true" sortName="status" titleKey="label.status" style="width: 10%">
-                                        <c:choose>
-                                            <c:when test="${tableList.status eq 'Y' }"><fmt:message key="authoringtemplate.comment.yes"/></c:when>
-                                            <c:otherwise><fmt:message key="authoringtemplate.comment.no"/></c:otherwise>
-                                        </c:choose>
-                                    </display:column>
-
                                     <display:column headerClass="table_header" property="createdDate" sortable="true" sortName="createdDate" titleKey="createdDate" style="width: 12%" format="{0,date,dd/MM/yyyy}"/>
                                     <display:column headerClass="table_header" property="modifiedDate" sortable="true" sortName="modifiedDate" titleKey="modifiedDate" style="width: 12%" format="{0,date,dd/MM/yyyy}"/>
 
                                     <display:column sortable="false"  headerClass="table_header" url="/admin/authoringtemplate/edit.html"
                                                     titleKey="action" style="width: 10%">
-                                        <security:authorize ifAnyGranted="AUTHOR,EDITOR,APPROVER,ADMIN">
-                                            <a href="${accessUrl}?pojo.authoringTemplateID=${tableList.authoringTemplateID}"><i class="fa fa-key"></i></a> |
-                                        </security:authorize>
-                                        <a href="${editUrl}?pojo.authoringTemplateID=${tableList.authoringTemplateID}"><i class="fa fa-edit"></i></a> |
-                                        <a class="deleteLink" id="${tableList.authoringTemplateID}"><i class="fa fa-remove"></i></a>
+                                        <a href="${editUrl}?pojo.authoringTemplateId=${tableList.authoringTemplateId}"><i class="fa fa-edit"></i></a> |
+                                        <a class="deleteLink" id="${tableList.authoringTemplateId}"><i class="fa fa-remove"></i></a>
                                     </display:column>
                                     <display:setProperty name="paging.banner.item_name"><fmt:message key="authoringtemplate.template"/></display:setProperty>
                                     <display:setProperty name="paging.banner.items_name"><fmt:message key="authoringtemplate.template"/></display:setProperty>

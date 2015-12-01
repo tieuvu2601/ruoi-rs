@@ -35,7 +35,6 @@ public class AuthoringTemplateValidator extends ApplicationObjectSupport impleme
     private void validateRequiredValues(AuthoringTemplateBean bean, Errors errors){
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.code", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("authoringtemplate.code")}, "non-empty value required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.name", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("authoringtemplate.name")}, "non-empty value required.");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.prefixUrl", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("authoringtemplate.prefixurl")}, "non-empty value required.");
     }
 
     private void trimminField(AuthoringTemplateBean bean){
@@ -50,7 +49,6 @@ public class AuthoringTemplateValidator extends ApplicationObjectSupport impleme
     private void checkUnique(AuthoringTemplateBean bean, Errors errors){
         try{
             AuthoringTemplateEntity authoringTemplate = authoringTemplateService.findByCode(bean.getPojo().getCode());
-
             if(bean.getPojo().getAuthoringTemplateId() == null || (bean.getPojo().getAuthoringTemplateId() != null && !authoringTemplate.getAuthoringTemplateId().equals(bean.getPojo().getAuthoringTemplateId()))){
                 errors.rejectValue("pojo.code", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("authoringtemplate.code")}, "Value has been chosen.");
             }

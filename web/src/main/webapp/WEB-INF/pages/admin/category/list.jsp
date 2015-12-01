@@ -76,14 +76,10 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label"><fmt:message key="category.parent"/></label>
                                     <div class="col-sm-8">
-                                        <form:select path="pojo.parentCategory.categoryID" cssClass="form-control" id="parentCategoryID">
+                                        <form:select path="pojo.parent.categoryId" cssClass="form-control" id="parentCategoryId">
                                             <form:option value="-1" parentRootId="-1"><fmt:message key="category.choose.parent"/></form:option>
                                             <c:forEach var="cat" items="${categories}">
-                                                <c:set var="parentRootID" value="-1"/>
-                                                <c:if test="${not empty cat.parentRootId && cat.parentRootId > 0}">
-                                                    <c:set var="parentRootID" value="${cat.parentRootId}"/>
-                                                </c:if>
-                                                <option value="${cat.categoryID}" parentRootId="${parentRootID}" <c:if test="${cat.categoryID == items.pojo.parentCategory.categoryID}">selected</c:if>>
+                                                <option value="${cat.categoryId}"parentRootId="${parentRootID}" <c:if test="${cat.categoryId == items.pojo.parentCategory.categoryId}">selected</c:if>>
                                                     <c:forEach begin="1" end="${cat.nodeLevel}">
                                                         - - -
                                                     </c:forEach>
@@ -123,7 +119,7 @@
                                                partialList="true" sort="external" size="${items.totalItems}" defaultsort="2" uid="tableList" pagesize="${items.maxPageItems}"
                                                class="table table-striped table-bordered table-hover no-footer" export="false" excludedParams="crudaction">
                                     <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
-                                        <input type="checkbox" name="checkList" value="${tableList.categoryID}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
+                                        <input type="checkbox" name="checkList" value="${tableList.categoryId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
                                     </display:column>
                                     <display:column headerClass="table_header" property="code" escapeXml="false" sortable="true" sortName="code" titleKey="category.code" style="width: 15%" />
                                     <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="category.name" style="width: 20%"/>
@@ -132,9 +128,9 @@
                                     <display:column headerClass="table_header" property="modifiedDate" sortable="true" sortName="modifiedDate" titleKey="modifiedDate" style="width: 20%" format="{0,date,dd/MM/yyyy}"/>
 
                                     <display:column sortable="false"  headerClass="table_header" titleKey="action" style="width: 12%">
-                                        <a href="${accessUrl}?pojo.categoryID=${tableList.categoryID}"><i class="fa fa-key"></i></a> |
-                                        <a href="${editUrl}?pojo.categoryID=${tableList.categoryID}"><i class="fa fa-edit"></i></a> |
-                                        <a class="deleteLink" id="${tableList.categoryID}"><i class="fa fa-remove"></i></a>
+                                        <a href="${accessUrl}?pojo.categoryId=${tableList.categoryId}"><i class="fa fa-key"></i></a> |
+                                        <a href="${editUrl}?pojo.categoryId=${tableList.categoryId}"><i class="fa fa-edit"></i></a> |
+                                        <a class="deleteLink" id="${tableList.categoryId}"><i class="fa fa-remove"></i></a>
                                     </display:column>
                                     <display:setProperty name="paging.banner.item_name"><fmt:message key="category"/></display:setProperty>
                                     <display:setProperty name="paging.banner.items_name"><fmt:message key="category"/></display:setProperty>

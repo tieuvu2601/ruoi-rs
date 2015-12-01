@@ -34,7 +34,7 @@
 
                 <h2 class="font-light m-b-xs">
                     <c:choose>
-                        <c:when test="${not empty item.pojo.authoringTemplateID}">
+                        <c:when test="${not empty item.pojo.authoringTemplateId}">
                             <fmt:message key="authoringtemplate.edit"/>
                         </c:when>
                         <c:otherwise>
@@ -82,54 +82,6 @@
                                 <div class="col-sm-8">
                                     <form:input path="pojo.name" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.name" cssClass="validateError"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.prefixurl"/></label>
-                                <div class="col-sm-8">
-                                    <form:input path="pojo.prefixUrl" size="40" cssClass="form-control"/>
-                                    <form:errors path="pojo.prefixUrl" cssClass="validateError"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.hasthumbnail"/></label>
-                                <div class="col-sm-8">
-                                    <input type="radio" name="pojo.hasThumbnail" value="Y" <c:if test="${item.pojo.hasThumbnail eq 'Y'}">checked="checked"</c:if> /><fmt:message key="label.yes"/>
-                                    <input type="radio" name="pojo.hasThumbnail" value="N" <c:if test="${empty item.pojo.hasThumbnail or item.pojo.hasThumbnail eq 'N'}">checked="checked"</c:if>/><fmt:message key="label.no"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.hashotitem"/></label>
-                                <div class="col-sm-8">
-                                    <input type="radio" name="pojo.hasHotItem" value="Y" <c:if test="${item.pojo.hasHotItem eq 'Y'}">checked="checked"</c:if> /><fmt:message key="label.yes"/>
-                                    <input type="radio" name="pojo.hasHotItem" value="N" <c:if test="${empty item.pojo.hasHotItem or item.pojo.hasHotItem eq 'N'}">checked="checked"</c:if>/><fmt:message key="label.no"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.hasdepartment"/></label>
-                                <div class="col-sm-8">
-                                    <input type="radio" name="pojo.hasDepartment" value="Y" <c:if test="${item.pojo.hasDepartment eq 'Y'}">checked="checked"</c:if> /><fmt:message key="label.yes"/>
-                                    <input type="radio" name="pojo.hasDepartment" value="N" <c:if test="${empty item.pojo.hasDepartment or item.pojo.hasDepartment eq 'N'}">checked="checked"</c:if>/><fmt:message key="label.no"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.event"/></label>
-                                <div class="col-sm-8">
-                                    <input type="radio" name="pojo.event" value="Y" <c:if test="${item.pojo.event eq 'Y'}">checked="checked"</c:if> /><fmt:message key="label.yes"/>
-                                    <input type="radio" name="pojo.event" value="N" <c:if test="${empty item.pojo.event or item.pojo.event eq 'N'}">checked="checked"</c:if>/><fmt:message key="label.no"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="label.status"/></label>
-                                <div class="col-sm-8">
-                                    <input type="radio" name="pojo.status" value="Y" <c:if test="${empty item.pojo.status or item.pojo.status eq 'Y'}">checked="checked"</c:if> /><fmt:message key="authoringtemplate.comment.yes"/>
-                                    <input type="radio" name="pojo.status" value="N" <c:if test="${item.pojo.status eq 'N'}">checked="checked"</c:if>/><fmt:message key="authoringtemplate.comment.no"/>
                                 </div>
                             </div>
 
@@ -294,7 +246,7 @@
         </div>
     </div>
     <form:hidden path="crudaction" id="crudaction"/>
-    <form:hidden path="pojo.authoringTemplateID"/>
+    <form:hidden path="pojo.authoringTemplateId"/>
 </form:form>
 <script>
     $(document).ready(function(){

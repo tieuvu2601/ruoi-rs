@@ -150,14 +150,14 @@ public class CategoryController extends ApplicationObjectSupport {
             properties.put("name", bean.getPojo().getName());
         }
         if(bean.getPojo().getParent() != null && bean.getPojo().getParent().getCategoryId() != null && bean.getPojo().getParent().getCategoryId() > 0){
-            properties.put("parentCategory.categoryID", bean.getPojo().getParent().getCategoryId());
+            properties.put("parent.categoryId", bean.getPojo().getParent().getCategoryId());
         }
         Object[] results = this.categoryService.searchByProperties(properties, bean.getSortExpression(), bean.getSortDirection(), bean.getFirstItem(), bean.getMaxPageItems());
         bean.setListResult((List<CategoryEntity>)results[1]);
         bean.setTotalItems(Integer.valueOf(results[0].toString()));
     }
     private void referenceData(ModelAndView mav) {
-        mav.addObject("authoringtemplates", authoringTemplateService.findAll());
+        mav.addObject("authoringTemplates", authoringTemplateService.findAll());
         List<CategoryEntity> categories = this.categoryService.findAllCategoryParent();
         mav.addObject("categories", CategoryUtil.getAllCategoryObjectInSite(categories));
     }
