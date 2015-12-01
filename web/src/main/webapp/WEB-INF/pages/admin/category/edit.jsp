@@ -25,7 +25,7 @@
 
                 <h2 class="font-light m-b-xs">
                     <c:choose>
-                        <c:when test="${not empty item.pojo.categoryID}">
+                        <c:when test="${not empty item.pojo.categoryId}">
                             <fmt:message key="category.edit"/>
                         </c:when>
                         <c:otherwise>
@@ -63,14 +63,10 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="category.parent"/></label>
                                 <div class="col-sm-8">
-                                    <form:select path="pojo.parentCategory.categoryID" cssClass="form-control" onchange="setParentRootIdForCategory()" id="parentCategoryID">
+                                    <form:select path="pojo.parent.categoryId" cssClass="form-control" onchange="setParentRootIdForCategory()" id="parentCategoryId">
                                         <form:option value="" parentRootId="-1"><fmt:message key="category.choose.parent"/></form:option>
                                         <c:forEach var="cat" items="${categories}">
-                                            <c:set var="parentRootID" value="-1"/>
-                                            <c:if test="${not empty cat.parentRootId && cat.parentRootId > 0}">
-                                                <c:set var="parentRootID" value="${cat.parentRootId}"/>
-                                            </c:if>
-                                            <option value="${cat.categoryID}" parentRootId="${parentRootID}" <c:if test="${cat.categoryID == item.pojo.parentCategory.categoryID}">selected</c:if>>
+                                            <option value="${cat.categoryId}" <c:if test="${cat.categoryId == item.pojo.parent.categoryId}">selected</c:if>>
                                                 <c:forEach begin="1" end="${cat.nodeLevel}">
                                                     - - -
                                                 </c:forEach>
@@ -106,14 +102,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.keyword"/></label>
-                                <div class="col-sm-8">
-                                    <form:input path="pojo.keyword" size="40" cssClass="form-control"/>
-                                    <form:errors path="pojo.keyword" cssClass="validateError"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="category.description"/></label>
                                 <div class="col-sm-8">
                                     <form:textarea path="pojo.description" rows="5" cssStyle="resize: vertical" cssClass="form-control"/>
@@ -132,29 +120,11 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="category.authoringtemplate"/></label>
                                 <div class="col-sm-8">
-                                    <form:select path="pojo.authoringTemplate.authoringTemplateID" cssClass="form-control">
+                                    <form:select path="pojo.authoringTemplate.authoringTemplateId" cssClass="form-control">
                                         <form:option value=""><fmt:message key="label.select"/></form:option>
-                                        <form:options itemValue="authoringTemplateID" itemLabel="name" items="${authoringtemplates}"/>
+                                        <form:options itemValue="authoringTemplateId" itemLabel="name" items="${authoringTemplates}"/>
                                     </form:select>
-                                    <form:errors path="pojo.authoringTemplate.authoringTemplateID" cssClass="validateError"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.renderingtemplate"/></label>
-                                <div class="col-sm-8">
-                                    <form:select path="pojo.renderingTemplate.renderingTemplateID" cssClass="form-control">
-                                        <form:option value=""><fmt:message key="label.select"/></form:option>
-                                        <form:options itemValue="renderingTemplateID" itemLabel="name" items="${renderingtemplates}"/>
-                                    </form:select>
-                                    <form:errors path="pojo.renderingTemplate.renderingTemplateID" cssClass="validateError"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.language.eng"/></label>
-                                <div class="col-sm-8">
-                                    <form:checkbox path="pojo.eng"/>
+                                    <form:errors path="pojo.authoringTemplate.authoringTemplateId" cssClass="validateError"/>
                                 </div>
                             </div>
 
@@ -171,8 +141,7 @@
         </div>
     </div>
     <form:hidden path="crudaction" id="crudaction"/>
-    <form:hidden path="pojo.categoryID"/>
-    <form:hidden path="pojo.parentRootID" id="parentRootID"/>
+    <form:hidden path="pojo.categoryId"/>
 </form:form>
 <script>
     $(document).ready(function(){
@@ -187,7 +156,7 @@
 
     function setParentRootIdForCategory(){
         var parentRootIDElement =  $('#parentRootID');
-        var parentRootID = $("select#parentCategoryID option:selected").attr('parentRootId');
+        var parentRootID = $("select#parentcategoryId option:selected").attr('parentRootId');
         if(parentRootID != null && parentRootID != undefined && parentRootID > 0){
             $(parentRootIDElement).val(parentRootID);
         } else {

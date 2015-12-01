@@ -25,7 +25,7 @@
 
                 <h2 class="font-light m-b-xs">
                     <c:choose>
-                        <c:when test="${not empty item.pojo.contentID}">
+                        <c:when test="${not empty item.pojo.contentId}">
                             <fmt:message key="content.edit"/>
                         </c:when>
                         <c:otherwise>
@@ -63,9 +63,9 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="category"/></label>
                                 <div class="col-sm-8">
-                                    <form:select path="pojo.category.categoryID" cssClass="form-control">
+                                    <form:select path="pojo.category.categoryId" cssClass="form-control">
                                         <c:forEach var="cat" items="${categories}">
-                                            <form:option value="${cat.categoryID}">
+                                            <form:option value="${cat.categoryId}">
                                                 <c:forEach begin="1" end="${cat.nodeLevel}">
                                                     - - -
                                                 </c:forEach>
@@ -80,7 +80,7 @@
                                 <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.template"/></label>
                                 <div class="col-sm-8">
                                     <form:select path="pojo.authoringTemplate" cssClass="form-control">
-                                        <form:options items="${authoringTemplates}" itemLabel="name" itemValue="authoringTemplateID"/>
+                                        <form:options items="${authoringTemplates}" itemLabel="name" itemValue="authoringTemplateId"/>
                                     </form:select>
                                 </div>
                             </div>
@@ -98,7 +98,7 @@
         </div>
     </div>
     <form:hidden path="crudaction" id="crudaction"/>
-    <form:hidden path="pojo.contentID"/>
+    <form:hidden path="pojo.contentId"/>
 </form:form>
 <script>
     $(document).ready(function(){

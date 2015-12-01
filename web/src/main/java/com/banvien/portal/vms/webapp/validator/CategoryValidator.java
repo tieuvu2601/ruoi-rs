@@ -33,8 +33,6 @@ public class CategoryValidator extends ApplicationObjectSupport implements Valid
     private void validateRequiredValues(CategoryBean bean, Errors errors){
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.code", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("category.code")}, "non-empty value required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.name", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("category.name")}, "non-empty value required.");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.keyword", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("category.keyword")}, "non-empty value required.");
-
         if(bean.getPojo().getParent() == null || bean.getPojo().getParent().getCategoryId() == null || bean.getPojo().getParent().getCategoryId() < 0){
             bean.getPojo().setParent(null);
         }

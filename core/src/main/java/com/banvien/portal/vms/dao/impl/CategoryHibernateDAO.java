@@ -32,7 +32,7 @@ public class CategoryHibernateDAO extends AbstractHibernateDAO<CategoryEntity, L
                     public List<CategoryEntity> doInHibernate(Session session)
                             throws HibernateException, SQLException {
                         Query query = session
-                                .createQuery("SELECT c FROM CategoryEntity c WHERE c.parentCategory IS NULL ORDER BY c.displayOrder ASC");
+                                .createQuery("SELECT c FROM CategoryEntity c WHERE c.parent IS NULL ORDER BY c.displayOrder ASC");
 
                         return (List<CategoryEntity>) query.list();
                     }
@@ -46,7 +46,7 @@ public class CategoryHibernateDAO extends AbstractHibernateDAO<CategoryEntity, L
                     public List<CategoryEntity> doInHibernate(Session session)
                             throws HibernateException, SQLException {
                         Query query = session
-                                .createQuery("SELECT c FROM CategoryEntity c WHERE c.parentCategory IS NULL AND c.eng = :isEng  ORDER BY c.displayOrder ASC");
+                                .createQuery("SELECT c FROM CategoryEntity c WHERE c.parent IS NULL AND c.eng = :isEng  ORDER BY c.displayOrder ASC");
                         query.setParameter("isEng", isEng);
                         return (List<CategoryEntity>) query.list();
                     }

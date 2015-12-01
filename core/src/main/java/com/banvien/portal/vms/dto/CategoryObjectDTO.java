@@ -3,7 +3,7 @@ package com.banvien.portal.vms.dto;
 import com.banvien.portal.vms.domain.AuthoringTemplateEntity;
 
 public class CategoryObjectDTO {
-    private Long categoryID;
+    private Long categoryId;
 
     private String code;
 
@@ -19,16 +19,14 @@ public class CategoryObjectDTO {
 
     private Integer childrenSize;
 
-    private Long parentRootId;
-
     private AuthoringTemplateEntity authoringTemplateEntity;
 
-    public Long getCategoryID() {
-        return categoryID;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryID(Long categoryID) {
-        this.categoryID = categoryID;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getCode() {
@@ -85,14 +83,6 @@ public class CategoryObjectDTO {
 
     public void setChildrenSize(Integer childrenSize) {
         this.childrenSize = childrenSize;
-    }
-
-    public Long getParentRootId() {
-        return parentRootId;
-    }
-
-    public void setParentRootId(Long parentRootId) {
-        this.parentRootId = parentRootId;
     }
 
     public Integer getDisplayOrder() {

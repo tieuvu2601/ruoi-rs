@@ -76,10 +76,10 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label"><fmt:message key="category.parent"/></label>
                                     <div class="col-sm-8">
-                                        <form:select path="pojo.parent.categoryId" cssClass="form-control" id="parentCategoryId">
+                                        <form:select path="pojo.parent.categoryId" cssClass="form-control" id="parentcategoryId">
                                             <form:option value="-1" parentRootId="-1"><fmt:message key="category.choose.parent"/></form:option>
                                             <c:forEach var="cat" items="${categories}">
-                                                <option value="${cat.categoryId}"parentRootId="${parentRootID}" <c:if test="${cat.categoryId == items.pojo.parentCategory.categoryId}">selected</c:if>>
+                                                <option value="${cat.categoryId}" <c:if test="${cat.categoryId == items.pojo.parent.categoryId}">selected</c:if>>
                                                     <c:forEach begin="1" end="${cat.nodeLevel}">
                                                         - - -
                                                     </c:forEach>
@@ -128,7 +128,6 @@
                                     <display:column headerClass="table_header" property="modifiedDate" sortable="true" sortName="modifiedDate" titleKey="modifiedDate" style="width: 20%" format="{0,date,dd/MM/yyyy}"/>
 
                                     <display:column sortable="false"  headerClass="table_header" titleKey="action" style="width: 12%">
-                                        <a href="${accessUrl}?pojo.categoryId=${tableList.categoryId}"><i class="fa fa-key"></i></a> |
                                         <a href="${editUrl}?pojo.categoryId=${tableList.categoryId}"><i class="fa fa-edit"></i></a> |
                                         <a class="deleteLink" id="${tableList.categoryId}"><i class="fa fa-remove"></i></a>
                                     </display:column>

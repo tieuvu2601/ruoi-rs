@@ -83,21 +83,6 @@ public class CategoryUtil {
         return categorieObjs;
     }
 
-    public static List<CategoryObjectDTO> getListCategoryForBuildRightMenuForSite(List<CategoryEntity> categories, List<CategoryObjectDTO> returnList, Integer nodeLevel, CategoryObjectDTO parent) {
-        Integer currentNodeLevel = nodeLevel + 1;
-        for(CategoryEntity children : categories){
-            if(children.getDisplayOrder() > 0){
-                CategoryObjectDTO categoryObjectDTO = bindCategoryToCategoryObject(children, currentNodeLevel, parent);
-                returnList.add(categoryObjectDTO);
-                if(children.getChildren() != null && children.getChildren().size() > 0){
-                    getListChildren(children.getChildren(), returnList, currentNodeLevel, categoryObjectDTO);
-                }
-            }
-
-        }
-        return returnList;
-    }
-
     public static List<CategoryObjectDTO> getListChildren(List<CategoryEntity> categories, List<CategoryObjectDTO> returnList, Integer nodeLevel, CategoryObjectDTO parent) {
         Integer currentNodeLevel = nodeLevel + 1;
         for(CategoryEntity children : categories){
@@ -121,7 +106,7 @@ public class CategoryUtil {
 
     public static CategoryObjectDTO bindCategoryToCategoryObject(CategoryEntity categoryEntity, Integer nodeLevel, CategoryObjectDTO parent){
         CategoryObjectDTO categoryObjectDTO = new CategoryObjectDTO();
-        categoryObjectDTO.setCategoryID(categoryEntity.getCategoryId());
+        categoryObjectDTO.setCategoryId(categoryEntity.getCategoryId());
         categoryObjectDTO.setCode(categoryEntity.getCode());
         categoryObjectDTO.setName(categoryEntity.getName());
         categoryObjectDTO.setNodeLevel(nodeLevel);
@@ -131,7 +116,7 @@ public class CategoryUtil {
         } else {
             categoryObjectDTO.setChildrenSize(0);
         }
-        if(parent != null && parent.getCategoryID() != null && parent.getCategoryID() > 0){
+        if(parent != null && parent.getCategoryId() != null && parent.getCategoryId() > 0){
             categoryObjectDTO.setParent(parent);
         } else {
             categoryObjectDTO.setParent(null);

@@ -10,7 +10,7 @@ import com.banvien.portal.vms.xml.contentitem.ContentItem;
 public class ContentBean extends AbstractBean<ContentEntity> {
     private FileItem thumbnailFile;
 
-    private Long authoringTemplateID;
+    private Long authoringTemplateId;
 
     private Timestamp fromDate;
 
@@ -18,7 +18,7 @@ public class ContentBean extends AbstractBean<ContentEntity> {
 
     private ContentItem contentItem;
 
-    private Long categoryID;
+    private Long categoryId;
 
     private Long[] categoryIDs;
 
@@ -59,13 +59,12 @@ public class ContentBean extends AbstractBean<ContentEntity> {
         this.toDate = toDate;
     }
 
-
-    public Long getAuthoringTemplateID() {
-        return authoringTemplateID;
+    public Long getAuthoringTemplateId() {
+        return authoringTemplateId;
     }
 
-    public void setAuthoringTemplateID(Long authoringTemplateID) {
-        this.authoringTemplateID = authoringTemplateID;
+    public void setAuthoringTemplateId(Long authoringTemplateId) {
+        this.authoringTemplateId = authoringTemplateId;
     }
 
     public ContentItem getContentItem() {
@@ -92,15 +91,15 @@ public class ContentBean extends AbstractBean<ContentEntity> {
 		this.contentPublishedMap = contentPublishedMap;
 	}
 
-    public Long getCategoryID() {
-        return categoryID;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryID(Long categoryID) {
-        this.categoryID = categoryID;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
-	public Map<String, List<String>> getOldNodeAttachementValues() {
+    public Map<String, List<String>> getOldNodeAttachementValues() {
 		return oldNodeAttachementValues;
 	}
 

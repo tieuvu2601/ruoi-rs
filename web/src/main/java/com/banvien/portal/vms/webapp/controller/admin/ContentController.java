@@ -227,7 +227,7 @@ public class ContentController extends ApplicationObjectSupport {
 
         if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("insert-update") || crudaction.equals("insert-submit-content"))) {
             try{
-            	bean.setAuthoringTemplateID(authoringTemplateID);
+            	bean.setAuthoringTemplateId(authoringTemplateID);
             	populateContentCommand2Bean(request, authoringTemplateNodes, bean, false);
                 contentValidator.validate(bean, bindingResult);
                 if(!bindingResult.hasErrors()){
@@ -451,7 +451,7 @@ public class ContentController extends ApplicationObjectSupport {
 	            		if(isEdit) {
 	            			uploadedNodeFiles = fileMap.get(bean.getPojo().getContentId());
 	            		}else {
-	            			uploadedNodeFiles = fileMap.get(bean.getAuthoringTemplateID());
+	            			uploadedNodeFiles = fileMap.get(bean.getAuthoringTemplateId());
 	            		}
 		            	if(uploadedNodeFiles != null && uploadedNodeFiles.size() > 0) {
 		            		List<String> nodeFiles = uploadedNodeFiles.get(nodeDTO.getName());

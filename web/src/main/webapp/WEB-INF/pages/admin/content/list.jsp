@@ -83,7 +83,7 @@
                                         <select name="pojo.authoringTemplate" id="authoringTemplateId" class="form-control">
                                             <option value=""><fmt:message key="label.all"/></option>
                                             <c:forEach items="${authoringTemplates}" var="authoringTemplate">
-                                                <option value="${authoringTemplate.authoringTemplateID}" <c:if test="${authoringTemplate.authoringTemplateID == items.pojo.authoringTemplate.authoringTemplateID}">selected</c:if>>${authoringTemplate.name}</option>
+                                                <option value="${authoringTemplate.authoringTemplateId}" <c:if test="${authoringTemplate.authoringTemplateId == items.pojo.authoringTemplate.authoringTemplateId}">selected</c:if>>${authoringTemplate.name}</option>
                                             </c:forEach>
                                         </select>
                                     </div>
@@ -103,10 +103,10 @@
                                 <div class="form-group">
                                     <label class="col-sm-4 control-label"><fmt:message key="category"/></label>
                                     <div class="col-sm-8">
-                                        <select name="pojo.category.categoryID" id="contentCategoryID" class="form-control">
+                                        <select name="pojo.category.categoryId" id="contentCategoryId" class="form-control">
                                             <option value=""><fmt:message key="label.all"/></option>
                                             <c:forEach items="${categories}" var="category">
-                                                <option value="${category.categoryID}" <c:if test="${category.categoryID == items.categoryID}">selected</c:if>>
+                                                <option value="${category.categoryId}" <c:if test="${category.categoryId == items.categoryId}">selected</c:if>>
                                                     <c:forEach begin="1" end="${category.nodeLevel}">
                                                         - - -
                                                     </c:forEach>
@@ -180,24 +180,24 @@
                                                class="table table-striped table-bordered table-hover no-footer" export="false">
 
                                     <c:set var="disabled" value="false"/>
-                                    <c:if test="${empty items.contentPublishedMap[tableList.contentID] or !items.contentPublishedMap[tableList.contentID]}">
+                                    <c:if test="${empty items.contentPublishedMap[tableList.contentId] or !items.contentPublishedMap[tableList.contentId]}">
                                         <c:set var="disabled" value="true"/>
                                     </c:if>
 
                                     <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
-                                        <input type="checkbox" <c:if test="${!empty disabled and disabled}">disabled="disabled"</c:if> id="chk${tableList.contentID }" name="checkList" value="${tableList.contentID}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
+                                        <input type="checkbox" <c:if test="${!empty disabled and disabled}">disabled="disabled"</c:if> id="chk${tableList.contentId }" name="checkList" value="${tableList.contentId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
                                     </display:column>
 
                                     <display:column headerClass="table_header" sortable="true" sortName="title" titleKey="content.title" style="width: 20%">
-                                        <a href="${viewUrl}?pojo.contentID=${tableList.contentID }">${tableList.title}</a>
+                                        <a href="${viewUrl}?pojo.contentId=${tableList.contentId }">${tableList.title}</a>
                                     </display:column>
 
                                     <display:column headerClass="table_header" titleKey="content.thumbnail" style="width: 10%">
                                         <c:if test="${not empty tableList.thumbnail}">
                                             <rep:href value="${tableList.thumbnail}" var="imgURL"/>
                                             <c:choose>
-                                                <c:when test="${(tableList.createdBy.userID eq currentUserID) or (items.contentPublishedMap[tableList.contentID] eq true)}">
-                                                    <img src="<c:url value="${imgURL}?w=100"/>" style="max-width: 100px;max-height: 100px;" onclick="showImageLarger(${tableList.contentID})"/>
+                                                <c:when test="${(tableList.createdBy.userId eq currentUserId) or (items.contentPublishedMap[tableList.contentId] eq true)}">
+                                                    <img src="<c:url value="${imgURL}?w=100"/>" style="max-width: 100px;max-height: 100px;" onclick="showImageLarger(${tableList.contentId})"/>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <img src="<c:url value="${imgURL}?w=100"/>" style="max-width: 100px;max-height: 100px;" />
@@ -232,12 +232,12 @@
 
                                     <display:column sortable="false"  headerClass="table_header" url="/admin/content/edit.html" titleKey="action" style="width: 10%">
                                         <div class="toolbar">
-                                            <a title="<fmt:message key="button.view"/>" href="${viewUrl}?pojo.contentID=${tableList.contentID }" class="edit"><i class="fa  fa-info-circle"></i></a>
+                                            <a title="<fmt:message key="button.view"/>" href="${viewUrl}?pojo.contentId=${tableList.contentId }" class="edit"><i class="fa  fa-info-circle"></i></a>
                                             <c:choose>
                                                 <c:when test="${tableList.status eq Constants.CONTENT_SAVE || tableList.status eq Constants.CONTENT_REJECT}">
                                                     <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
-                                                        | <a title="<fmt:message key="content.edit"/>" href="${editUrl}?pojo.contentID=${tableList.contentID}" class="edit"><i class="fa fa-edit"></i></a>
-                                                        | <a title="<fmt:message key="content.delete"/>" id="${tableList.contentID}" class="deleteLink"><i class="fa fa-remove"></i></a>
+                                                        | <a title="<fmt:message key="content.edit"/>" href="${editUrl}?pojo.contentId=${tableList.contentId}" class="edit"><i class="fa fa-edit"></i></a>
+                                                        | <a title="<fmt:message key="content.delete"/>" id="${tableList.contentId}" class="deleteLink"><i class="fa fa-remove"></i></a>
                                                     </security:authorize>
                                                 </c:when>
                                             </c:choose>
@@ -288,7 +288,7 @@
 
         $("#authoringTemplateId").change(function(){
             var value = $(this).val();
-            var categoryOptions = document.getElementById('contentCategoryID').options;
+            var categoryOptions = document.getElementById('contentCategoryId').options;
             categoryOptions.length = 1;
             if(value != null && value != ''){
                 jQuery.ajax({
@@ -324,7 +324,7 @@
             }
         });
 
-        function approve(contentID, decision){
+        function approve(contentId, decision){
             var list = document.getElementById('listForm').elements['checkList'];
             var listSize = list.length;
             for(i = 0; i < listSize; i++) {
@@ -332,16 +332,16 @@
                     list[i].checked = false;
                 }
             }
-            $("#chk"+contentID).attr('checked','checked');
+            $("#chk"+contentId).attr('checked','checked');
             $('#crudaction').val(decision);
             $('#listForm').submit();
         }
 
         var nc = 0;
 
-        function showImageLarger(contentID) {
+        function showImageLarger(contentId) {
             nc ++;
-            var surl = '<c:url value="/ajax/crop.html"/>?contentID=' + contentID;
+            var surl = '<c:url value="/ajax/crop.html"/>?contentId=' + contentId;
             $.ajax({
                 type: 'GET',
                 cache: false,
