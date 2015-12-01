@@ -22,24 +22,22 @@ public class RoleServiceImpl extends GenericServiceImpl<RoleEntity, Long> implem
     }
 
     @Override
-    public RoleEntity findByRole(String role) throws ObjectNotFoundException {
-        RoleEntity res = roleDAO.findEqualUnique("role", role);
-        if (res == null) throw new ObjectNotFoundException("Not found role " + role);
-        return res;
+    public RoleEntity saveItem(RoleEntity pojo) {
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        pojo.setCreatedDate(now);
+        pojo.setModifiedDate(now);
+        return this.roleDAO.save(pojo);
     }
-    
-    @Override
-    public void updateItem(RoleEntity pojo) throws ObjectNotFoundException, DuplicateException {
 
+    @Override
+    public RoleEntity updateItem(RoleEntity pojo) throws ObjectNotFoundException, DuplicateException {
         RoleEntity dbItem = this.roleDAO.findByIdNoAutoCommit(pojo.getRoleId());
         if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getRoleId());
-
         pojo.setCreatedDate(dbItem.getCreatedDate());
         pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));
         this.roleDAO.detach(dbItem);
-        this.roleDAO.update(pojo);
+        return this.roleDAO.update(pojo);
     }
-
 
     @Override
     public Integer deleteItems(String[] checkList) {
@@ -51,6 +49,12 @@ public class RoleServiceImpl extends GenericServiceImpl<RoleEntity, Long> implem
             }
         }
         return res;
-    }    
-    
+    }
+
+    @Override
+    public RoleEntity findByRole(String role) throws ObjectNotFoundException {
+        RoleEntity res = roleDAO.findEqualUnique("role", role);
+        if (res == null) throw new ObjectNotFoundException("Not found role " + role);
+        return res;
+    }
 }

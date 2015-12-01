@@ -75,8 +75,7 @@ public class UserRoleServiceImpl extends GenericServiceImpl<UserRoleEntity, Long
         }
 
         Object obj[] = roleDAO.searchByProperties(new HashMap<String, Object>(), usr.getFirstItem(), usr.getMaxPageItems() , null, null, true, whereClause.toString());
-        if(usr.getRoleBean() != null)
-        {
+        if(usr.getRoleBean() != null){
             obj = roleDAO.searchByProperties(new HashMap<String, Object>(), usr.getRoleBean().getFirstItem(), usr.getRoleBean().getMaxPageItems(), usr.getRoleBean().getSortExpression(), usr.getRoleBean().getSortDirection(), true, whereClause.toString());
         }
         List<RoleEntity> _lstRoleEntity = (List<RoleEntity>)obj[1];

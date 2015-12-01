@@ -25,7 +25,7 @@
 
                 <h2 class="font-light m-b-xs">
                     <c:choose>
-                        <c:when test="${not empty item.pojo.roleID}">
+                        <c:when test="${not empty item.pojo.roleId}">
                             <fmt:message key="role.edit"/>
                         </c:when>
                         <c:otherwise>
@@ -97,7 +97,7 @@
         </div>
     </div>
     <form:hidden path="crudaction" id="crudaction"/>
-    <form:hidden path="pojo.roleID"/>
+    <form:hidden path="pojo.roleId"/>
 </form:form>
 <script>
     $(document).ready(function(){

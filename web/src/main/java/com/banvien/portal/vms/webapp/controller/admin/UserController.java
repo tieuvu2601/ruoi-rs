@@ -142,14 +142,12 @@ public class UserController extends ApplicationObjectSupport {
             try{
                 Integer res = 0;
                 res = userRoleService.updateItemsByUserRole(bean);
-
             }catch(Exception e) {
                 logger.error(e.getMessage(), e);
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
             }
         }
         if(!bindingResult.hasErrors() && bean.getPojo().getUserId() != null){
-
             try{
                 bean.setPojo(userService.findById(bean.getPojo().getUserId()));
             }catch (ObjectNotFoundException oe) {

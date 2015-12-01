@@ -100,7 +100,7 @@
                                                class="table table-striped table-bordered table-hover no-footer" export="false" excludedParams="crudaction">
 
                                     <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
-                                        <input type="checkbox" name="checkList" value="${tableList.roleID}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
+                                        <input type="checkbox" name="checkList" value="${tableList.roleId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
                                     </display:column>
                                     <display:column headerClass="table_header" property="role" escapeXml="false" sortable="true" sortName="role" titleKey="role.role" style="width: 15%"/>
 
@@ -112,8 +112,8 @@
                                     <display:column headerClass="table_header" property="modifiedDate" sortable="true" sortName="modifiedDate" titleKey="modifiedDate" style="width: 15%" format="{0,date,dd/MM/yyyy}"/>
 
                                     <display:column sortable="false"  headerClass="table_header" titleKey="action" style="width: 7%; text-align: center;">
-                                        <a href="${editUrl}?pojo.roleID=${tableList.roleID}"><i class="fa fa-edit"></i></a> |
-                                        <a class="deleteLink" id="${tableList.roleID}"><i class="fa fa-remove"></i></a>
+                                        <a href="${editUrl}?pojo.roleId=${tableList.roleId}"><i class="fa fa-edit"></i></a> |
+                                        <a class="deleteLink" id="${tableList.roleId}"><i class="fa fa-remove"></i></a>
                                     </display:column>
 
                                     <display:setProperty name="paging.banner.item_name"><fmt:message key="role"/></display:setProperty>

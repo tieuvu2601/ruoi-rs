@@ -99,7 +99,7 @@
                                            partialList="true" sort="external" size="${items.totalItems}" defaultsort="2" uid="tableList" pagesize="${items.maxPageItems}"
                                            class="table table-striped table-bordered table-hover no-footer" export="false" excludedParams="crudaction">
                                 <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
-                                    <input type="checkbox" name="checkList" value="${tableList.userGroupID}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
+                                    <input type="checkbox" name="checkList" value="${tableList.userGroupId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
                                 </display:column>
 
                                 <display:column headerClass="table_header" property="code" escapeXml="true" sortable="true" sortName="code" titleKey="usergroup.code" style="width: 20%"/>
@@ -108,8 +108,8 @@
                                 <display:column headerClass="table_header" property="modifiedDate" sortable="true" sortName="modifiedDate" titleKey="modifiedDate" style="width: 20%;" format="{0,date,dd/MM/yyyy}"/>
 
                                 <display:column sortable="false"  headerClass="table_header" titleKey="action" style="width: 7%; text-align: center;">
-                                    <a href="${editUrl}?pojo.userGroupID=${tableList.userGroupID}"><i class="fa fa-edit"></i></a> |
-                                    <a class="deleteLink" id="${tableList.userGroupID}"><i class="fa fa-remove"></i></a>
+                                    <a href="${editUrl}?pojo.userGroupId=${tableList.userGroupId}"><i class="fa fa-edit"></i></a> |
+                                    <a class="deleteLink" id="${tableList.userGroupId}"><i class="fa fa-remove"></i></a>
                                 </display:column>
 
                                 <display:setProperty name="paging.banner.item_name"><fmt:message key="usergroup"/></display:setProperty>

@@ -4,7 +4,7 @@
 
 <hibernate-mapping>
 	<class name="com.banvien.portal.vms.domain.RoleEntity" table="Role">
-		<id name="role" column="RoleID">
+		<id name="roleId" column="RoleID">
             <generator class="increment"/>
 		</id>
 

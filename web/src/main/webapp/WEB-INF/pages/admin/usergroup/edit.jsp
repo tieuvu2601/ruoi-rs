@@ -26,7 +26,7 @@
 
                 <h2 class="font-light m-b-xs">
                     <c:choose>
-                        <c:when test="${not empty item.pojo.userGroupID}">
+                        <c:when test="${not empty item.pojo.userGroupId}">
                             <fmt:message key="usergroup.edit"/>
                         </c:when>
                         <c:otherwise>
@@ -98,7 +98,7 @@
         </div>
     </div>
     <form:hidden path="crudaction" id="crudaction"/>
-    <form:hidden path="pojo.userGroupID"/>
+    <form:hidden path="pojo.userGroupId"/>
 </form:form>
 <script>
     $(document).ready(function(){

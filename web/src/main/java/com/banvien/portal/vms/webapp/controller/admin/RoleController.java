@@ -43,17 +43,15 @@ public class RoleController extends ApplicationObjectSupport {
                 roleValidator.validate(bean, bindingResult);
                 if(!bindingResult.hasErrors()){
                     if(pojo.getRoleId() != null && pojo.getRoleId() >0 ){
-                        this.roleService.updateItem(pojo);
+                        pojo = this.roleService.updateItem(pojo);
                         mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
                     }
-                    else
-                    {
-                        bean.getPojo().setCreatedDate(new Timestamp(new java.util.Date().getTime()));
-                        bean.getPojo().setModifiedDate(new Timestamp(new java.util.Date().getTime()));
-                        this.roleService.save(bean.getPojo());
+                    else {
+                        pojo = this.roleService.saveItem(pojo);
                   		mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.add.successful"));
                     }
                     mav.addObject("success", true);
+                    bean.setPojo(pojo);
                 }
             }catch(ObjectNotFoundException oe){
                 logger.error(oe.getMessage(), oe);

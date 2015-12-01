@@ -42,8 +42,6 @@ public class RoleValidator extends ApplicationObjectSupport implements Validator
             if(bean.getPojo().getRoleId() == null || (bean.getPojo().getRoleId() != null && !role.getRoleId().equals(bean.getPojo().getRoleId()))){
                 errors.rejectValue("pojo.role", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("role.form.role")}, "Value has been chosen.");
             }
-        }catch (ObjectNotFoundException ex) {
-         //Object not found
-        }
+        }catch (ObjectNotFoundException ex) { }
     }
 }
