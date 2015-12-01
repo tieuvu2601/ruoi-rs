@@ -8,8 +8,6 @@
   <shortname>repository</shortname>
   <uri>http://banvien.com/tags/repository</uri>
   <info>
-    The Repository Tag lib for rendering download file from JCR Repository
-    Author: Nguyen Hai Vien - [vien.ly.hhac@gmail.com]
   </info>
 
   <tag>

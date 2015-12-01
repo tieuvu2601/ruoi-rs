@@ -51,8 +51,7 @@ public class ContentController extends ApplicationObjectSupport {
 	private transient final Logger logger = Logger.getLogger(getClass());
 	private final String AUTHORING_FILE_MAP = "AUTHORING_FILE_MAP";
 	private final String CONTENT_FILE_MAP = "CONTENT_FILE_MAP";
-    private final String PREFIX_URL = "http://www.mobifone.com.vn/portal";
-	
+
     @Autowired
     private ContentService contentService;
 

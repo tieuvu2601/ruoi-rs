@@ -25,7 +25,7 @@
                 </div>
                 <h2 class="font-light m-b-xs">
                     <c:choose>
-                        <c:when test="${not empty item.pojo.userID}">
+                        <c:when test="${not empty item.pojo.userId}">
                             <fmt:message key="user.edit"/>
                         </c:when>
                         <c:otherwise>
@@ -130,20 +130,9 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="usergroup"/></label>
                                 <div class="col-sm-8">
-                                    <select name="pojo.userGroup.userGroupID" class="form-control">
+                                    <select name="pojo.userGroup.userGroupId" class="form-control">
                                         <c:forEach items="${userGroups}" var="usg">
-                                            <option value="${usg.userGroupID}" <c:if test="${not empty item.pojo.userGroup && item.pojo.userGroup.userGroupID == usg.userGroupID}">selected</c:if>>${usg.name}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="department"/></label>
-                                <div class="col-sm-8">
-                                    <select name="pojo.department.departmentID" class="form-control">
-                                        <c:forEach items="${departments}" var="dpt">
-                                            <option value="${dpt.departmentID}" <c:if test="${not empty item.pojo.department && item.pojo.department.departmentID == dpt.departmentID}">selected</c:if>>${dpt.name}</option>
+                                            <option value="${usg.userGroupId}" <c:if test="${not empty item.pojo.userGroup && item.pojo.userGroup.userGroupId == usg.userGroupId}">selected</c:if>>${usg.name}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -154,8 +143,8 @@
                                 <div class="col-sm-8">
                                     <input type="file" name="fileItem" class="form-control"/>
                                     <c:if test="${!empty item.pojo.avatar }">
-                                        <c:url value="${item.pojo.avatar}" var="thumbnailURL"/>
-                                        <img src="<c:url value="${thumbnailURL}?w=120&h=100" />" />
+                                        <rep:href value="${item.pojo.avatar}" var="thumbnailURL"/>
+                                        <img src="<c:url value="${thumbnailURL}?w=100"/>" style="max-width: 100px;max-height: 100px;"/>
                                     </c:if>
                                     <form:hidden path="pojo.avatar"/>
                                 </div>
@@ -174,7 +163,7 @@
         </div>
     </div>
     <form:hidden path="crudaction" id="crudaction"/>
-    <form:hidden path="pojo.userID"/>
+    <form:hidden path="pojo.userId"/>
 </form:form>
 <script>
     $(document).ready(function(){

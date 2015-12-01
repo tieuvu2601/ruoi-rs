@@ -6,7 +6,6 @@
 <c:url var="formUrl" value="/admin/user/list.html"/>
 <c:url var="editUrl" value="/admin/user/edit.html"/>
 <c:url var="accessUrl" value="/admin/user/access.html"/>
-<c:url var="departmentACLUrl" value="/admin/user/departmentACL.html"/>
 <div class="small-header transition animated fadeIn">
     <div class="hpanel">
         <div class="panel-body">
@@ -40,9 +39,7 @@
                         </div>
                         Filter
                     </div>
-
                     <div class="panel-body" style="display: block;">
-
                         <c:if test="${not empty messageResponse}">
                             <div class="alert alert-message
                                     <c:choose>
@@ -62,10 +59,10 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label"><fmt:message key="usergroup"/></label>
                                 <div class="col-sm-8">
-                                    <select name="pojo.userGroup.userGroupID" class="form-control">
+                                    <select name="pojo.userGroup.userGroupId" class="form-control">
                                         <option value=""><fmt:message key="user.usergroup.select" /></option>
                                         <c:forEach var="group" items="${userGroups }">
-                                            <option value="${group.userGroupID }" <c:if test="${items.pojo.userGroup.userGroupID eq group.userGroupID }">selected="selected"</c:if>>${group.name }</option>
+                                            <option value="${group.userGroupId }" <c:if test="${items.pojo.userGroup.userGroupId eq group.userGroupId }">selected="selected"</c:if>>${group.name }</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -112,7 +109,7 @@
                                            partialList="true" sort="external" size="${items.totalItems}" defaultsort="2" uid="tableList" pagesize="${items.maxPageItems}"
                                            class="table table-striped table-bordered table-hover no-footer"  export="false" excludedParams="crudaction">
                                 <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
-                                    <input type="checkbox" name="checkList" value="${tableList.userID}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
+                                    <input type="checkbox" name="checkList" value="${tableList.userId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
                                 </display:column>
 
                                 <display:column headerClass="table_header" property="firstName" escapeXml="true" sortable="true" sortName="firstName" titleKey="user.firstname" style="width: 15%"/>
@@ -120,10 +117,9 @@
                                 <display:column headerClass="table_header" property="displayName" escapeXml="false" sortable="true" sortName="displayName" titleKey="user.displayname" style="width: 25%" />
                                 <display:column headerClass="table_header" property="userGroup.name" escapeXml="true" sortable="true" sortName="userGroup.name" titleKey="user.usergroup" style="width: 25%"/>
                                 <display:column sortable="false"  headerClass="table_header" titleKey="label.options" style="width: 12%; text-align: center;">
-                                    <a title="Phân quyền phòng ban" href="${departmentACLUrl}?userID=${tableList.userID}"><i class="fa fa-legal"></i></a> |
-                                    <a title="Phân quyền ứng dụng" href="${accessUrl}?pojo.userID=${tableList.userID}"><i class="fa fa-key"></i></a> |
-                                    <a href="${editUrl}?pojo.userID=${tableList.userID}"><i class="fa fa-edit"></i></a> |
-                                    <a id="${tableList.userID}" class="deleteLink"><i class="fa fa-remove"></i></a>
+                                    <a title="Phân quyền ứng dụng" href="${accessUrl}?pojo.userId=${tableList.userId}"><i class="fa fa-key"></i></a> |
+                                    <a href="${editUrl}?pojo.userId=${tableList.userId}"><i class="fa fa-edit"></i></a> |
+                                    <a id="${tableList.userId}" class="deleteLink"><i class="fa fa-remove"></i></a>
                                 </display:column>
                                 <display:setProperty name="paging.banner.item_name"><fmt:message key="user"/></display:setProperty>
                                 <display:setProperty name="paging.banner.items_name"><fmt:message key="user"/></display:setProperty>

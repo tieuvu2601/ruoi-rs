@@ -101,7 +101,6 @@ public class UserController extends ApplicationObjectSupport {
             }
         }
         if(!bindingResult.hasErrors() && bean.getPojo().getUserId() != null){
-
             try{
                 bean.setPojo(userService.findById(bean.getPojo().getUserId()));
             }catch (ObjectNotFoundException oe) {

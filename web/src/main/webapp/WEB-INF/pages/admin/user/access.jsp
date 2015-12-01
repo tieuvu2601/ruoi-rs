@@ -94,7 +94,7 @@
                                                class="table table-striped table-bordered table-hover no-footer" export="false">
 
                                     <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('itemForm', 'roleBean.checkList', this)\">">
-                                        <input type="checkbox" name="roleBean.checkList" value="${tableList.roleID}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')"<c:if test="${item.roleMap[tableList.roleID] eq true}">checked="true"</c:if>>
+                                        <input type="checkbox" name="roleBean.checkList" value="${tableList.roleId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')"<c:if test="${item.roleMap[tableList.roleId] eq true}">checked="true"</c:if>>
                                     </display:column>
 
                                     <display:column headerClass="table_header"  escapeXml="false" sortable="true" sortName="role" titleKey="role.role" style="width: 10%" >
@@ -121,7 +121,7 @@
         </div>
     </div>
     <form:hidden path="crudaction" id="crudaction"/>
-    <form:hidden path="pojo.userID"/>
+    <form:hidden path="pojo.userId"/>
     <form:hidden path="roleBean.firstItem"/>
 </form:form>
 
