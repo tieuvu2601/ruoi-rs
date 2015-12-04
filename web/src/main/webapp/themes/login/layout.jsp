@@ -10,15 +10,15 @@
 
     <title><fmt:message key="login.title"/></title>
 
-    <link rel="stylesheet" href="<c:url value="/themes/themeadmin/vendor/fontawesome/css/font-awesome.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/themes/themeadmin/vendor/metisMenu/dist/metisMenu.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/themes/themeadmin/vendor/animate.css/animate.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/themes/themeadmin/vendor/bootstrap/dist/css/bootstrap.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/fontawesome/css/font-awesome.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/metisMenu/dist/metisMenu.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/animate.css/animate.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/bootstrap/dist/css/bootstrap.css"/>"/>
 
     <!-- App styles -->
-    <link rel="stylesheet" href="<c:url value="/themes/themeadmin/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/themes/themeadmin/fonts/pe-icon-7-stroke/css/helper.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/themes/themeadmin/styles/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/themes/admin/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/themes/admin/fonts/pe-icon-7-stroke/css/helper.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/themes/admin/styles/style.css"/>"/>
 
 </head>
 <body class="blank">
@@ -26,8 +26,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center m-b-md">
-                    <h3>NTT LOGIN</h3>
-                    <small>NTT LOGIN</small>
+                    <h3>Real Estate Login</h3>
+                    <small>Khanh Tran</small>
                 </div>
                 <div class="hpanel">
                     <div class="panel-body">
@@ -47,10 +47,10 @@
                             <c:if test="${not empty param.error}">
                                 <c:choose>
                                     <c:when test="${param.error == 1}">
-                                        Tên đăng nhập và mật khẩu không đúng. Xin vui lòng thử lại.
+                                        Username and password do not match. Please try again.
                                     </c:when>
                                     <c:when test="${param.error == 2}">
-                                        Phiên làm việc của bạn đã kết thúc. Xin vui lòng đăng nhập lại để tiếp tục.
+                                        Your session has expired. Please log-in again.
                                     </c:when>
                                 </c:choose>
                             </c:if>
@@ -61,19 +61,19 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <strong>HOMER</strong> - NTT Responsive WebApp <br/> 2015 Copyright BanVien Company
+                <strong>HOMER</strong> - Khanh Tran Responsive WebApp <br/> 2015 Copyright Khanh Tran
             </div>
         </div>
     </div>
 
-    <script src="<c:url value="/themes/themeadmin/vendor/jquery/dist/jquery.min.js"/>"></script>
-    <script src="<c:url value="/themes/themeadmin/vendor/jquery-ui/jquery-ui.min.js"/>"></script>
-    <script src="<c:url value="/themes/themeadmin/vendor/slimScroll/jquery.slimscroll.min.js"/>"></script>
-    <script src="<c:url value="/themes/themeadmin/vendor/bootstrap/dist/js/bootstrap.min.js"/>"></script>
-    <script src="<c:url value="/themes/themeadmin/vendor/metisMenu/dist/metisMenu.min.js"/>"></script>
-    <script src="<c:url value="/themes/themeadmin/vendor/iCheck/icheck.min.js"/>"></script>
-    <script src="<c:url value="/themes/themeadmin/vendor/sparkline/index.js"/>"></script>
+    <script src="<c:url value="/themes/admin/vendor/jquery/dist/jquery.min.js"/>"></script>
+    <script src="<c:url value="/themes/admin/vendor/jquery-ui/jquery-ui.min.js"/>"></script>
+    <script src="<c:url value="/themes/admin/vendor/slimScroll/jquery.slimscroll.min.js"/>"></script>
+    <script src="<c:url value="/themes/admin/vendor/bootstrap/dist/js/bootstrap.min.js"/>"></script>
+    <script src="<c:url value="/themes/admin/vendor/metisMenu/dist/metisMenu.min.js"/>"></script>
+    <script src="<c:url value="/themes/admin/vendor/iCheck/icheck.min.js"/>"></script>
+    <script src="<c:url value="/themes/admin/vendor/sparkline/index.js"/>"></script>
 
-    <script src="<c:url value="/themes/themeadmin/scripts/homer.js"/>"></script>
+    <script src="<c:url value="/themes/admin/scripts/homer.js"/>"></script>
 </body>
 </html>
