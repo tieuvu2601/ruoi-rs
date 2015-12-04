@@ -24,7 +24,14 @@
                 </div>
 
                 <h2 class="font-light m-b-xs">
-                    <fmt:message key="category.type.management"/>
+                    <c:choose>
+                        <c:when test="${not empty item.pojo.userGroupId}">
+                            <fmt:message key="category.type.edit"/>
+                        </c:when>
+                        <c:otherwise>
+                            <fmt:message key="category.type.add"/>
+                        </c:otherwise>
+                    </c:choose>
                 </h2>
             </div>
         </div>
@@ -84,8 +91,6 @@
                                     <form:errors path="pojo.displayOrder" cssClass="validateError"/>
                                 </div>
                             </div>
-
-
 
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-2">

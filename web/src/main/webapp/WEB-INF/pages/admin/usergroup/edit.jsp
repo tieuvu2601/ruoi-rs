@@ -1,8 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="usergroup.management"/></title>
-    <meta name="heading" content="<fmt:message key="usergroup.management"/>"/>
+    <title><fmt:message key="user.group.management"/></title>
+    <meta name="heading" content="<fmt:message key="user.group.management"/>"/>
 </head>
 
 <c:url var="formUrl" value="/admin/usergroup/edit.html"/>
@@ -16,10 +16,10 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
                         <li>
-                            <span><fmt:message key="usergroup"/></span>
+                            <span><fmt:message key="user.group.management"/></span>
                         </li>
                         <li class="active">
-                            <span><fmt:message key="usergroup.management"/></span>
+                            <span><fmt:message key="user.group.management"/></span>
                         </li>
                     </ol>
                 </div>
@@ -27,10 +27,10 @@
                 <h2 class="font-light m-b-xs">
                     <c:choose>
                         <c:when test="${not empty item.pojo.userGroupId}">
-                            <fmt:message key="usergroup.edit"/>
+                            <fmt:message key="user.group.edit"/>
                         </c:when>
                         <c:otherwise>
-                            <fmt:message key="usergroup.add"/>
+                            <fmt:message key="user.group.add"/>
                         </c:otherwise>
                     </c:choose>
                 </h2>
@@ -47,7 +47,7 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="usergroup.management"/>
+                            <fmt:message key="user.group.management"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -62,7 +62,7 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="usergroup.code"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.group.code"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.code" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.code" cssClass="validateError"/>
@@ -70,7 +70,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="usergroup.name"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.group.name"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.name" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.name" cssClass="validateError"/>
@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="usergroup.description"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.group.description"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.description" size="40" cssClass="form-control"/>
                                 </div>
