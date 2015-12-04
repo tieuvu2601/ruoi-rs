@@ -11,9 +11,9 @@
         <div class="panel-body">
             <div id="hbreadcrumb" class="pull-right">
                 <ol class="hbreadcrumb breadcrumb">
-                    <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
+                    <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                     <li>
-                        <span><fmt:message key="user"/></span>
+                        <span><fmt:message key="user.management"/></span>
                     </li>
                     <li class="active">
                         <span><fmt:message key="user.management"/></span>
@@ -37,7 +37,7 @@
                         <div class="panel-tools">
                             <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                         </div>
-                        Filter
+                        <fmt:message key="button.search"/>
                     </div>
                     <div class="panel-body" style="display: block;">
                         <c:if test="${not empty messageResponse}">
@@ -57,10 +57,10 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-4 control-label"><fmt:message key="usergroup"/></label>
+                                <label class="col-sm-4 control-label"><fmt:message key="user.group.title"/></label>
                                 <div class="col-sm-8">
                                     <select name="pojo.userGroup.userGroupId" class="form-control">
-                                        <option value=""><fmt:message key="user.usergroup.select" /></option>
+                                        <option value=""><fmt:message key="label.select" /></option>
                                         <c:forEach var="group" items="${userGroups }">
                                             <option value="${group.userGroupId }" <c:if test="${items.pojo.userGroup.userGroupId eq group.userGroupId }">selected="selected"</c:if>>${group.name }</option>
                                         </c:forEach>
@@ -71,12 +71,12 @@
 
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label class="col-sm-4 control-label"><fmt:message key="user.firstname"/></label>
+                                <label class="col-sm-4 control-label"><fmt:message key="user.first.name"/></label>
                                 <div class="col-sm-8"><form:input path="pojo.firstName" size="40" cssClass="form-control"/></div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-4 control-label"><fmt:message key="user.lastname"/></label>
+                                <label class="col-sm-4 control-label"><fmt:message key="user.last.name"/></label>
                                 <div class="col-sm-8"><form:input path="pojo.lastName" size="40" cssClass="form-control"/></div>
                             </div>
                         </div>
@@ -108,21 +108,17 @@
                             <display:table name="items.listResult" cellspacing="0" cellpadding="0" requestURI="${formUrl}"
                                            partialList="true" sort="external" size="${items.totalItems}" defaultsort="2" uid="tableList" pagesize="${items.maxPageItems}"
                                            class="table table-striped table-bordered table-hover no-footer"  export="false" excludedParams="crudaction">
-                                <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
-                                    <input type="checkbox" name="checkList" value="${tableList.userId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
-                                </display:column>
-
-                                <display:column headerClass="table_header" property="firstName" escapeXml="true" sortable="true" sortName="firstName" titleKey="user.firstname" style="width: 15%"/>
-                                <display:column headerClass="table_header" property="lastName" escapeXml="true" sortable="true" sortName="lastName" titleKey="user.lastname" style="width: 20%"/>
-                                <display:column headerClass="table_header" property="displayName" escapeXml="false" sortable="true" sortName="displayName" titleKey="user.displayname" style="width: 25%" />
-                                <display:column headerClass="table_header" property="userGroup.name" escapeXml="true" sortable="true" sortName="userGroup.name" titleKey="user.usergroup" style="width: 25%"/>
+                                <display:column headerClass="table_header" property="firstName" escapeXml="true" sortable="true" sortName="firstName" titleKey="user.first.name" style="width: 15%"/>
+                                <display:column headerClass="table_header" property="lastName" escapeXml="true" sortable="true" sortName="lastName" titleKey="user.last.name" style="width: 20%"/>
+                                <display:column headerClass="table_header" property="displayName" escapeXml="false" sortable="true" sortName="displayName" titleKey="user.display.name" style="width: 25%" />
+                                <display:column headerClass="table_header" property="userGroup.name" escapeXml="true" sortable="true" sortName="userGroup.name" titleKey="user.group.title" style="width: 25%"/>
                                 <display:column sortable="false"  headerClass="table_header" titleKey="label.options" style="width: 12%; text-align: center;">
                                     <a title="Phân quyền ứng dụng" href="${accessUrl}?pojo.userId=${tableList.userId}"><i class="fa fa-key"></i></a> |
                                     <a href="${editUrl}?pojo.userId=${tableList.userId}"><i class="fa fa-edit"></i></a> |
                                     <a id="${tableList.userId}" class="deleteLink"><i class="fa fa-remove"></i></a>
                                 </display:column>
-                                <display:setProperty name="paging.banner.item_name"><fmt:message key="user"/></display:setProperty>
-                                <display:setProperty name="paging.banner.items_name"><fmt:message key="user"/></display:setProperty>
+                                <display:setProperty name="paging.banner.item_name"><fmt:message key="user.title"/></display:setProperty>
+                                <display:setProperty name="paging.banner.items_name"><fmt:message key="user.title"/></display:setProperty>
                                 <display:setProperty name="paging.banner.placement" value="bottom"/>
                                 <display:setProperty name="paging.banner.no_items_found" value=""/>
                                 <display:setProperty name="paging.banner.onepage" value=""/>

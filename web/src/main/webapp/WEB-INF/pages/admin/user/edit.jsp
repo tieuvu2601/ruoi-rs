@@ -14,9 +14,9 @@
             <div class="panel-body">
                 <div id="hbreadcrumb" class="pull-right">
                     <ol class="hbreadcrumb breadcrumb">
-                        <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
+                        <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                         <li>
-                            <span><fmt:message key="user"/></span>
+                            <span><fmt:message key="user.management"/></span>
                         </li>
                         <li class="active">
                             <span><fmt:message key="user.management"/></span>
@@ -85,21 +85,21 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="user.firstname"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.first.name"/></label>
                                 <div class="col-sm-8">
                                     <form:input id="firstName" path="pojo.firstName" size="40" cssClass="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="user.lastname"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.last.name"/></label>
                                 <div class="col-sm-8">
                                     <form:input id="lastName" path="pojo.lastName" size="40" cssClass="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="user.displayname"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.display.name"/></label>
                                 <div class="col-sm-8">
                                     <form:input id="displayName" path="pojo.displayName" size="40" cssClass="form-control"/>
                                 </div>
@@ -116,19 +116,19 @@
                                 <label class="col-sm-2 control-label"><fmt:message key="user.status"/></label>
                                 <div class="col-sm-8">
                                     <form:radiobutton path="pojo.status" value="1" cssClass="radio-primary"/><fmt:message key="user.status.active"/>
-                                    <form:radiobutton path="pojo.status" value="0" cssClass="radio-primary"/><fmt:message key="user.stauts.disable"/>
+                                    <form:radiobutton path="pojo.status" value="0" cssClass="radio-primary"/><fmt:message key="user.status.disable"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="user.fullaccess"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.full.access"/></label>
                                 <div class="col-sm-8">
                                     <form:checkbox path="pojo.fullAccess" value="1"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="usergroup"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.group.title"/></label>
                                 <div class="col-sm-8">
                                     <select name="pojo.userGroup.userGroupId" class="form-control">
                                         <c:forEach items="${userGroups}" var="usg">
@@ -139,7 +139,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="user.form.avatar"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.avatar"/></label>
                                 <div class="col-sm-8">
                                     <input type="file" name="fileItem" class="form-control"/>
                                     <c:if test="${!empty item.pojo.avatar }">

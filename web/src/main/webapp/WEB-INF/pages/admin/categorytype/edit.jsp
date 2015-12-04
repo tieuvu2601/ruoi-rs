@@ -13,7 +13,7 @@
             <div class="panel-body">
                 <div id="hbreadcrumb" class="pull-right">
                     <ol class="hbreadcrumb breadcrumb">
-                        <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
+                        <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                         <li>
                             <span><fmt:message key="category.type.management"/></span>
                         </li>
@@ -25,7 +25,7 @@
 
                 <h2 class="font-light m-b-xs">
                     <c:choose>
-                        <c:when test="${not empty item.pojo.userGroupId}">
+                        <c:when test="${not empty item.pojo.categoryTypeId}">
                             <fmt:message key="category.type.edit"/>
                         </c:when>
                         <c:otherwise>

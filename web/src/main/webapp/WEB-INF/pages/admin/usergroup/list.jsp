@@ -12,7 +12,7 @@
         <div class="panel-body">
             <div id="hbreadcrumb" class="pull-right">
                 <ol class="hbreadcrumb breadcrumb">
-                    <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
+                    <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                     <li>
                         <span><fmt:message key="user.group.management"/></span>
                     </li>
@@ -98,10 +98,6 @@
                             <display:table name="items.listResult" cellspacing="0" cellpadding="0" requestURI="${formUrl}"
                                            partialList="true" sort="external" size="${items.totalItems}" defaultsort="2" uid="tableList" pagesize="${items.maxPageItems}"
                                            class="table table-striped table-bordered table-hover no-footer" export="false" excludedParams="crudaction">
-                                <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
-                                    <input type="checkbox" name="checkList" value="${tableList.userGroupId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
-                                </display:column>
-
                                 <display:column headerClass="table_header" property="code" escapeXml="true" sortable="true" sortName="code" titleKey="user.group.code" style="width: 20%"/>
                                 <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="user.group.name" style="width: 30%"/>
                                 <display:column headerClass="table_header" property="createdDate" sortable="true" sortName="createdDate" titleKey="user.group.created.date" style="width: 20%" format="{0,date,dd/MM/yyyy}"/>
@@ -111,8 +107,8 @@
                                     <a class="deleteLink" id="${tableList.userGroupId}"><i class="fa fa-remove"></i></a>
                                 </display:column>
 
-                                <display:setProperty name="paging.banner.item_name"><fmt:message key="user.group"/></display:setProperty>
-                                <display:setProperty name="paging.banner.items_name"><fmt:message key="user.group"/></display:setProperty>
+                                <display:setProperty name="paging.banner.item_name"><fmt:message key="user.group.title"/></display:setProperty>
+                                <display:setProperty name="paging.banner.items_name"><fmt:message key="user.group.title"/></display:setProperty>
                                 <display:setProperty name="paging.banner.placement" value="bottom"/>
                                 <display:setProperty name="paging.banner.no_items_found" value=""/>
                                 <display:setProperty name="paging.banner.onepage" value=""/>

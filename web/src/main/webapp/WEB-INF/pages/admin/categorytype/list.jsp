@@ -108,8 +108,8 @@
                                         <a href="${editUrl}?pojo.categoryTypeId=${tableList.categoryTypeId}"><i class="fa fa-edit"></i></a> |
                                         <a class="deleteLink" id="${tableList.categoryTypeId}"><i class="fa fa-remove"></i></a>
                                     </display:column>
-                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="category.type"/></display:setProperty>
-                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="category.type"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="category.type.title"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="category.type.title"/></display:setProperty>
                                     <display:setProperty name="paging.banner.placement" value="bottom"/>
                                     <display:setProperty name="paging.banner.no_items_found" value=""/>
                                     <display:setProperty name="paging.banner.onepage" value=""/>

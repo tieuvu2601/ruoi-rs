@@ -68,7 +68,7 @@ window.onload = function() {
             <div class="panel-body">
                 <div id="hbreadcrumb" class="pull-right">
                     <ol class="hbreadcrumb breadcrumb">
-                        <li><a href="<c:url value="/admin/dashboard.html"/>">Dashboard</a></li>
+                        <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                         <li>
                             <span><fmt:message key="content"/></span>
                         </li>
