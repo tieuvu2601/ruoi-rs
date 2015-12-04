@@ -90,10 +90,24 @@ CREATE TABLE Category (
   FOREIGN KEY (ParentID) REFERENCES Category(CategoryID) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
+DROP TABLE IF EXISTS CategoryType;
+CREATE TABLE CategoryType (
+  CategoryTypeID bigint(20) NOT NULL AUTO_INCREMENT,
+  Code VARCHAR (255) NOT NULL,
+  Name VARCHAR(255) NOT NULL,
+  Description VARCHAR(255),
+  DisplayOrder int(11) DEFAULT 1,
+  CreatedDate TIMESTAMP NOT NULL,
+  ModifiedDate TIMESTAMP,
+  PRIMARY KEY (CategoryTypeID),
+  UNIQUE (Code)
+);
+
 DROP TABLE IF EXISTS Content;
 CREATE TABLE Content (
   ContentID bigint(20) NOT NULL AUTO_INCREMENT,
   CategoryID bigint(20) NOT NULL,
+  CategoryTypeID bigint(20) NOT NULL,
   AuthoringTemplateID bigint(20) DEFAULT NULL,
   Title VARCHAR(255) NOT NULL,
   Keyword VARCHAR(255),
@@ -111,6 +125,7 @@ CREATE TABLE Content (
   PRIMARY KEY (ContentID),
   UNIQUE KEY (Title),
   FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  FOREIGN KEY (CategoryTypeID) REFERENCES CategoryType(CategoryTypeID) ON DELETE NO ACTION ON UPDATE NO ACTION,
   FOREIGN KEY (AuthoringTemplateID) REFERENCES AuthoringTemplate(AuthoringTemplateID) ON DELETE NO ACTION ON UPDATE NO ACTION,
   FOREIGN KEY (CreatedBy) REFERENCES Users(UserID) ON DELETE NO ACTION ON UPDATE NO ACTION
 );

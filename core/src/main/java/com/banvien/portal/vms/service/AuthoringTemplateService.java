@@ -12,6 +12,5 @@ public interface AuthoringTemplateService extends GenericService<AuthoringTempla
     void updateItem(AuthoringTemplateEntity pojo) throws ObjectNotFoundException, DuplicateException;
 
     Integer deleteItems(String[] checkList);
-    
-    public List<AuthoringTemplateEntity> findByUserId(Long loginUserId);
+
 }

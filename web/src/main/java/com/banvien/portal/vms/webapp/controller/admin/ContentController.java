@@ -249,10 +249,6 @@ public class ContentController extends ApplicationObjectSupport {
                     mav = new ModelAndView("redirect:/admin/content/list.html");
                     mav.addObject("success", true);
                     if(crudaction.equals("insert-submit-content")){
-                    	String transition = "accept";
-                    	if(user.getUserGroup() == null || user.getUserGroup().getCode().equals(Constants.GROUP_AUTHOR)){
-                    		transition = "approve";
-                    	}
                     	mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.add.successful"));
                     }else{
                     	mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.add.successful"));

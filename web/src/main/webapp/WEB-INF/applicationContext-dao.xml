@@ -31,9 +31,10 @@
                 <value>hbm/Role.hbm.xml</value>
                 <value>hbm/UserGroup.hbm.xml</value>
                 <value>hbm/UserRole.hbm.xml</value>
+                <value>hbm/AuthoringTemplate.hbm.xml</value>
+                <value>hbm/CategoryType.hbm.xml</value>
                 <value>hbm/Category.hbm.xml</value>
                 <value>hbm/Content.hbm.xml</value>
-                <value>hbm/AuthoringTemplate.hbm.xml</value>
             </list>
         </property>
 
@@ -51,12 +52,6 @@
 			<ref bean="sessionFactory"/>
 		</property>
 	</bean>
-	
-	<!--<bean id="lobHandler" class="org.springframework.jdbc.support.lob.OracleLobHandler">-->
-        <!--<property name="nativeJdbcExtractor" ref="nativeJdbcExtractor"/>-->
-    <!--</bean>-->
-
-    <!--<bean id="nativeJdbcExtractor" class="org.springframework.jdbc.support.nativejdbc.CommonsDbcpNativeJdbcExtractor"/>-->
 
     <bean id="userGroupDAO" class="com.banvien.portal.vms.dao.impl.UserGroupHibernateDAO">
         <property name="sessionFactory" ref="sessionFactory" />
@@ -81,6 +76,10 @@
     <bean id="categoryDAO" class="com.banvien.portal.vms.dao.impl.CategoryHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+
+    <bean id="categoryTypeDAO" class="com.banvien.portal.vms.dao.impl.CategoryTypeHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
 
     <bean id="contentDAO" class="com.banvien.portal.vms.dao.impl.ContentHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />

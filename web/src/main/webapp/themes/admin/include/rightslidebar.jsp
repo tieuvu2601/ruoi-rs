@@ -36,7 +36,7 @@
             <div class="social-talk">
                 <div class="media social-profile clearfix">
                     <a class="pull-left">
-                        <img src="<c:url value="/themes/themeadmin/images/a1.jpg"/>" alt="profile-picture">
+                        <img src="<c:url value="/themes/admin/images/a1.jpg"/>" alt="profile-picture">
                     </a>
 
                     <div class="media-body">
@@ -51,7 +51,7 @@
             <div class="social-talk">
                 <div class="media social-profile clearfix">
                     <a class="pull-left">
-                        <img src="<c:url value="/themes/themeadmin/images/a1.jpg"/>" alt="profile-picture">
+                        <img src="<c:url value="/themes/admin/images/a1.jpg"/>" alt="profile-picture">
                     </a>
 
                     <div class="media-body">
@@ -66,7 +66,7 @@
             <div class="social-talk">
                 <div class="media social-profile clearfix">
                     <a class="pull-left">
-                        <img src="<c:url value="/themes/themeadmin/images/a1.jpg"/>" alt="profile-picture">
+                        <img src="<c:url value="/themes/admin/images/a1.jpg"/>" alt="profile-picture">
                     </a>
 
                     <div class="media-body">

@@ -95,6 +95,10 @@
         <property name="categoryDAO" ref="categoryDAO"/>
     </bean>
 
+    <bean id="categoryTypeService" class="com.banvien.portal.vms.service.impl.CategoryTypeServiceImpl">
+        <property name="categoryTypeDAO" ref="categoryTypeDAO"/>
+    </bean>
+
     <bean id="contentService" class="com.banvien.portal.vms.service.impl.ContentServiceImpl">
         <property name="noOfDateTracking" value="${no.of.date.tracking}"/>
         <property name="contentDAO" ref="contentDAO"/>

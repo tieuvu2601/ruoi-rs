@@ -1,0 +1,24 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.CategoryTypeEntity" table="CategoryType">
+
+        <id name="categoryTypeId" column="CategoryTypeID">
+            <generator class="increment"/>
+        </id>
+
+		<property name="code" column="Code" not-null="true" unique="true"/>
+
+        <property name="name" column="Name"/>
+
+		<property name="description" column="Description"/>
+
+        <property name="displayOrder" column="DisplayOrder"/>
+
+		<property name="createdDate" column="CreatedDate"/>
+	
+		<property name="modifiedDate" column="ModifiedDate"/>
+	</class>
+</hibernate-mapping>

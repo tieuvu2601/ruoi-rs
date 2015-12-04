@@ -1,17 +1,17 @@
-<%@ page import="com.banvien.portal.vms.security.SecurityUtils" %>
+<%--<%@ page import="com.banvien.portal.vms.security.SecurityUtils" %>--%>
 <%@page trimDirectiveWhitespaces="true"%>
 <%@ include file="/common/taglibs.jsp"%>
 <div id="header">
     <div id="logo" class="light-version">
         <span>
-            Real Estate
+            <fmt:message key="webapp.name"/>
         </span>
     </div>
 
     <nav role="navigation">
         <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
         <div class="small-logo">
-            <span class="text-primary">Real Estate</span>
+            <span class="text-primary"><fmt:message key="webapp.name"/></span>
         </div>
 
         <div class="navbar-right">

@@ -55,22 +55,9 @@ public class CategoryServiceImpl extends GenericServiceImpl<CategoryEntity, Long
         return res;
     }
 
-    @Override
-    public List<CategoryEntity> findByAuthoringTemplate(String authoringTemplateCode) {
-        return categoryDAO.findByAuthoringTemplate(authoringTemplateCode);
-    }
 
     @Override
     public List<CategoryEntity> findAllCategoryParent() {
         return categoryDAO.findAllCategoryParent();
-    }
-
-    @Override
-    public List<CategoryObjectDTO> findCategoryForBuildMenu(Boolean isEng) {
-        List<CategoryObjectDTO> categoryObjectDTOs = new ArrayList<CategoryObjectDTO>();
-        List<CategoryEntity> categories =  categoryDAO.findCategoryForBuildMenu(isEng);
-        categoryObjectDTOs = CategoryUtil.getListChildren(categories, categoryObjectDTOs, -1, null);
-
-        return categoryObjectDTOs;
     }
 }

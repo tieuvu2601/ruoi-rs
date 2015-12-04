@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 public class ContentEntity implements Serializable {
     private Long contentId;
     private CategoryEntity category;
+    private CategoryTypeEntity categoryType;
     private AuthoringTemplateEntity authoringTemplate;
     private String title;
     private String keyword;
@@ -147,5 +148,13 @@ public class ContentEntity implements Serializable {
 
     public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public CategoryTypeEntity getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(CategoryTypeEntity categoryType) {
+        this.categoryType = categoryType;
     }
 }

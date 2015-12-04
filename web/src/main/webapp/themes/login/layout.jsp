@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title><fmt:message key="login.title"/></title>
+    <title><fmt:message key="webapp.name"/></title>
 
     <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/fontawesome/css/font-awesome.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/metisMenu/dist/metisMenu.css"/>"/>
@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center m-b-md">
-                    <h3>Real Estate Login</h3>
+                    <h3><fmt:message key="webapp.name"/> Login</h3>
                     <small>Khanh Tran</small>
                 </div>
                 <div class="hpanel">
@@ -61,7 +61,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-                <strong>HOMER</strong> - Khanh Tran Responsive WebApp <br/> 2015 Copyright Khanh Tran
+                <strong><fmt:message key="webapp.name"/></strong> - Khanh Tran Responsive WebApp <br/> 2015 - 2016 Copyright Khanh Tran
             </div>
         </div>
     </div>
@@ -73,7 +73,6 @@
     <script src="<c:url value="/themes/admin/vendor/metisMenu/dist/metisMenu.min.js"/>"></script>
     <script src="<c:url value="/themes/admin/vendor/iCheck/icheck.min.js"/>"></script>
     <script src="<c:url value="/themes/admin/vendor/sparkline/index.js"/>"></script>
-
     <script src="<c:url value="/themes/admin/scripts/homer.js"/>"></script>
 </body>
 </html>

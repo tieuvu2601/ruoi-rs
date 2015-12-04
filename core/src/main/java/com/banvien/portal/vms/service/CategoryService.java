@@ -1,7 +1,6 @@
 package com.banvien.portal.vms.service;
 
 import com.banvien.portal.vms.domain.CategoryEntity;
-import com.banvien.portal.vms.dto.CategoryObjectDTO;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 
@@ -15,9 +14,6 @@ public interface CategoryService extends GenericService<CategoryEntity, Long> {
 
     Integer deleteItems(String[] checkList);
 
-    List<CategoryEntity> findByAuthoringTemplate(String authoringTemplateCode);
-
     List<CategoryEntity> findAllCategoryParent();
 
-    List<CategoryObjectDTO> findCategoryForBuildMenu(Boolean isEng);
 }

@@ -52,9 +52,4 @@ public class AuthoringTemplateServiceImpl extends GenericServiceImpl<AuthoringTe
         }
         return res;
     }
-
-	@Override
-	public List<AuthoringTemplateEntity> findByUserId(Long loginUserId) {
-		return authoringTemplateDAO.findByUserId(loginUserId);
-	}
 }

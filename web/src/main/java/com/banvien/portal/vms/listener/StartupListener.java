@@ -50,13 +50,13 @@ public class StartupListener implements ServletContextListener {
             config = new HashMap<String, Object>();
         }
 
-        if (context.getInitParameter(Constants.CSS_THEME) != null) {
-            config.put(Constants.CSS_THEME, context.getInitParameter(Constants.CSS_THEME));
-        }
-
-        if (context.getInitParameter(Constants.MOBI8_URL) != null) {
-            config.put(Constants.MOBI8_URL, context.getInitParameter(Constants.MOBI8_URL));
-        }
+//        if (context.getInitParameter(Constants.CSS_THEME) != null) {
+//            config.put(Constants.CSS_THEME, context.getInitParameter(Constants.CSS_THEME));
+//        }
+//
+//        if (context.getInitParameter(Constants.MOBI8_URL) != null) {
+//            config.put(Constants.MOBI8_URL, context.getInitParameter(Constants.MOBI8_URL));
+//        }
 
         context.setAttribute(Constants.CONFIG, config);
 

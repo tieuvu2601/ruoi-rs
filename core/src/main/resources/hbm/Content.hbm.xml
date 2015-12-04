@@ -9,6 +9,8 @@
         </id>
         <many-to-one name="category" column="CategoryID" lazy="false"/>
 
+        <many-to-one name="categoryType" column="CategoryTypeID" lazy="false"/>
+
         <many-to-one name="authoringTemplate" column="AuthoringTemplateID"/>
 
         <property name="title" column="Title"/>

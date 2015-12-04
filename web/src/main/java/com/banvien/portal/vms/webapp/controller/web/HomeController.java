@@ -13,9 +13,9 @@ public class HomeController extends ApplicationObjectSupport {
     public ModelAndView home() throws Exception{
         ModelAndView mav = new ModelAndView("web/body");
 
-        mav.addObject("newsPrefixUrl", Constants.RESEARCH_PROJECT_PREFIX_URL);
-        mav.addObject("eventPrefixUrl", Constants.RESEARCH_PROJECT_PREFIX_URL);
-        mav.addObject("researchProjectPrefixUrl", Constants.RESEARCH_PROJECT_PREFIX_URL);
+//        mav.addObject("newsPrefixUrl", Constants.RESEARCH_PROJECT_PREFIX_URL);
+//        mav.addObject("eventPrefixUrl", Constants.RESEARCH_PROJECT_PREFIX_URL);
+//        mav.addObject("researchProjectPrefixUrl", Constants.RESEARCH_PROJECT_PREFIX_URL);
         return mav;
     }
 }
