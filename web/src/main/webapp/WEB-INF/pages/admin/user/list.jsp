@@ -112,7 +112,7 @@
                                 <display:column headerClass="table_header" property="lastName" escapeXml="true" sortable="true" sortName="lastName" titleKey="user.last.name" style="width: 20%"/>
                                 <display:column headerClass="table_header" property="displayName" escapeXml="false" sortable="true" sortName="displayName" titleKey="user.display.name" style="width: 25%" />
                                 <display:column headerClass="table_header" property="userGroup.name" escapeXml="true" sortable="true" sortName="userGroup.name" titleKey="user.group.title" style="width: 25%"/>
-                                <display:column sortable="false"  headerClass="table_header" titleKey="label.options" style="width: 12%; text-align: center;">
+                                <display:column sortable="false"  headerClass="table_header" titleKey="label.actions" style="width: 12%; text-align: center;">
                                     <a title="Phân quyền ứng dụng" href="${accessUrl}?pojo.userId=${tableList.userId}"><i class="fa fa-key"></i></a> |
                                     <a href="${editUrl}?pojo.userId=${tableList.userId}"><i class="fa fa-edit"></i></a> |
                                     <a id="${tableList.userId}" class="deleteLink"><i class="fa fa-remove"></i></a>

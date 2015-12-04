@@ -14,7 +14,7 @@
                 <ol class="hbreadcrumb breadcrumb">
                     <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                     <li>
-                        <span><fmt:message key="role"/></span>
+                        <span><fmt:message key="role.title"/></span>
                     </li>
                     <li class="active">
                         <span><fmt:message key="role.management"/></span>
@@ -42,7 +42,6 @@
                         </div>
 
                         <div class="panel-body" style="display: block;">
-
                             <c:if test="${not empty messageResponse}">
                                 <div class="alert alert-message
                                     <c:choose>
@@ -103,21 +102,17 @@
                                         <input type="checkbox" name="checkList" value="${tableList.roleId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
                                     </display:column>
                                     <display:column headerClass="table_header" property="role" escapeXml="false" sortable="true" sortName="role" titleKey="role.role" style="width: 15%"/>
-
                                     <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="role.name" style="width: 20%"/>
-
-
                                     <display:column headerClass="table_header" property="description" escapeXml="true" sortable="true" sortName="description" titleKey="role.description" style="width: 25%"/>
                                     <display:column headerClass="table_header" property="createdDate" sortable="true" sortName="createdDate" titleKey="createdDate" style="width: 15%" format="{0,date,dd/MM/yyyy}"/>
                                     <display:column headerClass="table_header" property="modifiedDate" sortable="true" sortName="modifiedDate" titleKey="modifiedDate" style="width: 15%" format="{0,date,dd/MM/yyyy}"/>
-
                                     <display:column sortable="false"  headerClass="table_header" titleKey="action" style="width: 7%; text-align: center;">
                                         <a href="${editUrl}?pojo.roleId=${tableList.roleId}"><i class="fa fa-edit"></i></a> |
                                         <a class="deleteLink" id="${tableList.roleId}"><i class="fa fa-remove"></i></a>
                                     </display:column>
 
-                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="role"/></display:setProperty>
-                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="role"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="role.title"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="role.title"/></display:setProperty>
                                     <display:setProperty name="paging.banner.placement" value="bottom"/>
                                     <display:setProperty name="paging.banner.no_items_found" value=""/>
                                     <display:setProperty name="paging.banner.onepage" value=""/>

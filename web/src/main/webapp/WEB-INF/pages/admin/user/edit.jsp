@@ -147,6 +147,7 @@
                                         <img src="<c:url value="${thumbnailURL}?w=100"/>" style="max-width: 100px;max-height: 100px;"/>
                                     </c:if>
                                     <form:hidden path="pojo.avatar"/>
+                                    <small>(Ration should be 3 x 3)</small>
                                 </div>
                             </div>
 

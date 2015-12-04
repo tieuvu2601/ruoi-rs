@@ -6,7 +6,7 @@
             <div class="panel-tools">
                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
             </div>
-            <fmt:message key="user"/>
+            <fmt:message key="user.title"/>
         </div>
         <div class="panel-body">
             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">

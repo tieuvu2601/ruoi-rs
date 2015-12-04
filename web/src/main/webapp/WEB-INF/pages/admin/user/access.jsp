@@ -1,8 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="role.management"/></title>
-    <meta name="heading" content="<fmt:message key="role.management"/>"/>
+    <title><fmt:message key="user.access.management"/></title>
+    <meta name="heading" content="<fmt:message key="user.access.management"/>"/>
 </head>
 <c:url var="backUrl" value="/admin/user/list.html"/>
 <c:url var="formUrl" value="/admin/user/access.html"/>
@@ -15,7 +15,7 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                         <li>
-                            <span><fmt:message key="user"/></span>
+                            <span><fmt:message key="user.title"/></span>
                         </li>
                         <li class="active">
                             <span><fmt:message key="user.management"/></span>
@@ -61,7 +61,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="user.displayname"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="user.display.name"/></label>
                                 <div class="col-sm-8">
                                     <label class="col-sm-12 control-label text-default">${item.pojo.displayName}</label>
                                 </div>
@@ -92,21 +92,17 @@
                                 <display:table name="item.roleBean.listResult" cellspacing="0" cellpadding="0" requestURI="${url}"
                                                excludedParams="crudaction" partialList="true" sort="external" size="${item.roleBean.totalItems}" defaultsort="2" uid="tableList" pagesize="${item.roleBean.maxPageItems}"
                                                class="table table-striped table-bordered table-hover no-footer" export="false">
-
                                     <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('itemForm', 'roleBean.checkList', this)\">">
                                         <input type="checkbox" name="roleBean.checkList" value="${tableList.roleId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')"<c:if test="${item.roleMap[tableList.roleId] eq true}">checked="true"</c:if>>
                                     </display:column>
-
                                     <display:column headerClass="table_header"  escapeXml="false" sortable="true" sortName="role" titleKey="role.role" style="width: 10%" >
                                         ${tableList.role}
                                     </display:column>
-
                                     <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="role.name" style="width: 10%"/>
-
                                     <display:column headerClass="table_header" property="description" escapeXml="true" sortable="true" sortName="description" titleKey="role.description" style="width: 27%"/>
 
-                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="role"/></display:setProperty>
-                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="role"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="role.title"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="role.title"/></display:setProperty>
                                     <display:setProperty name="paging.banner.placement" value="bottom"/>
                                     <display:setProperty name="paging.banner.no_items_found" value=""/>
                                     <display:setProperty name="paging.banner.onepage" value=""/>

@@ -15,7 +15,7 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                         <li>
-                            <span><fmt:message key="role"/></span>
+                            <span><fmt:message key="role.title"/></span>
                         </li>
                         <li class="active">
                             <span><fmt:message key="role.management"/></span>
