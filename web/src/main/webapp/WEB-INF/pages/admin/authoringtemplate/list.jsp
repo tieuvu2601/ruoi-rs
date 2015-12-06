@@ -105,11 +105,11 @@
 
                                     <display:column headerClass="table_header" property="code" escapeXml="false" sortable="true" sortName="code" titleKey="authoring.template.code" style="width: 10%"/>
                                     <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="authoring.template.name" style="width: 25%"/>
-                                    <display:column headerClass="table_header" property="createdDate" sortable="true" sortName="createdDate" titleKey="createdDate" style="width: 12%" format="{0,date,dd/MM/yyyy}"/>
-                                    <display:column headerClass="table_header" property="modifiedDate" sortable="true" sortName="modifiedDate" titleKey="modifiedDate" style="width: 12%" format="{0,date,dd/MM/yyyy}"/>
+                                    <display:column headerClass="table_header" property="createdDate" sortable="true" sortName="createdDate" titleKey="authoring.template.created.date" style="width: 12%" format="{0,date,dd/MM/yyyy}"/>
+                                    <display:column headerClass="table_header" property="modifiedDate" sortable="true" sortName="modifiedDate" titleKey="authoring.template.modified.date" style="width: 12%" format="{0,date,dd/MM/yyyy}"/>
 
                                     <display:column sortable="false"  headerClass="table_header" url="/admin/authoringtemplate/edit.html"
-                                                    titleKey="action" style="width: 10%">
+                                                    titleKey="label.actions" style="width: 10%">
                                         <a href="${editUrl}?pojo.authoringTemplateId=${tableList.authoringTemplateId}"><i class="fa fa-edit"></i></a> |
                                         <a class="deleteLink" id="${tableList.authoringTemplateId}"><i class="fa fa-remove"></i></a>
                                     </display:column>
