@@ -1,61 +1,137 @@
 <%@ include file="/common/taglibs.jsp" %>
-<footer class="footer">
-    <div class="footer-content">
-        <div class="container">
-            <%--<content:findByContentTitle title="home footer" var="footer"/>--%>
-            <%--<oscache:cache key="footer_homes_${footer.contentID}_${footer.modifiedDate}" duration="1">--%>
-                <%--<c:set var="footerXMLData" value="${portal:parseContentXML(footer.xmlData)}"/>--%>
-                <%--${footerXMLData.content[0]}--%>
-            <%--</oscache:cache>--%>
-        </div>
-    </div>
-
-    <div id="global-footer">
+<!--=== Footer v8 ===-->
+<div class="footer-v8">
+    <footer class="footer">
         <div class="container">
             <div class="row">
-                <div id="bottom-logo" class="col-md-2"><a href="http://ntt.edu.vn/" target="_blank"><img src="<c:url value='/themes/site/images/ntt-logo-footer.png'/> "></a></div>
-                <div id="bottom-menu" class="col-md-10">
-                    <ul>
-                        <li><a href="http://ntt.edu.vn/" target="_blank">NTT Home</a></li>
-                        <li><a href="<c:url value="/sitemap.html"/>">Sitemap</a></li>
-                        <li><a href="<c:url value="/search.html"/>">Search</a></li>
-                        <li><a href="<c:url value="/page/home-page/terms-of-use.html"/>">Terms of Use</a></li>
-                        <li><a href="<c:url value="/page/home-page/copyright-complaints.html"/>">Copyright Complaints</a></li>
+                <div class="col-md-3 col-sm-6 column-one md-margin-bottom-50">
+                    <a href="index.html"><img class="footer-logo" src="assets/img/themes/logo-news-light-default.png"
+                                              alt=""></a>
+
+                    <p class="margin-bottom-20">Unify is an ultra fully responsive template with modern and smart
+                        design.</p>
+                    <span>Headquarters:</span>
+
+                    <p>795 Folsom Ave, Suite 600, San Francisco, CA 94107</p>
+                    <hr>
+                    <span>Phone:</span>
+
+                    <p>(+123) 456 7890</p>
+
+                    <p>(+123) 456 7891</p>
+                    <hr>
+                    <span>Email Address:</span>
+                    <a href="#">support@htmlstream.com</a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 md-margin-bottom-50">
+                    <h2>Tags</h2>
+                    <!-- Tag Links v4 -->
+                    <ul class="tags-v4 margin-bottom-40">
+                        <li><a class="rounded-4x" href="#">java</a></li>
+                        <li><a class="rounded-4x" href="#">featured</a></li>
+                        <li><a class="rounded-4x" href="#">pattern</a></li>
+                        <li><a class="rounded-4x" href="#">web</a></li>
+                        <li><a class="rounded-4x" href="#">fashion</a></li>
+                        <li><a class="rounded-4x" href="#">wrapbootstrap</a></li>
+                        <li><a class="rounded-4x" href="#">css3</a></li>
+                        <li><a class="rounded-4x" href="#">foto</a></li>
+                        <li><a class="rounded-4x" href="#">google</a></li>
+                        <li><a class="rounded-4x" href="#">html5</a></li>
                     </ul>
+                    <!-- End Tag Links v4 -->
+
+                    <h2>Useful Links</h2>
+                    <!-- Footer Lists -->
+                    <ul class="footer-lists">
+                        <li><i class="fa fa-angle-right"></i><a href="#">Wrapbootstrap</a></li>
+                        <li><i class="fa fa-angle-right"></i><a href="#">Google</a></li>
+                        <li><i class="fa fa-angle-right"></i><a href="#">Marketing</a></li>
+                        <li><i class="fa fa-angle-right"></i><a href="#">Support Forum</a></li>
+                        <li><i class="fa fa-angle-right"></i><a href="#">Themes</a></li>
+                    </ul>
+                    <!-- End Footer Lists -->
                 </div>
-                <div id="copyright" class="col-md-10" style="">
-                    <p class="vcard"><span class="fn org"><fmt:message key="main.school"/></span>, <span class="adr"><span class="locality"><fmt:message key="address.street"/>, P13, Q4, Tp HCM</span></span></p>
+
+                <div class="col-md-3 col-sm-6 md-margin-bottom-50">
+                    <h2>Latest News</h2>
+                    <!-- Latest News -->
+                    <div class="latest-news margin-bottom-20">
+                        <img src="assets/img/thumb/img-thumb1.jpg" alt="">
+
+                        <h3><a href="#">Standard post with video.</a></h3>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="latest-news margin-bottom-20">
+                        <img src="assets/img/thumb/img-thumb2.jpg" alt="">
+
+                        <h3><a href="#">Standard post with video.</a></h3>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+
+                    <hr>
+
+                    <div class="latest-news">
+                        <img src="assets/img/thumb/img-thumb3.jpg" alt="">
+
+                        <h3><a href="#">Standard post with video.</a></h3>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <!-- End Latest News -->
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <h2>Newsletter</h2>
+
+                    <p><strong>Subscribe</strong> to our newsletter and stay up to date with the latest news and deals!
+                    </p><br>
+
+                    <!-- Form Group -->
+                    <div class="input-group margin-bottom-50">
+                        <input class="form-control" type="email" placeholder="Enter email">
+
+                        <div class="input-group-btn">
+                            <button type="button" class="btn-u input-btn">Subscribe</button>
+                        </div>
+                    </div>
+                    <!-- End Form Group -->
+
+                    <h2>Social Network</h2>
+
+                    <p><strong>Follow Us</strong> If you want to be kept up to date about what’s going on, minute by
+                        minute, then search for Grant and give us a follow!</p><br>
+
+                    <!-- Social Icons -->
+                    <ul class="social-icon-list margin-bottom-20">
+                        <li><a href="#"><i class="rounded-x fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="rounded-x fa fa-dribbble"></i></a></li>
+                    </ul>
+                    <!-- End Social Icons -->
                 </div>
             </div>
+            <!--/end row-->
         </div>
-    </div>
+        <!--/end container-->
+    </footer>
 
-    <div class="bottom-bar">
+    <footer class="copyright">
         <div class="container">
-            <div class="row">
-                <small class="copyright col-md-6 col-sm-12 col-xs-12">Copyright @ 2015 Nguyen Tat Thanh University | Developed by <a href="http://www.banvien.com" target="_blank">Ban Vien Co., Ltd</a></small>
-                <ul class="social pull-right col-md-6 col-sm-12 col-xs-12">
-                    <li><a href="#" ><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" ><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#" ><i class="fa fa-youtube"></i></a></li>
-                    <li><a href="#" ><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#" ><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#" ><i class="fa fa-pinterest"></i></a></li>
-                    <li><a href="#" ><i class="fa fa-skype"></i></a></li>
-                    <li class="row-end"><a href="#" ><i class="fa fa-rss"></i></a></li>
-                </ul>
-            </div>
+            <ul class="list-inline terms-menu">
+                <li>2015 &copy; All Rights Reserved.</li>
+                <li class="home"><a href="#">Terms of Use</a></li>
+                <li><a href="#">Privacy and Policy</a></li>
+            </ul>
         </div>
-    </div>
-</footer>
-
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-69009666-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
+        <!--/end container-->
+    </footer>
+</div>
+<!--=== End Footer v8 ===-->

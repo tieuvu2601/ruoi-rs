@@ -11,7 +11,7 @@ public class HomeController extends ApplicationObjectSupport {
 
     @RequestMapping({"/index.html", "/"})
     public ModelAndView home() throws Exception{
-        ModelAndView mav = new ModelAndView("web/body");
+        ModelAndView mav = new ModelAndView("web/home");
 
 //        mav.addObject("newsPrefixUrl", Constants.RESEARCH_PROJECT_PREFIX_URL);
 //        mav.addObject("eventPrefixUrl", Constants.RESEARCH_PROJECT_PREFIX_URL);

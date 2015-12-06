@@ -1,53 +1,64 @@
 <%@ include file="/common/taglibs.jsp"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<c:url var="searchByKeyword" value="/search.html"/>
-<header class="header">
-    <div id="global-header">
-        <div class="global-header-container">
-            <div class="container">
-                <div class="col-md-7">
-                    <div id="top-logo" class="span4">
-                        <a href="http://ntt.edu.vn/" target="_blank"><fmt:message key="main.school"/></a>
-                    </div>
-                </div>
+<!-- Topbar blog -->
+<div class="blog-topbar">
+    <div class="topbar-search-block">
+        <div class="container">
+            <form action="#">
+                <input type="text" class="form-control" placeholder="Search">
 
-                <div class="col-md-5">
-                    <div class="header-flag" id="flag">
-                        <a href="<c:url value="/"/>?locale=vi" title="<fmt:message key="site.language.vn"/>"><img class="img_flag" alt="vi" src="<c:url value='/upload/images/vn_flag.png'/>"></a>
-                        <a href="<c:url value="/"/>?locale=en" title="<fmt:message key="site.language.english"/>"><img class="img_flag"  alt="en" src="<c:url value='/upload/images/us_flag.png'/>" class="over"></a>
-                    </div>
-
-                    <div class="pull-right header-search-page">
-                        <form:form cssClass="search-in-page-form" id="searchFormHeader" action="${searchByKeyword}" method="post">
-                            <input title="Enter the terms you wish to search for." class="form-control search-term" placeholder="Search this site..." type="text" name="keyword" value="">
-                            <a class="search-btn" onclick="searchByKeyword()"><i class="fa fa-fw fa-search"></i></a>
-                            <input type="hidden" name="crudaction" id="crudaction-header"/>
-                        </form:form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="header-main container">
-            <h1 class="logo col-md-12 col-sm-12">
-                <a href="<c:url value="/index.html"/>"><img id="logo" src="<c:url value="/themes/site/images/logo.png"/>" alt="Logo"> <span id="logo_text_header"><fmt:message key="main.faculty"/></span></a>
-            </h1>
+                <div class="search-close"><i class="icon-close"></i></div>
+            </form>
         </div>
     </div>
-</header>
-<script>
-    $(document).ready(function(){
-        $('input.search-term').keypress(function (e) {
-            if (e.which == 13) {
-                searchByKeyword();
-            }
-        });
-    });
-
-
-    function searchByKeyword(){
-        $('#crudaction-header').val("search");
-        $('#searchFormHeader').submit();
-
-    }
-</script>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 col-xs-8">
+                <div class="topbar-time">Friday, Mar 13th 2015</div>
+                <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
+                <ul class="topbar-list topbar-menu">
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Forums</a></li>
+                    <li>
+                        <a href="javascript:void(0);">Dropdown</a>
+                        <ul class="topbar-dropdown">
+                            <li><a href="#">Dropdown</a></li>
+                            <li><a href="#">Dropdown</a></li>
+                            <li class="topbar-submenu">
+                                <a href="javascript:void(0);">Submenu</a>
+                                <ul class="topbar-submenu-in">
+                                    <li><a href="#">Submenu</a></li>
+                                    <li><a href="#">Submenu</a></li>
+                                    <li class="topbar-submenu">
+                                        <a href="javascript:void(0);">Submenu</a>
+                                        <ul class="topbar-submenu-in">
+                                            <li><a href="#">Submenu</a></li>
+                                            <li><a href="#">Submenu</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin"
+                                                                                    href="javascript:void(0);">Login</a></strong>
+                    </li>
+                    <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup"
+                                                                                    href="javascript:void(0);">Register</a></strong>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-4 col-xs-4 clearfix">
+                <i class="fa fa-search search-btn pull-right"></i>
+                <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">
+                    <li class="cd-log_reg home"><a class="cd-signin" href="javascript:void(0);">Login</a></li>
+                    <li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Register</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--/end row-->
+    </div>
+    <!--/end container-->
+</div>
+<!-- End Topbar blog -->
