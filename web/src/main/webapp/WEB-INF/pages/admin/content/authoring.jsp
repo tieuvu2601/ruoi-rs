@@ -70,7 +70,7 @@ window.onload = function() {
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                         <li>
-                            <span><fmt:message key="content"/></span>
+                            <span><fmt:message key="content.title"/></span>
                         </li>
                         <li class="active">
                             <span><fmt:message key="content.management"/></span>
@@ -80,7 +80,7 @@ window.onload = function() {
 
                 <h2 class="font-light m-b-xs">
                     <c:choose>
-                        <c:when test="${not empty item.pojo.contentID}">
+                        <c:when test="${not empty item.pojo.contentId}">
                             <fmt:message key="content.edit"/>
                         </c:when>
                         <c:otherwise>
@@ -116,17 +116,17 @@ window.onload = function() {
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.template"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="authoring.template.title"/></label>
                                 <div class="col-sm-8">
                                     <label class="col-sm-12 control-label text-default">${authoringTemplate.name}</label>
 
                                     <input type="hidden" name="pojo.authoringTemplate" value="${item.pojo.authoringTemplate.authoringTemplateID}" id="pojo_authoringTemplate"/>
-                                    <form:hidden path="authoringTemplateID" id="authoringTemplateID"/>
+                                    <form:hidden path="authoringTemplateId" id="authoringTemplateId"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.title"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="content.header"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.title" size="40" maxlength="160" cssClass="form-control" id="title"/>
                                     <form:errors path="pojo.title" cssClass="validateError"/>
@@ -142,52 +142,20 @@ window.onload = function() {
                                 </div>
                             </div>
 
-                            <c:if test="${authoringTemplate.hasThumbnail == 'Y'}">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.thumbnail"/></label>
-                                    <div class="col-sm-8">
-                                        <input type="file" name="thumbnailFile" id="thumbnailFile" class="form-control"/> <i>(Kích thước chuẩn 410 x 390)</i>
-                                    </div>
-                                </div>
-                            </c:if>
-
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.accesspolicy"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="content.thumbnail"/></label>
                                 <div class="col-sm-8">
-                                    <form:radiobutton path="pojo.accessPolicy" value="1"/><fmt:message key="content.accesspolicy.allowshare"/><br />
-                                    <form:radiobutton path="pojo.accessPolicy" value="2"/><fmt:message key="content.accesspolicy.notallowshare"/>
+                                    <input type="file" name="thumbnailFile" id="thumbnailFile" class="form-control"/> <i>(Kích thước chuẩn 410 x 390)</i>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.displayorder"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="content.display.order"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.displayOrder" size="40" id="displayOrder" cssClass="form-control"/>
                                 </div>
                             </div>
 
-                            <c:if test="${authoringTemplate.hasHotItem == 'Y'}">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.hot"/></label>
-                                    <div class="col-sm-8">
-                                        <form:checkbox path="pojo.hot" value="1" id="hot"/>
-                                    </div>
-                                </div>
-                            </c:if>
-
-                            <c:if test="${authoringTemplate.hasDepartment == 'Y'}">
-                                <c:if test="${fn:length(departments) gt 0 }">
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label"><fmt:message key="content.department"/></label>
-                                        <div class="col-sm-8">
-                                            <c:forEach items="${departments}" var="department">
-                                                <input type="checkbox" name="departmentIDs" value="${department.departmentID}"/>
-                                                ${department.name}<br/>
-                                            </c:forEach>
-                                        </div>
-                                    </div>
-                                </c:if>
-                            </c:if>
 
                             <c:if test="${authoringTemplate.event == 'Y'}">
                                 <div class="form-group">
@@ -224,7 +192,7 @@ window.onload = function() {
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="content.authoringcontent"/>
+                            <fmt:message key="content.authoring.content"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">

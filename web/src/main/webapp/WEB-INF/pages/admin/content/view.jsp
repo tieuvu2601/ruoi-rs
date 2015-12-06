@@ -21,7 +21,7 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                         <li>
-                            <span><fmt:message key="content"/></span>
+                            <span><fmt:message key="content.title"/></span>
                         </li>
                         <li class="active">
                             <span><fmt:message key="content.management"/></span>
@@ -45,7 +45,7 @@
                                 <div class="panel-tools">
                                     <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                                 </div>
-                                Information
+                                <fmt:message key="content.information"/>
                             </div>
 
                             <div class="panel-body" style="display: block;">
@@ -63,7 +63,7 @@
                                 <table width="100%" class="table table-striped table-bordered table-hover no-footer">
                                     <tr>
                                         <td style="width: 20%; vertical-align: middle; text-align: right">
-                                            <fmt:message key="authoringtemplate.template"/>
+                                            <fmt:message key="authoring.template.title"/>
                                         </td>
                                         <td>
                                             ${item.pojo.authoringTemplate.name}
@@ -101,47 +101,26 @@
                                         </tr>
                                     </c:if>
 
-                                    <tr>
-                                        <td style="width: 20%; vertical-align: middle; text-align: right">
-                                            <fmt:message key="content.accesspolicy"/>
-                                        </td>
-                                        <td>
-                                            <c:if test="${item.pojo.accessPolicy eq 1 }"><fmt:message key="content.accesspolicy.allowshare"/></c:if>
-                                            <c:if test="${item.pojo.accessPolicy eq 2 }"><fmt:message key="content.accesspolicy.notallowshare"/></c:if>
-                                        </td>
-                                    </tr>
+
 
                                     <tr>
                                         <td style="width: 20%; vertical-align: middle; text-align: right">
-                                            <fmt:message key="content.displayorder"/>
+                                            <fmt:message key="content.display.order"/>
                                         </td>
                                         <td>
                                                 ${item.pojo.displayOrder}
                                         </td>
                                     </tr>
 
-                                    <c:if test="${authoring.hasHotItem == 'Y'}">
-                                        <tr>
-                                            <td style="width: 20%; vertical-align: middle; text-align: right">
-                                                <fmt:message key="content.hot"/>
-                                            </td>
-                                            <td>
-                                                <c:choose>
-                                                    <c:when test="${item.pojo.hot eq 1}"><fmt:message key="boolean.true"/></c:when>
-                                                    <c:otherwise><fmt:message key="boolean.false"/></c:otherwise>
-                                                </c:choose>
-                                            </td>
-                                        </tr>
-                                    </c:if>
 
                                     <tr>
                                         <td style="width: 20%; vertical-align: middle; text-align: right">
-                                            <fmt:message key="content.category"/>
+                                            <fmt:message key="category.title"/>
                                         </td>
                                         <td>
                                             <ul>
                                                 <c:forEach items="${categories}" var="category">
-                                                    <li>${category.name}</li>
+                                                    <li>${item.pojo.category.name}</li>
                                                 </c:forEach>
                                             </ul>
                                         </td>
@@ -150,38 +129,38 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-8 col-sm-offset-2">
-                                        <c:choose>
-                                            <c:when test="${item.pojo.status eq -2}">
-                                                <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
-                                                    <c:if test="${item.pojo.createdBy.userID eq currentUserID}">
-                                                        <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.send"/>" onclick="submitContentForm('send')"/>
-                                                    </c:if>
-                                                </security:authorize>
-                                            </c:when>
+                                        <%--<c:choose>--%>
+                                            <%--<c:when test="${item.pojo.status eq -2}">--%>
+                                                <%--<security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">--%>
+                                                    <%--<c:if test="${item.pojo.createdBy.userID eq currentUserID}">--%>
+                                                        <%--<input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.send"/>" onclick="submitContentForm('send')"/>--%>
+                                                    <%--</c:if>--%>
+                                                <%--</security:authorize>--%>
+                                            <%--</c:when>--%>
 
-                                            <c:when test="${item.pojo.status eq 0}">
-                                                <security:authorize ifAnyGranted="APPROVER,FULL_ACCESS_RIGHT">
-                                                    <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.approve"/>" onclick="submitContentForm('approve');"/>
+                                            <%--<c:when test="${item.pojo.status eq 0}">--%>
+                                                <%--<security:authorize ifAnyGranted="APPROVER,FULL_ACCESS_RIGHT">--%>
+                                                    <%--<input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.approve"/>" onclick="submitContentForm('approve');"/>--%>
 
-                                                    <input class="btn w-xs btn-danger2" type="button" value="<fmt:message key="content.reject"/>" onclick="submitContentForm('reject');"/>
-                                                </security:authorize>
-                                            </c:when>
+                                                    <%--<input class="btn w-xs btn-danger2" type="button" value="<fmt:message key="content.reject"/>" onclick="submitContentForm('reject');"/>--%>
+                                                <%--</security:authorize>--%>
+                                            <%--</c:when>--%>
 
-                                            <c:when test="${item.pojo.status eq 1}">
-                                                <security:authorize ifAnyGranted="PUBLISHER,FULL_ACCESS_RIGHT">
-                                                    <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.public"/>" onclick="submitContentForm('public');"/>
+                                            <%--<c:when test="${item.pojo.status eq 1}">--%>
+                                                <%--<security:authorize ifAnyGranted="PUBLISHER,FULL_ACCESS_RIGHT">--%>
+                                                    <%--<input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.public"/>" onclick="submitContentForm('public');"/>--%>
 
-                                                    <input class="btn w-xs btn-danger2" type="button" value="<fmt:message key="content.reject"/>" onclick="submitContentForm('reject');"/>
-                                                </security:authorize>
-                                            </c:when>
+                                                    <%--<input class="btn w-xs btn-danger2" type="button" value="<fmt:message key="content.reject"/>" onclick="submitContentForm('reject');"/>--%>
+                                                <%--</security:authorize>--%>
+                                            <%--</c:when>--%>
 
-                                            <c:when test="${item.pojo.status eq 2}">
-                                                <security:authorize ifAnyGranted="PUBLISHER,FULL_ACCESS_RIGHT">
-                                                    <input class="btn w-xs btn-danger2" type="button" value="<fmt:message key="button.unpublic"/>" onclick="submitContentForm('reject');"/>
-                                                </security:authorize>
-                                            </c:when>
+                                            <%--<c:when test="${item.pojo.status eq 2}">--%>
+                                                <%--<security:authorize ifAnyGranted="PUBLISHER,FULL_ACCESS_RIGHT">--%>
+                                                    <%--<input class="btn w-xs btn-danger2" type="button" value="<fmt:message key="button.unpublic"/>" onclick="submitContentForm('reject');"/>--%>
+                                                <%--</security:authorize>--%>
+                                            <%--</c:when>--%>
 
-                                        </c:choose>
+                                        <%--</c:choose>--%>
                                         <a href="${backUrl}" class="btn w-xs btn-default"><fmt:message key="button.back"/></a>
                                     </div>
                                 </div>
@@ -197,7 +176,7 @@
                                 <div class="panel-tools">
                                     <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                                 </div>
-                                <fmt:message key="content.authoringcontent"/>
+                                <fmt:message key="content.authoring.content"/>
                             </div>
 
                             <div class="panel-body" style="display: block;">

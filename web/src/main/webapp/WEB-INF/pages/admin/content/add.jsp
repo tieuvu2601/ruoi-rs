@@ -15,7 +15,7 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                         <li>
-                            <span><fmt:message key="content"/></span>
+                            <span><fmt:message key="content.title"/></span>
                         </li>
                         <li class="active">
                             <span><fmt:message key="content.management"/></span>
@@ -61,7 +61,20 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="category.type.title"/></label>
+                                <div class="col-sm-8">
+                                    <form:select path="pojo.categoryType.categoryTypeId" cssClass="form-control">
+                                        <c:forEach var="catType" items="${categoryTypes}">
+                                            <form:option value="${catType.categoryTypeId}">
+                                                ${catType.name}
+                                            </form:option>
+                                        </c:forEach>
+                                    </form:select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="category.title"/></label>
                                 <div class="col-sm-8">
                                     <form:select path="pojo.category.categoryId" cssClass="form-control">
                                         <c:forEach var="cat" items="${categories}">
@@ -77,7 +90,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.template"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="authoring.template.title"/></label>
                                 <div class="col-sm-8">
                                     <form:select path="pojo.authoringTemplate" cssClass="form-control">
                                         <form:options items="${authoringTemplates}" itemLabel="name" itemValue="authoringTemplateId"/>

@@ -13,14 +13,6 @@
 <c:url var="addUrl" value="/admin/content/add.html"/>
 <c:url var="editUrl" value="/admin/content/edit.html"/>
 <c:url var="viewUrl" value="/admin/content/view.html"/>
-<c:url var="approveUrl" value="/admin/content/approve.html"/>
-<c:url var="trackingUrl" value="/admin/content/tracking.html"/>
-<c:url var="approveFlowUrl" value="/admin/content/approveflow.html"/>
-<fmt:message key="content.approve" var="approveLabel"/>
-<security:authorize ifAllGranted="AUTHOR">
-    <c:url var="approveFlowUrl" value="/admin/content/submit.html"/>
-    <fmt:message key="button.send" var="approveLabel"/>
-</security:authorize>
 
 <div class="small-header transition animated fadeIn">
     <div class="hpanel">
@@ -29,7 +21,7 @@
                 <ol class="hbreadcrumb breadcrumb">
                     <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                     <li>
-                        <span><fmt:message key="content"/></span>
+                        <span><fmt:message key="content.title"/></span>
                     </li>
                     <li class="active">
                         <span><fmt:message key="content.management"/></span>
@@ -78,7 +70,7 @@
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="authoringtemplate.template"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="authoring.template.title"/></label>
                                     <div class="col-sm-8">
                                         <select name="pojo.authoringTemplate" id="authoringTemplateId" class="form-control">
                                             <option value=""><fmt:message key="label.all"/></option>
@@ -101,7 +93,7 @@
 
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="category"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="category.title"/></label>
                                     <div class="col-sm-8">
                                         <select name="pojo.category.categoryId" id="contentCategoryId" class="form-control">
                                             <option value=""><fmt:message key="label.all"/></option>
@@ -123,27 +115,9 @@
                                     <label class="col-sm-4 control-label"><fmt:message key="label.status"/></label>
                                     <div class="col-sm-8">
                                         <select name="pojo.status" id="status" class="form-control">
-                                            <security:authorize ifAnyGranted="FULL_ACCESS_RIGHT">
-                                                <option value="-10" <c:if test="${empty items.pojo.status }">selected</c:if>><fmt:message key="label.all"/></option>
-                                            </security:authorize>
-
-                                            <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
-                                                <option value="-2" <c:if test="${items.pojo.status eq -2 }">selected</c:if>><fmt:message key="content.save"/></option>
-                                            </security:authorize>
-
-                                            <security:authorize ifAnyGranted="AUTHOR,APPROVER,FULL_ACCESS_RIGHT">
-                                                <option value="0" <c:if test="${items.pojo.status eq 0}">selected</c:if>><fmt:message key="content.waiting"/></option>
-                                            </security:authorize>
-
-                                            <security:authorize ifAnyGranted="APPROVER,PUBLISHER,FULL_ACCESS_RIGHT">
-                                                <option value="1" <c:if test="${items.pojo.status eq 1}">selected</c:if>><fmt:message key="content.waiting.published"/></option>
-                                            </security:authorize>
-
-                                            <option value="2" <c:if test="${items.pojo.status eq 2 }">selected</c:if>><fmt:message key="content.published"/></option>
-
-                                            <security:authorize ifAnyGranted="AUTHOR,APPROVER,FULL_ACCESS_RIGHT">
-                                                <option value="-1" <c:if test="${items.pojo.status eq -1}">selected</c:if>><fmt:message key="content.reject.option"/></option>
-                                            </security:authorize>
+                                            <option value="-1" <c:if test="${empty items.pojo.status }">selected</c:if>><fmt:message key="label.all"/></option>
+                                            <option value="0" <c:if test="${items.pojo.status eq 0 }">selected</c:if>><fmt:message key="content.saved"/></option>
+                                            <option value="1" <c:if test="${items.pojo.status eq 1 }">selected</c:if>><fmt:message key="content.published"/></option>
                                         </select>
                                     </div>
                                 </div>
@@ -209,20 +183,11 @@
                                     <display:column headerClass="table_header" titleKey="content.status" style="width: 10%">
                                         <c:choose>
                                             <c:when test="${tableList.status == Constants.CONTENT_SAVE}">
-                                                <fmt:message key="content.save"/>
-                                            </c:when>
-                                            <c:when test="${tableList.status == Constants.CONTENT_WAITING_APPROVE}">
-                                                <fmt:message key="content.waiting.approved"/>
-                                            </c:when>
-                                            <c:when test="${tableList.status == Constants.CONTENT_APPROVE}">
-                                                <fmt:message key="content.waiting.published"/>
+                                                <fmt:message key="content.saved"/>
                                             </c:when>
                                             <c:when test="${tableList.status == Constants.CONTENT_PUBLISH}">
                                                 <fmt:message key="content.published"/>
                                             </c:when>
-                                            <c:otherwise>
-                                                <fmt:message key="content.reject"/>
-                                            </c:otherwise>
                                         </c:choose>
                                     </display:column>
 
@@ -236,16 +201,16 @@
                                             <c:choose>
                                                 <c:when test="${tableList.status eq Constants.CONTENT_SAVE || tableList.status eq Constants.CONTENT_REJECT}">
                                                     <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
-                                                        | <a title="<fmt:message key="content.edit"/>" href="${editUrl}?pojo.contentId=${tableList.contentId}" class="edit"><i class="fa fa-edit"></i></a>
-                                                        | <a title="<fmt:message key="content.delete"/>" id="${tableList.contentId}" class="deleteLink"><i class="fa fa-remove"></i></a>
+                                                        | <a title="<fmt:message key="button.edit"/>" href="${editUrl}?pojo.contentId=${tableList.contentId}" class="edit"><i class="fa fa-edit"></i></a>
+                                                        | <a title="<fmt:message key="button.delete"/>" id="${tableList.contentId}" class="deleteLink"><i class="fa fa-remove"></i></a>
                                                     </security:authorize>
                                                 </c:when>
                                             </c:choose>
                                         </div>
                                     </display:column>
 
-                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="content"/></display:setProperty>
-                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="content"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="content.title"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="content.title"/></display:setProperty>
                                     <display:setProperty name="paging.banner.placement" value="bottom"/>
                                     <display:setProperty name="paging.banner.no_items_found" value=""/>
                                     <display:setProperty name="paging.banner.onepage" value=""/>

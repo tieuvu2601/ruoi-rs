@@ -85,11 +85,8 @@ public class Constants {
     public static final String CONTENT_TYPE_IMAGE = "IMAGE";
     public static final String CONTENT_TYPE_ATTACHMENT = "ATTACHMENT";
     
-    public static final Integer CONTENT_SAVE = -2;
-    public static final Integer CONTENT_REJECT = -1;
-    public static final Integer CONTENT_WAITING_APPROVE = 0;
-    public static final Integer CONTENT_APPROVE = 1;
-    public static final Integer CONTENT_PUBLISH = 2;
+    public static final Integer CONTENT_SAVE = 0;
+    public static final Integer CONTENT_PUBLISH = 1;
 
     public static final String FLAG_YES = "Y";
     public static final String FLAG_NO = "N";

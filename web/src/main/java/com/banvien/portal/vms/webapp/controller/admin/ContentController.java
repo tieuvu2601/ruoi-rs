@@ -8,10 +8,7 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.banvien.portal.vms.domain.AuthoringTemplateEntity;
-import com.banvien.portal.vms.domain.CategoryEntity;
-import com.banvien.portal.vms.domain.ContentEntity;
-import com.banvien.portal.vms.domain.UserEntity;
+import com.banvien.portal.vms.domain.*;
 import com.banvien.portal.vms.dto.XmlNodeDTO;
 import com.banvien.portal.vms.editor.CustomDateEditorSQL;
 import com.banvien.portal.vms.service.*;
@@ -65,6 +62,9 @@ public class ContentController extends ApplicationObjectSupport {
     private CategoryService categoryService;
 
     @Autowired
+    private CategoryTypeService categoryTypeService;
+
+    @Autowired
     private IJcrContent jcrContent;
     
     @Autowired
@@ -87,9 +87,6 @@ public class ContentController extends ApplicationObjectSupport {
     public ModelAndView list(ContentBean bean, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("/admin/content/list");
         String crudaction = bean.getCrudaction();
-
-        Boolean isEnglishLanguage  = CommonUtil.isEnglishLanguage();
-
         if(StringUtils.isNotBlank(crudaction) && crudaction.equals(Constants.ACTION_DELETE)) {
             Integer totalDeleted = 0;
             try {
@@ -131,30 +128,16 @@ public class ContentController extends ApplicationObjectSupport {
         }
 
         if (bean.getPojo().getAuthoringTemplate() != null && bean.getPojo().getAuthoringTemplate().getAuthoringTemplateId() > 0) {
-            properties.put("authoringTemplate.authoringTemplateID", bean.getPojo().getAuthoringTemplate().getAuthoringTemplateId());
+            properties.put("authoringTemplate.authoringTemplateId", bean.getPojo().getAuthoringTemplate().getAuthoringTemplateId());
         }
 
         if(bean.getPojo().getCategory() != null && bean.getPojo().getCategory().getCategoryId() != null && bean.getPojo().getCategory().getCategoryId() > 0){
-            properties.put("category.categoryID", bean.getPojo().getCategory().getCategoryId());
+            properties.put("category.categoryId", bean.getPojo().getCategory().getCategoryId());
         }
 
         StringBuilder whereClause = new StringBuilder();
 
-        if(bean.getPojo().getStatus() == null){
-            if(SecurityUtils.userHasAuthority("AUTHOR")){
-                bean.getPojo().setStatus(Constants.CONTENT_SAVE);
-                properties.put("status", bean.getPojo().getStatus());
-            } else if(SecurityUtils.userHasAuthority("APPROVER")){
-                bean.getPojo().setStatus(Constants.CONTENT_WAITING_APPROVE);
-                properties.put("status", bean.getPojo().getStatus());
-            } else if(SecurityUtils.userHasAuthority("PUBLISHER")){
-                bean.getPojo().setStatus(Constants.CONTENT_APPROVE);
-                properties.put("status", bean.getPojo().getStatus());
-            }
-        } else if(bean.getPojo().getStatus() != null && bean.getPojo().getStatus() > -10){
-            if(bean.getPojo().getStatus() == Constants.CONTENT_SAVE){
-                properties.put("createdBy.userID", SecurityUtils.getLoginUserId());
-            }
+        if(bean.getPojo().getStatus() != null && bean.getPojo().getStatus() > 0){
             properties.put("status", bean.getPojo().getStatus());
         }
 
@@ -169,7 +152,7 @@ public class ContentController extends ApplicationObjectSupport {
         List<CategoryEntity> categories = this.categoryService.findAllCategoryParent();
         mav.addObject("categories", CategoryUtil.getAllCategoryObjectInSite(categories));
         mav.addObject("authoringTemplates", authoringTemplateService.findAll());
-        mav.addObject("currentUserID", SecurityUtils.getLoginUserId());
+        mav.addObject("categoryTypes", this.categoryTypeService.findAll());
     }
 
     @RequestMapping("/admin/content/add.html")
@@ -241,8 +224,6 @@ public class ContentController extends ApplicationObjectSupport {
                     pojo.setCreatedBy(user);
                     if(crudaction.equals("insert-update")){
                         pojo.setStatus(Constants.CONTENT_SAVE);
-                    }else if(crudaction.equals("insert-submit-content")){
-                        pojo.setStatus(Constants.CONTENT_WAITING_APPROVE);
                     }
                     bean.setPojo(pojo);
                     pojo = this.contentService.saveItem(bean);
@@ -325,8 +306,6 @@ public class ContentController extends ApplicationObjectSupport {
                         pojo.setCreatedBy(dbItem.getCreatedBy());
                         if(crudaction.equals("update")){
                             pojo.setStatus(Constants.CONTENT_SAVE);
-                        }else if(crudaction.equals("send")){
-                            pojo.setStatus(Constants.CONTENT_WAITING_APPROVE);
                         }
                         this.contentService.updateItem(bean);
                         mav = new ModelAndView("redirect:/admin/content/list.html");
@@ -365,15 +344,6 @@ public class ContentController extends ApplicationObjectSupport {
             if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("send") || crudaction.equals("approve") || crudaction.equals("public") || crudaction.equals("reject"))){
                 try{
                     ContentEntity content = bean.getPojo();
-                    if(crudaction.equals("send")){
-                        content.setStatus(Constants.CONTENT_WAITING_APPROVE);
-                    }else if(crudaction.equals("approve")){
-                        content.setStatus(Constants.CONTENT_APPROVE);
-                    } else if(crudaction.equals("public")){
-                        content.setStatus(Constants.CONTENT_PUBLISH);
-                    } else if(crudaction.equals("reject")){
-                        content.setStatus(Constants.CONTENT_REJECT);
-                    }
                     this.contentService.updateStatusItem(content);
                     mav = new ModelAndView("redirect:/admin/content/list.html");
                     return mav;

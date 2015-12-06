@@ -70,7 +70,7 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                         <li>
-                            <span><fmt:message key="content"/></span>
+                            <span><fmt:message key="content.title"/></span>
                         </li>
                         <li class="active">
                             <span><fmt:message key="content.management"/></span>
@@ -109,7 +109,7 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.template"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="authoring.template.title"/></label>
                                 <div class="col-sm-8">
                                     <label class="col-sm-12 control-label text-default">${authoringTemplate.name}</label>
                                     <form:hidden path="pojo.authoringTemplate"/>
@@ -117,7 +117,23 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="category.title"/></label>
+                                <div class="col-sm-8">
+                                    <form:select path="pojo.category.categoryID" cssClass="form-control">
+                                        <c:forEach var="cat" items="${listCategories}">
+                                            <form:option value="${cat.categoryID}">
+                                                <c:forEach begin="1" end="${cat.nodeLevel}">
+                                                    - - -
+                                                </c:forEach>
+                                                ${cat.name}
+                                            </form:option>
+                                        </c:forEach>
+                                    </form:select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="category.title"/></label>
                                 <div class="col-sm-8">
                                     <form:select path="pojo.category.categoryID" cssClass="form-control">
                                         <c:forEach var="cat" items="${listCategories}">
@@ -159,53 +175,12 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.accesspolicy"/></label>
-                                <div class="col-sm-8">
-                                    <form:radiobutton path="pojo.accessPolicy" value="1"/><fmt:message key="content.accesspolicy.allowshare"/>
-                                    <form:radiobutton path="pojo.accessPolicy" value="2"/><fmt:message key="content.accesspolicy.notallowshare"/>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.displayorder"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="content.display.order"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.displayOrder" size="40"  cssClass="form-control"/>
                                 </div>
                             </div>
 
-                            <security:authorize ifAllGranted="FULL_ACCESS_RIGHT">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.status"/></label>
-                                    <div class="col-sm-8">
-                                        <form:checkbox path="pojo.status" value="2"/>
-                                    </div>
-                                </div>
-                            </security:authorize>
-
-                            <security:authorize ifAllGranted="PUBLISHER">
-                                <c:if test="${authoringTemplate.hasHotItem == 'Y'}">
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label"><fmt:message key="content.hot"/></label>
-                                        <div class="col-sm-8">
-                                            <form:checkbox path="pojo.hot" value="1"/>
-                                        </div>
-                                    </div>
-                                </c:if>
-                            </security:authorize>
-
-                            <c:if test="${authoringTemplate.hasDepartment == 'Y'}">
-                                <c:if test="${fn:length(departments) > 0}">
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label"><fmt:message key="content.department"/></label>
-                                        <div class="col-sm-8">
-                                            <c:forEach items="${departments}" var="department">
-                                                <input type="checkbox" name="departmentIDs" value="${department.departmentID}" <c:if test="${not empty item.contentDepartmentMap[department.departmentID]}">checked</c:if>/>
-                                                ${department.name}<br/>
-                                            </c:forEach>
-                                        </div>
-                                    </div>
-                                </c:if>
-                            </c:if>
 
                             <c:if test="${authoringTemplate.event == 'Y'}">
                                 <div class="form-group">
@@ -223,22 +198,14 @@
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-2">
                                     <c:choose>
-                                        <c:when test="${item.pojo.status eq -2}">
-                                            <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
-                                                <c:if test="${item.pojo.createdBy.userID eq currentUserID}">
-                                                    <input class="btn w-xs btn-primary" type="button" value="<fmt:message key="button.save"/>" onclick="submitContentForm('update')"/>
+                                        <c:when test="${item.pojo.status eq -1}">
+                                            <input class="btn w-xs btn-primary" type="button" value="<fmt:message key="button.save"/>" onclick="submitContentForm('update')"/>
 
-                                                    <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.send"/>" onclick="submitContentForm('send')"/>
-                                                </c:if>
-                                            </security:authorize>
+                                            <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.send"/>" onclick="submitContentForm('send')"/>
                                         </c:when>
 
-                                        <c:when test="${item.pojo.status eq -1}">
-                                            <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
-                                                <c:if test="${item.pojo.createdBy.userID eq currentUserID}">
-                                                    <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.send"/>" onclick="submitContentForm('send')"/>
-                                                </c:if>
-                                            </security:authorize>
+                                        <c:when test="${item.pojo.status eq 0}">
+                                            <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.send"/>" onclick="submitContentForm('send')"/>
                                         </c:when>
                                     </c:choose>
                                     <a href="${backUrl}" class="btn w-xs btn-default"><fmt:message key="button.back"/></a>
@@ -256,7 +223,7 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="content.authoringcontent"/>
+                            <fmt:message key="content.authoring.content"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -460,7 +427,7 @@ function validateAuthoringForm() {
 	return true;
 }
 function deleteAttachmentItem(itemID) {
-    bootbox.confirm('<fmt:message key="delete.confirm.one"/>', function(r) {
+    bootbox.confirm('<fmt:message key="delete.confirm"/>', function(r) {
 	   if(r) {
 		    var value = $('#' + itemID).val();
 			$('#' + itemID).remove();
