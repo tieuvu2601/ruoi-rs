@@ -15,7 +15,7 @@
                 <ol class="hbreadcrumb breadcrumb">
                     <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                     <li>
-                        <span><fmt:message key="category"/></span>
+                        <span><fmt:message key="category.title"/></span>
                     </li>
                     <li class="active">
                         <span><fmt:message key="category.management"/></span>
@@ -77,7 +77,7 @@
                                     <label class="col-sm-4 control-label"><fmt:message key="category.parent"/></label>
                                     <div class="col-sm-8">
                                         <form:select path="pojo.parent.categoryId" cssClass="form-control" id="parentcategoryId">
-                                            <form:option value="-1" parentRootId="-1"><fmt:message key="category.choose.parent"/></form:option>
+                                            <form:option value="-1" parentRootId="-1"><fmt:message key="label.select"/></form:option>
                                             <c:forEach var="cat" items="${categories}">
                                                 <option value="${cat.categoryId}" <c:if test="${cat.categoryId == items.pojo.parent.categoryId}">selected</c:if>>
                                                     <c:forEach begin="1" end="${cat.nodeLevel}">
@@ -118,9 +118,6 @@
                                 <display:table name="items.listResult" cellspacing="0" cellpadding="0" requestURI="${formUrl}"
                                                partialList="true" sort="external" size="${items.totalItems}" defaultsort="2" uid="tableList" pagesize="${items.maxPageItems}"
                                                class="table table-striped table-bordered table-hover no-footer" export="false" excludedParams="crudaction">
-                                    <display:column headerClass="table_header" sortable="false" style="width: 3%" title="<input type=\"checkbox\" name=\"allCheck\" id=\"allCheck\" onclick=\"checkAll('listForm', 'checkList', this)\">">
-                                        <input type="checkbox" name="checkList" value="${tableList.categoryId}" onclick="checkAllIfOne('listForm', 'checkList', this, 'allCheck')">
-                                    </display:column>
                                     <display:column headerClass="table_header" property="code" escapeXml="false" sortable="true" sortName="code" titleKey="category.code" style="width: 15%" />
                                     <display:column headerClass="table_header" property="name" escapeXml="true" sortable="true" sortName="name" titleKey="category.name" style="width: 20%"/>
                                     <display:column headerClass="table_header" property="displayOrder" escapeXml="true" sortable="true" sortName="displayOrder" titleKey="category.displayorder" style="width: 10%"/>
@@ -131,8 +128,8 @@
                                         <a href="${editUrl}?pojo.categoryId=${tableList.categoryId}"><i class="fa fa-edit"></i></a> |
                                         <a class="deleteLink" id="${tableList.categoryId}"><i class="fa fa-remove"></i></a>
                                     </display:column>
-                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="category"/></display:setProperty>
-                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="category"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.item_name"><fmt:message key="category.title"/></display:setProperty>
+                                    <display:setProperty name="paging.banner.items_name"><fmt:message key="category.title"/></display:setProperty>
                                     <display:setProperty name="paging.banner.placement" value="bottom"/>
                                     <display:setProperty name="paging.banner.no_items_found" value=""/>
                                     <display:setProperty name="paging.banner.onepage" value=""/>

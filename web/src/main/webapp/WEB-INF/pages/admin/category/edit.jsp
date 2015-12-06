@@ -15,7 +15,7 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                         <li>
-                            <span><fmt:message key="category"/></span>
+                            <span><fmt:message key="category.title"/></span>
                         </li>
                         <li class="active">
                             <span><fmt:message key="category.management"/></span>
@@ -63,8 +63,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="category.parent"/></label>
                                 <div class="col-sm-8">
-                                    <form:select path="pojo.parent.categoryId" cssClass="form-control" onchange="setParentRootIdForCategory()" id="parentCategoryId">
-                                        <form:option value="" parentRootId="-1"><fmt:message key="category.choose.parent"/></form:option>
+                                    <form:select path="pojo.parent.categoryId" cssClass="form-control" id="parentCategoryId">
+                                        <form:option value="" parentRootId="-1"><fmt:message key="label.select"/></form:option>
                                         <c:forEach var="cat" items="${categories}">
                                             <option value="${cat.categoryId}" <c:if test="${cat.categoryId == item.pojo.parent.categoryId}">selected</c:if>>
                                                 <c:forEach begin="1" end="${cat.nodeLevel}">
@@ -94,7 +94,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.prefixurl"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="category.prefix.url"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.prefixUrl" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.prefixUrl" cssClass="validateError"/>
@@ -110,7 +110,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.displayorder"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="category.display.order"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.displayOrder" size="20" cssClass="form-control"/>
                                     <form:errors path="pojo.displayOrder" cssClass="validateError"/>
@@ -118,7 +118,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.authoringtemplate"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="authoring.template.title"/></label>
                                 <div class="col-sm-8">
                                     <form:select path="pojo.authoringTemplate.authoringTemplateId" cssClass="form-control">
                                         <form:option value=""><fmt:message key="label.select"/></form:option>
@@ -153,14 +153,4 @@
 
 
     });
-
-    function setParentRootIdForCategory(){
-        var parentRootIDElement =  $('#parentRootID');
-        var parentRootID = $("select#parentcategoryId option:selected").attr('parentRootId');
-        if(parentRootID != null && parentRootID != undefined && parentRootID > 0){
-            $(parentRootIDElement).val(parentRootID);
-        } else {
-            $(parentRootIDElement).val("-1");
-        }
-    }
 </script>

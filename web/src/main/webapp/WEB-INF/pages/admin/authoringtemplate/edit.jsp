@@ -1,8 +1,8 @@
 <%@ include file="/common/taglibs.jsp"%>
 
 <head>
-    <title><fmt:message key="authoringtemplate.template"/></title>
-    <meta name="heading" content="<fmt:message key="authoringtemplate.management"/>"/>
+    <title><fmt:message key="authoring.template.title"/></title>
+    <meta name="heading" content="<fmt:message key="authoring.template.management"/>"/>
 </head>
 <script type="text/javascript" language="javascript" src="<c:url value="/scripts/authoringtemplate.js"/>"></script>
 <!-- Dependencies -->
@@ -24,10 +24,10 @@
                     <ol class="hbreadcrumb breadcrumb">
                         <li><a href="<c:url value="/admin/dashboard.html"/>"><fmt:message key="admin.dashboard"/></a></li>
                         <li>
-                            <span><fmt:message key="authoringtemplate.template"/></span>
+                            <span><fmt:message key="authoring.template.title"/></span>
                         </li>
                         <li class="active">
-                            <span><fmt:message key="authoringtemplate.management"/></span>
+                            <span><fmt:message key="authoring.template.management"/></span>
                         </li>
                     </ol>
                 </div>
@@ -35,10 +35,10 @@
                 <h2 class="font-light m-b-xs">
                     <c:choose>
                         <c:when test="${not empty item.pojo.authoringTemplateId}">
-                            <fmt:message key="authoringtemplate.edit"/>
+                            <fmt:message key="authoring.template.edit"/>
                         </c:when>
                         <c:otherwise>
-                            <fmt:message key="authoringtemplate.add"/>
+                            <fmt:message key="authoring.template.add"/>
                         </c:otherwise>
                     </c:choose>
                 </h2>
@@ -55,7 +55,7 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="authoringtemplate.management"/>
+                            <fmt:message key="authoring.template.management"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -70,7 +70,7 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.code"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="authoring.template.code"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.code" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.code" cssClass="validateError"/>
@@ -78,7 +78,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.name"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="authoring.template.name"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.name" size="40" cssClass="form-control"/>
                                     <form:errors path="pojo.name" cssClass="validateError"/>
@@ -103,34 +103,34 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="authoringtemplate.designer"/>
+                            <fmt:message key="authoring.template.designer"/>
                         </div>
 
                         <div class="panel-body" style="display: block;" id="xmlNodeTemplate" numberRow="${fn:length(item.authoringTemplateNodes)}">
                             <div class="col-lg-5">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="authoringtemplate.designer.type"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="authoring.template.designer.type"/></label>
                                     <div class="col-sm-8">
                                         <select name="nodeType" id="nodeType" class="form-control type_attribute">
-                                            <option value="BOOLEAN"><fmt:message key="authoringtemplate.designer.type.boolean"/></option>
-                                            <option value="NUMERIC"><fmt:message key="authoringtemplate.designer.type.numeric"/></option>
-                                            <option value="PLAIN_TEXT"><fmt:message key="authoringtemplate.designer.type.plaintext"/></option>
-                                            <option value="RICH_TEXT"><fmt:message key="authoringtemplate.designer.type.richtext"/></option>
-                                            <option value="IMAGE"><fmt:message key="authoringtemplate.designer.type.image"/></option>
-                                            <option value="ATTACHMENT"><fmt:message key="authoringtemplate.designer.type.attachment"/></option>
+                                            <option value="BOOLEAN"><fmt:message key="authoring.template.designer.type.boolean"/></option>
+                                            <option value="NUMERIC"><fmt:message key="authoring.template.designer.type.numeric"/></option>
+                                            <option value="PLAIN_TEXT"><fmt:message key="authoring.template.designer.type.plaintext"/></option>
+                                            <option value="RICH_TEXT"><fmt:message key="authoring.template.designer.type.richtext"/></option>
+                                            <option value="IMAGE"><fmt:message key="authoring.template.designer.type.image"/></option>
+                                            <option value="ATTACHMENT"><fmt:message key="authoring.template.designer.type.attachment"/></option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="authoringtemplate.designer.name"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="authoring.template.designer.name"/></label>
                                     <div class="col-sm-8">
                                         <input type="text" name="nodeName" id="nodeName" class="form-control name_node"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="authoringtemplate.designer.displayname"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="authoring.template.designer.display.name"/></label>
                                     <div class="col-sm-8">
                                         <input type="text" name="displayName" id="displayName" class="form-control display_name"/>
                                     </div>
@@ -139,26 +139,26 @@
 
                             <div class="col-lg-7">
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="authoringtemplate.designer.defaultvalue"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="authoring.template.designer.default.value"/></label>
                                     <div class="col-sm-7">
                                         <input type="text" name="defaultValue" id="defaultValue" style="width:98%;" class="form-control default_value"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="authoringtemplate.designer.occurs"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="authoring.template.designer.occurs"/></label>
                                     <div class="col-sm-2">
                                         <input type="text" name="minOccurs" id="minOccurs" style="width:80px;" class="form-control min_occurs"/>
                                     </div>
 
-                                    <label class="col-sm-2 control-label"><fmt:message key="authoringtemplate.designer.maxoccurs"/></label>
+                                    <label class="col-sm-2 control-label"><fmt:message key="authoring.template.designer.max.occurs"/></label>
                                     <div class="col-sm-2">
                                         <input type="text" name="maxOccurs" id="maxOccurs" style="width:80px;" class="form-control max_occurs"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-4 control-label"><fmt:message key="authoringtemplate.designer.constraintvalues"/></label>
+                                    <label class="col-sm-4 control-label"><fmt:message key="authoring.template.designer.constraint.values"/></label>
                                     <div class="col-sm-7">
                                         <textarea type="text" name="constraintValues" id="constraintValues" rows="5" style="width:98%; resize: vertical;" class="form-control constraint_values"></textarea>
                                     </div>
@@ -171,8 +171,6 @@
                                         <div class="alert_message"></div>
                                         <a onclick="clearDataNodeElementTemplate();" class="btn btn-danger pull-right"><i class="fa fa-fw fa-refresh"></i> Reset</a>
                                         <a onclick="addNodeElement();" class="btn btn-primary xmlNodeTemplateAction pull-right" style="margin-right: 10px;"><i class="fa fa-fw fa-plus"></i> <fmt:message key="button.add"/></a>
-
-                                        <%--<a class="btn w-xs btn-primary" id="btnInsert"><fmt:message key="button.insert"/></a>--%>
                                     </div>
                                 </div>
                             </div>
@@ -188,20 +186,20 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="authoringtemplate.list"/>
+                            <fmt:message key="authoring.template.list"/>
                         </div>
                         <div class="panel-body">
                             <div class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                                 <table class="tableNodeElements table table-striped table-bordered table-hover no-footer">
                                     <thead>
                                     <tr>
-                                        <th style="width: 15%;"><fmt:message key="authoringtemplate.designer.name"/></th>
-                                        <th style="width: 15%;"><fmt:message key="authoringtemplate.designer.displayname"/></th>
-                                        <th style="width: 10%;"><fmt:message key="authoringtemplate.designer.type"/></th>
-                                        <th style="width: 20%;"><fmt:message key="authoringtemplate.designer.defaultvalue"/></th>
-                                        <th style="width: 20%;"><fmt:message key="authoringtemplate.designer.constraintvalues"/></th>
-                                        <th style="width: 10%;"><fmt:message key="authoringtemplate.designer.occurs"/></th>
-                                        <th style="width: 10%;"><fmt:message key="action"/></th>
+                                        <th style="width: 15%;"><fmt:message key="authoring.template.designer.name"/></th>
+                                        <th style="width: 15%;"><fmt:message key="authoring.template.designer.display.name"/></th>
+                                        <th style="width: 10%;"><fmt:message key="authoring.template.designer.type"/></th>
+                                        <th style="width: 20%;"><fmt:message key="authoring.template.designer.default.value"/></th>
+                                        <th style="width: 20%;"><fmt:message key="authoring.template.designer.constraint.values"/></th>
+                                        <th style="width: 10%;"><fmt:message key="authoring.template.designer.occurs"/></th>
+                                        <th style="width: 10%;"><fmt:message key="label.actions"/></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -211,12 +209,12 @@
                                             <td><span class="label_display_name node_label">${node.displayName}</span></td>
                                             <td>
                                                 <c:choose>
-                                                    <c:when test="${node.type == 'BOOLEAN'}"><span class="label_type_attribute node_label"><fmt:message key="authoringtemplate.designer.type.boolean"/></span></c:when>
-                                                    <c:when test="${node.type == 'NUMERIC'}"><span class="label_type_attribute node_label"><fmt:message key="authoringtemplate.designer.type.numeric"/></span></c:when>
-                                                    <c:when test="${node.type == 'PLAIN_TEXT'}"><span class="label_type_attribute node_label"><fmt:message key="authoringtemplate.designer.type.plaintext"/></span></c:when>
-                                                    <c:when test="${node.type == 'RICH_TEXT'}"><span class="label_type_attribute node_label"><fmt:message key="authoringtemplate.designer.type.richtext"/></span></c:when>
-                                                    <c:when test="${node.type == 'IMAGE'}"><span class="label_type_attribute node_label"><fmt:message key="authoringtemplate.designer.type.image"/></span></c:when>
-                                                    <c:when test="${node.type == 'ATTACHMENT'}"><span class="label_type_attribute node_label"><fmt:message key="authoringtemplate.designer.type.attachment"/></span></c:when>
+                                                    <c:when test="${node.type == 'BOOLEAN'}"><span class="label_type_attribute node_label"><fmt:message key="authoring.template.designer.type.boolean"/></span></c:when>
+                                                    <c:when test="${node.type == 'NUMERIC'}"><span class="label_type_attribute node_label"><fmt:message key="authoring.template.designer.type.numeric"/></span></c:when>
+                                                    <c:when test="${node.type == 'PLAIN_TEXT'}"><span class="label_type_attribute node_label"><fmt:message key="authoring.template.designer.type.plaintext"/></span></c:when>
+                                                    <c:when test="${node.type == 'RICH_TEXT'}"><span class="label_type_attribute node_label"><fmt:message key="authoring.template.designer.type.richtext"/></span></c:when>
+                                                    <c:when test="${node.type == 'IMAGE'}"><span class="label_type_attribute node_label"><fmt:message key="authoring.template.designer.type.image"/></span></c:when>
+                                                    <c:when test="${node.type == 'ATTACHMENT'}"><span class="label_type_attribute node_label"><fmt:message key="authoring.template.designer.type.attachment"/></span></c:when>
                                                 </c:choose>
                                             </td>
                                             <td><span class="label_default_value node_label">${node.defaultValue}</span></td>
@@ -282,14 +280,14 @@
                 numberRow += 1;
                 $('#xmlNodeTemplate').attr('numberRow', numberRow);
                 updateLabelForXMLNodeTemplateAction('<i class="fa fa-fw fa-plus"></i> <fmt:message key="button.add"/>');
-                alertActionMessage('<fmt:message key="authoringtemplate.manager.node.successfull.add"/>', 'success');
+                alertActionMessage('<fmt:message key="authoring.template.add.node.successful"/>', 'success');
             }
         } else if (validate.crudaction == "update"){
             if (updateDataNode(dataNode)){
                 unselectedDataNodeElement();
                 clearDataNodeElementTemplate();
                 updateLabelForXMLNodeTemplateAction('<i class="fa fa-fw fa-plus"></i> <fmt:message key="button.add"/>');
-                alertActionMessage('<fmt:message key="authoringtemplate.manager.node.successfull.update"/>', 'success');
+                alertActionMessage('<fmt:message key="authoring.template.update.node.successful"/>', 'success');
             }
         } else {
             alertActionMessage(validate.crudaction, 'errors');
@@ -349,7 +347,7 @@
                 updateLabelForXMLNodeTemplateAction('<i class="fa fa-fw fa-plus"></i> <fmt:message key="button.add"/>');
             }
             $(dataNodeElement).remove();
-            alertActionMessage('<fmt:message key="authoringtemplate.manager.node.successfull.delete"/>', 'success');
+            alertActionMessage('<fmt:message key="authoring.template.delete.node.successful"/>', 'success');
         }
     }
 
@@ -359,19 +357,19 @@
         var field = "";
         if (dataNode.name_node == "" || dataNode.display_name == "" || dataNode.type_attribute == "" || isNaN(dataNode.min_occurs) || isNaN(dataNode.max_occurs)){
             if (dataNode.type_attribute == "") {
-                errors = "<fmt:message key="authoringtemplate.manager.node.exception.empty.type"/>";
+                errors = "<fmt:message key="authoring.template.node.exception.empty.type"/>";
                 field = "type_attribute";
             }else if(dataNode.name_node == ""){
-                errors = "<fmt:message key="authoringtemplate.manager.node.exception.empty.name"/>";
+                errors = "<fmt:message key="authoring.template.node.exception.empty.name"/>";
                 field = "name_node";
             } else if(dataNode.display_name == ""){
-                errors = "<fmt:message key="authoringtemplate.manager.node.exception.empty.displayname"/>";
+                errors = "<fmt:message key="authoring.template.node.exception.empty.display.name"/>";
                 field = "display_name";
             } else if (isNaN(dataNode.min_occurs)){
-                errors = "<fmt:message key="authoringtemplate.manager.node.exception.empty.min.occurs"/>";
+                errors = "<fmt:message key="authoring.template.node.exception.empty.min.occurs"/>";
                 field = "min_occurs";
             } else if (isNaN(dataNode.max_occurs)){
-                errors = "<fmt:message key="authoringtemplate.manager.node.exception.empty.max.occurs"/>";
+                errors = "<fmt:message key="authoring.template.node.exception.empty.max.occurs"/>";
                 field = "max_occurs";
             }
             return getErrorMessage(errors, field);
@@ -391,14 +389,14 @@
             crudaction = "update";
             if (dataNodeElement != null && $(dataNodeElement).length > 0){
                 if(!$(dataNodeElement).hasClass('selected')){
-                    crudaction = "<fmt:message key="authoringtemplate.manager.node.exception.empty.name.duplicated"/>";
+                    crudaction = "<fmt:message key="authoring.template.node.exception.empty.name.duplicated"/>";
                     field = "name_node";
                 }
             }
         } else {
             crudaction = "insert";
             if(dataNodeElement != null && $(dataNodeElement).length > 0){
-                crudaction = "<fmt:message key="authoringtemplate.manager.node.exception.empty.name.duplicated"/>";
+                crudaction = "<fmt:message key="authoring.template.node.exception.empty.name.duplicated"/>";
                 field = "name_node";
             }
         }
