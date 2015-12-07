@@ -1417,12 +1417,12 @@ if ( typeof Object.create !== "function" ) {
 		singleItem : false,
 		itemsScaleUp : false,
 
-		slideSpeed : 200,
+		slideSpeed : 2000,
 		paginationSpeed : 800,
 		rewindSpeed : 1000,
 
-		autoPlay : false,
-		stopOnHover : false,
+		autoPlay : true,
+		stopOnHover : true,
 
 		navigation : false,
 		navigationText : ["prev","next"],

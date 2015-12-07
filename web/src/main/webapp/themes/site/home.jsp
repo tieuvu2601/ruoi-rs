@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="<c:url value="/themes/site/plugins/master-slider/masterslider/skins/default/style.css"/>">
 
     <!-- CSS Theme -->
-    <link rel="stylesheet" href="<c:url value="/themes/site/css/theme-colors/default.css"/>">
+    <link rel="stylesheet" href="<c:url value="/themes/site/css/theme-colors/green.css"/>">
     <link rel="stylesheet" href="<c:url value="/themes/site/css/theme-skins/dark.css"/>">
 
     <!-- CSS Customization -->
