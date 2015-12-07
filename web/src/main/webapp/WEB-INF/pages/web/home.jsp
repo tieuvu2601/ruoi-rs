@@ -4,99 +4,75 @@
 <div class="blog-ms-v1 content-sm bg-color-darker margin-bottom-60">
     <div class="master-slider ms-skin-default" id="masterslider">
         <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img9.jpg"
-                 alt="lorem ipsum dolor sit"/>
+            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img9.jpg" alt="lorem ipsum dolor sit"/>
             <span class="blog-slider-badge">Fashion</span>
-
             <div class="ms-info"></div>
             <div class="blog-slider-title">
                 <span class="blog-slider-posted">Mar 6, 2015</span>
-
                 <h2><a href="#">Is this the end for fashion police?</a></h2>
             </div>
         </div>
         <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img52.jpg"
-                 alt="lorem ipsum dolor sit"/>
+            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img52.jpg" alt="lorem ipsum dolor sit"/>
             <span class="blog-slider-badge">Hi-Tech</span>
-
             <div class="ms-info"></div>
             <div class="blog-slider-title">
                 <span class="blog-slider-posted">Mar 6, 2015</span>
-
                 <h2><a href="#">Learning as you're earning: The alternative to a degree</a></h2>
             </div>
         </div>
         <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img5.jpg"
-                 alt="lorem ipsum dolor sit"/>
+            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img5.jpg" alt="lorem ipsum dolor sit"/>
             <span class="blog-slider-badge">Sport</span>
-
             <div class="ms-info"></div>
             <div class="blog-slider-title">
                 <span class="blog-slider-posted">Mar 6, 2015</span>
-
                 <h2><a href="#">Brady handed his place in history</a></h2>
             </div>
         </div>
         <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img16.jpg"
-                 alt="lorem ipsum dolor sit"/>
+            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img16.jpg" alt="lorem ipsum dolor sit"/>
             <span class="blog-slider-badge">Fashion</span>
-
             <div class="ms-info"></div>
             <div class="blog-slider-title">
                 <span class="blog-slider-posted">Mar 6, 2015</span>
-
                 <h2><a href="#">Nadège Vanhee-Cybulski makes Hermès debut</a></h2>
             </div>
         </div>
         <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img35.jpg"
-                 alt="lorem ipsum dolor sit"/>
+            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img35.jpg" alt="lorem ipsum dolor sit"/>
             <a href="http://player.vimeo.com/video/53914149" data-type="video"> vimeo video </a>
             <span class="blog-slider-badge">Travel</span>
-
             <div class="ms-info"></div>
             <div class="blog-slider-title">
                 <span class="blog-slider-posted">Mar 6, 2015</span>
-
                 <h2><a href="#">Our favourite images of the week</a></h2>
             </div>
         </div>
         <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img41.jpg"
-                 alt="lorem ipsum dolor sit"/>
+            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img41.jpg" alt="lorem ipsum dolor sit"/>
             <span class="blog-slider-badge">Travel</span>
-
             <div class="ms-info"></div>
             <div class="blog-slider-title">
                 <span class="blog-slider-posted">Mar 6, 2015</span>
-
                 <h2><a href="#">Must be visited places in the world</a></h2>
             </div>
         </div>
         <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img48.jpg"
-                 alt="lorem ipsum dolor sit"/>
+            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img48.jpg" alt="lorem ipsum dolor sit"/>
             <span class="blog-slider-badge">Health</span>
-
             <div class="ms-info"></div>
             <div class="blog-slider-title">
                 <span class="blog-slider-posted">Mar 6, 2015</span>
-
                 <h2><a href="#">5 Facts about Coca-Cola</a></h2>
             </div>
         </div>
         <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img53.jpg"
-                 alt="lorem ipsum dolor sit"/>
+            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img53.jpg" alt="lorem ipsum dolor sit"/>
             <span class="blog-slider-badge">Community</span>
-
             <div class="ms-info"></div>
             <div class="blog-slider-title">
                 <span class="blog-slider-posted">Mar 6, 2015</span>
-
                 <h2><a href="#">Minimalism gives way to embroidery and crystals</a></h2>
             </div>
         </div>
@@ -136,16 +112,13 @@
             <!-- Blog Grid -->
             <div class="blog-grid sm-margin-bottom-40">
                 <img class="img-responsive" src="assets/img/blog/img44.jpg" alt="">
-
                 <h3><a href="blog_single.html">Learning technology: iMac</a></h3>
                 <ul class="blog-grid-info">
                     <li>Alex Amell</li>
                     <li>Mar 6, 2015</li>
                     <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                 </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet sed eros sed tincidunt. Sed
-                    eu mauris iaculis, faucibus nisi a, ultrices ipsum. Donec auctor metus eget diam fermentum, et
-                    viverra erat semper.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet sed eros sed tincidunt. Sed eu mauris iaculis, faucibus nisi a, ultrices ipsum. Donec auctor metus eget diam fermentum, et viverra erat semper.</p>
                 <a class="r-more" href="blog_single.html">Read More</a>
             </div>
             <!-- End Blog Grid -->
@@ -232,8 +205,7 @@
             </div>
             <!-- End Blog Thumb -->
         </div>
-    </div>
-    <!--/end row-->
+    </div><!--/end row-->
 </div>
 <div class="tab-pane fade" id="tab-v4-a2">
     <div class="row">
@@ -241,16 +213,13 @@
             <!-- Blog Grid -->
             <div class="blog-grid sm-margin-bottom-40">
                 <img class="img-responsive" src="assets/img/blog/img9.jpg" alt="">
-
                 <h3><a href="blog_single.html">Is this the end for fashion police?</a></h3>
                 <ul class="blog-grid-info">
                     <li>Susie Lau</li>
                     <li>Mar 7, 2015</li>
                     <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                 </ul>
-                <p>Mauris iaculis nisl eu ipsum dapibus pretium. Morbi quis justo non turpis cursus pharetra. Cras ac
-                    ligula sem. Nulla facilisi. Curabitur vulputate cursus ornare. Sed enim sapien, sodales at augue
-                    vel, molestie commodo velit.</p>
+                <p>Mauris iaculis nisl eu ipsum dapibus pretium. Morbi quis justo non turpis cursus pharetra. Cras ac ligula sem. Nulla facilisi. Curabitur vulputate cursus ornare. Sed enim sapien, sodales at augue vel, molestie commodo velit.</p>
                 <a class="r-more" href="blog_single.html">Read More</a>
             </div>
             <!-- End Blog Grid -->
@@ -280,8 +249,7 @@
                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
                 </div>
                 <div class="blog-thumb-desc">
-                    <h3><a href="blog_single.html">Minimalism gives way to embroidery and crystals as Paris shows draw
-                        to a close</a></h3>
+                    <h3><a href="blog_single.html">Minimalism gives way to embroidery and crystals as Paris shows draw to a close</a></h3>
                     <ul class="blog-thumb-info">
                         <li>Mar 6, 2015</li>
                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -297,8 +265,7 @@
                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
                 </div>
                 <div class="blog-thumb-desc">
-                    <h3><a href="blog_single.html">In bed with Cara Delevingne as she talks bags, boys and bunnies</a>
-                    </h3>
+                    <h3><a href="blog_single.html">In bed with Cara Delevingne as she talks bags, boys and bunnies</a></h3>
                     <ul class="blog-thumb-info">
                         <li>Mar 6, 2015</li>
                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -314,8 +281,7 @@
                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
                 </div>
                 <div class="blog-thumb-desc">
-                    <h3><a href="blog_single.html">Malaika Firth tells all: 'I met my boyfriend through Twitter'</a>
-                    </h3>
+                    <h3><a href="blog_single.html">Malaika Firth tells all: 'I met my boyfriend through Twitter'</a></h3>
                     <ul class="blog-thumb-info">
                         <li>Mar 6, 2015</li>
                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -340,8 +306,7 @@
             </div>
             <!-- End Blog Thumb -->
         </div>
-    </div>
-    <!--/end row-->
+    </div><!--/end row-->
 </div>
 <div class="tab-pane fade" id="tab-v4-a3">
     <div class="row">
@@ -349,16 +314,13 @@
             <!-- Blog Grid -->
             <div class="blog-grid sm-margin-bottom-40">
                 <img class="img-responsive" src="assets/img/blog/img13.jpg" alt="">
-
                 <h3><a href="blog_single.html">Education news, opinion and guides</a></h3>
                 <ul class="blog-grid-info">
                     <li>Richard Garner</li>
                     <li>Mar 9, 2015</li>
                     <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                 </ul>
-                <p>Nulla gravida sit amet odio vel posuere. Proin maximus est diam, sed iaculis arcu ultrices sed.
-                    Quisque nisi diam, sodales sit amet diam ut, bibendum interdum metus. Pellentesque urna magna,
-                    sollicitudin vel semper quis, iaculis sed neque.</p>
+                <p>Nulla gravida sit amet odio vel posuere. Proin maximus est diam, sed iaculis arcu ultrices sed. Quisque nisi diam, sodales sit amet diam ut, bibendum interdum metus. Pellentesque urna magna, sollicitudin vel semper quis, iaculis sed neque.</p>
                 <a class="r-more" href="blog_single.html">Read More</a>
             </div>
             <!-- End Blog Grid -->
@@ -404,8 +366,7 @@
                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
                 </div>
                 <div class="blog-thumb-desc">
-                    <h3><a href="blog_single.html">25 Unconventional Business Books that You Won't See on Most
-                        Bookshelves (But Should)</a></h3>
+                    <h3><a href="blog_single.html">25 Unconventional Business Books that You Won't See on Most Bookshelves (But Should)</a></h3>
                     <ul class="blog-thumb-info">
                         <li>Mar 6, 2015</li>
                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -446,8 +407,7 @@
             </div>
             <!-- End Blog Thumb -->
         </div>
-    </div>
-    <!--/end row-->
+    </div><!--/end row-->
 </div>
 </div>
 <!-- End Tab Content -->
@@ -457,14 +417,12 @@
 <!-- Blog Carousel Heading -->
 <div class="blog-cars-heading">
     <h2>Breaking News</h2>
-
     <div class="owl-navigation">
         <div class="customNavigation">
             <a class="owl-btn prev-v3"><i class="fa fa-angle-left"></i></a>
             <a class="owl-btn next-v3"><i class="fa fa-angle-right"></i></a>
         </div>
-    </div>
-    <!--/navigation-->
+    </div><!--/navigation-->
 </div>
 <!-- End Blog Carousel Heading -->
 
@@ -484,9 +442,7 @@
                         <li>Mar 6, 2015</li>
                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                     </ul>
-                    <p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi.
-                        Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices
-                        velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta.</p>
+                    <p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi. Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta.</p>
                     <a class="r-more" href="blog_single.html">Read More</a>
                 </div>
             </div>
@@ -508,9 +464,7 @@
                         <li>Mar 6, 2015</li>
                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                     </ul>
-                    <p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi.
-                        Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices
-                        velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta.</p>
+                    <p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi. Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta.</p>
                     <a class="r-more" href="blog_single.html">Read More</a>
                 </div>
             </div>
@@ -532,9 +486,7 @@
                         <li>Mar 6, 2015</li>
                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                     </ul>
-                    <p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi.
-                        Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices
-                        velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta.</p>
+                    <p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi. Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta.</p>
                     <a class="r-more" href="blog_single.html">Read More</a>
                 </div>
             </div>
@@ -547,7 +499,6 @@
 <!-- Blog Grid -->
 <div class="margin-bottom-50">
     <h2 class="title-v4">Featured News</h2>
-
     <div class="row margin-bottom-50">
         <div class="col-sm-6 sm-margin-bottom-50">
             <!-- Blog Grid -->
@@ -572,9 +523,7 @@
                     <li>Mar 6, 2015</li>
                     <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                 </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet sed eros sed tincidunt. Sed
-                    eu mauris iaculis, faucibus nisi a, ultrices ipsum. Donec auctor metus eget diam fermentum, et
-                    viverra erat semper.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet sed eros sed tincidunt. Sed eu mauris iaculis, faucibus nisi a, ultrices ipsum. Donec auctor metus eget diam fermentum, et viverra erat semper.</p>
                 <a class="r-more" href="blog_single.html">Read More</a>
             </div>
             <!-- End Blog Grid -->
@@ -582,8 +531,7 @@
             <!-- Blog Thumb v3 -->
             <div class="blog-thumb-v3">
                 <small><a href="#">Evan Bartlett</a></small>
-                <h3><a href="#">How to run a country: A 10 point manifesto for leaders who stand – and want to
-                    deliver</a></h3>
+                <h3><a href="#">How to run a country: A 10 point manifesto for leaders who stand – and want to deliver</a></h3>
             </div>
 
             <hr class="hr-xs">
@@ -597,8 +545,7 @@
 
             <div class="blog-thumb-v3">
                 <small><a href="#">Susie Lau</a></small>
-                <h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend
-                    for style blogging</a></h3>
+                <h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend for style blogging</a></h3>
             </div>
             <!-- End Blog Thumb v3 -->
         </div>
@@ -607,15 +554,13 @@
             <!-- Blog Grid -->
             <div class="blog-grid margin-bottom-40">
                 <img class="img-responsive" src="assets/img/blog/img20.jpg" alt="">
-
                 <h3><a href="blog_single.html">Dogs in the road - make your road safe for your dog</a></h3>
                 <ul class="blog-grid-info">
                     <li>Susie Lau</li>
                     <li>Mar 6, 2015</li>
                     <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                 </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet sed eros sed tincidunt. Sed
-                    eu mauris iaculis, faucibus nisi a, ultrices ipsum.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec imperdiet sed eros sed tincidunt. Sed eu mauris iaculis, faucibus nisi a, ultrices ipsum.</p>
                 <a class="r-more" href="blog_single.html">Read More</a>
             </div>
             <!-- End Blog Grid -->
@@ -636,38 +581,31 @@
 
             <div class="blog-thumb-v3">
                 <small><a href="#">Alex Amell</a></small>
-                <h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend
-                    for style blogging</a></h3>
+                <h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend for style blogging</a></h3>
             </div>
         </div>
-    </div>
-    <!--/end row-->
+    </div><!--/end row-->
 </div>
 <!-- End Blog Grid -->
 
 <!-- Blog Thumb v4 -->
 <div class="margin-bottom-50">
     <h2 class="title-v4">Weekly News</h2>
-
     <div class="row margin-bottom-50">
         <div class="col-sm-3 col-xs-6 sm-margin-bottom-30">
             <!-- Blog Thumb v4 -->
             <div class="blog-thumb-v4">
                 <div class="blog-thumb-item">
                     <img class="img-responsive margin-bottom-10" src="assets/img/blog/img40.jpg" alt="">
-
                     <div class="center-wrap">
                         <div class="center-alignCenter">
                             <div class="center-body">
-                                <a href="https://player.vimeo.com/video/74197060"
-                                   class="fbox-modal fancybox.iframe video-play-btn"
-                                   title="What will fashion be like in 25 years?">
+                                <a href="https://player.vimeo.com/video/74197060" class="fbox-modal fancybox.iframe video-play-btn" title="What will fashion be like in 25 years?">
                                     <img class="video-play-btn" src="assets/img/icons/video-play.png" alt="">
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    <!--/end center wrap-->
+                    </div><!--/end center wrap-->
                 </div>
                 <h3><a href="blog_single.html">What will fashion be like in 25 years?</a></h3>
             </div>
@@ -678,7 +616,6 @@
             <!-- Blog Thumb v4 -->
             <div class="blog-thumb-v4">
                 <img class="img-responsive margin-bottom-10" src="assets/img/blog/img35.jpg" alt="">
-
                 <h3><a href="blog_single.html">Where will be your next destination</a></h3>
             </div>
             <!-- End Blog Thumb v4 -->
@@ -689,19 +626,15 @@
             <div class="blog-thumb-v4">
                 <div class="blog-thumb-item">
                     <img class="img-responsive margin-bottom-10" src="assets/img/blog/img43.jpg" alt="">
-
                     <div class="center-wrap">
                         <div class="center-alignCenter">
                             <div class="center-body">
-                                <a href="https://player.vimeo.com/video/74197060"
-                                   class="fbox-modal fancybox.iframe video-play-btn"
-                                   title="Suffering from gastritis? Here's the solution ....">
+                                <a href="https://player.vimeo.com/video/74197060" class="fbox-modal fancybox.iframe video-play-btn" title="Suffering from gastritis? Here's the solution ....">
                                     <img class="video-play-btn" src="assets/img/icons/video-play.png" alt="">
                                 </a>
                             </div>
                         </div>
-                    </div>
-                    <!--/end center wrap-->
+                    </div><!--/end center wrap-->
                 </div>
                 <h3><a href="blog_single.html">Suffering from gastritis? Here's the solution ....</a></h3>
             </div>
@@ -712,13 +645,11 @@
             <!-- Blog Thumb v4 -->
             <div class="blog-thumb-v4">
                 <img class="img-responsive margin-bottom-10" src="assets/img/blog/img41.jpg" alt="">
-
                 <h3><a href="blog_single.html">The places you must visit, before you die</a></h3>
             </div>
             <!-- End Blog Thumb v4 -->
         </div>
-    </div>
-    <!--/end row-->
+    </div><!--/end row-->
 </div>
 <!-- End Blog Thumb v4 -->
 
@@ -760,8 +691,7 @@
                     <li>Mar 6, 2015</li>
                     <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                 </ul>
-                <p> Sed ultrices velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta. Mauris
-                    iaculis nisl eu ipsum dapibus pretium.</p>
+                <p> Sed ultrices velit vitae tortor posuere ultrices. Aliquam laoreet lorem et vulputate porta. Mauris iaculis nisl eu ipsum dapibus pretium.</p>
                 <a class="r-more" href="blog_single.html">Read More</a>
             </div>
             <!-- End Blog Grid -->
@@ -777,8 +707,7 @@
                     </a>
                 </div>
                 <div class="blog-thumb-desc">
-                    <h3><a href="blog_single.html">You CAN be sensitive to gluten without having coeliac disease, study
-                        finds</a></h3>
+                    <h3><a href="blog_single.html">You CAN be sensitive to gluten without having coeliac disease, study finds</a></h3>
                     <ul class="blog-thumb-info">
                         <li>Mar 6, 2015</li>
                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -859,8 +788,7 @@
             </div>
             <!-- End Blog Thumb v2 -->
         </div>
-    </div>
-    <!--/end row-->
+    </div><!--/end row-->
 </div>
 <div class="tab-pane fade" id="tab-v4-b2">
     <div class="row">
@@ -879,8 +807,7 @@
                     <li>Mar 6, 2015</li>
                     <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                 </ul>
-                <p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi.
-                    Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem.</p>
+                <p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi. Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem.</p>
                 <a class="r-more" href="blog_single.html">Read More</a>
             </div>
             <!-- End Blog Grid -->
@@ -977,8 +904,7 @@
             </div>
             <!-- End Blog Thumb v2 -->
         </div>
-    </div>
-    <!--/end row-->
+    </div><!--/end row-->
 </div>
 <div class="tab-pane fade" id="tab-v4-b3">
     <div class="row">
@@ -997,8 +923,7 @@
                     <li>Mar 6, 2015</li>
                     <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                 </ul>
-                <p>Nulla gravida sit amet odio vel posuere. Proin maximus est diam, sed iaculis arcu ultrices sed.
-                    Quisque nisi diam, sodales sit amet diam ut, bibendum interdum metus.</p>
+                <p>Nulla gravida sit amet odio vel posuere. Proin maximus est diam, sed iaculis arcu ultrices sed. Quisque nisi diam, sodales sit amet diam ut, bibendum interdum metus.</p>
                 <a class="r-more" href="blog_single.html">Read More</a>
             </div>
             <!-- End Blog Grid -->
@@ -1086,8 +1011,7 @@
                     </a>
                 </div>
                 <div class="blog-thumb-desc">
-                    <h3><a href="blog_single.html">Contador confident before Tirreno-Adriatico showdown on
-                        Terminillo</a></h3>
+                    <h3><a href="blog_single.html">Contador confident before Tirreno-Adriatico showdown on Terminillo</a></h3>
                     <ul class="blog-thumb-info">
                         <li>Mar 6, 2015</li>
                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -1096,8 +1020,7 @@
             </div>
             <!-- End Blog Thumb v2 -->
         </div>
-    </div>
-    <!--/end row-->
+    </div><!--/end row-->
 </div>
 </div>
 <!-- End Tab Content -->
@@ -1113,7 +1036,6 @@
         <div class="col-sm-6 sm-margin-bottom-50">
             <div class="blog-grid">
                 <img class="img-responsive" src="assets/img/blog/img46.jpg" alt="">
-
                 <h3><a href="blog_single.html">9 Most visited Mountains in the world</a></h3>
                 <ul class="blog-grid-info">
                     <li>Richard Garner</li>
@@ -1125,7 +1047,6 @@
         <div class="col-sm-6">
             <div class="blog-grid">
                 <img class="img-responsive" src="assets/img/blog/img50.jpg" alt="">
-
                 <h3><a href="blog_single.html">10 Most beautiful beaches</a></h3>
                 <ul class="blog-grid-info">
                     <li>Richard Garner</li>
@@ -1134,8 +1055,7 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <!--/end row-->
+    </div><!--/end row-->
     <!-- End Blog Grid -->
 
     <!-- Blog Grid -->
@@ -1143,7 +1063,6 @@
         <div class="col-sm-6 sm-margin-bottom-50">
             <div class="blog-grid">
                 <img class="img-responsive" src="assets/img/blog/img42.jpg" alt="">
-
                 <h3><a href="blog_single.html">6 Facts about dogs</a></h3>
                 <ul class="blog-grid-info">
                     <li>Richard Garner</li>
@@ -1155,7 +1074,6 @@
         <div class="col-sm-6">
             <div class="blog-grid">
                 <img class="img-responsive" src="assets/img/blog/img49.jpg" alt="">
-
                 <h3><a href="blog_single.html">Why we love watermelon...</a></h3>
                 <ul class="blog-grid-info">
                     <li>Richard Garner</li>
@@ -1164,8 +1082,7 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <!--/end row-->
+    </div><!--/end row-->
     <!-- End Blog Grid -->
 
     <!-- Blog Grid -->
@@ -1173,7 +1090,6 @@
         <div class="col-sm-6 sm-margin-bottom-50">
             <div class="blog-grid">
                 <img class="img-responsive" src="assets/img/blog/img48.jpg" alt="">
-
                 <h3><a href="blog_single.html">5 Facts about Coca-Cola</a></h3>
                 <ul class="blog-grid-info">
                     <li>Richard Garner</li>
@@ -1185,7 +1101,6 @@
         <div class="col-sm-6">
             <div class="blog-grid">
                 <img class="img-responsive" src="assets/img/blog/img47.jpg" alt="">
-
                 <h3><a href="blog_single.html">7 tips of writing that you didn't know</a></h3>
                 <ul class="blog-grid-info">
                     <li>Richard Garner</li>
@@ -1194,8 +1109,7 @@
                 </ul>
             </div>
         </div>
-    </div>
-    <!--/end row-->
+    </div><!--/end row-->
     <!-- End Blog Grid -->
 </div>
 <!-- End Blog Grid -->
@@ -1232,8 +1146,7 @@
 
     <div class="blog-thumb-v3">
         <small><a href="#">Susie Lau</a></small>
-        <h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend for style
-            blogging</a></h3>
+        <h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend for style blogging</a></h3>
     </div>
 
     <hr class="hr-xs">
@@ -1402,16 +1315,14 @@
 
             <div class="blog-thumb-v3">
                 <small>Mar 9, 2015</small>
-                <h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend
-                    for style blogging</a></h3>
+                <h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend for style blogging</a></h3>
             </div>
 
             <hr class="hr-xs">
 
             <div class="blog-thumb-v3">
                 <small>Mar 12, 2015</small>
-                <h3><a href="#">How to run a country: A 10 point manifesto for leaders who stand – and want to
-                    deliver</a></h3>
+                <h3><a href="#">How to run a country: A 10 point manifesto for leaders who stand – and want to deliver</a></h3>
             </div>
 
             <hr class="hr-xs">
@@ -1448,14 +1359,12 @@
 <!-- Blog Carousel Heading -->
 <div class="blog-cars-heading">
     <h2>Popular Video</h2>
-
     <div class="owl-navigation">
         <div class="customNavigation">
             <a class="owl-btn prev-v4"><i class="fa fa-angle-left"></i></a>
             <a class="owl-btn next-v4"><i class="fa fa-angle-right"></i></a>
         </div>
-    </div>
-    <!--/navigation-->
+    </div><!--/navigation-->
 </div>
 <!-- End Blog Carousel Heading -->
 
@@ -1467,19 +1376,15 @@
             <img class="full-width" src="assets/img/video/img-video2.jpg" alt="">
             <span class="category-badge">Holiday</span>
             <span class="date-badge">Mar 6, 2015</span>
-
             <div class="center-wrap">
 								<span class="center-alignCenter">
 									<span class="center-body">
-										<a href="https://player.vimeo.com/video/74197060"
-                                           class="fbox-modal fancybox.iframe" title="At World's end">
-                                            <span><img class="video-play-btn" src="assets/img/icons/video-play.png"
-                                                       alt=""></span>
+										<a href="https://player.vimeo.com/video/74197060" class="fbox-modal fancybox.iframe" title="At World's end">
+                                            <span><img class="video-play-btn" src="assets/img/icons/video-play.png" alt=""></span>
                                         </a>
 									</span>
 								</span>
-            </div>
-            <!--/end center wrap-->
+            </div><!--/end center wrap-->
             <h4><a href="#">Most Beautiful Places</a></h4>
         </div>
     </div>
@@ -1491,19 +1396,15 @@
             <img class="full-width" src="assets/img/video/img-video1.jpg" alt="">
             <span class="category-badge">Science</span>
             <span class="date-badge">Mar 6, 2015</span>
-
             <div class="center-wrap">
 								<span class="center-alignCenter">
 									<span class="center-body">
-										<a href="http://player.vimeo.com/video/47911018"
-                                           class="fbox-modal fancybox.iframe" title="Existance a timeplase project">
-                                            <span><img class="video-play-btn" src="assets/img/icons/video-play.png"
-                                                       alt=""></span>
+										<a href="http://player.vimeo.com/video/47911018" class="fbox-modal fancybox.iframe" title="Existance a timeplase project">
+                                            <span><img class="video-play-btn" src="assets/img/icons/video-play.png" alt=""></span>
                                         </a>
 									</span>
 								</span>
-            </div>
-            <!--/end center wrap-->
+            </div><!--/end center wrap-->
             <h4><a href="#">Existance a timeplase project</a></h4>
         </div>
     </div>
@@ -1515,20 +1416,15 @@
             <img class="full-width" src="assets/img/video/img-video3.jpg" alt="">
             <span class="category-badge">Travel</span>
             <span class="date-badge">Mar 6, 2015</span>
-
             <div class="center-wrap">
 								<span class="center-alignCenter">
 									<span class="center-body">
-										<a href="http://player.vimeo.com/video/58226214"
-                                           class="fbox-modal fancybox.iframe"
-                                           title="Who are the 10 greatest living athletes in the UK?">
-                                            <span><img class="video-play-btn" src="assets/img/icons/video-play.png"
-                                                       alt=""></span>
+										<a href="http://player.vimeo.com/video/58226214" class="fbox-modal fancybox.iframe" title="Who are the 10 greatest living athletes in the UK?">
+                                            <span><img class="video-play-btn" src="assets/img/icons/video-play.png" alt=""></span>
                                         </a>
 									</span>
 								</span>
-            </div>
-            <!--/end center wrap-->
+            </div><!--/end center wrap-->
             <h4><a href="#">Who are the 10 greatest living athletes in the UK?</a></h4>
         </div>
     </div>
@@ -1543,48 +1439,40 @@
     <ul class="twitter-posts">
         <li>
             <img class="rounded-x" src="assets/img/thumb/img-thumb5.jpg" alt="">
-
             <div class="twitter-posts-in">
                 <strong>Dr.Cafee</strong>
                 <span><a href="#">@DrCafee</a></span>
                 <span>4h</span>
-
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 <a class="link" href="#">http://bit.ly/1c0UN3Y</a>
             </div>
         </li>
         <li>
             <img class="rounded-x" src="assets/img/thumb/img-thumb4.jpg" alt="">
-
             <div class="twitter-posts-in">
                 <strong>Jessi</strong>
                 <span><a href="#">@Jessi</a></span>
                 <span>5m</span>
-
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 <a class="link" href="#">http://bit.ly/1c0UN3Y</a>
             </div>
         </li>
         <li>
             <img class="rounded-x" src="assets/img/thumb/img-thumb6.jpg" alt="">
-
             <div class="twitter-posts-in">
                 <strong>PhotoStudio</strong>
                 <span><a href="#">@PS</a></span>
                 <span>7h</span>
-
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 <a class="link" href="#">http://bit.ly/1c0UN3Y</a>
             </div>
         </li>
         <li>
             <img class="rounded-x" src="assets/img/thumb/img-thumb7.jpg" alt="">
-
             <div class="twitter-posts-in">
                 <strong>Wrapbootstrap</strong>
                 <span><a href="#">@Wrapbootstrap</a></span>
                 <span>25m</span>
-
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 <a class="link" href="#">http://bit.ly/1c0UN3Y</a>
             </div>

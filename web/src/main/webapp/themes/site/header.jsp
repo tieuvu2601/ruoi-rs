@@ -6,7 +6,6 @@
         <div class="container">
             <form action="#">
                 <input type="text" class="form-control" placeholder="Search">
-
                 <div class="search-close"><i class="icon-close"></i></div>
             </form>
         </div>
@@ -41,12 +40,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin"
-                                                                                    href="javascript:void(0);">Login</a></strong>
-                    </li>
-                    <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup"
-                                                                                    href="javascript:void(0);">Register</a></strong>
-                    </li>
+                    <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Login</a></strong></li>
+                    <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Register</a></strong></li>
                 </ul>
             </div>
             <div class="col-sm-4 col-xs-4 clearfix">
@@ -56,9 +51,7 @@
                     <li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Register</a></li>
                 </ul>
             </div>
-        </div>
-        <!--/end row-->
-    </div>
-    <!--/end container-->
+        </div><!--/end row-->
+    </div><!--/end container-->
 </div>
 <!-- End Topbar blog -->

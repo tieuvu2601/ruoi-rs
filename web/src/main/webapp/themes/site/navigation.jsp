@@ -17,8 +17,7 @@
             <img src="assets/img/themes/logo-news-dark-default.png" alt="Logo">
         </a>
     </div>
-</div>
-<!--/end responsive container-->
+</div><!--/end responsive container-->
 
 <!-- Collect the nav links, forms, and other content for toggling -->
 <div class="collapse navbar-collapse navbar-responsive-collapse">
@@ -113,8 +112,7 @@
                                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-video-camera"></i></a>
                                 </div>
                                 <div class="blog-thumb-desc">
-                                    <h3><a href="blog_single.html">You CAN be sensitive to gluten without having coeliac
-                                        disease, study finds</a></h3>
+                                    <h3><a href="blog_single.html">You CAN be sensitive to gluten without having coeliac disease, study finds</a></h3>
                                     <ul class="blog-thumb-info">
                                         <li>Mar 6, 2015</li>
                                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -163,8 +161,7 @@
                                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
                                 </div>
                                 <div class="blog-thumb-desc">
-                                    <h3><a href="blog_single.html">Salted dessert recipes that walk the fine line
-                                        of...</a></h3>
+                                    <h3><a href="blog_single.html">Salted dessert recipes that walk the fine line of...</a></h3>
                                     <ul class="blog-thumb-info">
                                         <li>Mar 6, 2015</li>
                                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -180,8 +177,7 @@
                                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
                                 </div>
                                 <div class="blog-thumb-desc">
-                                    <h3><a href="blog_single.html">Why your next glass of orange juice will cost you
-                                        more</a></h3>
+                                    <h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
                                     <ul class="blog-thumb-info">
                                         <li>Mar 6, 2015</li>
                                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -197,8 +193,7 @@
                                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
                                 </div>
                                 <div class="blog-thumb-desc">
-                                    <h3><a href="blog_single.html">Why your next glass of orange juice will cost you
-                                        more</a></h3>
+                                    <h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
                                     <ul class="blog-thumb-info">
                                         <li>Mar 6, 2015</li>
                                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -241,9 +236,7 @@
                             <!-- Blog Grid -->
                             <div class="blog-grid">
                                 <img class="img-responsive" src="assets/img/blog/img9.jpg" alt="">
-
-                                <h3 class="blog-grid-title-sm"><a href="blog_single.html">Is this the end for fashion
-                                    police?</a></h3>
+                                <h3 class="blog-grid-title-sm"><a href="blog_single.html">Is this the end for fashion police?</a></h3>
                             </div>
                             <!-- End Blog Grid -->
                         </div>
@@ -271,8 +264,7 @@
                                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
                                 </div>
                                 <div class="blog-thumb-desc">
-                                    <h3><a href="blog_single.html">Minimalism gives way to embroidery and crystals as
-                                        Paris shows draw to a close</a></h3>
+                                    <h3><a href="blog_single.html">Minimalism gives way to embroidery and crystals as Paris shows draw to a close</a></h3>
                                     <ul class="blog-thumb-info">
                                         <li>Mar 6, 2015</li>
                                         <li><a href="blog_single.html"><i class="fa fa-comments"></i> 0</a></li>
@@ -288,8 +280,7 @@
                                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
                                 </div>
                                 <div class="blog-thumb-desc">
-                                    <h3><a href="blog_single.html">In bed with Cara Delevingne as she talks bags, boys
-                                        and bunnies</a></h3>
+                                    <h3><a href="blog_single.html">In bed with Cara Delevingne as she talks bags, boys and bunnies</a></h3>
                                     <ul class="blog-thumb-info">
                                         <li>Mar 6, 2015</li>
                                         <li><a href="blog_single.html"><i class="fa fa-comments"></i> 0</a></li>
@@ -389,9 +380,7 @@
                         <div class="col-md-4 md-margin-bottom-30">
                             <div class="blog-grid">
                                 <img class="img-responsive" src="assets/img/blog/img6.jpg" alt="">
-
-                                <h3 class="blog-grid-title-sm"><a href="blog_single.html">Malaika Firth tells all: 'I
-                                    met my boyfriend through Twitter'</a></h3>
+                                <h3 class="blog-grid-title-sm"><a href="blog_single.html">Malaika Firth tells all: 'I met my boyfriend through Twitter'</a></h3>
                             </div>
                         </div>
                         <div class="col-md-4 md-margin-bottom-30">
@@ -402,8 +391,7 @@
                                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-video-camera"></i></a>
                                 </div>
                                 <div class="blog-thumb-desc">
-                                    <h3><a href="blog_single.html">You CAN be sensitive to gluten without having coeliac
-                                        disease, study finds</a></h3>
+                                    <h3><a href="blog_single.html">You CAN be sensitive to gluten without having coeliac disease, study finds</a></h3>
                                     <ul class="blog-thumb-info">
                                         <li>Mar 6, 2015</li>
                                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -452,8 +440,7 @@
                                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-volume-up"></i></a>
                                 </div>
                                 <div class="blog-thumb-desc">
-                                    <h3><a href="blog_single.html">Salted dessert recipes that walk the fine line
-                                        of...</a></h3>
+                                    <h3><a href="blog_single.html">Salted dessert recipes that walk the fine line of...</a></h3>
                                     <ul class="blog-thumb-info">
                                         <li>Mar 6, 2015</li>
                                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -469,8 +456,7 @@
                                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
                                 </div>
                                 <div class="blog-thumb-desc">
-                                    <h3><a href="blog_single.html">Why your next glass of orange juice will cost you
-                                        more</a></h3>
+                                    <h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
                                     <ul class="blog-thumb-info">
                                         <li>Mar 6, 2015</li>
                                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -486,8 +472,7 @@
                                     <a class="hover-grad" href="blog_single.html"><i class="fa fa-photo"></i></a>
                                 </div>
                                 <div class="blog-thumb-desc">
-                                    <h3><a href="blog_single.html">Why your next glass of orange juice will cost you
-                                        more</a></h3>
+                                    <h3><a href="blog_single.html">Why your next glass of orange juice will cost you more</a></h3>
                                     <ul class="blog-thumb-info">
                                         <li>Mar 6, 2015</li>
                                         <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
@@ -517,31 +502,24 @@
                         <div class="col-sm-3 md-margin-bottom-30">
                             <div class="blog-grid">
                                 <img class="img-responsive" src="assets/img/blog/img1.jpg" alt="">
-
-                                <h3 class="blog-grid-title-sm"><a href="#">Learning as you're earning: The alternative
-                                    to a degree</a></h3>
+                                <h3 class="blog-grid-title-sm"><a href="#">Learning as you're earning: The alternative to a degree</a></h3>
                             </div>
                         </div>
                         <div class="col-sm-3 md-margin-bottom-30">
                             <div class="blog-grid">
                                 <img class="img-responsive" src="assets/img/blog/img11.jpg" alt="">
-
-                                <h3 class="blog-grid-title-sm"><a href="#">Universities found to offer ‘unlawful’ terms
-                                    to students</a></h3>
+                                <h3 class="blog-grid-title-sm"><a href="#">Universities found to offer ‘unlawful’ terms to students</a></h3>
                             </div>
                         </div>
                         <div class="col-sm-3 md-margin-bottom-30">
                             <div class="blog-grid">
                                 <img class="img-responsive" src="assets/img/blog/img10.jpg" alt="">
-
-                                <h3 class="blog-grid-title-sm"><a href="#">Harvard tops list of world university
-                                    rankings again</a></h3>
+                                <h3 class="blog-grid-title-sm"><a href="#">Harvard tops list of world university rankings again</a></h3>
                             </div>
                         </div>
                         <div class="col-sm-3 sm-margin-bottom-30">
                             <div class="blog-grid">
                                 <img class="img-responsive" src="assets/img/blog/img21.jpg" alt="">
-
                                 <h3 class="blog-grid-title-sm"><a href="#">New 5 star hotel in Sydney</a></h3>
                             </div>
                         </div>
@@ -554,14 +532,11 @@
 <!-- End Life -->
 
 <!-- Main Demo -->
-<li><a href="../index-2.html">Main Demo</a></li>
+<li><a href="http://htmlstream.com/preview/unify-v1.8/index.html">Main Demo</a></li>
 <!-- Main Demo -->
 </ul>
-</div>
-<!--/responsive container-->
-</div>
-<!--/navbar-collapse-->
-</div>
-<!--/end contaoner-->
+</div><!--/responsive container-->
+</div><!--/navbar-collapse-->
+</div><!--/end contaoner-->
 </div>
 <!-- End Navbar -->

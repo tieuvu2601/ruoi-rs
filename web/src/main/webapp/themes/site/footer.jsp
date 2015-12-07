@@ -5,19 +5,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-6 column-one md-margin-bottom-50">
-                    <a href="index.html"><img class="footer-logo" src="assets/img/themes/logo-news-light-default.png"
-                                              alt=""></a>
-
-                    <p class="margin-bottom-20">Unify is an ultra fully responsive template with modern and smart
-                        design.</p>
+                    <a href="index.html"><img class="footer-logo" src="assets/img/themes/logo-news-light-default.png" alt=""></a>
+                    <p class="margin-bottom-20">Unify is an ultra fully responsive template with modern and smart design.</p>
                     <span>Headquarters:</span>
-
                     <p>795 Folsom Ave, Suite 600, San Francisco, CA 94107</p>
                     <hr>
                     <span>Phone:</span>
-
                     <p>(+123) 456 7890</p>
-
                     <p>(+123) 456 7891</p>
                     <hr>
                     <span>Email Address:</span>
@@ -58,9 +52,7 @@
                     <!-- Latest News -->
                     <div class="latest-news margin-bottom-20">
                         <img src="assets/img/thumb/img-thumb1.jpg" alt="">
-
                         <h3><a href="#">Standard post with video.</a></h3>
-
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
 
@@ -68,9 +60,7 @@
 
                     <div class="latest-news margin-bottom-20">
                         <img src="assets/img/thumb/img-thumb2.jpg" alt="">
-
                         <h3><a href="#">Standard post with video.</a></h3>
-
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
 
@@ -78,9 +68,7 @@
 
                     <div class="latest-news">
                         <img src="assets/img/thumb/img-thumb3.jpg" alt="">
-
                         <h3><a href="#">Standard post with video.</a></h3>
-
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                     <!-- End Latest News -->
@@ -88,14 +76,11 @@
 
                 <div class="col-md-3 col-sm-6">
                     <h2>Newsletter</h2>
-
-                    <p><strong>Subscribe</strong> to our newsletter and stay up to date with the latest news and deals!
-                    </p><br>
+                    <p><strong>Subscribe</strong> to our newsletter and stay up to date with the latest news and deals!</p><br>
 
                     <!-- Form Group -->
                     <div class="input-group margin-bottom-50">
                         <input class="form-control" type="email" placeholder="Enter email">
-
                         <div class="input-group-btn">
                             <button type="button" class="btn-u input-btn">Subscribe</button>
                         </div>
@@ -103,9 +88,7 @@
                     <!-- End Form Group -->
 
                     <h2>Social Network</h2>
-
-                    <p><strong>Follow Us</strong> If you want to be kept up to date about what’s going on, minute by
-                        minute, then search for Grant and give us a follow!</p><br>
+                    <p><strong>Follow Us</strong> If you want to be kept up to date about what’s going on, minute by minute, then search for Grant and give us a follow!</p><br>
 
                     <!-- Social Icons -->
                     <ul class="social-icon-list margin-bottom-20">
@@ -117,10 +100,8 @@
                     </ul>
                     <!-- End Social Icons -->
                 </div>
-            </div>
-            <!--/end row-->
-        </div>
-        <!--/end container-->
+            </div><!--/end row-->
+        </div><!--/end container-->
     </footer>
 
     <footer class="copyright">
@@ -130,8 +111,7 @@
                 <li class="home"><a href="#">Terms of Use</a></li>
                 <li><a href="#">Privacy and Policy</a></li>
             </ul>
-        </div>
-        <!--/end container-->
+        </div><!--/end container-->
     </footer>
 </div>
 <!--=== End Footer v8 ===-->
