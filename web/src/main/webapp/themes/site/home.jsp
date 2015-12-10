@@ -7,7 +7,7 @@
 
 <!-- Mirrored from htmlstream.com/preview/unify-v1.8/Blog/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 06 Dec 2015 10:44:01 GMT -->
 <head>
-    <title>Unify - Responsive Website Template</title>
+    <title><fmt:message key="webapp.name"/>&trade;&nbsp;-&nbsp;<decorator:title/></title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -38,6 +38,10 @@
     <link rel="stylesheet" href="<c:url value="/themes/site/plugins/owl-carousel/owl-carousel/owl.carousel.css"/>">
     <link rel="stylesheet" href="<c:url value="/themes/site/plugins/master-slider/masterslider/style/masterslider.css"/>">
     <link rel="stylesheet" href="<c:url value="/themes/site/plugins/master-slider/masterslider/skins/default/style.css"/>">
+
+    <link rel="stylesheet" href="<c:url value="/themes/site/plugins/sky-forms-pro/skyforms/css/sky-forms.css"/>">
+    <link rel="stylesheet" href="<c:url value="/themes/site/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css"/>">
+    <link rel="stylesheet" href="<c:url value="/themes/site/plugins/login-signup-modal-window/css/style.css"/>">
 
     <!-- CSS Theme -->
     <link rel="stylesheet" href="<c:url value="/themes/site/css/theme-colors/green.css"/>">

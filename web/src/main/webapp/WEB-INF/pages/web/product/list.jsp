@@ -1,4 +1,9 @@
 <%@ include file="/common/taglibs.jsp"%>
+<head>
+    <title>Title of page!</title>
+    <meta name="description" content="must be revise after !!!!! ">
+</head>
+
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs breadcrumbs-light">
     <div class="container">
@@ -24,14 +29,14 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="blog-grid">
-                            <h3><a href="blog_single.html">New winter fashion style</a></h3>
+                            <h3><a href="<c:url value="/product/1${i}/product-title.html"/>">New winter fashion style</a></h3>
                             <ul class="blog-grid-info">
                                 <li>Evan Bartlett</li>
                                 <li>Mar 6, 2015</li>
                                 <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
                             </ul>
                             <p>Pellentesque turpis lacus, tempus et fermentum vitae, dignissim ornare purus. Nulla facilisi. Suspendisse potenti. Aenean vitae lacus lobortis lacus finibus volutpat eu nec sem. Sed ultrices velit vitae tortor posuere ultrices.</p>
-                            <a class="r-more" href="blog_single.html">Read More</a>
+                            <a class="r-more" href="<c:url value="/product/1${i}/product-title.html"/>">Read More</a>
                         </div>
                     </div>
                 </div>

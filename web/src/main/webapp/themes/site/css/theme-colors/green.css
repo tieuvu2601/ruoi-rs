@@ -1,160 +1,160 @@
 /*
 * Version: 1.8
-* Default Color: #72c02c;
+* Default Color: #019348;
 * Default Hover Color: #5fb611;
 # rgba(114,192,44, 1);
 */
 a {
-	color: #72c02c;
+	color: #019348;
 }
 a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .header-v8 .dropdown-menu {
-	border-top: solid 3px #72c02c;
+	border-top: solid 3px #019348;
 }
 .header-v8 .dropdown-menu .active > a,
 .header-v8 .dropdown-menu li > a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .header-v8 .navbar-nav .open .dropdown-menu > li > a:hover,
 .header-v8 .navbar-nav .open .dropdown-menu > li > a:focus {
-	color: #72c02c;
+	color: #019348;
 }
 .header-v8 .navbar-nav .open .dropdown-menu > .active > a,
 .header-v8 .navbar-nav .open .dropdown-menu > .active > a:hover,
 .header-v8 .navbar-nav .open .dropdown-menu > .active > a:focus {
-	color: #72c02c;
+	color: #019348;
 }
 
 .header-v8 .navbar-nav .open .dropdown-menu > .disabled > a,
 .header-v8 .navbar-nav .open .dropdown-menu > .disabled > a:hover,
 .header-v8 .navbar-nav .open .dropdown-menu > .disabled > a:focus {
-	color: #72c02c;
+	color: #019348;
 }
 .header-v8 .navbar-nav > li > a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .header-v8 .navbar-nav > .active > a,
 .header-v8 .navbar-nav > .active > a:hover,
 .header-v8 .navbar-nav > .active > a:focus {
-	color: #72c02c !important;
+	color: #019348 !important;
 }
 .header-v8 .mega-menu .mega-menu-fullwidth .dropdown-link-list li a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .footer-v8 .footer .column-one a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .footer-v8 .footer .tags-v4 a:hover {
-	border-color: #72c02c;
-	background-color: #72c02c;
+	border-color: #019348;
+	background-color: #019348;
 }
 .footer-v8 .footer .footer-lists li a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .footer-v8 .footer .latest-news h3 a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .footer-v8 .footer .input-group-btn .input-btn {
-	background: #72c02c;
+	background: #019348;
 }
 .footer-v8 .footer .social-icon-list li i:hover {
-	background: #72c02c;
-	border-color: #72c02c;
+	background: #019348;
+	border-color: #019348;
 }
 .blog-slider span.blog-slider-badge {
-	background: #72c02c;
+	background: #019348;
 }
 .blog-slider .blog-slider-title h2 a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-ms-v2 .ms-thumb-frame-selected .ms-thumb h3 {
-	color: #72c02c;
+	color: #019348;
 }
 .tab-v4 .tab-heading h2 {
-	color: #72c02c;
+	color: #019348;
 }
 .title-v4 {
-	color: #72c02c;
+	color: #019348;
 }
 .tab-v4 .nav-tabs > .active > a,
 .tab-v4 .nav-tabs > .active > a:hover,
 .tab-v4 .nav-tabs > .active > a:focus {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-grid h3 a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-grid .blog-grid-info li a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-grid a.r-more {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-grid a.r-more {
-	border-bottom: 1px solid #72c02c;
+	border-bottom: 1px solid #019348;
 }
 .blog-thumb .blog-thumb-desc h3 a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-thumb .blog-thumb-info li a:hover {
-	color: #72c02c;
+	color: #019348;
 	text-decoration: none;
 }
 .tab-v5 .nav-tabs li.active a {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-thumb-v3 h3 a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-video span.category-badge {
-	background: #72c02c;
+	background: #019348;
 }
 .twitter-posts .twitter-posts-in a.link {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-social-shares li a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .tab-v4 .nav-tabs > li > a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-cars-heading .owl-navigation .owl-btn:focus,
 .blog-cars-heading .owl-navigation .owl-btn:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-cars-heading h2 {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-thumb-v4 h3 a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-thumb-v2 .blog-thumb-desc h3 a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-thumb-v2 .blog-thumb-info li a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .breadcrumb li.active,
 .breadcrumb li a:hover {
-	color: #72c02c;
+	color: #019348;
 }
 .single-page-quote:after {
-	background: #72c02c;
+	background: #019348;
 }
 .single-page-quote p {
-	color: #72c02c;
+	color: #019348;
 }
 .source-list li a {
-	color: #72c02c;
+	color: #019348;
 }
 .blog-grid-tags li a:hover {
-	background: #72c02c;
+	background: #019348;
 }
 
 .btn-u.btn-u-default {
-	background: #72c02c;
+	background: #019348;
 }
 .btn-u.btn-u-default:hover,
 .btn-u.btn-u-default:focus,

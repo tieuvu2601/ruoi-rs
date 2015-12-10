@@ -4,3 +4,11 @@
     padding-left: 10px;
     margin-left: 10px;
 }
+
+.tab-v3 .nav-pills li a{
+    font-size: 14px;
+}
+
+.blog-grid-inner {
+    border: 2px solid #019348;
+}
