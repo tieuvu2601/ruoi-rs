@@ -1,1 +1,6 @@
 /* Add here all your css styles (customizations) */
+.blog-cars-heading small {
+    border-left: 2px solid;
+    padding-left: 10px;
+    margin-left: 10px;
+}

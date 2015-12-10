@@ -459,7 +459,8 @@
 
             <!-- Blog Carousel Heading -->
             <div class="blog-cars-heading">
-                <h2>CAN HO</h2>
+                <a href="<c:url value="/products/1/category.html"/>"><h2>CAN HO<small>(10 Products)</small></h2></a>
+
                 <div class="owl-navigation">
                     <div class="customNavigation">
                         <a class="owl-btn prev-v3 btn-prev-v1"><i class="fa fa-angle-left"></i></a>
@@ -474,7 +475,7 @@
                 <c:forEach var="idx" begin="0" end="5">
                     <!-- Blog Grid -->
                     <div class="row margin-bottom-50">
-                        <div class="col-sm-6 sm-margin-bottom-50">
+                        <div class="col-sm-4 sm-margin-bottom-50">
                             <div class="blog-grid">
                                 <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img46.jpg"/>" alt="">
 
@@ -486,7 +487,19 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
+                            <div class="blog-grid">
+                                <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img50.jpg"/>" alt="">
+
+                                <h3><a href="blog_single.html">10 Most beautiful beaches so ${idx}</a></h3>
+                                <ul class="blog-grid-info">
+                                    <li>Richard Garner</li>
+                                    <li>Mar 6, 2015</li>
+                                    <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
                             <div class="blog-grid">
                                 <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img50.jpg"/>" alt="">
 
@@ -509,7 +522,7 @@
 
             <!-- Blog Carousel Heading -->
             <div class="blog-cars-heading">
-                <h2>SHOP HOUSE & OFFICETEL</h2>
+                <a href="<c:url value="/products/1/category.html"/>"><h2>SHOP HOUSE & OFFICETEL<small>(10 Products)</small></h2></a>
                 <div class="owl-navigation">
                     <div class="customNavigation">
                         <a class="owl-btn prev-v3 btn-prev-v2"><i class="fa fa-angle-left"></i></a>
@@ -559,7 +572,7 @@
 
             <!-- Blog Carousel Heading -->
             <div class="blog-cars-heading">
-                <h2>DAT NEN</h2>
+                <a href="<c:url value="/products/1/category.html"/>"><h2>DAT NEN<small>(10 Products)</small></h2></a>
                 <div class="owl-navigation">
                     <div class="customNavigation">
                         <a class="owl-btn prev-v3 btn-prev-v3"><i class="fa fa-angle-left"></i></a>
