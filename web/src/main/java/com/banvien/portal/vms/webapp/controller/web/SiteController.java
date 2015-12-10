@@ -29,4 +29,18 @@ public class SiteController extends ApplicationObjectSupport {
 
         return mav;
     }
+
+    @RequestMapping(value = "/news/list.html")
+    public ModelAndView viewNews(){
+        ModelAndView mav = new ModelAndView("/web/news/list");
+
+        return mav;
+    }
+
+    @RequestMapping(value = "/news/{newId}/{newTitle}.html")
+    public ModelAndView viewNew(@PathVariable(value = "newId")Long newId, @PathVariable(value = "newTitle")String newTitle){
+        ModelAndView mav = new ModelAndView("/web/news/view");
+
+        return mav;
+    }
 }

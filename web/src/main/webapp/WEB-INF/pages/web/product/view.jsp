@@ -305,7 +305,7 @@
 
 <!-- Blog Thumb v4 -->
 <div class="margin-bottom-50">
-    <h2 class="title-v4">Related Posts</h2>
+    <h2 class="title-v4">Related Product</h2>
     <div class="row margin-bottom-50">
         <c:forEach var="idx" begin="1" end="8">
             <div class="col-sm-3 col-xs-6 sm-margin-bottom-30">

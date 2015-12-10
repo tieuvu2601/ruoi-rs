@@ -22,7 +22,7 @@ var OwlCarousel = function () {
                 itemsDesktopSmall : [900,1],
                 itemsTablet: [600,1],
                 itemsMobile : [479,1],
-                slideSpeed: 700
+                slideSpeed: 12000
             });
             jQuery(".btn-next-v1").click(function(){ owl_v1.trigger('owl.next');})
             jQuery(".btn-prev-v1").click(function(){ owl_v1.trigger('owl.prev');});
@@ -33,7 +33,7 @@ var OwlCarousel = function () {
                 itemsDesktopSmall : [900,1],
                 itemsTablet: [600,1],
                 itemsMobile : [479,1],
-                slideSpeed: 700
+                slideSpeed: 12000
             });
             jQuery(".btn-next-v2").click(function(){ owl_v2.trigger('owl.next');})
             jQuery(".btn-prev-v2").click(function(){ owl_v2.trigger('owl.prev');});
@@ -44,7 +44,7 @@ var OwlCarousel = function () {
                 itemsDesktopSmall : [900,1],
                 itemsTablet: [600,1],
                 itemsMobile : [479,1],
-                slideSpeed: 700
+                slideSpeed: 12000
             });
             jQuery(".btn-next-v3").click(function(){ owl_v3.trigger('owl.next');})
             jQuery(".btn-prev-v3").click(function(){ owl_v3.trigger('owl.prev');});
@@ -60,7 +60,7 @@ var OwlCarousel = function () {
                 itemsDesktopSmall : [900,1],
                 itemsTablet: [600,1],
                 itemsMobile : [479,1],
-                slideSpeed: 700
+                slideSpeed: 12000
             });
             jQuery(".next-v4").click(function(){
                 owl.trigger('owl.next');
