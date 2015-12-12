@@ -27,12 +27,25 @@
                         <a href="<c:url value="/index.html"/>">HOME</a>
                     </li>
                     <content:getBuildingMenu var="menuItems"/>
-                    <oscache:cache key="menu_items_top_menu" duration="3600">
+                    <oscache:cache key="menu_items_top_menu" duration="1">
                         <c:forEach var="menuItem" items="${menuItems}">
-                            <li class="">
-                                <seo:url value="${menuItem.code}" var="menuUrl" prefix="/${menuItem.prefixUrl}"/>
-                                <a href="${menuUrl}">${menuItem.name}</a>
-                            </li>
+                            <c:choose>
+                                <c:when test="${menuItem.children != null && fn:length(menuItem.children) > 0}">
+                                    <li class="dropdown home active">
+                                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">${menuItem.name}</a>
+                                        <ul class="dropdown-menu">
+                                            <c:forEach var="child" items="${menuItem.children}">
+                                                <seo:url value="${child.code}" var="menuUrl" prefix="/${child.prefixUrl}/"/>
+                                                <li><a href="${menuUrl}">${child.name}</a></li>
+                                            </c:forEach>
+                                        </ul>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <seo:url value="${menuItem.code}" var="menuUrl" prefix="/${menuItem.prefixUrl}/"/>
+                                        <li><a href="${menuUrl}">${menuItem.name}</a></li>
+                                </c:otherwise>
+                            </c:choose>
                         </c:forEach>
                     </oscache:cache>
                 </ul>

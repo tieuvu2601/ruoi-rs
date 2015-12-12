@@ -84,18 +84,10 @@ public class CategoryUtil {
     }
 
     public static List<CategoryObjectDTO> getListChildren(List<CategoryEntity> categories, List<CategoryObjectDTO> returnList, Integer nodeLevel, CategoryObjectDTO parent) {
+
         Integer currentNodeLevel = nodeLevel + 1;
         for(CategoryEntity children : categories){
             CategoryObjectDTO categoryObjectDTO = bindCategoryToCategoryObject(children, currentNodeLevel, parent);
-            Integer numberOfChildren = 0;
-            if(children.getChildren() != null && children.getChildren().size() > 0){
-                for(CategoryEntity chid : children.getChildren()){
-                    if(chid.getDisplayOrder() != null && chid.getDisplayOrder() > 0){
-                        numberOfChildren += 1;
-                    }
-                }
-            }
-            categoryObjectDTO.setChildrenSize(numberOfChildren);
             returnList.add(categoryObjectDTO);
             if(children.getChildren() != null && children.getChildren().size() > 0){
                 getListChildren(children.getChildren(), returnList, currentNodeLevel, categoryObjectDTO);
@@ -111,11 +103,6 @@ public class CategoryUtil {
         categoryObjectDTO.setName(categoryEntity.getName());
         categoryObjectDTO.setNodeLevel(nodeLevel);
         categoryObjectDTO.setPrefixUrl(categoryEntity.getPrefixUrl());
-        if(categoryEntity.getChildren() != null && categoryEntity.getChildren().size() > 0){
-            categoryObjectDTO.setChildrenSize(categoryEntity.getChildren().size());
-        } else {
-            categoryObjectDTO.setChildrenSize(0);
-        }
         if(parent != null && parent.getCategoryId() != null && parent.getCategoryId() > 0){
             categoryObjectDTO.setParent(parent);
         } else {

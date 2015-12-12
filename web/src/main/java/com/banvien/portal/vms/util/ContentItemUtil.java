@@ -1,5 +1,7 @@
 package com.banvien.portal.vms.util;
 
+import com.banvien.portal.vms.domain.CategoryEntity;
+import com.banvien.portal.vms.dto.CategoryObjectDTO;
 import com.banvien.portal.vms.exception.InvalidXMLException;
 import com.banvien.portal.vms.xml.contentitem.ContentItem;
 import org.apache.xml.serialize.OutputFormat;
@@ -14,6 +16,8 @@ import javax.xml.validation.SchemaFactory;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ban Vien Ltd.

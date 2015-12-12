@@ -9,8 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SiteController extends ApplicationObjectSupport {
 
-    @RequestMapping(value = "/products/{productTypeId}/{productType}.html")
-    public ModelAndView viewProducts(@PathVariable(value = "productTypeId")Long productTypeId, @PathVariable(value = "productType")String productType){
+    @RequestMapping(value = "/products/{categoryCode}.html")
+    public ModelAndView viewProducts(@PathVariable(value = "categoryCode")String categoryCode){
         ModelAndView mav = new ModelAndView("/web/product/list");
 //        try{
 //            title = convertUrlToCategoryCode(title);
@@ -30,7 +30,7 @@ public class SiteController extends ApplicationObjectSupport {
         return mav;
     }
 
-    @RequestMapping(value = "/news/list.html")
+    @RequestMapping(value = "/news/{categoryCode}.html")
     public ModelAndView viewNews(){
         ModelAndView mav = new ModelAndView("/web/news/list");
 

@@ -12,8 +12,6 @@
         Content Tag Lib
     </info>
 
-
-
     <tag>
         <name>getLocale</name>
         <tagclass>com.banvien.portal.vms.taglibs.contents.LocaleTagLib</tagclass>

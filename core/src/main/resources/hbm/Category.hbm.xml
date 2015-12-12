@@ -27,7 +27,7 @@
 
         <many-to-one name="parent" column="ParentID"/>
 
-        <bag name="children" table="PortalCategory" inverse="true" cascade="all-delete-orphan" lazy="false" >
+        <bag name="children" table="Category" inverse="true" cascade="all-delete-orphan" lazy="false" >
             <key column="ParentID"/>
             <many-to-many column="CategoryID" order-by="displayOrder" class="com.banvien.portal.vms.domain.CategoryEntity"/>
         </bag>

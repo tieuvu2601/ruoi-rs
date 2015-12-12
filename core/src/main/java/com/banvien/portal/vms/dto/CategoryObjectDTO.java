@@ -17,10 +17,6 @@ public class CategoryObjectDTO {
 
     private CategoryObjectDTO parent;
 
-    private Integer childrenSize;
-
-    private AuthoringTemplateEntity authoringTemplateEntity;
-
     public Long getCategoryId() {
         return categoryId;
     }
@@ -45,20 +41,12 @@ public class CategoryObjectDTO {
         this.name = name;
     }
 
-    public CategoryObjectDTO getParent() {
-        return parent;
+    public String getPrefixUrl() {
+        return prefixUrl;
     }
 
-    public void setParent(CategoryObjectDTO parent) {
-        this.parent = parent;
-    }
-
-    public AuthoringTemplateEntity getAuthoringTemplateEntity() {
-        return authoringTemplateEntity;
-    }
-
-    public void setAuthoringTemplateEntity(AuthoringTemplateEntity authoringTemplateEntity) {
-        this.authoringTemplateEntity = authoringTemplateEntity;
+    public void setPrefixUrl(String prefixUrl) {
+        this.prefixUrl = prefixUrl;
     }
 
     public Integer getNodeLevel() {
@@ -69,27 +57,19 @@ public class CategoryObjectDTO {
         this.nodeLevel = nodeLevel;
     }
 
-    public String getPrefixUrl() {
-        return prefixUrl;
-    }
-
-    public void setPrefixUrl(String prefixUrl) {
-        this.prefixUrl = prefixUrl;
-    }
-
-    public Integer getChildrenSize() {
-        return childrenSize;
-    }
-
-    public void setChildrenSize(Integer childrenSize) {
-        this.childrenSize = childrenSize;
-    }
-
     public Integer getDisplayOrder() {
         return displayOrder;
     }
 
     public void setDisplayOrder(Integer displayOrder) {
         this.displayOrder = displayOrder;
+    }
+
+    public CategoryObjectDTO getParent() {
+        return parent;
+    }
+
+    public void setParent(CategoryObjectDTO parent) {
+        this.parent = parent;
     }
 }
