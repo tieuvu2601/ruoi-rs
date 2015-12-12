@@ -103,8 +103,4 @@
         <property name="noOfDateTracking" value="${no.of.date.tracking}"/>
         <property name="contentDAO" ref="contentDAO"/>
     </bean>
-
-    <bean id="pageViewBean" class="com.banvien.portal.vms.filter.PageViewFilter">
-        <!--<property name="trackingService" ref="trackingService"/>-->
-    </bean>
 </beans>

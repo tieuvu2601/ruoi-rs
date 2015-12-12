@@ -82,14 +82,14 @@
 		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
 	</filter>
 
-    <filter>
-        <filter-name>pageViewFilter</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-        <init-param>
-            <param-name>targetBeanName</param-name>
-            <param-value>pageViewBean</param-value>
-        </init-param>
-    </filter>
+    <!--<filter>-->
+        <!--<filter-name>pageViewFilter</filter-name>-->
+        <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+        <!--<init-param>-->
+            <!--<param-name>targetBeanName</param-name>-->
+            <!--<param-value>pageViewBean</param-value>-->
+        <!--</init-param>-->
+    <!--</filter>-->
 
     <filter-mapping>
         <filter-name>lazyLoadingFilter</filter-name>
@@ -120,14 +120,6 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-
-    <filter-mapping>
-        <filter-name>pageViewFilter</filter-name>
-        <url-pattern>/detail.html</url-pattern>
-        <dispatcher>FORWARD</dispatcher>
-    </filter-mapping>
-
-
 
     <filter>
 	    <filter-name>cacheFilter</filter-name>
