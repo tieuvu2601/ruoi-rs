@@ -33,6 +33,7 @@
                 <value>hbm/UserRole.hbm.xml</value>
                 <value>hbm/AuthoringTemplate.hbm.xml</value>
                 <value>hbm/CategoryType.hbm.xml</value>
+                <value>hbm/Location.hbm.xml</value>
                 <value>hbm/Category.hbm.xml</value>
                 <value>hbm/Content.hbm.xml</value>
             </list>
@@ -78,6 +79,10 @@
 	</bean>
 
     <bean id="categoryTypeDAO" class="com.banvien.portal.vms.dao.impl.CategoryTypeHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="locationDAO" class="com.banvien.portal.vms.dao.impl.LocationHibernateDAO">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 

@@ -1417,11 +1417,11 @@ if ( typeof Object.create !== "function" ) {
 		singleItem : false,
 		itemsScaleUp : false,
 
-		slideSpeed : 12000,
+		slideSpeed : 700,
 		paginationSpeed : 800,
 		rewindSpeed : 1000,
 
-		autoPlay : true,
+		autoPlay : 7000, // set time to play
 		stopOnHover : true,
 
 		navigation : false,

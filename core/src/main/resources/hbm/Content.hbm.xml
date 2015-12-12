@@ -17,11 +17,17 @@
 
         <property name="keyword" column="Keyword"/>
 
-        <property name="location" column="Location"/>
+        <many-to-one name="locationContent" column="LocationID"/>
 
-        <property name="displayOrder" column="DisplayOrder"/>
+        <property name="locationText" column="Location"/>
 
         <property name="xmlData" column="XmlData"/>
+
+        <property name="hotItem" column="HotItem"/>
+
+        <property name="slide" column="Slide"/>
+
+        <property name="displayOrder" column="DisplayOrder"/>
 
         <property name="thumbnails" column="Thumbnails"/>
 

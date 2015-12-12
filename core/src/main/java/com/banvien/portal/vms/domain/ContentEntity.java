@@ -10,7 +10,10 @@ public class ContentEntity implements Serializable {
     private AuthoringTemplateEntity authoringTemplate;
     private String title;
     private String keyword;
-    private String location;
+    private Integer hotItem;
+    private Integer slide;
+    private String locationText;
+    private LocationEntity location;
     private Integer displayOrder;
     private String xmlData;
     private String thumbnails;
@@ -38,6 +41,14 @@ public class ContentEntity implements Serializable {
         this.category = category;
     }
 
+    public CategoryTypeEntity getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(CategoryTypeEntity categoryType) {
+        this.categoryType = categoryType;
+    }
+
     public AuthoringTemplateEntity getAuthoringTemplate() {
         return authoringTemplate;
     }
@@ -62,11 +73,35 @@ public class ContentEntity implements Serializable {
         this.keyword = keyword;
     }
 
-    public String getLocation() {
+    public Integer getHotItem() {
+        return hotItem;
+    }
+
+    public void setHotItem(Integer hotItem) {
+        this.hotItem = hotItem;
+    }
+
+    public Integer getSlide() {
+        return slide;
+    }
+
+    public void setSlide(Integer slide) {
+        this.slide = slide;
+    }
+
+    public String getLocationText() {
+        return locationText;
+    }
+
+    public void setLocationText(String locationText) {
+        this.locationText = locationText;
+    }
+
+    public LocationEntity getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(LocationEntity location) {
         this.location = location;
     }
 
@@ -148,13 +183,5 @@ public class ContentEntity implements Serializable {
 
     public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
-    }
-
-    public CategoryTypeEntity getCategoryType() {
-        return categoryType;
-    }
-
-    public void setCategoryType(CategoryTypeEntity categoryType) {
-        this.categoryType = categoryType;
     }
 }
