@@ -17,7 +17,7 @@
 
         <property name="keyword" column="Keyword"/>
 
-        <many-to-one name="locationContent" column="LocationID"/>
+        <many-to-one name="location" column="LocationID"/>
 
         <property name="locationText" column="Location"/>
 
