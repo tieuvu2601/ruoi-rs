@@ -9,6 +9,7 @@
             <li><a class="first" href="<c:url value="/admin/authoringtemplate/list.html"/>"><span class="nav-label"><fmt:message key="menu.authoring.template"/></span></a></li>
             <li><a class="first" href="<c:url value="/admin/category-type/list.html"/>" ><span class="nav-label"><fmt:message key="menu.category.type"/></span></a></li>
             <li><a class="first" href="<c:url value="/admin/category/list.html"/>"><span class="nav-label"><fmt:message key="menu.category"/></span></a></li>
+            <li><a class="first" href="<c:url value="/admin/location/list.html"/>"><span class="nav-label"><fmt:message key="menu.location"/></span></a></li>
             <li><a class="first" href="<c:url value="/admin/content/list.html"/>"><span class="nav-label"><fmt:message key="menu.content"/></span></a></li>
         </ul>
     </div>

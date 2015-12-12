@@ -13,6 +13,8 @@
 
         <property name="name" column="Name"/>
 
+        <property name="unit" column="Unit"/>
+
 		<property name="description" column="Description"/>
 
         <property name="displayOrder" column="DisplayOrder"/>

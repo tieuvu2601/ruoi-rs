@@ -8,6 +8,7 @@ public class CategoryTypeEntity implements Serializable {
     private Long categoryTypeId;
     private String code;
     private String name;
+    private String unit;
     private String description;
     private Integer displayOrder;
     private Timestamp createdDate;
@@ -67,5 +68,13 @@ public class CategoryTypeEntity implements Serializable {
 
     public void setModifiedDate(Timestamp modifiedDate) {
         this.modifiedDate = modifiedDate;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }
