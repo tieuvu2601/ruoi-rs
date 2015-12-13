@@ -120,7 +120,7 @@ window.onload = function() {
                                 <div class="col-sm-8">
                                     <label class="col-sm-12 control-label text-default">${authoringTemplate.name}</label>
 
-                                    <input type="hidden" name="pojo.authoringTemplate" value="${item.pojo.authoringTemplate.authoringTemplateID}" id="pojo_authoringTemplate"/>
+                                    <input type="hidden" name="pojo.authoringTemplate" value="${item.pojo.authoringTemplate.authoringTemplateId}" id="pojo_authoringTemplate"/>
                                     <form:hidden path="authoringTemplateId" id="authoringTemplateId"/>
                                 </div>
                             </div>
@@ -157,18 +157,16 @@ window.onload = function() {
                             </div>
 
 
-                            <c:if test="${authoringTemplate.event == 'Y'}">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.event"/></label>
-                                    <div class="col-sm-5">
-                                        <div class="input-daterange input-group" id="contentEvent">
-                                            <input name="pojo.beginDate" class="input-sm form-control" id="beginDate" value="<fmt:formatDate value="${item.pojo.beginDate}" pattern="dd-mm-yyyy"/>"/>
-                                            <span class="input-group-addon">to</span>
-                                            <input name="pojo.endDate" class="input-sm form-control" id="endDate" value="<fmt:formatDate value="${item.pojo.endDate}" pattern="dd-mm-yyyy"/>"/>
-                                        </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="content.event"/></label>
+                                <div class="col-sm-5">
+                                    <div class="input-daterange input-group" id="contentEvent">
+                                        <input name="pojo.beginDate" class="input-sm form-control" id="beginDate" value="<fmt:formatDate value="${item.pojo.beginDate}" pattern="dd-mm-yyyy"/>"/>
+                                        <span class="input-group-addon">to</span>
+                                        <input name="pojo.endDate" class="input-sm form-control" id="endDate" value="<fmt:formatDate value="${item.pojo.endDate}" pattern="dd-mm-yyyy"/>"/>
                                     </div>
                                 </div>
-                            </c:if>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-2">

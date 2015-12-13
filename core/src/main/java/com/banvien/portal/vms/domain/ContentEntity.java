@@ -10,6 +10,7 @@ public class ContentEntity implements Serializable {
     private AuthoringTemplateEntity authoringTemplate;
     private String title;
     private String keyword;
+    private Integer cost;
     private Integer hotItem;
     private Integer slide;
     private String locationText;
@@ -183,5 +184,13 @@ public class ContentEntity implements Serializable {
 
     public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
     }
 }

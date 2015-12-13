@@ -20,18 +20,13 @@ public class ContentBean extends AbstractBean<ContentEntity> {
 
     private Long categoryId;
 
-    private Long[] categoryIDs;
-
-    private Long[] departmentIDs;
-
     private Map<Long, Boolean> contentPublishedMap;
     
     private Map<String, List<String>> oldNodeAttachementValues;
     
     private List<String> deletedAttchments;
 
-    public ContentBean()
-    {
+    public ContentBean(){
         this.pojo = new ContentEntity();
     }
 
@@ -75,14 +70,6 @@ public class ContentBean extends AbstractBean<ContentEntity> {
         this.contentItem = contentItem;
     }
 
-    public Long[] getCategoryIDs() {
-        return categoryIDs;
-    }
-
-    public void setCategoryIDs(Long[] categoryIDs) {
-        this.categoryIDs = categoryIDs;
-    }
-
 	public Map<Long, Boolean> getContentPublishedMap() {
 		return contentPublishedMap;
 	}
@@ -115,12 +102,4 @@ public class ContentBean extends AbstractBean<ContentEntity> {
 	public void setDeletedAttchments(List<String> deletedAttchments) {
 		this.deletedAttchments = deletedAttchments;
 	}
-
-    public Long[] getDepartmentIDs() {
-        return departmentIDs;
-    }
-
-    public void setDepartmentIDs(Long[] departmentIDs) {
-        this.departmentIDs = departmentIDs;
-    }
 }

@@ -86,6 +86,13 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="authoring.template.are.product"/></label>
+                                <div class="col-sm-8">
+                                    <form:checkbox path="pojo.areProduct" value="1"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-2">
                                     <a id="btnSave" class="btn w-xs btn-primary"><fmt:message key="button.save"/></a>
                                     <a href="${backUrl}"class="btn w-xs btn-default"><fmt:message key="button.back"/></a>

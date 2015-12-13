@@ -9,6 +9,7 @@ public class AuthoringTemplateEntity implements Serializable {
     private String code;
     private String name;
     private String templateContent;
+    private Integer areProduct;
     private Timestamp createdDate;
     private Timestamp modifiedDate;
 
@@ -42,6 +43,14 @@ public class AuthoringTemplateEntity implements Serializable {
 
     public void setTemplateContent(String templateContent) {
         this.templateContent = templateContent;
+    }
+
+    public Integer getAreProduct() {
+        return areProduct;
+    }
+
+    public void setAreProduct(Integer areProduct) {
+        this.areProduct = areProduct;
     }
 
     public Timestamp getCreatedDate() {

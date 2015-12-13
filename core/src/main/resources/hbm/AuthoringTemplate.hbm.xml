@@ -12,6 +12,8 @@
 
         <property name="name" column="Name"/>
 
+        <property name="areProduct" column="AreProduct"/>
+
         <property name="templateContent" column="TemplateContent"/>
 
 		<property name="createdDate" column="CreatedDate"/>

@@ -35,6 +35,9 @@ public class AuthoringTemplateValidator extends ApplicationObjectSupport impleme
     private void validateRequiredValues(AuthoringTemplateBean bean, Errors errors){
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.code", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("authoringtemplate.code")}, "non-empty value required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.name", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("authoringtemplate.name")}, "non-empty value required.");
+        if(bean.getPojo().getAreProduct() == null){
+            bean.getPojo().setAreProduct(0);
+        }
     }
 
     private void trimminField(AuthoringTemplateBean bean){

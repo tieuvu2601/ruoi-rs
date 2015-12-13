@@ -17,6 +17,8 @@
 
         <property name="keyword" column="Keyword"/>
 
+        <property name="cost" column="Cost"/>
+
         <many-to-one name="location" column="LocationID"/>
 
         <property name="locationText" column="Location"/>

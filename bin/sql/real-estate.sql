@@ -147,7 +147,7 @@ CREATE TABLE Content (
 );
 
 
-ALTER TABLE CATEGORYTYPE ADD COLUMN Unit VARCHAR(100);
+ALTER TABLE CategoryType ADD COLUMN Unit VARCHAR(100);
 -- CLEAR DATA --
 
 
@@ -165,3 +165,40 @@ DROP TABLE IF EXISTS UserGroup;
 INSERT INTO UserGroup(Code, Name, Description, CreatedDate) VALUES ('Administrator', 'Administrator', 'Administrator', NOW());
 INSERT INTO Users(Username, Password, Email, FirstName, LastName, DisplayName, MobileNumber, Status, UserGroupID, CreatedDate, FullAccess)
 VALUES ('admin', '123456', 'khanh.tran@hoanghacgroup.com', 'Administrator', 'Administrator', 'Administrator', '000000000', 1, 1, NOW(), 1);
+
+ALTER TABLE AuthoringTemplate ADD COLUMN AreProduct INTEGER;
+ALTER TABLE Content ADD COLUMN Cost INTEGER;
+
+
+Product
+
+
+isProduct : show (
+    location,
+    LocationID,
+    HotItem,
+    Cost,
+    ProductStatus
+
+)
+
+-- ContentID bigint(20) NOT NULL AUTO_INCREMENT,
+--   CategoryID bigint(20) NOT NULL,
+--   CategoryTypeID bigint(20) NOT NULL,
+--   AuthoringTemplateID bigint(20) DEFAULT NULL,
+--   Title VARCHAR(255) NOT NULL,
+--   Keyword VARCHAR(255),
+--   Location VARCHAR(255),
+--   LocationID BIGINT NOT NULL,
+--   HotItem TINYINT(1) DEFAULT 0,
+--   Slide TINYINT(1) DEFAULT 0,
+--   DisplayOrder int(11) DEFAULT 1,
+--   XmlData text,
+--   Thumbnails VARCHAR(255),
+--   BeginDate TIMESTAMP,
+--   EndDate TIMESTAMP,
+--   CreatedDate TIMESTAMP NOT NULL,
+--   ModifiedDate TIMESTAMP,
+--   Status int(11) NOT NULL DEFAULT 0,
+--   PublishedDate TIMESTAMP,
+--   CreatedBy bigint(20) NOT NULL,
