@@ -102,10 +102,20 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="category.keyword"/></label>
+                                <div class="col-sm-8">
+                                    <form:input path="pojo.keyword" cssClass="form-control" size="255"/>
+                                    <form:errors path="pojo.keyword" cssClass="validateError"/>
+                                    <label class="hint">Key word to using to seo. It should have length 160 character</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="category.description"/></label>
                                 <div class="col-sm-8">
-                                    <form:textarea path="pojo.description" rows="5" cssStyle="resize: vertical" cssClass="form-control"/>
+                                    <form:input path="pojo.description" cssClass="form-control" size="255"/>
                                     <form:errors path="pojo.description" cssClass="validateError"/>
+                                    <label class="hint">Description to using to seo. It should have length 160 character</label>
                                 </div>
                             </div>
 

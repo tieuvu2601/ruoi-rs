@@ -15,6 +15,10 @@
 
         <property name="prefixUrl" column="PrefixUrl"/>
 
+        <property name="title" column="Title"/>
+
+        <property name="keyword" column="Keyword"/>
+
 		<property name="description" column="Description"/>
 
         <property name="displayOrder" column="DisplayOrder"/>

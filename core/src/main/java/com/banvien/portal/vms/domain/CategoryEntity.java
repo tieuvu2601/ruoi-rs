@@ -8,6 +8,8 @@ public class CategoryEntity implements Serializable {
     private Long categoryId;
     private String code;
     private String name;
+    private String title;
+    private String keyword;
     private String prefixUrl;
     private String description;
     private Integer displayOrder;
@@ -39,6 +41,22 @@ public class CategoryEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     public String getPrefixUrl() {

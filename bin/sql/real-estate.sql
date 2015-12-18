@@ -79,6 +79,8 @@ CREATE TABLE Category (
   Code VARCHAR (255) NOT NULL,
   Name VARCHAR(255) NOT NULL,
   PrefixUrl VARCHAR(255),
+  Title VARCHAR(255),
+  Keyword VARCHAR(255),
   Description VARCHAR(255),
   DisplayOrder int(11) DEFAULT 1,
   AuthoringTemplateID bigint(20) NOT NULL,
@@ -124,6 +126,7 @@ CREATE TABLE Content (
   AuthoringTemplateID bigint(20) DEFAULT NULL,
   Title VARCHAR(255) NOT NULL,
   Keyword VARCHAR(255),
+  Description VARCHAR(255),
 --   for product
   Location VARCHAR(255),
   LocationID BIGINT NOT NULL,
@@ -171,7 +174,9 @@ VALUES ('admin', '123456', 'khanh.tran@hoanghacgroup.com', 'Administrator', 'Adm
 
 ALTER TABLE AuthoringTemplate ADD COLUMN AreProduct INTEGER;
 ALTER TABLE Content ADD COLUMN Cost INTEGER;
-
+ALTER TABLE Category ADD COLUMN Title VARCHAR(255);
+ALTER TABLE Category ADD COLUMN Keyword VARCHAR(255);
+ALTER TABLE Content ADD COLUMN Description VARCHAR(255);
 
 Product
 
