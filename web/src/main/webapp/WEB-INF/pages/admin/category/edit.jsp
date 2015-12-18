@@ -102,20 +102,29 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="category.title.content"/></label>
+                                <div class="col-sm-8">
+                                    <form:input path="pojo.title" cssClass="form-control" size="160" maxlength="160"/>
+                                    <form:errors path="pojo.title" cssClass="validateError"/>
+                                    <span class="help-block m-b-none">Title to using to seo. It should has length 160 character</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="category.keyword"/></label>
                                 <div class="col-sm-8">
-                                    <form:input path="pojo.keyword" cssClass="form-control" size="255"/>
+                                    <form:input path="pojo.keyword" cssClass="form-control" size="160" maxlength="160"/>
                                     <form:errors path="pojo.keyword" cssClass="validateError"/>
-                                    <label class="hint">Key word to using to seo. It should have length 160 character</label>
+                                    <span class="help-block m-b-none">Key word to using to seo. It should has length 160 character</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="category.description"/></label>
                                 <div class="col-sm-8">
-                                    <form:input path="pojo.description" cssClass="form-control" size="255"/>
+                                    <form:input path="pojo.description" cssClass="form-control" size="160" maxlength="160"/>
                                     <form:errors path="pojo.description" cssClass="validateError"/>
-                                    <label class="hint">Description to using to seo. It should have length 160 character</label>
+                                    <span class="help-block m-b-none">Description to using to seo. It should has length 160 character</span>
                                 </div>
                             </div>
 

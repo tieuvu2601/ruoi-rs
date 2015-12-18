@@ -17,6 +17,8 @@
 
         <property name="keyword" column="Keyword"/>
 
+        <property name="description" column="Description"/>
+
         <!--for product -->
 
         <many-to-one name="location" column="LocationID"/>

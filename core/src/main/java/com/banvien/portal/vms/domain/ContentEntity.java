@@ -10,6 +10,7 @@ public class ContentEntity implements Serializable {
     private AuthoringTemplateEntity authoringTemplate;
     private String title;
     private String keyword;
+    private String description;
 
     // for product
     private Integer cost;
@@ -188,5 +189,13 @@ public class ContentEntity implements Serializable {
 
     public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

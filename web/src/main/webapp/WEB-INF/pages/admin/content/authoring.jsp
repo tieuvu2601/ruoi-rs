@@ -130,7 +130,7 @@ window.onload = function() {
                                 <div class="col-sm-8">
                                     <form:input path="pojo.title" size="40" maxlength="160" cssClass="form-control" id="title"/>
                                     <form:errors path="pojo.title" cssClass="validateError"/>
-
+                                    <span class="help-block m-b-none">Title to using to seo. It should have length 160 character</span>
                                 </div>
                             </div>
 
@@ -139,13 +139,24 @@ window.onload = function() {
                                 <div class="col-sm-8">
                                     <form:input path="pojo.keyword"  size="160" maxlength="160" id="keyword" cssClass="form-control"/>
                                     <form:errors path="pojo.keyword" cssClass="validateError"/>
+                                    <span class="help-block m-b-none">Key word to using to seo. It should have length 160 character</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="content.description"/></label>
+                                <div class="col-sm-8">
+                                    <form:input path="pojo.description"  size="160" maxlength="160" id="description" cssClass="form-control"/>
+                                    <form:errors path="pojo.description" cssClass="validateError"/>
+                                    <span class="help-block m-b-none">Description to using to seo. It should have length 160 character</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="content.thumbnail"/></label>
                                 <div class="col-sm-8">
-                                    <input type="file" name="thumbnailFile" id="thumbnailFile" class="form-control"/> <i>(Kích thước chuẩn 410 x 390)</i>
+                                    <input type="file" name="thumbnailFile" id="thumbnailFile" class="form-control"/>
+                                    <span class="help-block m-b-none">(Standard Size is 16 x 9 )</span>
                                 </div>
                             </div>
 
@@ -180,18 +191,6 @@ window.onload = function() {
                                     </div>
                                 </div>
                             </c:if>
-
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.event"/></label>
-                                <div class="col-sm-5">
-                                    <div class="input-daterange input-group" id="contentEvent">
-                                        <input name="pojo.beginDate" class="input-sm form-control" id="beginDate" value="<fmt:formatDate value="${item.pojo.beginDate}" pattern="dd-mm-yyyy"/>"/>
-                                        <span class="input-group-addon">to</span>
-                                        <input name="pojo.endDate" class="input-sm form-control" id="endDate" value="<fmt:formatDate value="${item.pojo.endDate}" pattern="dd-mm-yyyy"/>"/>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-2">
