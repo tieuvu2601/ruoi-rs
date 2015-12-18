@@ -65,6 +65,7 @@ CREATE TABLE AuthoringTemplate (
   AuthoringTemplateID bigint(20) NOT NULL AUTO_INCREMENT,
   Code VARCHAR(40) NOT NULL,
   Name VARCHAR(255) NOT NULL,
+  AreProduct INTEGER NOT NULL DEFAULT 0,
   TemplateContent longtext,
   CreatedDate TIMESTAMP NOT NULL,
   ModifiedDate TIMESTAMP,
@@ -123,15 +124,17 @@ CREATE TABLE Content (
   AuthoringTemplateID bigint(20) DEFAULT NULL,
   Title VARCHAR(255) NOT NULL,
   Keyword VARCHAR(255),
+--   for product
   Location VARCHAR(255),
   LocationID BIGINT NOT NULL,
+  Cost INTEGER,
   HotItem TINYINT(1) DEFAULT 0,
+  ProductStatus INTEGER,
+  -- for slider ---------
   Slide TINYINT(1) DEFAULT 0,
   DisplayOrder int(11) DEFAULT 1,
   XmlData text,
   Thumbnails VARCHAR(255),
-  BeginDate TIMESTAMP,
-  EndDate TIMESTAMP,
   CreatedDate TIMESTAMP NOT NULL,
   ModifiedDate TIMESTAMP,
   Status int(11) NOT NULL DEFAULT 0,
@@ -173,32 +176,3 @@ ALTER TABLE Content ADD COLUMN Cost INTEGER;
 Product
 
 
-isProduct : show (
-    location,
-    LocationID,
-    HotItem,
-    Cost,
-    ProductStatus
-
-)
-
--- ContentID bigint(20) NOT NULL AUTO_INCREMENT,
---   CategoryID bigint(20) NOT NULL,
---   CategoryTypeID bigint(20) NOT NULL,
---   AuthoringTemplateID bigint(20) DEFAULT NULL,
---   Title VARCHAR(255) NOT NULL,
---   Keyword VARCHAR(255),
---   Location VARCHAR(255),
---   LocationID BIGINT NOT NULL,
---   HotItem TINYINT(1) DEFAULT 0,
---   Slide TINYINT(1) DEFAULT 0,
---   DisplayOrder int(11) DEFAULT 1,
---   XmlData text,
---   Thumbnails VARCHAR(255),
---   BeginDate TIMESTAMP,
---   EndDate TIMESTAMP,
---   CreatedDate TIMESTAMP NOT NULL,
---   ModifiedDate TIMESTAMP,
---   Status int(11) NOT NULL DEFAULT 0,
---   PublishedDate TIMESTAMP,
---   CreatedBy bigint(20) NOT NULL,

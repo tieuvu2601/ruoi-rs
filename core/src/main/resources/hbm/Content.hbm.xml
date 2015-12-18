@@ -17,25 +17,23 @@
 
         <property name="keyword" column="Keyword"/>
 
-        <property name="cost" column="Cost"/>
+        <!--for product -->
 
         <many-to-one name="location" column="LocationID"/>
-
         <property name="locationText" column="Location"/>
-
-        <property name="xmlData" column="XmlData"/>
-
+        <property name="cost" column="Cost"/>
         <property name="hotItem" column="HotItem"/>
+        <property name="productStatus" column="ProductStatus"/>
+
+         <!--for slider-->
 
         <property name="slide" column="Slide"/>
 
         <property name="displayOrder" column="DisplayOrder"/>
 
+        <property name="xmlData" column="XmlData"/>
+
         <property name="thumbnails" column="Thumbnails"/>
-
-        <property name="beginDate" column="BeginDate"/>
-
-        <property name="endDate" column="EndDate"/>
 
         <property name="createdDate" column="CreatedDate"/>
 

@@ -20,7 +20,7 @@ window.onload = function() {
 			var settings${node.name} = {
 					flash_url : "<c:url value='/swfupload/swfupload.swf'/>",
 					upload_url: "<c:url value='/ajax/content/uploadfile.html;jsessionid=${pageContext.session.id}'/>",
-					post_params: {'nodename' : '${node.name}', 'authoringTemplateID': '${item.pojo.authoringTemplate.authoringTemplateID}','categoryID': '${item.pojo.category.categoryID}'},
+					post_params: {'nodename' : '${node.name}', 'authoringTemplateId': '${item.pojo.authoringTemplate.authoringTemplateId}','categoryID': '${item.pojo.category.categoryId}'},
 					file_size_limit : "500 MB",
 					file_types : "*.*",
 					file_types_description : "All Files",
@@ -137,7 +137,7 @@ window.onload = function() {
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="content.keyword"/></label>
                                 <div class="col-sm-8">
-                                    <form:textarea path="pojo.keyword" rows="3" cssStyle="resize: vertical" id="keyword" cssClass="form-control"/>
+                                    <form:input path="pojo.keyword"  size="160" maxlength="160" id="keyword" cssClass="form-control"/>
                                     <form:errors path="pojo.keyword" cssClass="validateError"/>
                                 </div>
                             </div>
@@ -156,6 +156,31 @@ window.onload = function() {
                                 </div>
                             </div>
 
+                            <c:if test="${authoringTemplate.areProduct == 1}">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.cost"/></label>
+                                    <div class="col-sm-3">
+                                        <form:input path="pojo.cost" size="40" id="product-cost" cssClass="form-control"/>
+                                    </div>
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.cost.unit"/></label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.location"/></label>
+                                    <div class="col-sm-8">
+                                        <form:select path="pojo.location.locationId">
+                                            <form:options items="${locations}" itemLabel="name" itemValue="locationId"></form:options>
+                                        </form:select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.location.text"/></label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.locationText" size="40" cssClass="form-control"/>
+                                    </div>
+                                </div>
+                            </c:if>
+
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="content.event"/></label>
@@ -170,12 +195,9 @@ window.onload = function() {
 
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-2">
-                                    <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
-                                        <input type="button" class="btn w-xs btn-primary" value="<fmt:message key="button.save"/>" onclick="submitAuthoringForm('insert-update');"/>
-                                        <input type="button" class="btn w-xs btn-success" value="<fmt:message key="button.send"/>" onclick="submitAuthoringForm('insert-submit-content');"/>
-                                        <a href="${backUrl}"class="btn w-xs btn-default"><fmt:message key="button.back"/></a>
-                                    </security:authorize>
-
+                                    <input type="button" class="btn w-xs btn-primary" value="<fmt:message key="button.save"/>" onclick="submitAuthoringForm('insert-update');"/>
+                                    <input type="button" class="btn w-xs btn-success" value="<fmt:message key="button.post"/>" onclick="submitAuthoringForm('insert-submit-content');"/>
+                                    <a href="${backUrl}"class="btn w-xs btn-default"><fmt:message key="button.back"/></a>
                                 </div>
                             </div>
                         </div>
@@ -275,22 +297,23 @@ window.onload = function() {
         </div>
     </div>
     <form:hidden path="crudaction" id="crudaction"/>
-    <form:hidden path="pojo.contentID"/>
-    <form:hidden path="categoryID" id="categoryID"/>
+    <form:hidden path="pojo.contentId"/>
+    <form:hidden path="categoryId" id="categoryId"/>
+    <form:hidden path="categoryId" id="categoryId"/>
 </form:form>
-<c:url var="ckEditorPrefixURL" value="/"/>
+<c:url var="prefixUrl" value="/"/>
 <script>
     $(document).ready(function(){
 //        setActiveMenu4Admin('#administration_menu', '#user_menu');
 
         $('.richTextEditor').each(function() {
             CKEDITOR.replace($(this).attr('id'),{
-                filebrowserBrowseUrl :'${ckEditorPrefixURL}ckeditor/filemanager/browser/default/browser.html?Connector=${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-                filebrowserImageBrowseUrl : '${ckEditorPrefixURL}ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-                filebrowserFlashBrowseUrl :'${ckEditorPrefixURL}ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-                filebrowserUploadUrl  :'${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/upload.html?Type=File',
-                filebrowserImageUploadUrl : '${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/upload.html?Type=Image',
-                filebrowserFlashUploadUrl : '${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/upload.html?Type=Flash'
+                filebrowserBrowseUrl :'${prefixUrl}ckeditor/filemanager/browser/default/browser.html?Connector=${prefixUrl}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserImageBrowseUrl : '${prefixUrl}ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=${prefixUrl}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserFlashBrowseUrl :'${prefixUrl}ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=${prefixUrl}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserUploadUrl  :'${prefixUrl}ckeditor/filemanager/connectors/php/upload.html?Type=File',
+                filebrowserImageUploadUrl : '${prefixUrl}ckeditor/filemanager/connectors/php/upload.html?Type=Image',
+                filebrowserFlashUploadUrl : '${prefixUrl}ckeditor/filemanager/connectors/php/upload.html?Type=Flash'
 
             });
         });
@@ -350,7 +373,7 @@ window.onload = function() {
     }
 
     function validateAuthoringForm() {
-        var title = convertUrlToTitle($('#title').val()); ;
+        var title = convertUrlToTitle($('#title').val());
         $('#title').val(title);
 
         var keyword = $('#keyword').val();

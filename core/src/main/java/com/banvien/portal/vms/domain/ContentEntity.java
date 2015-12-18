@@ -10,16 +10,20 @@ public class ContentEntity implements Serializable {
     private AuthoringTemplateEntity authoringTemplate;
     private String title;
     private String keyword;
+
+    // for product
     private Integer cost;
-    private Integer hotItem;
-    private Integer slide;
     private String locationText;
     private LocationEntity location;
+    private Integer productStatus;
+    private Integer hotItem;
+    // for slider
+    private Integer slide;
+    // for host Item
+
     private Integer displayOrder;
     private String xmlData;
     private String thumbnails;
-    private Timestamp beginDate;
-    private Timestamp endDate;
     private Timestamp createdDate;
     private Timestamp modifiedDate;
     private Timestamp publishedDate;
@@ -74,20 +78,12 @@ public class ContentEntity implements Serializable {
         this.keyword = keyword;
     }
 
-    public Integer getHotItem() {
-        return hotItem;
+    public Integer getCost() {
+        return cost;
     }
 
-    public void setHotItem(Integer hotItem) {
-        this.hotItem = hotItem;
-    }
-
-    public Integer getSlide() {
-        return slide;
-    }
-
-    public void setSlide(Integer slide) {
-        this.slide = slide;
+    public void setCost(Integer cost) {
+        this.cost = cost;
     }
 
     public String getLocationText() {
@@ -104,6 +100,30 @@ public class ContentEntity implements Serializable {
 
     public void setLocation(LocationEntity location) {
         this.location = location;
+    }
+
+    public Integer getProductStatus() {
+        return productStatus;
+    }
+
+    public void setProductStatus(Integer productStatus) {
+        this.productStatus = productStatus;
+    }
+
+    public Integer getHotItem() {
+        return hotItem;
+    }
+
+    public void setHotItem(Integer hotItem) {
+        this.hotItem = hotItem;
+    }
+
+    public Integer getSlide() {
+        return slide;
+    }
+
+    public void setSlide(Integer slide) {
+        this.slide = slide;
     }
 
     public Integer getDisplayOrder() {
@@ -128,22 +148,6 @@ public class ContentEntity implements Serializable {
 
     public void setThumbnails(String thumbnails) {
         this.thumbnails = thumbnails;
-    }
-
-    public Timestamp getBeginDate() {
-        return beginDate;
-    }
-
-    public void setBeginDate(Timestamp beginDate) {
-        this.beginDate = beginDate;
-    }
-
-    public Timestamp getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Timestamp endDate) {
-        this.endDate = endDate;
     }
 
     public Timestamp getCreatedDate() {
@@ -184,13 +188,5 @@ public class ContentEntity implements Serializable {
 
     public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
-    }
-
-    public Integer getCost() {
-        return cost;
-    }
-
-    public void setCost(Integer cost) {
-        this.cost = cost;
     }
 }

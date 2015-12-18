@@ -1,11 +1,7 @@
 package com.banvien.portal.vms.webapp.controller.admin;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -111,6 +107,12 @@ public class AuthoringTemplateController extends ApplicationObjectSupport {
         String res = "";
         com.banvien.portal.vms.xml.authoringtemplate.AuthoringTemplate authoringTemplate = new com.banvien.portal.vms.xml.authoringtemplate.AuthoringTemplate();
         authoringTemplate.setNodes(new Nodes());
+        Collections.sort(authoringTemplateNodes, new Comparator<XmlNodeDTO>() {
+            @Override
+            public int compare(XmlNodeDTO o1, XmlNodeDTO o2) {
+                return o1.getDisplayOrder().compareTo(o2.getDisplayOrder());
+            }
+        });
         for (XmlNodeDTO xmlNodeDTO : authoringTemplateNodes) {
             if (xmlNodeDTO != null && StringUtils.isNotBlank(xmlNodeDTO.getName())) {
                 Node node = new Node();

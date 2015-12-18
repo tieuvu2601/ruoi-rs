@@ -163,9 +163,10 @@ public class ContentController extends ApplicationObjectSupport {
             if (bean.getPojo().getAuthoringTemplate() == null || bean.getPojo().getAuthoringTemplate().getAuthoringTemplateId() == null) {
                 mav.addObject("messageResponse", getMessageSourceAccessor().getMessage("content.authoringtemplate.required"));
             }else{
-                return new ModelAndView("redirect:/admin/content/authoring.html?authoringTemplateID="
+                return new ModelAndView("redirect:/admin/content/authoring.html?authoringTemplateId="
                         + bean.getPojo().getAuthoringTemplate().getAuthoringTemplateId()
-                        + "&categoryID=" + bean.getPojo().getCategory().getCategoryId() );
+                        + "&categoryId=" + bean.getPojo().getCategory().getCategoryId()
+                        + "&categoryTypeId=" + bean.getPojo().getCategory().getCategoryId());
             }
         }
         referenceData(mav);
@@ -174,8 +175,9 @@ public class ContentController extends ApplicationObjectSupport {
     }
 
     @RequestMapping("/admin/content/authoring.html")
-    public ModelAndView authoring(@RequestParam(value="authoringTemplateID", required = true) Long authoringTemplateID,
-                                  @RequestParam(value="categoryID", required = true) Long categoryID,
+    public ModelAndView authoring(@RequestParam(value="authoringTemplateId", required = true) Long authoringTemplateId,
+                                  @RequestParam(value="categoryId", required = true) Long categoryId,
+                                  @RequestParam(value="categoryTypeId", required = true) Long categoryTypeId,
                                   ContentBean bean, BindingResult bindingResult, HttpServletRequest request){
         ModelAndView mav = new ModelAndView("/admin/content/authoring");
         String crudaction = bean.getCrudaction();
@@ -183,7 +185,7 @@ public class ContentController extends ApplicationObjectSupport {
         List<XmlNodeDTO> authoringTemplateNodes = new ArrayList<XmlNodeDTO>();
         AuthoringTemplateEntity authoringTemplateDB = null;
         try{
-            authoringTemplateDB = authoringTemplateService.findById(authoringTemplateID);
+            authoringTemplateDB = authoringTemplateService.findById(authoringTemplateId);
             if(authoringTemplateDB != null){
 	            String authoringTemplateXML = authoringTemplateDB.getTemplateContent();
 	            if (StringUtils.isNotBlank(authoringTemplateXML)) {
@@ -201,8 +203,12 @@ public class ContentController extends ApplicationObjectSupport {
 
 	            pojo.setAuthoringTemplate(authoringTemplateDB);
                 CategoryEntity category = new CategoryEntity();
-                category.setCategoryId(categoryID);
+                category.setCategoryId(categoryId);
                 pojo.setCategory(category);
+
+                CategoryTypeEntity categoryType = new CategoryTypeEntity();
+                categoryType.setCategoryTypeId(categoryTypeId);
+                pojo.setCategoryType(categoryType);
             }
         }catch (Exception e) {
             logger.error("Error while parsing authoring template", e);
@@ -210,7 +216,7 @@ public class ContentController extends ApplicationObjectSupport {
 
         if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("insert-update") || crudaction.equals("insert-submit-content"))) {
             try{
-            	bean.setAuthoringTemplateId(authoringTemplateID);
+            	bean.setAuthoringTemplateId(authoringTemplateId);
             	populateContentCommand2Bean(request, authoringTemplateNodes, bean, false);
                 contentValidator.validate(bean, bindingResult);
                 if(!bindingResult.hasErrors()){
@@ -236,7 +242,7 @@ public class ContentController extends ApplicationObjectSupport {
                     }
                     return mav;
                 }else {
-                	removeSessionFilesFromJCR(authoringTemplateID, AUTHORING_FILE_MAP, request);
+                	removeSessionFilesFromJCR(authoringTemplateId, AUTHORING_FILE_MAP, request);
                 }
             }catch(Exception e) {
                 logger.error(e.getMessage(), e);
@@ -251,7 +257,7 @@ public class ContentController extends ApplicationObjectSupport {
                 mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
             }
         }
-        removeSessionFileMap(authoringTemplateID, AUTHORING_FILE_MAP, request);
+        removeSessionFileMap(authoringTemplateId, AUTHORING_FILE_MAP, request);
         mav.addObject(Constants.FORM_MODEL_KEY, bean);
         referenceData(mav);
         return mav;
@@ -455,14 +461,14 @@ public class ContentController extends ApplicationObjectSupport {
     }
 
     @RequestMapping(value={"/ajax/content/uploadfile.html"})
-    public void uploadfile(@RequestParam("nodename") String nodeName, @RequestParam(value="authoringTemplateID", required=false) Long authoringTemplateID, @RequestParam(value="contentID", required=false) Long contentID, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void uploadfile(@RequestParam("nodename") String nodeName, @RequestParam(value="authoringTemplateId", required=false) Long authoringTemplateId, @RequestParam(value="contentId", required=false) Long contentId, HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<Long, Map<String, List<String>>> fileMap = null;
         Long lKey = null;
-        if(authoringTemplateID != null && authoringTemplateID > 0) {
-            lKey = authoringTemplateID;
+        if(authoringTemplateId != null && authoringTemplateId > 0) {
+            lKey = authoringTemplateId;
             fileMap = (Map<Long, Map<String, List<String>>>)request.getSession().getAttribute(AUTHORING_FILE_MAP);
-        }else if(contentID != null && contentID > 0) {
-            lKey = contentID;
+        }else if(contentId != null && contentId > 0) {
+            lKey = contentId;
             fileMap = (Map<Long, Map<String, List<String>>>)request.getSession().getAttribute(CONTENT_FILE_MAP);
         }
         if(fileMap == null) {
@@ -495,9 +501,9 @@ public class ContentController extends ApplicationObjectSupport {
             }
             files.put(nodeName, nodeFiles);
             fileMap.put(lKey, files);
-            if(authoringTemplateID != null && authoringTemplateID > 0) {
+            if(authoringTemplateId != null && authoringTemplateId > 0) {
                 request.getSession().setAttribute(AUTHORING_FILE_MAP, fileMap);
-            }else if(contentID != null && contentID > 0) {
+            }else if(contentId != null && contentId > 0) {
                 request.getSession().setAttribute(CONTENT_FILE_MAP, fileMap);
             }
 

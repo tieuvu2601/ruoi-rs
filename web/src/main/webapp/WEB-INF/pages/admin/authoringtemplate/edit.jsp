@@ -257,6 +257,7 @@
     $(document).ready(function(){
 //        setActiveMenu4Admin('#administration_menu', '#user_menu');
         $("#btnSave").click(function(){
+            reOrderDisplay();
             $("#crudaction").val("insert-update");
             $("#itemForm").submit();
 
@@ -265,6 +266,8 @@
         $("#btnInsert").click(function(){
             validateAddNodeToAuthoringTemplate();
         });
+
+        enableReOrderRow();
     });
 
     function reOrderDisplay(){
