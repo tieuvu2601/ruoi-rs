@@ -1,8 +1,33 @@
 <%@ include file="/common/taglibs.jsp"%>
+<html>
 <head>
-    <title>Title of page!</title>
-    <meta name="description" content="must be revise after !!!!! ">
+    <seo:url value="${item.title}" var="itemUrl" prefix="/products/${item.contentId}"/>
+    <c:set var="itemThumbnailsUrl" value="/repository${item.thumbnails}"/>
+    <c:set var="itemXMLData" value="${portal:parseContentXML(item.xmlData)}"/>
+    <title>${item.title}</title>
+    <meta name="description" content="${item.description}">
+    <meta name="keywords" content="${item.keyword}">
+
+
+    <meta property="og:url"           content="${itemUrl}" />
+    <meta property="og:type"          content="${item.categoryType.name}"/>
+    <meta property="og:title"         content="${item.title}" />
+    <meta property="og:description"   content="${item.description}"/>
+
+    <meta property="og:image"         content="${itemThumbnailsUrl}"/>
+
 </head>
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=797480313696960";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs breadcrumbs-light">
@@ -17,501 +42,297 @@
 </div><!--/breadcrumbs-->
 <!--=== End Breadcrumbs ===-->
 
-<!-- Container Part -->
-<div class="container content">
-<div class="row">
-<div class="col-md-9">
-<!-- Blog Grid -->
-
-<!-- Blog Grid -->
-<div class="blog-grid margin-bottom-50">
-    <img class="img-responsive" src="<c:url value="/themes/site/img/slider/img1.jpg"/>" alt="">
-    <div class="blog-grid-inner">
-        <h3><a href="blog_single.html">Learning technology: iMac</a></h3>
-        <h4>Gia ban: 1 ti</h4>
-        <h5>Dia chi: <strong>ABC DEF Duong Cong Hoa Quan Tan Binh Thanh Pho Ho Chi Minh</strong></h5>
-        <h5>Dien tich khu dat : 100 M2</h5>
-        <h5>Mat do xay dung 100%</h5>
-        <h5>So block 10 tang 2 Ham</h5>
-    </div>
-</div>
-<!-- End Blog Grid -->
-<p>Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis fringilla risus augue sit amet enim.
-    Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus. Nunc urna lectus, vulputate ut tellus aliquam,
-    pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor justo hendrerit eu. Donec sed diam mattis,
-    ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere. Vestibulum imperdiet turpis mauris,
-    sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.</p><br>
-
-
-<div class="row tab-v3">
-    <div class="col-sm-3">
-        <ul class="nav nav-pills nav-stacked">
-            <li class="active"><a href="#product-tab-1" data-toggle="tab" aria-expanded="false"><i class="fa fa-home"></i> Thong tin</a></li>
-            <li class=""><a href="#product-tab-2" data-toggle="tab" aria-expanded="false"><i class="fa fa-cloud"></i> Tien ich</a></li>
-            <li class=""><a href="#product-tab-3" data-toggle="tab" aria-expanded="false"><i class="fa fa-comments"></i> Thanh toan & Gia ban</a></li>
-            <li class=""><a href="#product-tab-4" data-toggle="tab" aria-expanded="true"><i class="fa fa-gear"></i> Vi tri</a></li>
-            <li class=""><a href="#product-tab-5" data-toggle="tab" aria-expanded="true"><i class="fa fa-gear"></i> Tien do</a></li>
-            <li class=""><a href="#product-tab-6" data-toggle="tab" aria-expanded="true"><i class="fa fa-gear"></i> Hinh Anh</a></li>
-        </ul>
-    </div>
-    <div class="col-sm-9">
-        <div class="tab-content">
-            <div class="tab-pane fade" id="product-tab-1">
-                <h4>Heading Sample 1</h4>
-                <div>
-                    <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                    Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                    a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                    fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                    Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                    fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                    Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                    justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                    Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.</p>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="product-tab-2">
-                <h4>Heading Sample 2</h4>
-                <div>
-                    <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                        Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                        a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                        fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                        Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                        fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                        Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                        justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                        Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.
-                    </p>
-                    <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                        Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                        a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                        fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                        Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                        fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                        Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                        justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                        Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.
-                    </p>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="product-tab-3">
-                <h4>Heading Sample 3</h4>
-                <div>
-                    <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                        Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                        a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                        fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                        Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                        fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                        Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                        justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                        Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.
-                    </p>
-                    <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                        Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                        a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                        fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                        Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                        fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                        Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                        justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                        Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.
-                    </p>
-                    <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                        Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                        a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                        fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                        Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                        fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                        Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                        justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                        Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.
-                    </p>
-                </div>
-            </div>
-            <div class="tab-pane fade active in" id="product-tab-4">
-                <h4>Heading Sample 4</h4>
-                <div>
-                    <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                        Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                        a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                        fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                        Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                        fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                        Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                        justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                        Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.
-                    </p>
-                </div>
-            </div>
-            <div class="tab-pane fade active in" id="product-tab-5">
-                <h4>Heading Sample 4</h4>
-                <div>
-                    <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                        Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                        a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                        fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                        Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                        fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                        Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                        justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                        Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.
-                    </p>
-                </div>
-            </div>
-            <div class="tab-pane fade active in" id="product-tab-6">
-                <h4>Heading Sample 4</h4>
-                <div>
-                    <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                        Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                        a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                        fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                        Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                        fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                        Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                        justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                        Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Tab v5 -->
-<div class="tab-v5 margin-bottom-50">
-    <ul class="nav nav-tabs" role="tablist">
-        <li class="home active">
-            <a href="#tab-v5-a1" role="tab" data-toggle="tab">Thong tin</a>
-        </li>
-        <li>
-            <a href="#tab-v5-a2" role="tab" data-toggle="tab">Tien Ich</a>
-        </li>
-        <li>
-            <a href="#tab-v5-a3" role="tab" data-toggle="tab">Gia ban Thanh Toan</a>
-        </li>
-        <li>
-            <a href="#tab-v5-a4" role="tab" data-toggle="tab">Vi Tri</a>
-        </li>
-        <li>
-            <a href="#tab-v5-a5" role="tab" data-toggle="tab">Tien Do</a>
-        </li>
-        <li>
-            <a href="#tab-v5-a6" role="tab" data-toggle="tab">Hinh Anh</a>
-        </li>
-    </ul>
-
-    <div class="tab-content">
-        <div class="tab-pane active" id="tab-v5-a1">
+<div class="container content product-container">
+    <div class="row">
+        <div class="col-md-9">
             <!-- Blog Grid -->
-            <div class="blog-grid margin-bottom-30">
-                <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                    Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                    a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                    fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                    Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                    fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                    Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                    justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                    Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.</p>
+            <div class="blog-grid margin-bottom-10">
+                <h2 class="blog-grid-title-lg">${itemXMLData.header[0]}</h2>
+                <div class="overflow-h margin-bottom-10">
+                    <ul class="blog-grid-info pull-left">
+                        <li>${item.createdBy.displayName}</li>
+                        <li><fmt:formatDate pattern="dd-MM-yyyy" value="${item.publishedDate}"/></li>
+                    </ul>
+                    <div class="pull-right">
+                        <div class="addthis_sharing_toolbox">
+                            <div class="fb-like" data-href="${itemUrl}" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- End Blog Grid -->
-        </div>
 
-        <div class="tab-pane" id="tab-v5-a2">
-            <div class="blog-thumb-v3">
-                <div class="blog-grid margin-bottom-30">
-                    <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                        Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                        a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                        fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                        Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                        fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                        Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                        justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                        Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.</p>
+            <div class="blog-grid margin-bottom-50">
+                <img class="img-responsive img-product-thumbnail" src="${itemThumbnailsUrl}" alt="${item.title}">
+                <div class="blog-grid-inner">
+                    <h3><a href="${itemUrl}">${itemXMLData.header[0]}</a></h3>
+                    <h4><fmt:message key="site.content.cost"/>:
+                        ${portal:getNumberOfCost(item.cost)}
+                        <c:choose>
+                            <c:when test="${item.cost >= 1000}">
+                                <fmt:message key="site.content.cost.billion"/>
+                            </c:when>
+                            <c:otherwise>
+                                <fmt:message key="site.content.cost.million"/>
+                            </c:otherwise>
+                        </c:choose>
+                    </h4>
+                    <c:if test="${not empty item.locationText}">
+                        <h5 class="product-location"><fmt:message key="site.content.address"/>: ${item.locationText}</h5>
+                    </c:if>
+
+                    <c:if test="${not empty item.area || not empty item.totalArea}">
+                        <c:choose>
+                            <c:when test="${not empty item.area}">
+                                <h5 class="product-area">
+                                    <fmt:message key="site.content.area"/>:  ${item.area}&nbsp;
+                                    <c:choose>
+                                        <c:when test="${item.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
+                                        <c:when test="${item.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
+                                        <c:when test="${item.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
+                                    </c:choose>
+                                </h5>
+                            </c:when>
+                            <c:otherwise>
+                                <h5 class="product-area">
+                                    <fmt:message key="site.content.area"/>:  ${item.totalArea}&nbsp;
+                                    <c:choose>
+                                        <c:when test="${item.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
+                                        <c:when test="${item.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
+                                        <c:when test="${item.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
+                                    </c:choose>
+                                </h5>
+                            </c:otherwise>
+                        </c:choose>
+
+                    </c:if>
+
+                    <c:if test="${not empty item.areaRatio}">
+                        <h5 class="product-area-ratio"><fmt:message key="site.content.area.ratio"/> ${item.areaRatio}</h5>
+                    </c:if>
+
+                    <c:if test="${not empty item.numberOfBlock}">
+                        <h5 class="product-number-of-block"><fmt:message key="site.content.number.of.block"/> ${item.numberOfBlock}</h5>
+                    </c:if>
                 </div>
             </div>
-        </div>
+            <!-- End Blog Grid -->
 
-        <div class="tab-pane" id="tab-v5-a3">
-            <div class="blog-thumb-v3">
-                <div class="blog-grid margin-bottom-30">
-                    <p>Mauris et porttitor diam. In semper volutpat mauris, ac fermentum orci commodo vitae. Curabitur ut feugiat tellus.
-                        Quisque consequat pharetra massa ultricies auctor. Sed mollis vulputate sapien eget tincidunt. Curabitur tempus lacus
-                        a sapien rutrum, feugiat blandit nunc tincidunt. Donec nec ornare tellus. In neque ipsum, auctor eu bibendum cursus,
-                        fringilla sed magna. Vestibulum lobortis libero et lectus congue efficitur. Suspendisse varius varius finibus.
-                        Maecenas luctus convallis euismod. Praesent ultrices, enim a varius condimentum, nunc elit rhoncus ligula, quis
-                        fringilla risus augue sit amet enim. Curabitur dolor elit, egestas eget lectus vel, pretium semper tellus.
-                        Nunc urna lectus, vulputate ut tellus aliquam, pharetra consectetur enim. Nunc scelerisque libero diam, nec tempor
-                        justo hendrerit eu. Donec sed diam mattis, ullamcorper eros eu, aliquam dui. Maecenas rutrum suscipit risus sed posuere.
-                        Vestibulum imperdiet turpis mauris, sit amet consectetur ex porttitor ut. Duis sit amet auctor nunc.
-                    </p>
+            <p>${itemXMLData.shotDescription[0]}</p><br>
+
+            <div class="row tab-v3">
+                <div class="col-sm-3">
+                    <ul class="nav nav-pills nav-stacked">
+                        <c:if test="${not empty itemXMLData.description[0]}">
+                            <li class="active">
+                                <a href="#product-description" data-toggle="tab" aria-expanded="false">Thong tin</a></li>
+                        </c:if>
+                        <c:if test="${not empty itemXMLData.feature[0]}">
+                            <li class="">
+                                <a href="#product-feature" data-toggle="tab" aria-expanded="false">Tien ich</a></li>
+                        </c:if>
+                        <c:if test="${not empty itemXMLData.costAndPay[0]}">
+                            <li class="">
+                                <a href="#product-costAndPay" data-toggle="tab" aria-expanded="false">Gia ban va thanh toan</a></li>
+                        </c:if>
+                        <c:if test="${not empty itemXMLData.location[0]}">
+                            <li class="">
+                                <a href="#product-location" data-toggle="tab" aria-expanded="false">Vi tri </a></li>
+                        </c:if>
+                        <c:if test="${not empty itemXMLData.progress[0]}">
+                            <li class="">
+                                <a href="#product-progress" data-toggle="tab" aria-expanded="false">Tien do du an</a></li>
+                        </c:if>
+                        <c:if test="${not empty itemXMLData.gallery}">
+                            <li class="">
+                                <a href="#product-gallery" data-toggle="tab" aria-expanded="false">Hinh anh</a></li>
+                        </c:if>
+                    </ul>
                 </div>
-            </div>
-        </div>
-
-        <div class="tab-pane" id="tab-v5-a4">
-            <div class="blog-thumb-v3">
-                <small>Mar 6, 2015</small>
-                <h3><a href="#">Cameron's silence on defence is shameful</a></h3>
-            </div>
-
-            <hr class="hr-xs">
-
-            <div class="blog-thumb-v3">
-                <small>Mar 7, 2015</small>
-                <h3><a href="#">Architects plan to stop skyscrapers from blocking out sunlight</a></h3>
-            </div>
-        </div>
-
-        <div class="tab-pane" id="tab-v5-a5">
-            <div class="blog-thumb-v3">
-                <small>Mar 6, 2015</small>
-                <h3><a href="#">Cameron's silence on defence is shameful</a></h3>
-            </div>
-
-            <hr class="hr-xs">
-
-            <div class="blog-thumb-v3">
-                <small>Mar 7, 2015</small>
-                <h3><a href="#">Architects plan to stop skyscrapers from blocking out sunlight</a></h3>
-            </div>
-        </div>
-
-        <div class="tab-pane" id="tab-v5-a6">
-            <div class="blog-thumb-v3">
-                <small>Mar 6, 2015</small>
-                <h3><a href="#">Cameron's silence on defence is shameful</a></h3>
-            </div>
-
-            <hr class="hr-xs">
-
-            <div class="blog-thumb-v3">
-                <small>Mar 7, 2015</small>
-                <h3><a href="#">Architects plan to stop skyscrapers from blocking out sunlight</a></h3>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Tab v5 -->
-
-
-<ul class="source-list">
-    <li><strong>Source:</strong> <a href="#">The Next Web</a></li>
-    <li><strong>Author:</strong> <a href="#">Evan Bartlett</a></li>
-</ul>
-
-<!-- Blog Thumb v4 -->
-<div class="margin-bottom-50">
-    <h2 class="title-v4">Related Product</h2>
-    <div class="row margin-bottom-50">
-        <c:forEach var="idx" begin="1" end="8">
-            <div class="col-sm-3 col-xs-6 sm-margin-bottom-30">
-                <!-- Blog Thumb v4 -->
-                <div class="blog-thumb-v4">
-                    <div class="blog-thumb-item">
-                        <img class="img-responsive margin-bottom-10" src="<c:url value="/themes/site/img/blog/img40.jpg"/>" alt="">
-                        <div class="center-wrap">
-                            <div class="center-alignCenter">
-                                <div class="center-body">
-                                    <a href="https://player.vimeo.com/video/74197060" class="fbox-modal fancybox.iframe video-play-btn" title="What will fashion be like in 25 years?">
-                                        <img class="video-play-btn" src="<c:url value="/themes/site/img/icons/video-play.png"/>" alt="">
-                                    </a>
+                <div class="col-sm-9">
+                    <div class="tab-content">
+                        <c:if test="${not empty itemXMLData.description[0]}">
+                            <div class="tab-pane fade" id="product-description">
+                                <h4>Thong tin du an</h4>
+                                <div>
+                                    ${itemXMLData.description[0]}
                                 </div>
                             </div>
-                        </div><!--/end center wrap-->
+                        </c:if>
+                        <c:if test="${not empty itemXMLData.feature[0]}">
+                            <div class="tab-pane fade" id="product-feature">
+                                <h4>Tien ich</h4>
+                                <div>
+                                    ${itemXMLData.feature[0]}
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${not empty itemXMLData.costAndPay[0]}">
+                            <div class="tab-pane fade" id="product-costAndPay">
+                                <h4>Gia ban va thanh toan</h4>
+                                <div>
+                                    ${itemXMLData.costAndPay[0]}
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${not empty itemXMLData.location[0]}">
+                            <div class="tab-pane fade" id="product-location">
+                                <h4>Vi tri</h4>
+                                <div>
+                                    ${itemXMLData.location[0]}
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${not empty itemXMLData.progress[0]}">
+                            <div class="tab-pane fade" id="product-progress">
+                                <h4>Tien do du an</h4>
+                                <div>
+                                    ${itemXMLData.progress[0]}
+                                </div>
+                            </div>
+                        </c:if>
+                        <c:if test="${not empty itemXMLData.gallery}">
+                            <div class="tab-pane fade" id="product-gallery">
+                                <h4>Hinh anh</h4>
+                                <div>
+                                    ${itemXMLData.gallery[0]}
+                                </div>
+                            </div>
+                        </c:if>
                     </div>
-                    <h3><a href="blog_single.html">What will fashion be like in 25 years?</a></h3>
-                </div>
-                <!-- End Blog Thumb v4 -->
-            </div>
-        </c:forEach>
-
-    </div><!--/end row-->
-</div>
-<!-- End Blog Thumb v4 -->
-
-<!-- Blog Comments v2 -->
-<div class="margin-bottom-50">
-    <h2 class="title-v4">Comments (3)</h2>
-
-    <!-- Blog Comments v2 -->
-    <div class="row blog-comments-v2">
-        <div class="commenter">
-            <img class="rounded-x" src="assets/img/team/img1.jpg" alt="">
-        </div>
-        <div class="comments-itself">
-            <h4>
-                Jorny Alnordussen
-                <span>6 hours ago / <a href="#">Reply</a></span>
-            </h4>
-            <p>Gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod..</p>
-        </div>
-    </div>
-    <!-- End Blog Comments v2 -->
-
-    <!-- Blog Comments v2 -->
-    <div class="row blog-comments-v2 blog-comments-v2-reply">
-        <div class="commenter">
-            <img class="rounded-x" src="assets/img/team/img2.jpg" alt="">
-        </div>
-        <div class="comments-itself">
-            <h4>
-                Susie Lau
-                <span>6 hours ago / <a href="#">Reply</a></span>
-            </h4>
-            <p>Gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod..</p>
-        </div>
-    </div>
-    <!-- End Blog Comments v2 -->
-
-    <!-- Blog Comments v2 -->
-    <div class="row blog-comments-v2">
-        <div class="commenter">
-            <img class="rounded-x" src="assets/img/team/img3.jpg" alt="">
-        </div>
-        <div class="comments-itself">
-            <h4>
-                Marcus Farrell
-                <span>6 hours ago / <a href="#">Reply</a></span>
-            </h4>
-            <p>Gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod..</p>
-        </div>
-    </div>
-    <!-- End Blog Comments v2 -->
-</div>
-<!-- End Blog Comments v2 -->
-
-<!-- Form -->
-<h2 class="title-v4">Post a Comment</h2>
-<form action="http://htmlstream.com/preview/unify-v1.8/Blog/assets/php/sky-forms-pro/demo-comment-process.php" method="post" id="sky-form3" class="sky-form comment-style-v2">
-    <fieldset>
-        <div class="row sky-space-30">
-            <div class="col-md-6">
-                <div>
-                    <input type="text" name="name" id="name" placeholder="Name" class="form-control bg-color-light">
                 </div>
             </div>
-            <div class="col-md-6">
-                <div>
-                    <input type="text" name="email" id="email" placeholder="Email" class="form-control bg-color-light">
+
+            <!-- Tab v5 -->
+            <div class="tab-v5 margin-bottom-50">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="home active">
+                        <a href="#tab-v5-a1" role="tab" data-toggle="tab">Thong tin</a>
+                    </li>
+                    <li>
+                        <a href="#tab-v5-a2" role="tab" data-toggle="tab">Tien Ich</a>
+                    </li>
+                    <li>
+                        <a href="#tab-v5-a3" role="tab" data-toggle="tab">Gia ban Thanh Toan</a>
+                    </li>
+                    <li>
+                        <a href="#tab-v5-a4" role="tab" data-toggle="tab">Vi Tri</a>
+                    </li>
+                    <li>
+                        <a href="#tab-v5-a5" role="tab" data-toggle="tab">Tien Do</a>
+                    </li>
+                    <li>
+                        <a href="#tab-v5-a6" role="tab" data-toggle="tab">Hinh Anh</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab-v5-a1">
+                        <!-- Blog Grid -->
+                        <div class="blog-grid margin-bottom-30">
+                            ${itemXMLData.description[0]}
+                        </div>
+                        <!-- End Blog Grid -->
+                    </div>
+
+                    <div class="tab-pane" id="tab-v5-a2">
+                        <div class="blog-thumb-v3">
+                            <div class="blog-grid margin-bottom-30">
+                                ${itemXMLData.feature[0]}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab-v5-a3">
+                        <div class="blog-thumb-v3">
+                            <div class="blog-grid margin-bottom-30">
+                                ${itemXMLData.costAndPay[0]}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab-v5-a4">
+                        <div class="blog-thumb-v3">
+                            <small>Mar 6, 2015</small>
+                            <h3><a href="#">Cameron's silence on defence is shameful</a></h3>
+                            <div>
+                                ${itemXMLData.location[0]}
+                            </div>
+                        </div>
+
+                        <hr class="hr-xs">
+
+                        <div class="blog-thumb-v3">
+                            <small>Mar 7, 2015</small>
+                            <h3><a href="#">Architects plan to stop skyscrapers from blocking out sunlight</a></h3>
+                            <div>
+                                ${itemXMLData.progress[0]}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="tab-v5-a5">
+                        <div class="blog-thumb-v3">
+                            <small>Mar 6, 2015</small>
+                            <h3><a href="#">Cameron's silence on defence is shameful</a></h3>
+                            <div>
+                                ${itemXMLData.gallery[0]}
+                            </div>
+                        </div>
+                        <hr class="hr-xs">
+                    </div>
                 </div>
             </div>
-        </div>
+            <!-- End Tab v5 -->
 
-        <div class="sky-space-30">
-            <div>
-                <textarea rows="8" name="message" id="message" placeholder="Write comment here ..." class="form-control bg-color-light"></textarea>
+
+            <%--<ul class="source-list">--%>
+                <%--<li><strong>Source:</strong> <a href="#">The Next Web</a></li>--%>
+                <%--<li><strong>Author:</strong> <a href="#">Evan Bartlett</a></li>--%>
+            <%--</ul>--%>
+
+            <!-- Blog Thumb v4 -->
+            <div class="margin-bottom-50">
+                <h2 class="title-v4">Related Product</h2>
+                <div class="row margin-bottom-50">
+                    <c:forEach var="idx" begin="1" end="8">
+                        <div class="col-sm-3 col-xs-6 sm-margin-bottom-30">
+                            <!-- Blog Thumb v4 -->
+                            <div class="blog-thumb-v4">
+                                <div class="blog-thumb-item">
+                                    <img class="img-responsive margin-bottom-10" src="<c:url value="/themes/site/img/blog/img40.jpg"/>" alt="">
+                                    <div class="center-wrap">
+                                        <div class="center-alignCenter">
+                                            <div class="center-body">
+                                                <a href="https://player.vimeo.com/video/74197060" class="fbox-modal fancybox.iframe video-play-btn" title="What will fashion be like in 25 years?">
+                                                    <img class="video-play-btn" src="<c:url value="/themes/site/img/icons/video-play.png"/>" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><!--/end center wrap-->
+                                </div>
+                                <h3><a href="blog_single.html">What will fashion be like in 25 years?</a></h3>
+                            </div>
+                            <!-- End Blog Thumb v4 -->
+                        </div>
+                    </c:forEach>
+
+                </div><!--/end row-->
             </div>
+            <!-- End Blog Thumb v4 -->
+
+            <div class="fb-comments" data-href="${itemUrl}" data-width="100%" data-numposts="10"></div>
         </div>
 
-        <p><button type="submit" class="btn-u btn-u-default">Submit</button></p>
-    </fieldset>
 
-    <div class="message">
-        <i class="rounded-x fa fa-check"></i>
-        <p>Your comment was successfully posted!</p>
-    </div>
-</form>
-<!-- End Form -->
-</div>
+        <div class="col-md-3">
+            <jsp:include page="../common/aboutme.jsp"></jsp:include>
 
-<div class="col-md-3">
-<!-- Blog Thumb v3 -->
-<div class="margin-bottom-50">
-    <h2 class="title-v4">About me</h2>
-
-    <div class="blog-thumb-v3">
-        <small><a href="#">Evan Bartlett</a></small>
-        <h3><a href="#">Cameron's silence on defence is shameful</a></h3>
-    </div>
-
-    <hr class="hr-xs">
-
-    <div class="blog-thumb-v3">
-        <small><a href="#">Jonathan Owen</a></small>
-        <h3><a href="#">Architects plan to stop skyscrapers from blocking out sunlight</a></h3>
-    </div>
-
-    <hr class="hr-xs">
-
-    <div class="blog-thumb-v3">
-        <small><a href="#">Susie Lau</a></small>
-        <h3><a href="#">Fashion's first selfies: It was a 16th-century German accountant who started the trend for style blogging</a></h3>
-    </div>
-
-
-</div>
-<!-- End Blog Thumb v3 -->
-
-<!-- Blog Thumb v2 -->
-<div class="margin-bottom-50">
-    <h2 class="title-v4">Recent News</h2>
-
-    <div class="blog-thumb blog-thumb-circle margin-bottom-15">
-        <div class="blog-thumb-hover">
-            <img class="rounded-x" src="assets/img/blog/img1.jpg" alt="">
-            <a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
-        </div>
-        <div class="blog-thumb-desc">
-            <h3><a href="blog_single.html">Misused words and how to use them correctly</a></h3>
-            <ul class="blog-thumb-info">
-                <li>Mar 6, 2015</li>
-                <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-            </ul>
+            <jsp:include page="../common/recentnew.jsp"></jsp:include>
         </div>
     </div>
-
-    <div class="blog-thumb blog-thumb-circle margin-bottom-15">
-        <div class="blog-thumb-hover">
-            <img class="rounded-x" src="assets/img/blog/img22.jpg" alt="">
-            <a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
-        </div>
-        <div class="blog-thumb-desc">
-            <h3><a href="blog_single.html">8 health benefits and drawbacks of coffee</a></h3>
-            <ul class="blog-thumb-info">
-                <li>Mar 6, 2015</li>
-                <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="blog-thumb blog-thumb-circle margin-bottom-15">
-        <div class="blog-thumb-hover">
-            <img class="rounded-x" src="assets/img/blog/img2.jpg" alt="">
-            <a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
-        </div>
-        <div class="blog-thumb-desc">
-            <h3><a href="blog_single.html">What are the top five books you must read?</a></h3>
-            <ul class="blog-thumb-info">
-                <li>Mar 6, 2015</li>
-                <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="blog-thumb blog-thumb-circle">
-        <div class="blog-thumb-hover">
-            <img class="rounded-x" src="assets/img/blog/img21.jpg" alt="">
-            <a class="hover-grad" href="blog_single.html"><i class="fa fa-link"></i></a>
-        </div>
-        <div class="blog-thumb-desc">
-            <h3><a href="blog_single.html">Stylish things to do, see and buy this week</a></h3>
-            <ul class="blog-thumb-info">
-                <li>Mar 6, 2015</li>
-                <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<!-- End Blog Thumb v2 -->
-
-
-
-
-</div>
-</div>
 </div>
 <!--=== End Container Part ===-->
+</body>
+</html>
+

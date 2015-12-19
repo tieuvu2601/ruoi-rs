@@ -35,4 +35,6 @@ public interface ContentDAO extends GenericDAO<ContentEntity, Long> {
     Object[] findByCategoryTypeWithMaxItem(String categoryType, Integer begin, Integer pageSize, Integer status);
 
     Object[] findAllContentsByCategoryType(Long categoryTypeId, Integer begin, Integer pageSize, Integer status);
+
+    List<ContentEntity> getHotProduct(Integer startRow, Integer pageSize, Integer status);
 }

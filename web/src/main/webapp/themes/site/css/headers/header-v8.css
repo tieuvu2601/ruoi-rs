@@ -630,9 +630,9 @@
 
 	.header-v8 .dropdown-menu > li > a {
 		color: #777;
-		font-size: 13px;
+		font-size: 15px;
 		font-weight: 400;
-		padding: 6px 25px;
+		padding: 5px 25px;
 	}
 
 	.header-v8 .dropdown-menu .active > a,

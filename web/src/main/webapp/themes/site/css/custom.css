@@ -10,5 +10,13 @@
 }
 
 .blog-grid-inner {
-    border: 2px solid #019348;
+    border: 2px solid #555;
+}
+
+.product-container .img-product-thumbnail{
+    margin: 0 auto;
+}
+
+.about-me-container .user-avatar{
+    max-width: 100%;
 }

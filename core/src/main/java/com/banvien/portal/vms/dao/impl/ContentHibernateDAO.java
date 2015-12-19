@@ -375,4 +375,20 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Lon
                     }
                 });
     }
+
+    @Override
+    public List<ContentEntity> getHotProduct(final Integer startRow, final Integer pageSize, final Integer status) {
+        return getHibernateTemplate().execute(
+                new HibernateCallback<List<ContentEntity>>() {
+                    public List<ContentEntity> doInHibernate(Session session) throws HibernateException, SQLException {
+                        Query query = session.createQuery(" FROM ContentEntity ce WHERE  ce.status = :status AND ce.authoringTemplate.areProduct = 1 ORDER BY ce.hotItem DESC, ce.publishedDate DESC, ce.productStatus DESC");
+                        query.setParameter("status", status);
+                        query.setFirstResult(startRow);
+                        if(pageSize != null && pageSize >= 0){
+                            query.setMaxResults(pageSize);
+                        }
+                        return (List<ContentEntity>) query.list();
+                    }
+                });
+    }
 }

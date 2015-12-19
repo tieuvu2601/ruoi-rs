@@ -1,8 +1,8 @@
 /*
 * Version: 1.8
 * Default Color: #019348;
-* Default Hover Color: #5fb611;
-# rgba(114,192,44, 1);
+* Default Hover Color: #018348;
+# rgba(1,147,72, 1);
 */
 a {
 	color: #019348;
@@ -163,24 +163,24 @@ a:hover {
 .btn-u.btn-u-default:active,
 .btn-u.btn-u-default.active,
 .open .dropdown-toggle.btn-u.btn-u-default {
-	background: #5fb611;
+	background: #018348;
 }
 .btn-u.btn-u-split-default.dropdown-toggle {
-	border-left: solid 1px #5fb611;
+	border-left: solid 1px #018348;
 }
 
 .blog-thumb .blog-thumb-hover:hover:after {
-	background: rgba(114,192,44,0.9);
+	background: rgba(1,147,72,0.9);
 }
 .blog-video h4 {
-	background: rgba(114,192,44,0.8);
+	background: rgba(1,147,72,0.8);
 }
 #topcontrol:hover {
-	background: rgba(114,192,44,0.9);
+	background: rgba(1,147,72,0.9);
 }
 .blog-grid .blog-grid-grad i:hover {
-	background: rgba(114,192,44,1);
+	background: rgba(1,147,72,1);
 }
 .blog-thumb-v2 .blog-thumb-grad i:hover {
-	background: rgba(114,192,44,1);
+	background: rgba(1,147,72,1);
 }

@@ -99,4 +99,6 @@ public class Constants {
     public static final String UNIT_UNIT = "unit";
     public static final String UNIT_HECTA = "hecta";
 
+    public static final String CATEGORY_RECENT_NEWS = "tin tuc";
+
 }

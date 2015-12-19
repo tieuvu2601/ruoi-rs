@@ -190,4 +190,9 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
         }
         return resultList;
     }
+
+    @Override
+    public List<ContentEntity> getHotProduct(Integer startRow, Integer pageSize, Integer status) {
+        return this.contentDAO.getHotProduct(startRow, pageSize, status);
+    }
 }

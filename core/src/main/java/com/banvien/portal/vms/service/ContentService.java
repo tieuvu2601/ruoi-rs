@@ -38,4 +38,6 @@ public interface ContentService extends GenericService<ContentEntity, Long> {
     List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Integer status);
 
     List<CategoryTypeDTO> findAllContentsByCategoryType(Integer begin, Integer pageSize, Integer status);
+
+    List<ContentEntity> getHotProduct(Integer startRow, Integer pageSize, Integer status);
 }
