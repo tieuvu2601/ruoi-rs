@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/bootstrap/dist/css/bootstrap.css"/>">
     <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/sweetalert/lib/sweet-alert.css"/>">
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css"/>">
 
     <link rel="stylesheet" href="<c:url value="/themes/admin/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css"/>">
@@ -54,6 +55,7 @@
     <script src="<c:url value="/themes/admin/vendor/iCheck/icheck.min.js"/>"></script>
     <script src="<c:url value="/themes/admin/vendor/peity/jquery.peity.min.js"/>"></script>
     <script src="<c:url value="/themes/admin/vendor/sparkline/index.js"/>"></script>
+    <script src="<c:url value="/themes/admin/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"/>"></script>
     <script src="<c:url value="/themes/admin/vendor/sweetalert/lib/sweet-alert.min.js"/>"></script>
     <script src="<c:url value="/scripts/bootbox.min.js"/>"></script>
     <!-- App scripts -->

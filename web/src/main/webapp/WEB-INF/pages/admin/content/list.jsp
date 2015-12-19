@@ -166,9 +166,9 @@
                                         <a href="${viewUrl}?pojo.contentId=${tableList.contentId }">${tableList.title}</a>
                                     </display:column>
 
-                                    <display:column headerClass="table_header" titleKey="content.thumbnail" style="width: 10%">
-                                        <c:if test="${not empty tableList.thumbnail}">
-                                            <rep:href value="${tableList.thumbnail}" var="imgURL"/>
+                                    <display:column headerClass="table_header" titleKey="content.thumbnails" style="width: 10%">
+                                        <c:if test="${not empty tableList.thumbnails}">
+                                            <rep:href value="${tableList.thumbnails}" var="imgURL"/>
                                             <c:choose>
                                                 <c:when test="${(tableList.createdBy.userId eq currentUserId) or (items.contentPublishedMap[tableList.contentId] eq true)}">
                                                     <img src="<c:url value="${imgURL}?w=100"/>" style="max-width: 100px;max-height: 100px;" onclick="showImageLarger(${tableList.contentId})"/>
@@ -198,14 +198,10 @@
                                     <display:column sortable="false"  headerClass="table_header" url="/admin/content/edit.html" titleKey="action" style="width: 10%">
                                         <div class="toolbar">
                                             <a title="<fmt:message key="button.view"/>" href="${viewUrl}?pojo.contentId=${tableList.contentId }" class="edit"><i class="fa  fa-info-circle"></i></a>
-                                            <c:choose>
-                                                <c:when test="${tableList.status eq Constants.CONTENT_SAVE || tableList.status eq Constants.CONTENT_REJECT}">
-                                                    <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
-                                                        | <a title="<fmt:message key="button.edit"/>" href="${editUrl}?pojo.contentId=${tableList.contentId}" class="edit"><i class="fa fa-edit"></i></a>
-                                                        | <a title="<fmt:message key="button.delete"/>" id="${tableList.contentId}" class="deleteLink"><i class="fa fa-remove"></i></a>
-                                                    </security:authorize>
-                                                </c:when>
-                                            </c:choose>
+                                            <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
+                                                | <a title="<fmt:message key="button.edit"/>" href="${editUrl}?pojo.contentId=${tableList.contentId}" class="edit"><i class="fa fa-edit"></i></a>
+                                                | <a title="<fmt:message key="button.delete"/>" id="${tableList.contentId}" class="deleteLink"><i class="fa fa-remove"></i></a>
+                                            </security:authorize>
                                         </div>
                                     </display:column>
 

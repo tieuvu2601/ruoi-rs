@@ -22,7 +22,7 @@
                     var settings${node.itemKey} = {
                             flash_url : "<c:url value='/swfupload/swfupload.swf'/>",
                             upload_url: "<c:url value='/ajax/content/uploadfile.html;jsessionid=${pageContext.session.id}'/>",
-                            post_params: {'nodename' : '${node.itemKey}', 'contentID': '${item.pojo.contentID}'},
+                            post_params: {'nodename' : '${node.itemKey}', 'contentId': '${item.pojo.contentId}'},
                             file_size_limit : "500 MB",
                             file_types : "*.*",
                             file_types_description : "All Files",
@@ -109,103 +109,90 @@
                             </c:if>
 
                             <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="category.type.title"/></label>
+                                <div class="col-sm-8">
+                                    <form:select path="pojo.categoryType.categoryTypeId" cssClass="form-control">
+                                        <form:options items="${categoryTypes}" itemLabel="name" itemValue="categoryTypeId"/>
+                                    </form:select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="category.title"/></label>
+                                <div class="col-sm-8">
+                                    <form:select path="pojo.category.categoryId" cssClass="form-control">
+                                        <c:forEach var="cat" items="${categories}">
+                                            <form:option value="${cat.categoryId}">
+                                                <c:forEach begin="1" end="${cat.nodeLevel}"> - - - </c:forEach> ${cat.name}
+                                                <%--<c:if test="${cat.categoryId eq item.pojo.category.categoryId}">selected</c:if>--%>
+                                            </form:option>
+                                        </c:forEach>
+                                    </form:select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="authoring.template.title"/></label>
                                 <div class="col-sm-8">
                                     <label class="col-sm-12 control-label text-default">${authoringTemplate.name}</label>
-                                    <form:hidden path="pojo.authoringTemplate"/>
+                                    <form:hidden path="pojo.authoringTemplate.authoringTemplateId" id="authoringTemplateId"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.title"/></label>
-                                <div class="col-sm-8">
-                                    <form:select path="pojo.category.categoryID" cssClass="form-control">
-                                        <c:forEach var="cat" items="${listCategories}">
-                                            <form:option value="${cat.categoryID}">
-                                                <c:forEach begin="1" end="${cat.nodeLevel}">
-                                                    - - -
-                                                </c:forEach>
-                                                ${cat.name}
-                                            </form:option>
-                                        </c:forEach>
-                                    </form:select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.title"/></label>
-                                <div class="col-sm-8">
-                                    <form:select path="pojo.category.categoryID" cssClass="form-control">
-                                        <c:forEach var="cat" items="${listCategories}">
-                                            <form:option value="${cat.categoryID}">
-                                                <c:forEach begin="1" end="${cat.nodeLevel}">
-                                                    - - -
-                                                </c:forEach>
-                                                ${cat.name}
-                                            </form:option>
-                                        </c:forEach>
-                                    </form:select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.title"/></label>
+                                <label class="col-sm-2 control-label"><fmt:message key="content.header"/></label>
                                 <div class="col-sm-8">
                                     <form:input path="pojo.title" size="40" maxlength="160" cssClass="form-control" id="title"/>
                                     <form:errors path="pojo.title" cssClass="validateError"/>
+                                    <span class="help-block m-b-none">Title to using to seo. It should have length 160 character</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="content.keyword"/></label>
                                 <div class="col-sm-8">
-                                    <form:textarea path="pojo.keyword" rows="3" cssClass="form-control" id="keyword"/>
+                                    <form:input path="pojo.keyword"  size="160" maxlength="160" id="keyword" cssClass="form-control"/>
                                     <form:errors path="pojo.keyword" cssClass="validateError"/>
+                                    <span class="help-block m-b-none">Key word to using to seo. It should have length 160 character</span>
                                 </div>
                             </div>
 
-                            <c:if test="${authoringTemplate.hasThumbnail == 'Y'}">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.thumbnail"/></label>
-                                    <div class="col-sm-8">
-                                        <input type="file" name="thumbnailFile"  class="form-control"/><i>(Kích thước chuẩn 410 x 390)</i>
-                                        <form:hidden path="pojo.thumbnail" cssClass="form-control" id="thumbnail"/>
-                                    </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="content.description"/></label>
+                                <div class="col-sm-8">
+                                    <form:input path="pojo.description"  size="160" maxlength="160" id="description" cssClass="form-control"/>
+                                    <form:errors path="pojo.description" cssClass="validateError"/>
+                                    <span class="help-block m-b-none">Description to using to seo. It should have length 160 character</span>
                                 </div>
-                            </c:if>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="content.thumbnail"/></label>
+                                <div class="col-sm-8">
+                                    <input type="file" name="thumbnailFile" id="thumbnailFile" class="form-control"/>
+                                    <span class="help-block m-b-none">(Standard Size is 16 x 9 )</span>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="content.display.order"/></label>
                                 <div class="col-sm-8">
-                                    <form:input path="pojo.displayOrder" size="40"  cssClass="form-control"/>
+                                    <form:input path="pojo.displayOrder" size="40" id="displayOrder" cssClass="form-control"/>
                                 </div>
                             </div>
-
-
-                            <c:if test="${authoringTemplate.event == 'Y'}">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.event"/></label>
-                                    <div class="col-sm-5">
-                                        <div class="input-daterange input-group" id="contentEvent">
-                                            <input name="pojo.beginDate" class="input-sm form-control" id="beginDate" value="<fmt:formatDate value="${item.pojo.beginDate}" pattern="dd-MM-yyyy"/>"/>
-                                            <span class="input-group-addon">to</span>
-                                            <input name="pojo.endDate" class="input-sm form-control" id="endDate" value="<fmt:formatDate value="${item.pojo.endDate}" pattern="dd-MM-yyyy"/>"/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:if>
 
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-2">
                                     <c:choose>
-                                        <c:when test="${item.pojo.status eq -1}">
-                                            <input class="btn w-xs btn-primary" type="button" value="<fmt:message key="button.save"/>" onclick="submitContentForm('update')"/>
+                                        <c:when test="${item.pojo.status eq 0}">
+                                            <input class="btn w-xs btn-primary" type="button" value="<fmt:message key="button.save"/>" onclick="submitContentForm('content-update')"/>
 
-                                            <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.send"/>" onclick="submitContentForm('send')"/>
+                                            <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.post"/>" onclick="submitContentForm('content-post')"/>
                                         </c:when>
 
-                                        <c:when test="${item.pojo.status eq 0}">
-                                            <input class="btn w-xs btn-success" type="button" value="<fmt:message key="button.send"/>" onclick="submitContentForm('send')"/>
+                                        <c:when test="${item.pojo.status == 1}">
+                                            <input class="btn w-xs btn-primary" type="button" value="<fmt:message key="button.save"/>" onclick="submitContentForm('content-post')"/>
+                                            <input class="btn w-xs btn-danger" type="button" value="<fmt:message key="button.remove"/>" onclick="submitContentForm('content-update')"/>
                                         </c:when>
                                     </c:choose>
                                     <a href="${backUrl}" class="btn w-xs btn-default"><fmt:message key="button.back"/></a>
@@ -215,6 +202,101 @@
                     </div>
                 </div>
             </div>
+
+            <c:if test="${authoringTemplate.areProduct == 1}">
+                <div class="row">
+                    <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
+                        <div class="hpanel">
+                            <div class="panel-heading">
+                                <div class="panel-tools">
+                                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                                </div>
+                                <fmt:message key="content.authoring.content"/>
+                            </div>
+
+                            <div class="panel-body" style="display: block;">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.location.text"/></label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.locationText" size="40" cssClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.location"/></label>
+                                    <div class="col-sm-8">
+                                        <form:select path="pojo.location.locationId" cssClass="form-control">
+                                            <form:option value="">Select</form:option>
+                                            <form:options items="${locations}" itemLabel="name" itemValue="locationId"></form:options>
+                                        </form:select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.area"/></label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.area" size="40" cssClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.total.area"/></label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.totalArea" size="40" cssClass="form-control"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.area.ratio"/></label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.areaRatio" size="40" cssClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.number.of.block"/></label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.numberOfBlock" size="40" cssClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.cost"/></label>
+                                    <div class="col-sm-4">
+                                        <form:input path="pojo.cost" size="40" id="product-cost" cssClass="form-control"/>
+
+                                    </div>
+
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.cost.unit"/></label>
+                                    <div class="col-sm-2">
+                                        <form:select path="pojo.unit" cssClass="form-control">
+                                            <form:option value=""><fmt:message key="label.select"/></form:option>
+                                            <form:option value="m2"><fmt:message key="content.cost.unit.m2"/></form:option>
+                                            <form:option value="unit"><fmt:message key="content.cost.unit.unit"/></form:option>
+                                            <form:option value="hecta"><fmt:message key="content.cost.unit.hecta"/></form:option>
+                                        </form:select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-8">
+                                        <div class="checkbox"><label> <form:checkbox path="pojo.hotItem" value="1"/><fmt:message key="content.is.hot.product"/></label></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-8">
+                                        <div class="checkbox"><label> <form:checkbox path="pojo.hotItem" value="1"/><fmt:message key="content.is.new.product"/></label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
 
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
@@ -332,10 +414,10 @@
         </div>
     </div>
     <form:hidden path="crudaction" id="crudaction"/>
-    <security:authorize ifNotGranted="FULL_ACCESS_RIGHT">
-        <form:hidden path="pojo.status"/>
-    </security:authorize>
-    <form:hidden path="pojo.contentID"/>
+    <form:hidden path="pojo.contentId"/>
+    <form:hidden path="authoringTemplateId" id="authoringTemplateId"/>
+    <form:hidden path="categoryId" id="categoryId"/>
+    <form:hidden path="categoryTypeId" id="categoryTypeId"/>
 </form:form>
 <c:url var="prefixUrl" value="/" />
 <script type='text/javascript'>
@@ -409,23 +491,42 @@ function uploadComplete(file) {
 		this.startUpload();
 	}
 }
+
 function validateAuthoringForm() {
     var title = convertUrlToTitle($('#title').val());
     $('#title').val(title);
 
-	var keyword = $('#keyword').val();
-	if($.trim(title) == '') {
-		alert('Vui lòng nhập tiêu đề tin - Thông báo');
-		$('#title').focus();
-		return false;
-	}
-	if($.trim(keyword) == '') {
-        alert('Vui lòng nhập từ khóa của tin - Thông báo');
-		$('#keyword').focus();
-		return false;
-	}
-	return true;
+    var keyword = $('#keyword').val();
+    if($.trim(title) == '') {
+        swal({
+            title: "Error!",
+            text: "Please enter the title.",
+            type: "error"
+        });
+
+        $('#title').focus();
+        return false;
+    }
+    if($.trim(keyword) == '') {
+        swal({
+            title: "Error!",
+            text: "Please enter the keyword.",
+            type: "error"
+        });
+        $('#keyword').focus();
+        return false;
+    }
+    return true;
 }
+
+if(!FlashDetect.installed){
+    swal({
+        title: "Error!",
+        text: "<fmt:message key='admin.browser.not.install.flash.warn'/>",
+        type: "error"
+    });
+}
+
 function deleteAttachmentItem(itemID) {
     bootbox.confirm('<fmt:message key="delete.confirm"/>', function(r) {
 	   if(r) {

@@ -19,7 +19,7 @@ public class SecurityUtils {
 	 * @return the current login name for online user
 	 */
 	public static Long getLoginUserId() {
-		return getPrincipal().getUserID();
+		return getPrincipal().getUserId();
 	}
 
 	

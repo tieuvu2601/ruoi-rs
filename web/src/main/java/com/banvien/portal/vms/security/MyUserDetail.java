@@ -12,7 +12,7 @@ public class MyUserDetail extends User {
 				accountNonLocked, authorities);
 	}
 	
-	private Long userID;
+	private Long userId;
 
     private String displayName;
 	
@@ -27,15 +27,13 @@ public class MyUserDetail extends User {
 	/**
 	 * @return the userID
 	 */
-	public Long getUserID() {
-		return userID;
-	}
-	/**
-	 * @param userID the userID to set
-	 */
-	public void setUserID(Long userID) {
-		this.userID = userID;
-	}
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     /**
 	 * @return the email
@@ -72,5 +70,13 @@ public class MyUserDetail extends User {
 
     public void setFullAccessSystem(Boolean fullAccessSystem) {
         isFullAccessSystem = fullAccessSystem;
+    }
+
+    public Boolean getIsFullAccessSystem() {
+        return isFullAccessSystem;
+    }
+
+    public void setIsFullAccessSystem(Boolean isFullAccessSystem) {
+        this.isFullAccessSystem = isFullAccessSystem;
     }
 }

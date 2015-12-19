@@ -119,9 +119,7 @@ window.onload = function() {
                                 <label class="col-sm-2 control-label"><fmt:message key="authoring.template.title"/></label>
                                 <div class="col-sm-8">
                                     <label class="col-sm-12 control-label text-default">${authoringTemplate.name}</label>
-
-                                    <input type="hidden" name="pojo.authoringTemplate" value="${item.pojo.authoringTemplate.authoringTemplateId}" id="pojo_authoringTemplate"/>
-                                    <form:hidden path="authoringTemplateId" id="authoringTemplateId"/>
+                                    <form:hidden path="pojo.authoringTemplate.authoringTemplateId" id="authoringTemplateId"/>
                                 </div>
                             </div>
 
@@ -167,7 +165,30 @@ window.onload = function() {
                                 </div>
                             </div>
 
-                            <c:if test="${authoringTemplate.areProduct == 1}">
+                            <div class="form-group">
+                                <div class="col-sm-8 col-sm-offset-2">
+                                    <input type="button" class="btn w-xs btn-primary" value="<fmt:message key="button.save"/>" onclick="submitAuthoringForm('insert-update');"/>
+                                    <input type="button" class="btn w-xs btn-success" value="<fmt:message key="button.post"/>" onclick="submitAuthoringForm('insert-submit-content');"/>
+                                    <a href="${backUrl}"class="btn w-xs btn-default"><fmt:message key="button.back"/></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <c:if test="${authoringTemplate.areProduct == 1}">
+                <div class="row">
+                    <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
+                        <div class="hpanel">
+                            <div class="panel-heading">
+                                <div class="panel-tools">
+                                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                                </div>
+                                <fmt:message key="content.authoring.content"/>
+                            </div>
+
+                            <div class="panel-body" style="display: block;">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><fmt:message key="content.location.text"/></label>
                                     <div class="col-sm-8">
@@ -186,19 +207,48 @@ window.onload = function() {
                                 </div>
 
                                 <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.area"/></label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.area" size="40" cssClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.total.area"/></label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.totalArea" size="40" cssClass="form-control"/>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.area.ratio"/></label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.areaRatio" size="40" cssClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.number.of.block"/></label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.numberOfBlock" size="40" cssClass="form-control"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label class="col-sm-2 control-label"><fmt:message key="content.cost"/></label>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-4">
                                         <form:input path="pojo.cost" size="40" id="product-cost" cssClass="form-control"/>
-                                        <span class="help-block m-b-none">(trieu dong)</span>
+
                                     </div>
 
                                     <label class="col-sm-2 control-label"><fmt:message key="content.cost.unit"/></label>
                                     <div class="col-sm-2">
                                         <form:select path="pojo.unit" cssClass="form-control">
-                                            <form:option value="">Select</form:option>
-                                            <form:option value="m2">Met vuong</form:option>
-                                            <form:option value="unit">Can</form:option>
-                                            <form:option value="hecta">Hecta</form:option>
+                                            <form:option value=""><fmt:message key="label.select"/></form:option>
+                                            <form:option value="m2"><fmt:message key="content.cost.unit.m2"/></form:option>
+                                            <form:option value="unit"><fmt:message key="content.cost.unit.unit"/></form:option>
+                                            <form:option value="hecta"><fmt:message key="content.cost.unit.hecta"/></form:option>
                                         </form:select>
                                     </div>
                                 </div>
@@ -206,29 +256,21 @@ window.onload = function() {
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"></label>
                                     <div class="col-sm-8">
-                                        <div class="checkbox"><label> <input type="checkbox" class="i-checks"> Hot Item </label></div>
+                                        <div class="checkbox"><label> <form:checkbox path="pojo.hotItem" value="1"/><fmt:message key="content.is.hot.product"/></label></div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">productStatus</label>
+                                    <label class="col-sm-2 control-label"></label>
                                     <div class="col-sm-8">
-                                        <form:input path="pojo.productStatus" size="40" cssClass="form-control"/>
+                                        <div class="checkbox"><label> <form:checkbox path="pojo.hotItem" value="1"/><fmt:message key="content.is.new.product"/></label></div>
                                     </div>
-                                </div>
-                            </c:if>
-
-                            <div class="form-group">
-                                <div class="col-sm-8 col-sm-offset-2">
-                                    <input type="button" class="btn w-xs btn-primary" value="<fmt:message key="button.save"/>" onclick="submitAuthoringForm('insert-update');"/>
-                                    <input type="button" class="btn w-xs btn-success" value="<fmt:message key="button.post"/>" onclick="submitAuthoringForm('insert-submit-content');"/>
-                                    <a href="${backUrl}"class="btn w-xs btn-default"><fmt:message key="button.back"/></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </c:if>
 
             <div class="row">
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
@@ -323,10 +365,12 @@ window.onload = function() {
     </div>
     <form:hidden path="crudaction" id="crudaction"/>
     <form:hidden path="pojo.contentId"/>
+    <form:hidden path="authoringTemplateId" id="authoringTemplateId"/>
     <form:hidden path="categoryId" id="categoryId"/>
-    <form:hidden path="categoryId" id="categoryId"/>
+    <form:hidden path="categoryTypeId" id="categoryTypeId"/>
 </form:form>
 <c:url var="prefixUrl" value="/"/>
+
 <script>
     $(document).ready(function(){
 //        setActiveMenu4Admin('#administration_menu', '#user_menu');
@@ -349,6 +393,19 @@ window.onload = function() {
             showDropdowns: true
         });
 
+        $("#displayOrder").TouchSpin({
+            initval: 0,
+            max: 1000000000
+        });
+
+        $("#product-cost").TouchSpin({
+            initval: 0,
+            max: 1000000000,
+            postfix : "(Trieu Dong)"
+        });
+
+
+
         $("#title").blur(function() {
             var titleString = convertUrlToTitle($(this).val());
             $(this).val(titleString);
@@ -365,9 +422,9 @@ window.onload = function() {
             $("#crudaction").val(crudaction);
             $("#content").fadeTo('slow',.3);
             <c:forEach items="${authoringTemplateNodes}" var="node">
-            <c:if test="${node.type == 'IMAGE' or node.type == 'ATTACHMENT'}">
-            swfu_${node.name}.startUpload();
-            </c:if>
+                <c:if test="${node.type == 'IMAGE' or node.type == 'ATTACHMENT'}">
+                    swfu_${node.name}.startUpload();
+                </c:if>
             </c:forEach>
             timeout = setTimeout(uploadCompletedTrigger, 2000);
         }
@@ -403,18 +460,31 @@ window.onload = function() {
 
         var keyword = $('#keyword').val();
         if($.trim(title) == '') {
-            alert('Vui lòng nhập tiêu đề tin - Thông báo');
+            swal({
+                title: "Error!",
+                text: "Please enter the title.",
+                type: "error"
+            });
+
             $('#title').focus();
             return false;
         }
         if($.trim(keyword) == '') {
-            alert('Vui lòng nhập từ khóa của nội dung tin - Thông báo');
+            swal({
+                title: "Error!",
+                text: "Please enter the keyword.",
+                type: "error"
+            });
             $('#keyword').focus();
             return false;
         }
         return true;
     }
     if(!FlashDetect.installed){
-        alert("<fmt:message key='admin.browser.not.install.flash.warn'/>");
+        swal({
+            title: "Error!",
+            text: "<fmt:message key='admin.browser.not.install.flash.warn'/>",
+            type: "error"
+        });
     }
 </script>

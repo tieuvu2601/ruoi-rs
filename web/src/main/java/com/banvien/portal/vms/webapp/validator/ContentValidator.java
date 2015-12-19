@@ -44,6 +44,18 @@ public class ContentValidator extends ApplicationObjectSupport implements Valida
         if(bean.getPojo().getDisplayOrder() == null){
             bean.getPojo().setDisplayOrder(0);
         }
+
+        if(bean.getPojo().getHotItem() == null){
+            bean.getPojo().setHotItem(0);
+        }
+
+        if(bean.getPojo().getSlide() == null){
+            bean.getPojo().setSlide(0);
+        }
+
+        if(bean.getPojo().getLocation() == null || bean.getPojo().getLocation().getLocationId() == null || bean.getPojo().getLocation().getLocationId() < 0){
+            bean.getPojo().setLocation(null);
+        }
     }
 
     private void validateRequiredValues(ContentBean bean, Errors errors){

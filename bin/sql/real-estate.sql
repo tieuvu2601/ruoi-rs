@@ -132,7 +132,7 @@ CREATE TABLE Content (
   Status int(11) NOT NULL DEFAULT 0,
 --   for product
   Location VARCHAR(255),
-  LocationID BIGINT NOT NULL,
+  LocationID BIGINT,
   Area VARCHAR(255), -- dien tich khu dat
   TotalArea VARCHAR(255), -- tong dien tich khu dat
   AreaRatio VARCHAR(255), -- Mat do xay dung

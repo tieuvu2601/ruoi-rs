@@ -108,8 +108,8 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
         ContentEntity pojo = bean.getPojo();
         Timestamp now = new Timestamp(System.currentTimeMillis());
 
-        pojo.setCreatedDate(new Timestamp(System.currentTimeMillis()));
-        pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));
+        pojo.setCreatedDate(now);
+        pojo.setModifiedDate(now);
         if(pojo.getStatus() != null && pojo.getStatus() == Constants.CONTENT_PUBLISH){
             pojo.setPublishedDate(new Timestamp(System.currentTimeMillis()));
         }

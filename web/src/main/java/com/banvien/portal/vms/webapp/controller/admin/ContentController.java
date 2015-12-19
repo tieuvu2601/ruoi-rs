@@ -42,6 +42,7 @@ import com.banvien.portal.vms.xml.authoringtemplate.Node;
 import com.banvien.portal.vms.xml.contentitem.ContentItem;
 import com.banvien.portal.vms.xml.contentitem.Item;
 import com.banvien.portal.vms.xml.contentitem.Items;
+//import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ContentController extends ApplicationObjectSupport {
@@ -166,7 +167,7 @@ public class ContentController extends ApplicationObjectSupport {
                 return new ModelAndView("redirect:/admin/content/authoring.html?authoringTemplateId="
                         + bean.getPojo().getAuthoringTemplate().getAuthoringTemplateId()
                         + "&categoryId=" + bean.getPojo().getCategory().getCategoryId()
-                        + "&categoryTypeId=" + bean.getPojo().getCategory().getCategoryId());
+                        + "&categoryTypeId=" + bean.getPojo().getCategoryType().getCategoryTypeId());
             }
         }
         referenceData(mav);
@@ -230,16 +231,15 @@ public class ContentController extends ApplicationObjectSupport {
                     pojo.setCreatedBy(user);
                     if(crudaction.equals("insert-update")){
                         pojo.setStatus(Constants.CONTENT_SAVE);
+                    } else if(crudaction.equals("insert-submit-content")){
+                        pojo.setStatus(Constants.CONTENT_PUBLISH);
                     }
-                    bean.setPojo(pojo);
                     pojo = this.contentService.saveItem(bean);
-                    mav = new ModelAndView("redirect:/admin/content/list.html");
+
+                    bean.setPojo(pojo);
                     mav.addObject("success", true);
-                    if(crudaction.equals("insert-submit-content")){
-                    	mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.add.successful"));
-                    }else{
-                    	mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.add.successful"));
-                    }
+                    mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.add.successful"));
+                    mav = new ModelAndView("redirect:/admin/content/list.html");
                     return mav;
                 }else {
                 	removeSessionFilesFromJCR(authoringTemplateId, AUTHORING_FILE_MAP, request);
@@ -294,8 +294,7 @@ public class ContentController extends ApplicationObjectSupport {
         }catch (Exception e) {
             logger.error("Error while parsing authoring template", e);
         }
-        if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("update") || crudaction.equals("send")
-                || crudaction.equals("approve") || crudaction.equals("public") || crudaction.equals("reject"))) {
+        if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("content-update") || crudaction.equals("content-post"))) {
             try{
                 populateContentCommand2Bean(request, authoringTemplateNodes, bean, true);
                 contentValidator.validate(bean, bindingResult);
@@ -308,19 +307,20 @@ public class ContentController extends ApplicationObjectSupport {
                     pojo.setXmlData(xmlData);
                     bean.setPojo(pojo);
                     if(pojo.getContentId() != null && pojo.getContentId() > 0){
-                        UserEntity user = userService.findById(SecurityUtils.getLoginUserId());
                         pojo.setCreatedBy(dbItem.getCreatedBy());
-                        if(crudaction.equals("update")){
+                        if(crudaction.equals("content-update")){
                             pojo.setStatus(Constants.CONTENT_SAVE);
+                        } else if(crudaction.equals("content-post")){
+                            pojo.setStatus(Constants.CONTENT_PUBLISH);
                         }
                         this.contentService.updateItem(bean);
-                        mav = new ModelAndView("redirect:/admin/content/list.html");
-                        return mav;
                     }
                     if(bean.getDeletedAttchments() != null && bean.getDeletedAttchments().size() > 0) {
                         deleteFromJCR(bean.getDeletedAttchments());
                     }
                     mav.addObject("success", true);
+                    mav = new ModelAndView("redirect:/admin/content/list.html");
+                    return mav;
                 }else {
                     removeSessionFilesFromJCR(bean.getPojo().getContentId(), CONTENT_FILE_MAP, request);
                 }
