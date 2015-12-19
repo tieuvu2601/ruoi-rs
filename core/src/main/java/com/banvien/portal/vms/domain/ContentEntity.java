@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 public class ContentEntity implements Serializable {
     private Long contentId;
     private CategoryEntity category;
-    private CategoryTypeEntity categoryType;
     private AuthoringTemplateEntity authoringTemplate;
     private String title;
     private String keyword;
@@ -16,7 +15,7 @@ public class ContentEntity implements Serializable {
     private Integer status;
 
     // for product
-
+    private CategoryTypeEntity categoryType;
     private String locationText;
     private LocationEntity location;
     private String area;
@@ -53,14 +52,6 @@ public class ContentEntity implements Serializable {
 
     public void setCategory(CategoryEntity category) {
         this.category = category;
-    }
-
-    public CategoryTypeEntity getCategoryType() {
-        return categoryType;
-    }
-
-    public void setCategoryType(CategoryTypeEntity categoryType) {
-        this.categoryType = categoryType;
     }
 
     public AuthoringTemplateEntity getAuthoringTemplate() {
@@ -117,6 +108,14 @@ public class ContentEntity implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public CategoryTypeEntity getCategoryType() {
+        return categoryType;
+    }
+
+    public void setCategoryType(CategoryTypeEntity categoryType) {
+        this.categoryType = categoryType;
     }
 
     public String getLocationText() {

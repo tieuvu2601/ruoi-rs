@@ -1,8 +1,27 @@
 <%@ include file="/common/taglibs.jsp"%>
+<html>
 <head>
-    <title>Title of page!</title>
-    <meta name="description" content="must be revise after !!!!! ">
+    <title>Thong tin bat dong san</title>
+    <meta name="description" content="Tin tuc bat dong san thanh pho Ho Chi Minh">
+    <meta name="keywords" content="Bat dong san, nha dat, mua ban, Ho Chi Minh">
+
+    <meta property="og:url"           content="url cua trang web. sau nay sinh ra sau." />
+    <meta property="og:type"          content="tin tuc hoac san pham hoac gi do tuy tung trang nhe."/>
+    <meta property="og:title"         content="title cua trang web, sau nay sinh ra sau" />
+    <meta property="og:description"   content="lay cai description tren kia luon" />
+    <meta property="og:image"         content="dung cai thumbnail de lam hinh dai dien"/>
+
 </head>
+<body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=797480313696960";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs breadcrumbs-light">
@@ -24,14 +43,16 @@
 <!-- Blog Grid -->
 <div class="blog-grid margin-bottom-30">
     <h2 class="blog-grid-title-lg">Learning ana Analysing Technology: iMac</h2>
+
     <div class="overflow-h margin-bottom-10">
         <ul class="blog-grid-info pull-left">
             <li>Evan Bartlett</li>
             <li>Mar 6, 2015</li>
         </ul>
         <div class="pull-right">
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
-            <div class="addthis_sharing_toolbox"></div>
+            <div class="addthis_sharing_toolbox">
+                <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+            </div>
         </div>
     </div>
     <img class="img-responsive" src="assets/img/blog/img3.jpg" alt="">
@@ -79,6 +100,8 @@
     <li><a href="#">Skills</a></li>
 </ul>
 <!-- End Blog Grid Tagds -->
+
+<div class="fb-comments" data-href="http://developers.facebook.com/docs/plugins/comments/" data-width="100%" data-numposts="10"></div>
 
 <!-- Blog Thumb v4 -->
 <div class="margin-bottom-50">
@@ -144,90 +167,6 @@
     </div><!--/end row-->
 </div>
 <!-- End Blog Thumb v4 -->
-
-<!-- Blog Comments v2 -->
-<div class="margin-bottom-50">
-    <h2 class="title-v4">Comments (3)</h2>
-
-    <!-- Blog Comments v2 -->
-    <div class="row blog-comments-v2">
-        <div class="commenter">
-            <img class="rounded-x" src="assets/img/team/img1.jpg" alt="">
-        </div>
-        <div class="comments-itself">
-            <h4>
-                Jorny Alnordussen
-                <span>6 hours ago / <a href="#">Reply</a></span>
-            </h4>
-            <p>Gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod..</p>
-        </div>
-    </div>
-    <!-- End Blog Comments v2 -->
-
-    <!-- Blog Comments v2 -->
-    <div class="row blog-comments-v2 blog-comments-v2-reply">
-        <div class="commenter">
-            <img class="rounded-x" src="assets/img/team/img2.jpg" alt="">
-        </div>
-        <div class="comments-itself">
-            <h4>
-                Susie Lau
-                <span>6 hours ago / <a href="#">Reply</a></span>
-            </h4>
-            <p>Gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod..</p>
-        </div>
-    </div>
-    <!-- End Blog Comments v2 -->
-
-    <!-- Blog Comments v2 -->
-    <div class="row blog-comments-v2">
-        <div class="commenter">
-            <img class="rounded-x" src="assets/img/team/img3.jpg" alt="">
-        </div>
-        <div class="comments-itself">
-            <h4>
-                Marcus Farrell
-                <span>6 hours ago / <a href="#">Reply</a></span>
-            </h4>
-            <p>Gravida pellentesque urna varius vitae, gravida pellentesque urna varius vitae. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod..</p>
-        </div>
-    </div>
-    <!-- End Blog Comments v2 -->
-</div>
-<!-- End Blog Comments v2 -->
-
-<!-- Form -->
-<h2 class="title-v4">Post a Comment</h2>
-<form action="http://htmlstream.com/preview/unify-v1.8/Blog/assets/php/sky-forms-pro/demo-comment-process.php" method="post" id="sky-form3" class="sky-form comment-style-v2">
-    <fieldset>
-        <div class="row sky-space-30">
-            <div class="col-md-6">
-                <div>
-                    <input type="text" name="name" id="name" placeholder="Name" class="form-control bg-color-light">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div>
-                    <input type="text" name="email" id="email" placeholder="Email" class="form-control bg-color-light">
-                </div>
-            </div>
-        </div>
-
-        <div class="sky-space-30">
-            <div>
-                <textarea rows="8" name="message" id="message" placeholder="Write comment here ..." class="form-control bg-color-light"></textarea>
-            </div>
-        </div>
-
-        <p><button type="submit" class="btn-u btn-u-default">Submit</button></p>
-    </fieldset>
-
-    <div class="message">
-        <i class="rounded-x fa fa-check"></i>
-        <p>Your comment was successfully posted!</p>
-    </div>
-</form>
-<!-- End Form -->
 </div>
 
 <div class="col-md-3">

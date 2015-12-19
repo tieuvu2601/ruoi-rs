@@ -109,15 +109,6 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.type.title"/></label>
-                                <div class="col-sm-8">
-                                    <form:select path="pojo.categoryType.categoryTypeId" cssClass="form-control">
-                                        <form:options items="${categoryTypes}" itemLabel="name" itemValue="categoryTypeId"/>
-                                    </form:select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="category.title"/></label>
                                 <div class="col-sm-8">
                                     <form:select path="pojo.category.categoryId" cssClass="form-control">
@@ -142,7 +133,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="content.header"/></label>
                                 <div class="col-sm-8">
-                                    <form:input path="pojo.title" size="40" maxlength="160" cssClass="form-control" id="title"/>
+                                    <form:input path="pojo.title" size="160" maxlength="255" cssClass="form-control" id="title"/>
                                     <form:errors path="pojo.title" cssClass="validateError"/>
                                     <span class="help-block m-b-none">Title to using to seo. It should have length 160 character</span>
                                 </div>
@@ -160,18 +151,25 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="content.description"/></label>
                                 <div class="col-sm-8">
-                                    <form:input path="pojo.description"  size="160" maxlength="160" id="description" cssClass="form-control"/>
+                                    <form:input path="pojo.description"  size="160" maxlength="255" id="description" cssClass="form-control"/>
                                     <form:errors path="pojo.description" cssClass="validateError"/>
                                     <span class="help-block m-b-none">Description to using to seo. It should have length 160 character</span>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="content.thumbnail"/></label>
-                                <div class="col-sm-8">
+                                <label class="col-sm-2 control-label"><fmt:message key="content.thumbnails"/></label>
+                                <div class="col-sm-4">
                                     <input type="file" name="thumbnailFile" id="thumbnailFile" class="form-control"/>
                                     <span class="help-block m-b-none">(Standard Size is 16 x 9 )</span>
                                 </div>
+                                <c:if test="${not empty item.pojo.thumbnails}">
+                                    <div class="col-sm-4">
+                                        <rep:href value="${item.pojo.thumbnails}" var="imgURL"/>
+                                        <img src="<c:url value="${imgURL}?w=100"/>" style="max-width: 100px; max-height: 100px;" />
+                                    </div>
+                                </c:if>
+
                             </div>
 
                             <div class="form-group">
@@ -211,10 +209,19 @@
                                 <div class="panel-tools">
                                     <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                                 </div>
-                                <fmt:message key="content.authoring.content"/>
+                                <fmt:message key="content.product.information"/>
                             </div>
 
                             <div class="panel-body" style="display: block;">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="category.type.title"/></label>
+                                    <div class="col-sm-8">
+                                        <form:select path="pojo.categoryType.categoryTypeId" cssClass="form-control">
+                                            <form:options items="${categoryTypes}" itemLabel="name" itemValue="categoryTypeId"/>
+                                        </form:select>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><fmt:message key="content.location.text"/></label>
                                     <div class="col-sm-8">
@@ -245,7 +252,6 @@
                                         <form:input path="pojo.totalArea" size="40" cssClass="form-control"/>
                                     </div>
                                 </div>
-
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><fmt:message key="content.area.ratio"/></label>
@@ -289,7 +295,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"></label>
                                     <div class="col-sm-8">
-                                        <div class="checkbox"><label> <form:checkbox path="pojo.hotItem" value="1"/><fmt:message key="content.is.new.product"/></label></div>
+                                        <div class="checkbox"><label> <form:checkbox path="pojo.productStatus" value="1"/><fmt:message key="content.is.new.product"/></label></div>
                                     </div>
                                 </div>
                             </div>
@@ -417,7 +423,6 @@
     <form:hidden path="pojo.contentId"/>
     <form:hidden path="authoringTemplateId" id="authoringTemplateId"/>
     <form:hidden path="categoryId" id="categoryId"/>
-    <form:hidden path="categoryTypeId" id="categoryTypeId"/>
 </form:form>
 <c:url var="prefixUrl" value="/" />
 <script type='text/javascript'>

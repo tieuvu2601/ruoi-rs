@@ -8,7 +8,6 @@
             <generator class="increment"/>
         </id>
         <many-to-one name="category" column="CategoryID" lazy="false"/>
-        <many-to-one name="categoryType" column="CategoryTypeID" lazy="false"/>
         <many-to-one name="authoringTemplate" column="AuthoringTemplateID"/>
         <property name="title" column="Title"/>
         <property name="keyword" column="Keyword"/>
@@ -18,6 +17,7 @@
         <property name="status" column="Status"/>
 
         <!--// for product-->
+        <many-to-one name="categoryType" column="CategoryTypeID" lazy="false"/>
         <property name="locationText" column="Location"/>
         <many-to-one name="location" column="LocationID"/>
         <property name="area" column="Area"/>

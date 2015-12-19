@@ -8,6 +8,11 @@
 <!-- Mirrored from htmlstream.com/preview/unify-v1.8/Blog/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 06 Dec 2015 10:44:01 GMT -->
 <head>
     <title><fmt:message key="webapp.name"/>&trade;&nbsp;-&nbsp;<decorator:title/></title>
+    <meta name="description" content="<decorator:getProperty property="meta.description"></decorator:getProperty>"/>
+    <meta name="keywords" content="<decorator:getProperty property="meta.keywords"></decorator:getProperty>">
+    <meta name="robots" content="index,follow"/>
+    <meta name="author" content="">
+    <meta name="copyright" content=""/>
 
     <!-- Meta -->
     <meta charset="utf-8">

@@ -166,8 +166,7 @@ public class ContentController extends ApplicationObjectSupport {
             }else{
                 return new ModelAndView("redirect:/admin/content/authoring.html?authoringTemplateId="
                         + bean.getPojo().getAuthoringTemplate().getAuthoringTemplateId()
-                        + "&categoryId=" + bean.getPojo().getCategory().getCategoryId()
-                        + "&categoryTypeId=" + bean.getPojo().getCategoryType().getCategoryTypeId());
+                        + "&categoryId=" + bean.getPojo().getCategory().getCategoryId());
             }
         }
         referenceData(mav);
@@ -178,7 +177,6 @@ public class ContentController extends ApplicationObjectSupport {
     @RequestMapping("/admin/content/authoring.html")
     public ModelAndView authoring(@RequestParam(value="authoringTemplateId", required = true) Long authoringTemplateId,
                                   @RequestParam(value="categoryId", required = true) Long categoryId,
-                                  @RequestParam(value="categoryTypeId", required = true) Long categoryTypeId,
                                   ContentBean bean, BindingResult bindingResult, HttpServletRequest request){
         ModelAndView mav = new ModelAndView("/admin/content/authoring");
         String crudaction = bean.getCrudaction();
@@ -206,10 +204,6 @@ public class ContentController extends ApplicationObjectSupport {
                 CategoryEntity category = new CategoryEntity();
                 category.setCategoryId(categoryId);
                 pojo.setCategory(category);
-
-                CategoryTypeEntity categoryType = new CategoryTypeEntity();
-                categoryType.setCategoryTypeId(categoryTypeId);
-                pojo.setCategoryType(categoryType);
             }
         }catch (Exception e) {
             logger.error("Error while parsing authoring template", e);

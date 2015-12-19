@@ -61,19 +61,6 @@
                             </c:if>
 
                             <div class="form-group">
-                                <label class="col-sm-2 control-label"><fmt:message key="category.type.title"/></label>
-                                <div class="col-sm-8">
-                                    <form:select path="pojo.categoryType.categoryTypeId" cssClass="form-control">
-                                        <c:forEach var="catType" items="${categoryTypes}">
-                                            <form:option value="${catType.categoryTypeId}">
-                                                ${catType.name}
-                                            </form:option>
-                                        </c:forEach>
-                                    </form:select>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="category.title"/></label>
                                 <div class="col-sm-8">
                                     <form:select path="pojo.category.categoryId" cssClass="form-control">

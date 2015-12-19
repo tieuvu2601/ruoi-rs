@@ -14,8 +14,6 @@ public class ContentBean extends AbstractBean<ContentEntity> {
 
     private Long categoryId;
 
-    private Long categoryTypeId;
-
     private Timestamp fromDate;
 
     private Timestamp toDate;
@@ -104,12 +102,4 @@ public class ContentBean extends AbstractBean<ContentEntity> {
 	public void setDeletedAttchments(List<String> deletedAttchments) {
 		this.deletedAttchments = deletedAttchments;
 	}
-
-    public Long getCategoryTypeId() {
-        return categoryTypeId;
-    }
-
-    public void setCategoryTypeId(Long categoryTypeId) {
-        this.categoryTypeId = categoryTypeId;
-    }
 }

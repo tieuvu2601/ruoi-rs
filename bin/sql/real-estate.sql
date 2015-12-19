@@ -122,7 +122,6 @@ DROP TABLE IF EXISTS Content;
 CREATE TABLE Content (
   ContentID bigint(20) NOT NULL AUTO_INCREMENT,
   CategoryID bigint(20) NOT NULL,
-  CategoryTypeID bigint(20) NOT NULL,
   AuthoringTemplateID bigint(20) DEFAULT NULL,
   Title VARCHAR(255) NOT NULL,
   Keyword VARCHAR(255),
@@ -131,6 +130,7 @@ CREATE TABLE Content (
   DisplayOrder int(11) DEFAULT 1,
   Status int(11) NOT NULL DEFAULT 0,
 --   for product
+  CategoryTypeID bigint(20),
   Location VARCHAR(255),
   LocationID BIGINT,
   Area VARCHAR(255), -- dien tich khu dat
