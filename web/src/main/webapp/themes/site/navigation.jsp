@@ -24,7 +24,7 @@
             <div class="res-container">
                 <ul class="nav navbar-nav">
                     <li class="home active">
-                        <a href="<c:url value="/index.html"/>">HOME</a>
+                        <a href="<c:url value="/index.html"/>"><fmt:message key="site.home"/></a>
                     </li>
                     <content:getBuildingMenu var="menuItems"/>
                     <oscache:cache key="menu_items_top_menu" duration="1">

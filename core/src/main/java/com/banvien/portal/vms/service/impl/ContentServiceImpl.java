@@ -90,9 +90,8 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
     }
 
     @Override
-    public List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Boolean isEng, Integer status) {
-        category = category.replaceAll("-", " ");
-        return this.contentDAO.findByCategory(category, startRow, pageSize, isEng, status);
+    public List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Integer status) {
+        return this.contentDAO.findByCategory(category, startRow, pageSize, status);
     }
 
     @Override

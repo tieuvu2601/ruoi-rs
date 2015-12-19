@@ -8,7 +8,7 @@ import com.banvien.portal.vms.domain.ContentEntity;
 
 public interface ContentDAO extends GenericDAO<ContentEntity, Long> {
 
-    List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Boolean isEng, Integer status);
+
 
     Object [] findByCategoryWithMaxItem(String category, Integer startRow, Integer pageSize, Boolean isEng, Integer orderBy, Integer status);
 
@@ -27,4 +27,8 @@ public interface ContentDAO extends GenericDAO<ContentEntity, Long> {
     Object[] searchInSite(String keyword, Timestamp fromDate, Timestamp toDate, Integer startRow, Integer maxPageItems, Boolean isEng, Integer status);
 
     List<ContentEntity> findByAuthoringPrefixUrl(String prefixUrl, Integer startRow, Integer pageSize, Boolean eng, Integer status);
+
+
+    //    new content function
+    List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Integer status);
 }

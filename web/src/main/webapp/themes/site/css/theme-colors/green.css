@@ -85,6 +85,7 @@ a:hover {
 }
 .blog-grid h3 a:hover {
 	color: #019348;
+    text-decoration: none;
 }
 .blog-grid .blog-grid-info li a:hover {
 	color: #019348;

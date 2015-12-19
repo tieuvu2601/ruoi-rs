@@ -14,23 +14,6 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import com.banvien.portal.vms.util.Constants;
 
 public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Long> implements ContentDAO {
-    @Override
-    public List<ContentEntity> findByCategory(final String category, final Integer startRow, final Integer pageSize, final Boolean isEng, final Integer status) {
-        return getHibernateTemplate().execute(
-                new HibernateCallback<List<ContentEntity>>() {
-                    public List<ContentEntity> doInHibernate(Session session) throws HibernateException, SQLException {
-                        Query query = session.createQuery("SELECT c FROM Content c WHERE lower(c.category.code) = :category AND c.category.eng = :isEng AND c.status = :status ORDER BY c.modifiedDate DESC");
-                        query.setParameter("category", category.toLowerCase());
-                        query.setParameter("status", status);
-                        query.setParameter("isEng", isEng);
-                        query.setFirstResult(startRow);
-                        if(pageSize != null && pageSize >= 0){
-                            query.setMaxResults(pageSize);
-                        }
-                        return (List<ContentEntity>) query.list();
-                    }
-                });
-    }
 
     @Override
     public Object[] findByCategoryWithMaxItem(final String category, final Integer startRow, final  Integer pageSize, final Boolean isEng, final Integer orderBy, final Integer status) {
@@ -280,6 +263,26 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Lon
                         }
                         return (List<ContentEntity>) query.list();
 
+                    }
+                });
+    }
+
+
+    //    new content function
+
+    @Override
+    public List<ContentEntity> findByCategory(final String category, final Integer startRow, final Integer pageSize, final Integer status) {
+        return getHibernateTemplate().execute(
+                new HibernateCallback<List<ContentEntity>>() {
+                    public List<ContentEntity> doInHibernate(Session session) throws HibernateException, SQLException {
+                        Query query = session.createQuery(" FROM ContentEntity ce WHERE lower(ce.category.code) = :category  AND ce.status = :status ORDER BY ce.hotItem DESC, ce.productStatus, ce.publishedDate DESC");
+                        query.setParameter("category", category.toLowerCase());
+                        query.setParameter("status", status);
+                        query.setFirstResult(startRow);
+                        if(pageSize != null && pageSize >= 0){
+                            query.setMaxResults(pageSize);
+                        }
+                        return (List<ContentEntity>) query.list();
                     }
                 });
     }

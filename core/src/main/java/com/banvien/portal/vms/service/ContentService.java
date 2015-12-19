@@ -14,7 +14,7 @@ public interface ContentService extends GenericService<ContentEntity, Long> {
 
     Integer deleteItems(String[] checkList);
 
-    List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Boolean isEng, Integer status);
+    List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Integer status);
 
     List<ContentEntity> findByAuthoringTemplate(String authoringCode, Integer startRow, Integer pageSize);
 
