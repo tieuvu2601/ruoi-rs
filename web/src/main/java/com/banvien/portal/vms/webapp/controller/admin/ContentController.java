@@ -70,6 +70,9 @@ public class ContentController extends ApplicationObjectSupport {
     
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LocationService locationService;
     
     @Autowired
     private MailEngine mailEngine;
@@ -154,6 +157,7 @@ public class ContentController extends ApplicationObjectSupport {
         mav.addObject("categories", CategoryUtil.getAllCategoryObjectInSite(categories));
         mav.addObject("authoringTemplates", authoringTemplateService.findAll());
         mav.addObject("categoryTypes", this.categoryTypeService.findAll());
+        mav.addObject("locations", this.locationService.findAll());
     }
 
     @RequestMapping("/admin/content/add.html")
@@ -327,9 +331,7 @@ public class ContentController extends ApplicationObjectSupport {
             bean.setPojo(dbItem);
             bean.setContentItem(contentItem);
         }
-        mav.addObject("listCategories", CategoryUtil.getAllCategoryObjectInSite(categoryService.findAllCategoryParent()));
         mav.addObject(Constants.FORM_MODEL_KEY, bean);
-        mav.addObject("currentUserID", SecurityUtils.getLoginUserId());
         referenceData(mav);
         return mav;
     }
