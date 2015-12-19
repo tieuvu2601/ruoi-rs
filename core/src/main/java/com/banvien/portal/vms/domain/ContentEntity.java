@@ -11,24 +11,32 @@ public class ContentEntity implements Serializable {
     private String title;
     private String keyword;
     private String description;
+    private String thumbnails;
+    private Integer displayOrder;
+    private Integer status;
 
     // for product
-    private Integer cost;
+
     private String locationText;
     private LocationEntity location;
-    private Integer productStatus;
+    private String area;
+    private String totalArea;
+    private String areaRatio;
+    private String numberOfBlock;
+    private Integer cost;
+    private String unit;
     private Integer hotItem;
+    private Integer productStatus;
+
     // for slider
     private Integer slide;
-    // for host Item
 
-    private Integer displayOrder;
+    // for content
     private String xmlData;
-    private String thumbnails;
     private Timestamp createdDate;
     private Timestamp modifiedDate;
     private Timestamp publishedDate;
-    private Integer status;
+
     private UserEntity createdBy;
 
     public Long getContentId() {
@@ -79,12 +87,36 @@ public class ContentEntity implements Serializable {
         this.keyword = keyword;
     }
 
-    public Integer getCost() {
-        return cost;
+    public String getDescription() {
+        return description;
     }
 
-    public void setCost(Integer cost) {
-        this.cost = cost;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getThumbnails() {
+        return thumbnails;
+    }
+
+    public void setThumbnails(String thumbnails) {
+        this.thumbnails = thumbnails;
+    }
+
+    public Integer getDisplayOrder() {
+        return displayOrder;
+    }
+
+    public void setDisplayOrder(Integer displayOrder) {
+        this.displayOrder = displayOrder;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getLocationText() {
@@ -103,12 +135,52 @@ public class ContentEntity implements Serializable {
         this.location = location;
     }
 
-    public Integer getProductStatus() {
-        return productStatus;
+    public String getArea() {
+        return area;
     }
 
-    public void setProductStatus(Integer productStatus) {
-        this.productStatus = productStatus;
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getTotalArea() {
+        return totalArea;
+    }
+
+    public void setTotalArea(String totalArea) {
+        this.totalArea = totalArea;
+    }
+
+    public String getAreaRatio() {
+        return areaRatio;
+    }
+
+    public void setAreaRatio(String areaRatio) {
+        this.areaRatio = areaRatio;
+    }
+
+    public String getNumberOfBlock() {
+        return numberOfBlock;
+    }
+
+    public void setNumberOfBlock(String numberOfBlock) {
+        this.numberOfBlock = numberOfBlock;
+    }
+
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public Integer getHotItem() {
@@ -119,6 +191,14 @@ public class ContentEntity implements Serializable {
         this.hotItem = hotItem;
     }
 
+    public Integer getProductStatus() {
+        return productStatus;
+    }
+
+    public void setProductStatus(Integer productStatus) {
+        this.productStatus = productStatus;
+    }
+
     public Integer getSlide() {
         return slide;
     }
@@ -127,28 +207,12 @@ public class ContentEntity implements Serializable {
         this.slide = slide;
     }
 
-    public Integer getDisplayOrder() {
-        return displayOrder;
-    }
-
-    public void setDisplayOrder(Integer displayOrder) {
-        this.displayOrder = displayOrder;
-    }
-
     public String getXmlData() {
         return xmlData;
     }
 
     public void setXmlData(String xmlData) {
         this.xmlData = xmlData;
-    }
-
-    public String getThumbnails() {
-        return thumbnails;
-    }
-
-    public void setThumbnails(String thumbnails) {
-        this.thumbnails = thumbnails;
     }
 
     public Timestamp getCreatedDate() {
@@ -175,27 +239,11 @@ public class ContentEntity implements Serializable {
         this.publishedDate = publishedDate;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
     public UserEntity getCreatedBy() {
         return createdBy;
     }
 
     public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

@@ -24,7 +24,7 @@
     <script src="<c:url value="/themes/admin/vendor/bootstrap/dist/js/bootstrap.min.js"/>"></script>
     <script src="<c:url value="/themes/admin/vendor/moment/moment.js"/>"></script>
     <script src="<c:url value="/themes/admin/vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"/>"></script>
-    <script src="<c:url value="/ckeditor/ckeditor.js"/>"></script>
+    <script src="<c:url value="/ckeditor442/ckeditor.js"/>"></script>
 <decorator:head/>
 
 <body>

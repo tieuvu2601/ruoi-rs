@@ -337,7 +337,7 @@
     </security:authorize>
     <form:hidden path="pojo.contentID"/>
 </form:form>
-<c:url var="ckEditorPrefixURL" value="/" />
+<c:url var="prefixUrl" value="/" />
 <script type='text/javascript'>
 $(document).ready(function(){
 //        setActiveMenu4Admin('#administration_menu', '#user_menu');
@@ -345,12 +345,12 @@ $(document).ready(function(){
     $('.richTextEditor').each(function() {
         CKEDITOR.timestamp = new Date().getTime(); /*Used to debug*/
         CKEDITOR.replace($(this).attr('id'),{
-            filebrowserBrowseUrl :'${ckEditorPrefixURL}ckeditor/filemanager/browser/default/browser.html?Connector=${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-            filebrowserImageBrowseUrl : '${ckEditorPrefixURL}ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-            filebrowserFlashBrowseUrl :'${ckEditorPrefixURL}ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-            filebrowserUploadUrl  :'${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/upload.html?Type=File',
-            filebrowserImageUploadUrl : '${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/upload.html?Type=Image',
-            filebrowserFlashUploadUrl : '${ckEditorPrefixURL}ckeditor/filemanager/connectors/php/upload.html?Type=Flash'
+            filebrowserBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+            filebrowserImageBrowseUrl : '${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Image&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+            filebrowserFlashBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Flash&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+            filebrowserUploadUrl  :'${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=File',
+            filebrowserImageUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Image',
+            filebrowserFlashUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Flash'
 
         });
     });

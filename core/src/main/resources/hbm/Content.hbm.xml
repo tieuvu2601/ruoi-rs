@@ -8,43 +8,35 @@
             <generator class="increment"/>
         </id>
         <many-to-one name="category" column="CategoryID" lazy="false"/>
-
         <many-to-one name="categoryType" column="CategoryTypeID" lazy="false"/>
-
         <many-to-one name="authoringTemplate" column="AuthoringTemplateID"/>
-
         <property name="title" column="Title"/>
-
         <property name="keyword" column="Keyword"/>
-
         <property name="description" column="Description"/>
+        <property name="thumbnails" column="Thumbnails"/>
+        <property name="displayOrder" column="DisplayOrder"/>
+        <property name="status" column="Status"/>
 
-        <!--for product -->
-
-        <many-to-one name="location" column="LocationID"/>
+        <!--// for product-->
         <property name="locationText" column="Location"/>
+        <many-to-one name="location" column="LocationID"/>
+        <property name="area" column="Area"/>
+        <property name="totalArea" column="TotalArea"/>
+        <property name="areaRatio" column="AreaRatio"/>
+        <property name="numberOfBlock" column="NumberOfBlock"/>
         <property name="cost" column="Cost"/>
+        <property name="unit" column="Unit"/>
         <property name="hotItem" column="HotItem"/>
         <property name="productStatus" column="ProductStatus"/>
 
-         <!--for slider-->
-
+        <!--// for slider-->
         <property name="slide" column="Slide"/>
 
-        <property name="displayOrder" column="DisplayOrder"/>
-
+        <!--// for content-->
         <property name="xmlData" column="XmlData"/>
-
-        <property name="thumbnails" column="Thumbnails"/>
-
         <property name="createdDate" column="CreatedDate"/>
-
         <property name="modifiedDate" column="ModifiedDate"/>
-
         <property name="publishedDate" column="PublishedDate"/>
-
-        <property name="status" column="Status"/>
-
         <many-to-one name="createdBy" column="CreatedBy"/>
 	</class>
 </hibernate-mapping>

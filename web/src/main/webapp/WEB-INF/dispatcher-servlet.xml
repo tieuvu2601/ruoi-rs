@@ -42,6 +42,6 @@
         <property name="suffix" value=".jsp"/>
     </bean>
     
-    <mvc:resources mapping="/ckeditor/**" location="/ckeditor/"/>
+    <mvc:resources mapping="/ckeditor442/**" location="/ckeditor442/"/>
     <!-- Add additional controller beans here -->
 </beans>

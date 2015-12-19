@@ -169,25 +169,51 @@ window.onload = function() {
 
                             <c:if test="${authoringTemplate.areProduct == 1}">
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.cost"/></label>
-                                    <div class="col-sm-3">
-                                        <form:input path="pojo.cost" size="40" id="product-cost" cssClass="form-control"/>
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.location.text"/></label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.locationText" size="40" cssClass="form-control"/>
                                     </div>
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.cost.unit"/></label>
                                 </div>
+
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label"><fmt:message key="content.location"/></label>
                                     <div class="col-sm-8">
-                                        <form:select path="pojo.location.locationId">
+                                        <form:select path="pojo.location.locationId" cssClass="form-control">
+                                            <form:option value="">Select</form:option>
                                             <form:options items="${locations}" itemLabel="name" itemValue="locationId"></form:options>
                                         </form:select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"><fmt:message key="content.location.text"/></label>
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.cost"/></label>
+                                    <div class="col-sm-2">
+                                        <form:input path="pojo.cost" size="40" id="product-cost" cssClass="form-control"/>
+                                        <span class="help-block m-b-none">(trieu dong)</span>
+                                    </div>
+
+                                    <label class="col-sm-2 control-label"><fmt:message key="content.cost.unit"/></label>
+                                    <div class="col-sm-2">
+                                        <form:select path="pojo.unit" cssClass="form-control">
+                                            <form:option value="">Select</form:option>
+                                            <form:option value="m2">Met vuong</form:option>
+                                            <form:option value="unit">Can</form:option>
+                                            <form:option value="hecta">Hecta</form:option>
+                                        </form:select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"></label>
                                     <div class="col-sm-8">
-                                        <form:input path="pojo.locationText" size="40" cssClass="form-control"/>
+                                        <div class="checkbox"><label> <input type="checkbox" class="i-checks"> Hot Item </label></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">productStatus</label>
+                                    <div class="col-sm-8">
+                                        <form:input path="pojo.productStatus" size="40" cssClass="form-control"/>
                                     </div>
                                 </div>
                             </c:if>
@@ -307,12 +333,12 @@ window.onload = function() {
 
         $('.richTextEditor').each(function() {
             CKEDITOR.replace($(this).attr('id'),{
-                filebrowserBrowseUrl :'${prefixUrl}ckeditor/filemanager/browser/default/browser.html?Connector=${prefixUrl}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-                filebrowserImageBrowseUrl : '${prefixUrl}ckeditor/filemanager/browser/default/browser.html?Type=Image&Connector=${prefixUrl}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-                filebrowserFlashBrowseUrl :'${prefixUrl}ckeditor/filemanager/browser/default/browser.html?Type=Flash&Connector=${prefixUrl}ckeditor/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-                filebrowserUploadUrl  :'${prefixUrl}ckeditor/filemanager/connectors/php/upload.html?Type=File',
-                filebrowserImageUploadUrl : '${prefixUrl}ckeditor/filemanager/connectors/php/upload.html?Type=Image',
-                filebrowserFlashUploadUrl : '${prefixUrl}ckeditor/filemanager/connectors/php/upload.html?Type=Flash'
+                filebrowserBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserImageBrowseUrl : '${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Image&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserFlashBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Flash&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserUploadUrl  :'${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=File',
+                filebrowserImageUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Image',
+                filebrowserFlashUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Flash'
 
             });
         });

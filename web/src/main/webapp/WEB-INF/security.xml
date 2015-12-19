@@ -10,7 +10,7 @@
         <intercept-url pattern="/scripts/**" filters="none"/>
         <intercept-url pattern="/themes/**" filters="none"/>
         <intercept-url pattern="/fckeditor/**" filters="none"/>
-        <intercept-url pattern="/ckeditor/**" filters="none"/>
+        <intercept-url pattern="/ckeditor442/**" filters="none"/>
         <intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 
         <intercept-url pattern="/admin/**" access="LOGON" />

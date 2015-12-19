@@ -263,8 +263,8 @@ public class ContentController extends ApplicationObjectSupport {
         return mav;
     }
 
-    @RequestMapping("/admin/content/edit.html")
-    public ModelAndView edit(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, BindingResult bindingResult, HttpServletRequest request){
+    @RequestMapping("/admin/content/edit-old.html")
+    public ModelAndView editOld(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, BindingResult bindingResult, HttpServletRequest request){
         ModelAndView mav = new ModelAndView("/admin/content/edit");
         String crudaction = bean.getCrudaction();
         ContentEntity pojo = bean.getPojo();
@@ -564,4 +564,88 @@ public class ContentController extends ApplicationObjectSupport {
 			}
     	}
     }
+
+
+
+    @RequestMapping("/admin/content/edit.html")
+    public ModelAndView edit(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, BindingResult bindingResult, HttpServletRequest request){
+        ModelAndView mav = new ModelAndView("/admin/content/content");
+        String crudaction = bean.getCrudaction();
+        ContentEntity pojo = bean.getPojo();
+        ContentEntity dbItem = null;
+        ContentItem contentItem = new ContentItem();
+        List<XmlNodeDTO> authoringTemplateNodes = new ArrayList<XmlNodeDTO>();
+
+        if(pojo.getContentId() != null && pojo.getContentId() > 0){
+            try{
+                dbItem = contentService.findById(bean.getPojo().getContentId());
+                AuthoringTemplateEntity authoringTemplateDB = dbItem.getAuthoringTemplate();
+                String authoringTemplateXML = authoringTemplateDB.getTemplateContent();
+                if (StringUtils.isNotBlank(authoringTemplateXML)) {
+                    com.banvien.portal.vms.xml.authoringtemplate.AuthoringTemplate authoringTemplate = AuthoringTemplateUtil.parseXML(authoringTemplateXML);
+                    int index = 0;
+                    for (Node node : authoringTemplate.getNodes().getNode()) {
+                        XmlNodeDTO nodeDTO = xmlNode2Bean(node, index);
+                        authoringTemplateNodes.add(nodeDTO);
+                        index++;
+                    }
+                    mav.addObject("authoringTemplateNodes", authoringTemplateNodes);
+                }
+                mav.addObject("authoringTemplate", authoringTemplateDB);
+                contentItem = ContentItemUtil.parseXML(dbItem.getXmlData());
+                referenceData(mav);
+            }catch (ObjectNotFoundException oe) {
+                logger.error(oe.getMessage(), oe);
+                mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
+            }catch (Exception e) {
+                logger.error("Error while parsing authoring template", e);
+            }
+        }
+
+        if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("update") || crudaction.equals("send")
+                || crudaction.equals("approve") || crudaction.equals("public") || crudaction.equals("reject"))) {
+            try{
+                populateContentCommand2Bean(request, authoringTemplateNodes, bean, true);
+                contentValidator.validate(bean, bindingResult);
+                if(!bindingResult.hasErrors()){
+                    if (bean.getThumbnailFile() != null) {
+                        String filepath = jcrContent.write(JcrConstants.CONTENT_PATH, BeanUtils.toJcrFileItem(bean.getThumbnailFile()) );
+                        pojo.setThumbnails(filepath);
+                    }
+                    String xmlData = ContentItemUtil.bean2Xml(bean.getContentItem());
+                    pojo.setXmlData(xmlData);
+                    bean.setPojo(pojo);
+                    if(pojo.getContentId() != null && pojo.getContentId() > 0){
+                        UserEntity user = userService.findById(SecurityUtils.getLoginUserId());
+                        pojo.setCreatedBy(dbItem.getCreatedBy());
+                        if(crudaction.equals("update")){
+                            pojo.setStatus(Constants.CONTENT_SAVE);
+                        }
+                        this.contentService.updateItem(bean);
+                        mav = new ModelAndView("redirect:/admin/content/list.html");
+                        return mav;
+                    }
+                    if(bean.getDeletedAttchments() != null && bean.getDeletedAttchments().size() > 0) {
+                        deleteFromJCR(bean.getDeletedAttchments());
+                    }
+                    mav.addObject("success", true);
+                }else {
+                    removeSessionFilesFromJCR(bean.getPojo().getContentId(), CONTENT_FILE_MAP, request);
+                }
+            }catch(Exception e) {
+                logger.error(e.getMessage(), e);
+                mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
+            }
+        }
+        if(StringUtils.isBlank(bean.getCrudaction()) && bean.getPojo().getContentId() != null){
+            bean.setPojo(dbItem);
+            bean.setContentItem(contentItem);
+        }
+        mav.addObject("listCategories", CategoryUtil.getAllCategoryObjectInSite(categoryService.findAllCategoryParent()));
+        mav.addObject(Constants.FORM_MODEL_KEY, bean);
+        mav.addObject("currentUserID", SecurityUtils.getLoginUserId());
+        referenceData(mav);
+        return mav;
+    }
+
 }

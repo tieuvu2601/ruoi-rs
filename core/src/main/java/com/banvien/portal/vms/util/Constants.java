@@ -94,4 +94,9 @@ public class Constants {
     public static final String UP_COMING_EVENT = "upcoming";
 
     public static final String PAST_EVENT = "past";
+
+    public static final String UNIT_M2 = "m2";
+    public static final String UNIT_UNIT = "unit";
+    public static final String UNIT_HECTA = "hecta";
+
 }

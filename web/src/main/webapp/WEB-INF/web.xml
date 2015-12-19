@@ -223,7 +223,7 @@
 
 	<servlet-mapping>
 		<servlet-name>ConnectorServlet</servlet-name>
-		<url-pattern>/ckeditor/filemanager/connectors/*</url-pattern>
+		<url-pattern>/ckeditor442/filemanager/connectors/*</url-pattern>
 	</servlet-mapping>
 
 	<session-config>

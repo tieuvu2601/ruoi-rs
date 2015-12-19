@@ -2,7 +2,7 @@
     <excludes>
         <pattern>/40*.jsp</pattern>
         <pattern>/ajax/*</pattern>
-        <pattern>/ckeditor/*</pattern>
+        <pattern>/ckeditor442/*</pattern>
     </excludes>
 
 	<decorator name="login" page="/themes/login/layout.jsp">
