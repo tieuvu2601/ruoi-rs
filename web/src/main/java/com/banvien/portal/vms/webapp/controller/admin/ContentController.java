@@ -263,7 +263,7 @@ public class ContentController extends ApplicationObjectSupport {
         return mav;
     }
 
-    @RequestMapping("/admin/content/edit-old.html")
+    @RequestMapping("/admin/content/edit.html")
     public ModelAndView editOld(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, BindingResult bindingResult, HttpServletRequest request){
         ModelAndView mav = new ModelAndView("/admin/content/edit");
         String crudaction = bean.getCrudaction();
@@ -567,8 +567,8 @@ public class ContentController extends ApplicationObjectSupport {
 
 
 
-    @RequestMapping("/admin/content/edit.html")
-    public ModelAndView edit(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, BindingResult bindingResult, HttpServletRequest request){
+    @RequestMapping("/admin/content/content.html")
+    public ModelAndView editNew(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, BindingResult bindingResult, HttpServletRequest request){
         ModelAndView mav = new ModelAndView("/admin/content/content");
         String crudaction = bean.getCrudaction();
         ContentEntity pojo = bean.getPojo();
@@ -645,6 +645,39 @@ public class ContentController extends ApplicationObjectSupport {
         mav.addObject(Constants.FORM_MODEL_KEY, bean);
         mav.addObject("currentUserID", SecurityUtils.getLoginUserId());
         referenceData(mav);
+        return mav;
+    }
+
+    @RequestMapping(value = "/ajax/load-authoring-template-from-category.html")
+    public ModelAndView loadIssueProcessGroup(@RequestParam(value="categoryId", required = true) Long categoryId,  HttpServletResponse response) throws ObjectNotFoundException {
+        ModelAndView mav = new ModelAndView("/admin/content/authoringtemplate");
+
+        try{
+            CategoryEntity category = this.categoryService.findById(categoryId);
+            AuthoringTemplateEntity  authoringTemplateDB = category.getAuthoringTemplate();
+
+            List<XmlNodeDTO> authoringTemplateNodes = new ArrayList<XmlNodeDTO>();
+
+            if(authoringTemplateDB != null){
+                String authoringTemplateXML = authoringTemplateDB.getTemplateContent();
+                if (StringUtils.isNotBlank(authoringTemplateXML)) {
+                    com.banvien.portal.vms.xml.authoringtemplate.AuthoringTemplate authoringTemplate = AuthoringTemplateUtil.parseXML(authoringTemplateXML);
+
+                    int index = 0;
+                    for (Node node : authoringTemplate.getNodes().getNode()) {
+                        XmlNodeDTO nodeDTO = xmlNode2Bean(node, index);
+                        authoringTemplateNodes.add(nodeDTO);
+                        index++;
+                    }
+                    mav.addObject("authoringTemplateNodes", authoringTemplateNodes);
+                }
+                mav.addObject("authoringTemplate", authoringTemplateDB);
+                mav.addObject("category", category);
+            }
+        }catch (Exception e){
+            logger.error("Could not found Category template " + categoryId, e);
+        }
+
         return mav;
     }
 

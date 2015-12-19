@@ -7,17 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><fmt:message key="webapp.name"/>&trade;&nbsp;-&nbsp;<decorator:title/></title>
 
-    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/fontawesome/css/font-awesome.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/metisMenu/dist/metisMenu.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/animate.css/animate.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/fontawesome/css/font-awesome.css"/>">
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/metisMenu/dist/metisMenu.css"/>">
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/animate.css/animate.css"/>">
 
-    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/bootstrap/dist/css/bootstrap.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/bootstrap/dist/css/bootstrap.css"/>">
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/sweetalert/lib/sweet-alert.css"/>">
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css"/>">
 
-    <link rel="stylesheet" href="<c:url value="/themes/admin/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/themes/admin/fonts/pe-icon-7-stroke/css/helper.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/themes/admin/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css"/>">
+    <link rel="stylesheet" href="<c:url value="/themes/admin/fonts/pe-icon-7-stroke/css/helper.css"/>">
 
-    <link rel="stylesheet" href="<c:url value="/themes/admin/styles/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/themes/admin/styles/style.css"/>">
 
     <script src="<c:url value="/themes/admin/vendor/jquery/dist/jquery.min.js"/>"></script>
     <script src="<c:url value="/themes/admin/vendor/jquery-ui/jquery-ui.min.js"/>"></script>
@@ -53,6 +54,7 @@
     <script src="<c:url value="/themes/admin/vendor/iCheck/icheck.min.js"/>"></script>
     <script src="<c:url value="/themes/admin/vendor/peity/jquery.peity.min.js"/>"></script>
     <script src="<c:url value="/themes/admin/vendor/sparkline/index.js"/>"></script>
+    <script src="<c:url value="/themes/admin/vendor/sweetalert/lib/sweet-alert.min.js"/>"></script>
     <script src="<c:url value="/scripts/bootbox.min.js"/>"></script>
     <!-- App scripts -->
     <script src="<c:url value="/themes/admin/scripts/homer.js"/>"></script>

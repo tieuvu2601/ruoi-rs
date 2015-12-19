@@ -6,16 +6,16 @@ public class CategoryObjectDTO {
     private Long categoryId;
 
     private String code;
-
     private String name;
-
+    private String title;
+    private String keyword;
     private String prefixUrl;
-
+    private String description;
     private Integer nodeLevel;
-
     private Integer displayOrder;
 
     private CategoryObjectDTO parent;
+    private AuthoringTemplateEntity authoringTemplate;
 
     public Long getCategoryId() {
         return categoryId;
@@ -41,12 +41,36 @@ public class CategoryObjectDTO {
         this.name = name;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
+
     public String getPrefixUrl() {
         return prefixUrl;
     }
 
     public void setPrefixUrl(String prefixUrl) {
         this.prefixUrl = prefixUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getNodeLevel() {
@@ -71,5 +95,13 @@ public class CategoryObjectDTO {
 
     public void setParent(CategoryObjectDTO parent) {
         this.parent = parent;
+    }
+
+    public AuthoringTemplateEntity getAuthoringTemplate() {
+        return authoringTemplate;
+    }
+
+    public void setAuthoringTemplate(AuthoringTemplateEntity authoringTemplate) {
+        this.authoringTemplate = authoringTemplate;
     }
 }
