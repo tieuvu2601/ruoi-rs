@@ -186,41 +186,50 @@
 
                                     <h4><a href="${productUrl}">${projectXMLData.header[0]}</a></h4>
                                     <h5 class="product-cost">
-                                        ${portal:getNumberOfCost(project.cost)}
-                                        <c:choose>
-                                            <c:when test="${project.cost >= 1000}">
-                                                <fmt:message key="site.content.cost.billion"/>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <fmt:message key="site.content.cost.million"/>
-                                            </c:otherwise>
-                                        </c:choose>
+                                        <fmt:message key="site.content.cost"/>:
+                                        <span>
+                                            ${portal:getNumberOfCost(project.cost)}
+                                            <c:choose>
+                                                <c:when test="${project.cost >= 1000}">
+                                                    <fmt:message key="site.content.cost.billion"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <fmt:message key="site.content.cost.million"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </span>
                                     </h5>
                                     <ul class="product-grid-info">
                                         <c:if test="${not empty project.locationText}">
-                                            <li class="product-location"><fmt:message key="site.content.address"/>: ${project.locationText}</li>
+                                            <li class="product-location"><fmt:message key="site.content.address"/>: <span>${project.locationText}</span></li>
                                         </c:if>
 
                                         <c:if test="${not empty project.area || not empty project.totalArea}">
                                             <c:choose>
                                                 <c:when test="${not empty project.area}">
                                                     <li class="product-area">
-                                                        <fmt:message key="site.content.area"/>:  ${project.area}&nbsp;
-                                                        <c:choose>
-                                                            <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
-                                                            <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
-                                                            <c:when test="${project.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
-                                                        </c:choose>
+                                                        <fmt:message key="site.content.area"/>:
+                                                        <span>
+                                                            ${project.area}&nbsp;
+                                                            <c:choose>
+                                                                <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
+                                                                <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
+                                                                <c:when test="${project.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
+                                                            </c:choose>
+                                                        </span>
                                                     </li>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <li class="product-area">
-                                                        <fmt:message key="site.content.area"/>:  ${project.totalArea}&nbsp;
-                                                        <c:choose>
-                                                            <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
-                                                            <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
-                                                            <c:when test="${project.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
-                                                        </c:choose>
+                                                        <fmt:message key="site.content.area"/>:
+                                                        <span>
+                                                            ${project.totalArea}&nbsp;
+                                                            <c:choose>
+                                                                <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
+                                                                <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
+                                                                <c:when test="${project.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
+                                                            </c:choose>
+                                                        </span>
                                                     </li>
                                                 </c:otherwise>
                                             </c:choose>
@@ -228,11 +237,11 @@
                                         </c:if>
 
                                         <c:if test="${not empty project.areaRatio}">
-                                            <li class="product-area-ratio"><fmt:message key="site.content.area.ratio"/> ${project.areaRatio}</li>
+                                            <li class="product-area-ratio"><fmt:message key="site.content.area.ratio"/> <span>${project.areaRatio}</span></li>
                                         </c:if>
 
                                         <c:if test="${not empty project.numberOfBlock}">
-                                            <li class="product-number-of-block"><fmt:message key="site.content.number.of.block"/> ${project.numberOfBlock}</li>
+                                            <li class="product-number-of-block"><fmt:message key="site.content.number.of.block"/> <span>${project.numberOfBlock}</span></li>
                                         </c:if>
                                     </ul>
                                 </div>

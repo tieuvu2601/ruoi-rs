@@ -20,3 +20,17 @@
 .about-me-container .user-avatar{
     max-width: 100%;
 }
+
+.product-cost span{
+    color: #c7254e;
+    font-size: 120%;
+}
+
+.product-location span, .product-area span, .product-area-ratio span, .product-number-of-block span{
+    color: #000;
+    font-size: 14px !important;
+}
+
+.product-location, .product-location span{
+    font-size: 15px !important;
+}

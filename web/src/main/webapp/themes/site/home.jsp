@@ -54,6 +54,11 @@
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="<c:url value="/themes/site/css/custom.css"/>">
+
+    <!-- JS Global Compulsory -->
+    <script src="<c:url value="/themes/site/plugins/jquery/jquery.min.js"/>"></script>
+    <script src="<c:url value="/themes/site/plugins/jquery/jquery-migrate.min.js"/>"></script>
+    <script src="<c:url value="/themes/site/plugins/bootstrap/js/bootstrap.min.js"/>"></script>
 <decorator:head/>
 
 <body class="header-fixed header-fixed-space-v2">
@@ -72,10 +77,7 @@
         <jsp:include page="/themes/site/loginandregister.jsp"></jsp:include>
 
     </div><!--/wrapper-->
-    <!-- JS Global Compulsory -->
-    <script src="<c:url value="/themes/site/plugins/jquery/jquery.min.js"/>"></script>
-    <script src="<c:url value="/themes/site/plugins/jquery/jquery-migrate.min.js"/>"></script>
-    <script src="<c:url value="/themes/site/plugins/bootstrap/js/bootstrap.min.js"/>"></script>
+
     <!-- JS Implementing Plugins -->
     <script src="<c:url value="/themes/site/plugins/back-to-top.js"/>"></script>
     <script src="<c:url value="/themes/site/plugins/smoothScroll.js"/>"></script>

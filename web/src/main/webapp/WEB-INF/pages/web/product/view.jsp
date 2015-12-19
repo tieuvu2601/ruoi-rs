@@ -1,7 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 <html>
 <head>
-    <seo:url value="${item.title}" var="itemUrl" prefix="/products/${item.contentId}"/>
+    <seo:url value="${item.title}" var="itemUrl" prefix="/${item.category.prefixUrl}/${item.contentId}/"/>
     <c:set var="itemThumbnailsUrl" value="/repository${item.thumbnails}"/>
     <c:set var="itemXMLData" value="${portal:parseContentXML(item.xmlData)}"/>
     <title>${item.title}</title>
@@ -29,18 +29,23 @@
 
 
 
-<!--=== Breadcrumbs ===-->
 <div class="breadcrumbs breadcrumbs-light">
     <div class="container">
-        <h1 class="pull-left">Post Layout v1</h1>
+        <h1 class="pull-left">${category.title}</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Post Layouts</a></li>
-            <li class="active">Post Layout v1</li>
+            <li><a href="<c:url value="/index.html"/>"><fmt:message key="site.home"/></a></li>
+            <c:choose>
+                <c:when test="${not empty category.parent}">
+                    <li><a href="#">${category.parent.name}</a></li>
+                    <li class="active">${category.name}</li>
+                </c:when>
+                <c:otherwise>
+                    <li class="active">${category.name}</li>
+                </c:otherwise>
+            </c:choose>
         </ul>
     </div>
-</div><!--/breadcrumbs-->
-<!--=== End Breadcrumbs ===-->
+</div>
 
 <div class="container content product-container">
     <div class="row">
@@ -332,7 +337,28 @@
         </div>
     </div>
 </div>
-<!--=== End Container Part ===-->
+<script>
+    $(document).ready(function(){
+        <c:choose>
+            <c:when test="${not empty category.parent}">
+                setCurrentSelectedMenu($('#menu-index-${category.parent.categoryId}'), $('#menu-sub-index-${category.categoryId}'));
+            </c:when>
+            <c:otherwise>
+                setCurrentSelectedMenu($('#menu-index-${category.categoryId}'), null);
+            </c:otherwise>
+        </c:choose>
+    });
+
+    function setCurrentSelectedMenu(menu, subMenu){
+        $('#top-navigation-container').find('li').removeClass('active');
+        if($(menu != null && menu != undefined)){
+            $(menu).addClass('active');
+            if($(subMenu != null && subMenu != undefined)){
+                $(subMenu).addClass('active');
+            }
+        }
+    }
+</script>
 </body>
 </html>
 
