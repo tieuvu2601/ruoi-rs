@@ -402,4 +402,12 @@ public class CommonUtil {
         }
         return isEng;
     }
+
+    public static String getNumberOfCost(Long input) {
+        String result = String.valueOf(input);
+        if (input != null && input >= 1000) {
+            result = String.valueOf(Double.valueOf(input/1000));
+        }
+        return result;
+    }
 }

@@ -286,4 +286,93 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Lon
                     }
                 });
     }
+
+    @Override
+    public Object[] findByCategoryTypeWithMaxItem(final String categoryType,final  Integer begin, final  Integer pageSize,final  Integer status) {
+        return getHibernateTemplate().execute(
+                new HibernateCallback<Object[]>() {
+
+                    public Object[] doInHibernate(Session session) throws HibernateException, SQLException {
+                        StringBuffer sqlClause = new StringBuffer(" FROM ContentEntity c WHERE c.categoryType.categoryTypeId > 0  AND c.status = :status ");
+                        if(StringUtils.isNotBlank(categoryType)){
+                            sqlClause.append(" AND ( lower(c.categoryType.name) = :categoryType ");
+                        }
+
+                        StringBuffer orderClause = new StringBuffer(" ORDER BY c.categoryType.displayOrder, c.hotItem DESC, c.publishedDate DESC ");
+
+                        StringBuffer groupBy = new StringBuffer(" GROUP BY c.categoryType.categoryTypeId ");
+
+                        Query query = session.createQuery(sqlClause.toString() + orderClause.toString() + groupBy.toString());
+
+                        query.setParameter("status", status);
+                        if(StringUtils.isNotBlank(categoryType)){
+                            query.setParameter("categoryType", categoryType.toLowerCase());
+                        }
+
+                        query.setFirstResult(begin);
+                        if(pageSize != null && pageSize > 0){
+                            query.setMaxResults(pageSize);
+                        }
+                        List<ContentEntity> contentEntities = query.list();
+
+
+                        StringBuffer countClause = new StringBuffer(" SELECT COUNT(*) ");
+                        countClause = countClause.append(sqlClause);
+                        Query queryCount = session.createQuery(countClause.toString() + groupBy.toString() );
+
+                        queryCount.setParameter("status", status);
+                        if(StringUtils.isNotBlank(categoryType)){
+                            queryCount.setParameter("categoryType", categoryType.toLowerCase());
+                        }
+
+                        List<Long> count = (List<Long>) queryCount.list();
+
+                        return new Object[]{contentEntities, count};
+                    }
+                });
+    }
+
+    @Override
+    public Object[] findAllContentsByCategoryType(final Long categoryTypeId,final  Integer begin, final  Integer pageSize,final  Integer status) {
+        return getHibernateTemplate().execute(
+                new HibernateCallback<Object[]>() {
+
+                    public Object[] doInHibernate(Session session) throws HibernateException, SQLException {
+                        StringBuffer sqlClause = new StringBuffer(" FROM ContentEntity c WHERE  c.status = :status ");
+                        if(categoryTypeId != null && categoryTypeId > 0){
+                            sqlClause.append(" AND  c.categoryType.categoryTypeId > 0 AND c.categoryType.categoryTypeId = :categoryTypeId");
+                        }
+
+                        StringBuffer orderClause = new StringBuffer(" ORDER BY c.categoryType.displayOrder, c.hotItem DESC, c.publishedDate DESC ");
+
+                        StringBuffer groupBy = new StringBuffer(" GROUP BY c.categoryType.categoryTypeId ");
+
+                        Query query = session.createQuery(sqlClause.toString() + orderClause.toString() + groupBy.toString());
+
+                        query.setParameter("status", status);
+                        if(categoryTypeId != null && categoryTypeId > 0){
+                            query.setParameter("categoryTypeId", categoryTypeId);
+                        }
+
+                        query.setFirstResult(begin);
+                        if(pageSize != null && pageSize > 0){
+                            query.setMaxResults(pageSize);
+                        }
+                        List<ContentEntity> contentEntities = query.list();
+
+                        StringBuffer countClause = new StringBuffer(" SELECT COUNT(*) ");
+                        countClause = countClause.append(sqlClause);
+                        Query queryCount = session.createQuery(countClause.toString() + groupBy.toString() );
+
+                        queryCount.setParameter("status", status);
+                        if(categoryTypeId != null && categoryTypeId > 0){
+                            queryCount.setParameter("categoryTypeId", categoryTypeId);
+                        }
+
+                        Long count = (Long) queryCount.uniqueResult();
+
+                        return new Object[]{contentEntities, count};
+                    }
+                });
+    }
 }

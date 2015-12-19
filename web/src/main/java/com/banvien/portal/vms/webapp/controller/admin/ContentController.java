@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.banvien.portal.vms.domain.*;
+import com.banvien.portal.vms.dto.CategoryTypeDTO;
 import com.banvien.portal.vms.dto.XmlNodeDTO;
 import com.banvien.portal.vms.editor.CustomDateEditorSQL;
 import com.banvien.portal.vms.service.*;

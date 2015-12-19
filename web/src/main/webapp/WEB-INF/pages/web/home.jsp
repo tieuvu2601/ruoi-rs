@@ -107,19 +107,16 @@
 <!--=== Container Part ===-->
 <div class="container margin-bottom-40">
     <div class="row">
-        <!-- Main Content -->
         <div class="col-md-9">
-            <!-- Tab v4 -->
             <content:findByCategoryWithMaxItem category="tin tuc" begin="0" pageSize="6" var="newItems"/>
             <oscache:cache key="hot_news_item" duration="1">
                 <c:set var="firstNew" value="${newItems[0]}"/>
                 <c:set var="firstNewData" value="${portal:parseContentXML(firstNew.xmlData)}"/>
                 <c:set var="thumbnailsImg" value="/repository${firstNew.thumbnails}?w=650"/>
                     <div class="margin-bottom-30">
-                        <h2 class="title-v4">${firstNew.category.name}</h2>
+                        <h2 class="title-v4"><a href="">${firstNew.category.name}</a></h2>
                         <div class="row margin-bottom-20">
                             <div class="col-sm-7">
-                                <!-- Blog Grid -->
                                 <div class="blog-grid margin-bottom-20">
                                     <img class="img-responsive" src="${thumbnailsImg}" alt="${firstNew.title}">
                                     <seo:url value="${firstNew.title}" var="seoURL" prefix="/${firstNew.category.prefixUrl}/${firstNew.contentId}/"/>
@@ -131,7 +128,6 @@
                                     <p>${firstNew.description}</p>
                                     <a class="r-more" href="${seoURL}"><fmt:message key="site.read.more"/></a>
                                 </div>
-                                <!-- End Blog Grid -->
                             </div>
                             <div class="col-sm-5">
                                 <c:forEach var="index" begin="1" end="${fn:length(newItems) - 1}">
@@ -153,173 +149,104 @@
                                     </div>
                                 </c:forEach>
                             </div>
-                        </div><!--/end row-->
+                        </div>
                     </div>
-            <!-- End Tab v4 -->
             </oscache:cache>
 
-            <%--@TODO ADD CAN HO--%>
 
-            <!-- Blog Carousel Heading -->
-            <div class="blog-cars-heading">
-                <a href="<c:url value="/products/1/category.html"/>"><h2>CAN HO<small>(10 Products)</small></h2></a>
+            <content:findAllContentsByCategoryType begin="0" pageSize="6" var="productTypes"/>
+            <oscache:cache key="product_type_items" duration="1">
+                <c:forEach var="productType" varStatus="productTypeStatus" items="${productTypes}">
+                    <div class="blog-cars-heading">
+                        <seo:url value="${productType.categoryType.code}" var="productTypeUrl" prefix="/products/"/>
+                        <a href="<c:url value="${productTypeUrl}"/>"><h2>${productType.categoryType.name}<small>(${productType.totalNumber}&nbsp;<fmt:message key="site.project"/>)</small></h2></a>
 
-                <div class="owl-navigation">
-                    <div class="customNavigation">
-                        <a class="owl-btn prev-v3 btn-prev-v1"><i class="fa fa-angle-left"></i></a>
-                        <a class="owl-btn next-v3 btn-next-v1"><i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <!--/navigation-->
-            </div>
-            <!-- End Blog Carousel Heading -->
-            <!-- Blog Carousel -->
-            <div class="blog-carousel carousel_v1">
-                <c:forEach var="idx" begin="0" end="5">
-                    <!-- Blog Grid -->
-                    <div class="row margin-bottom-50">
-                        <div class="col-sm-4 sm-margin-bottom-50">
-                            <div class="blog-grid">
-                                <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img46.jpg"/>" alt="">
-
-                                <h3><a href="blog_single.html">9 Most visited Mountains in the world</a></h3>
-                                <ul class="blog-grid-info">
-                                    <li>Richard Garner</li>
-                                    <li>Mar 6, 2015</li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="blog-grid">
-                                <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img50.jpg"/>" alt="">
-
-                                <h3><a href="blog_single.html">10 Most beautiful beaches so ${idx}</a></h3>
-                                <ul class="blog-grid-info">
-                                    <li>Richard Garner</li>
-                                    <li>Mar 6, 2015</li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="blog-grid">
-                                <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img50.jpg"/>" alt="">
-
-                                <h3><a href="blog_single.html">10 Most beautiful beaches so ${idx}</a></h3>
-                                <ul class="blog-grid-info">
-                                    <li>Richard Garner</li>
-                                    <li>Mar 6, 2015</li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-                                </ul>
+                        <div class="owl-navigation">
+                            <div class="customNavigation">
+                                <a class="owl-btn btn-prev-v${productTypeStatus.count}"><i class="fa fa-angle-left"></i></a>
+                                <a class="owl-btn btn-next-v${productTypeStatus.count}"><i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
-                    <!--/end row-->
-                    <!-- End Blog Grid -->
+                    <div class="blog-carousel carousel_v${productTypeStatus.count}">
+                        <c:forEach var="project" varStatus="projectStatus" items="${productType.contents}">
+                            <c:if test="${projectStatus.index%2 == 0}">
+                                <div class="row margin-bottom-50">
+                            </c:if>
+                            <c:set var="projectXMLData" value="${portal:parseContentXML(project.xmlData)}"/>
+
+                            <div class="col-sm-6 sm-margin-bottom-50">
+                                <div class="blog-grid product-grid">
+                                    <seo:url value="${project.title}" var="productUrl" prefix="/products/${project.contentId}"/>
+                                    <div class="blog-grid-hover">
+                                        <c:set var="thumbnailsImg" value="/repository${project.thumbnails}"/>
+                                        <img class="img-responsive" src="<c:url value="${thumbnailsImg}?w=650"/>" alt="">
+                                        <a class="hover-grad" href="${productUrl}"><fmt:message key="site.view.detail"/></a>
+                                    </div>
+
+                                    <h4><a href="${productUrl}">${projectXMLData.header[0]}</a></h4>
+                                    <h5 class="product-cost">
+                                        ${portal:getNumberOfCost(project.cost)}
+                                        <c:choose>
+                                            <c:when test="${project.cost >= 1000}">
+                                                <fmt:message key="site.content.cost.billion"/>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <fmt:message key="site.content.cost.million"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </h5>
+                                    <ul class="product-grid-info">
+                                        <c:if test="${not empty project.locationText}">
+                                            <li class="product-location"><fmt:message key="site.content.address"/>: ${project.locationText}</li>
+                                        </c:if>
+
+                                        <c:if test="${not empty project.area || not empty project.totalArea}">
+                                            <c:choose>
+                                                <c:when test="${not empty project.area}">
+                                                    <li class="product-area">
+                                                        <fmt:message key="site.content.area"/>:  ${project.area}&nbsp;
+                                                        <c:choose>
+                                                            <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
+                                                            <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
+                                                            <c:when test="${project.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
+                                                        </c:choose>
+                                                    </li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <li class="product-area">
+                                                        <fmt:message key="site.content.area"/>:  ${project.totalArea}&nbsp;
+                                                        <c:choose>
+                                                            <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
+                                                            <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
+                                                            <c:when test="${project.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
+                                                        </c:choose>
+                                                    </li>
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                        </c:if>
+
+                                        <c:if test="${not empty project.areaRatio}">
+                                            <li class="product-area-ratio"><fmt:message key="site.content.area.ratio"/> ${project.areaRatio}</li>
+                                        </c:if>
+
+                                        <c:if test="${not empty project.numberOfBlock}">
+                                            <li class="product-number-of-block"><fmt:message key="site.content.number.of.block"/> ${project.numberOfBlock}</li>
+                                        </c:if>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <c:if test="${projectStatus.index%2 == 1 || projectStatus.index == (fn:length(productType.contents) - 1)}">
+                                </div>
+                            </c:if>
+                        </c:forEach>
+                    </div>
                 </c:forEach>
-            </div>
-            <!-- End Blog Carousel -->
+            </oscache:cache>
 
-            <%--@TODO ADD SHOP HOUSE & OFFICETEL--%>
 
-            <!-- Blog Carousel Heading -->
-            <div class="blog-cars-heading">
-                <a href="<c:url value="/products/1/category.html"/>"><h2>SHOP HOUSE & OFFICETEL<small>(10 Products)</small></h2></a>
-                <div class="owl-navigation">
-                    <div class="customNavigation">
-                        <a class="owl-btn prev-v3 btn-prev-v2"><i class="fa fa-angle-left"></i></a>
-                        <a class="owl-btn next-v3 btn-next-v2"><i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <!--/navigation-->
-            </div>
-            <!-- End Blog Carousel Heading -->
-            <!-- Blog Carousel -->
-            <div class="blog-carousel carousel_v2">
-                <c:forEach var="idx" begin="0" end="5">
-                    <!-- Blog Grid -->
-                    <div class="row margin-bottom-50">
-                        <div class="col-sm-6 sm-margin-bottom-50">
-                            <div class="blog-grid">
-                                <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img46.jpg"/>" alt="">
-
-                                <h3><a href="blog_single.html">9 Most visited Mountains in the world so ${idx}</a></h3>
-                                <ul class="blog-grid-info">
-                                    <li>Richard Garner</li>
-                                    <li>Mar 6, 2015</li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="blog-grid">
-                                <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img50.jpg"/>" alt="">
-
-                                <h3><a href="blog_single.html">10 Most beautiful beaches</a></h3>
-                                <ul class="blog-grid-info">
-                                    <li>Richard Garner</li>
-                                    <li>Mar 6, 2015</li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/end row-->
-                    <!-- End Blog Grid -->
-                </c:forEach>
-            </div>
-            <!-- End Blog Carousel -->
-
-            <%--@TODO ADD ĐẤT NỀN--%>
-
-            <!-- Blog Carousel Heading -->
-            <div class="blog-cars-heading">
-                <a href="<c:url value="/products/1/category.html"/>"><h2>DAT NEN<small>(10 Products)</small></h2></a>
-                <div class="owl-navigation">
-                    <div class="customNavigation">
-                        <a class="owl-btn prev-v3 btn-prev-v3"><i class="fa fa-angle-left"></i></a>
-                        <a class="owl-btn next-v3 btn-next-v3"><i class="fa fa-angle-right"></i></a>
-                    </div>
-                </div>
-                <!--/navigation-->
-            </div>
-            <!-- End Blog Carousel Heading -->
-            <!-- Blog Carousel -->
-            <div class="blog-carousel carousel_v3">
-                <c:forEach var="idx" begin="0" end="5">
-                    <!-- Blog Grid -->
-                    <div class="row margin-bottom-50">
-                        <div class="col-sm-6 sm-margin-bottom-50">
-                            <div class="blog-grid">
-                                <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img46.jpg"/>" alt="">
-
-                                <h3><a href="blog_single.html">9 Most visited Mountains in the world so ${idx}</a></h3>
-                                <ul class="blog-grid-info">
-                                    <li>Richard Garner</li>
-                                    <li>Mar 6, 2015</li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="blog-grid">
-                                <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img50.jpg"/>" alt="">
-
-                                <h3><a href="blog_single.html">10 Most beautiful beaches</a></h3>
-                                <ul class="blog-grid-info">
-                                    <li>Richard Garner</li>
-                                    <li>Mar 6, 2015</li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/end row-->
-                    <!-- End Blog Grid -->
-                </c:forEach>
-            </div>
-            <!-- End Blog Carousel -->
 
             <!-- Blog Grid -->
             <div class="margin-bottom-50">

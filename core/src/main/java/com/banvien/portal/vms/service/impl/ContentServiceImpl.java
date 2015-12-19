@@ -1,9 +1,11 @@
 package com.banvien.portal.vms.service.impl;
 
 import com.banvien.portal.vms.bean.ContentBean;
+import com.banvien.portal.vms.dao.CategoryTypeDAO;
 import com.banvien.portal.vms.dao.ContentDAO;
 import com.banvien.portal.vms.dao.GenericDAO;
 import com.banvien.portal.vms.domain.*;
+import com.banvien.portal.vms.dto.CategoryTypeDTO;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.ContentService;
@@ -22,8 +24,18 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
 
     private ContentDAO contentDAO;
 
+    private CategoryTypeDAO categoryTypeDAO;
+
     public void setContentDAO(ContentDAO contentDAO) {
         this.contentDAO = contentDAO;
+    }
+
+    public CategoryTypeDAO getCategoryTypeDAO() {
+        return categoryTypeDAO;
+    }
+
+    public void setCategoryTypeDAO(CategoryTypeDAO categoryTypeDAO) {
+        this.categoryTypeDAO = categoryTypeDAO;
     }
 
     @Override
@@ -89,10 +101,7 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
         return res;
     }
 
-    @Override
-    public List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Integer status) {
-        return this.contentDAO.findByCategory(category, startRow, pageSize, status);
-    }
+
 
     @Override
     public List<ContentEntity> findByAuthoringTemplate(String authoringCode, Integer startRow, Integer pageSize) {
@@ -151,5 +160,34 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
         ContentEntity contentEntity =  this.contentDAO.findEqualUnique("title", title);
         if(contentEntity == null) throw new ObjectNotFoundException("Not found ContentEntity with Title " + title);
         return contentEntity;
+    }
+
+    // ---------------------  new update -----------------------------//
+
+    @Override
+    public List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Integer status) {
+        return this.contentDAO.findByCategory(category, startRow, pageSize, status);
+    }
+
+
+    @Override
+    public List<CategoryTypeDTO> findAllContentsByCategoryType(Integer begin, Integer pageSize, Integer status) {
+        List<CategoryTypeDTO> resultList = new ArrayList<CategoryTypeDTO>();
+
+        List<CategoryTypeEntity> categoryTypes = this.categoryTypeDAO.findAllCategoryType();
+
+        for(CategoryTypeEntity categoryTypeEntity : categoryTypes){
+            Object [] listCategoryType = this.contentDAO.findAllContentsByCategoryType(categoryTypeEntity.getCategoryTypeId(), begin, pageSize, status);
+            CategoryTypeDTO categoryTypeDTO = new CategoryTypeDTO();
+
+            List<ContentEntity> contents = (List<ContentEntity>) listCategoryType[0];
+            Long totalNumber = (Long)  listCategoryType[1];
+            categoryTypeDTO.setContents(contents);
+            categoryTypeDTO.setTotalNumber(totalNumber != null && totalNumber > 0l ? totalNumber : 0l);
+            categoryTypeDTO.setCategoryType(categoryTypeEntity);
+
+            resultList.add(categoryTypeDTO);
+        }
+        return resultList;
     }
 }

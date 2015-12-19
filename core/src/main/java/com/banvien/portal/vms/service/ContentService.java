@@ -2,6 +2,7 @@ package com.banvien.portal.vms.service;
 
 import com.banvien.portal.vms.bean.ContentBean;
 import com.banvien.portal.vms.domain.ContentEntity;
+import com.banvien.portal.vms.dto.CategoryTypeDTO;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import java.util.List;
@@ -14,7 +15,7 @@ public interface ContentService extends GenericService<ContentEntity, Long> {
 
     Integer deleteItems(String[] checkList);
 
-    List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Integer status);
+
 
     List<ContentEntity> findByAuthoringTemplate(String authoringCode, Integer startRow, Integer pageSize);
 
@@ -31,4 +32,10 @@ public interface ContentService extends GenericService<ContentEntity, Long> {
     Object[] findByCategoryTypeWithMaxItem(String categoryType, Integer startRow, Integer maxPageItems, String categorySearch, Boolean isEng, Integer status);
 
     ContentEntity findByTitle(String title) throws ObjectNotFoundException;
+
+    // ---------------------  new update -----------------------------//
+
+    List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Integer status);
+
+    List<CategoryTypeDTO> findAllContentsByCategoryType(Integer begin, Integer pageSize, Integer status);
 }

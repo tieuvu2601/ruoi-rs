@@ -59,4 +59,25 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+
+    <tag>
+        <name>findAllContentsByCategoryType</name>
+        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibFindByCategoryType</tagclass>
+        <bodycontent>JSP</bodycontent>
+        <attribute>
+            <name>begin</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>pageSize</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>var</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>

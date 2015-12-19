@@ -9,6 +9,7 @@ a {
 }
 a:hover {
 	color: #019348;
+    text-decoration: none;
 }
 .header-v8 .dropdown-menu {
 	border-top: solid 3px #019348;
