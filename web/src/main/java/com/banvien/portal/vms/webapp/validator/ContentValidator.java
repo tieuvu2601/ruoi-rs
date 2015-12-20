@@ -33,8 +33,12 @@ public class ContentValidator extends ApplicationObjectSupport implements Valida
     }
 
     private void trimmingField(ContentBean bean){
+        if(StringUtils.isNotBlank(bean.getPojo().getHeader())){
+            bean.getPojo().setHeader(bean.getPojo().getHeader().trim());
+        }
+
         if(StringUtils.isNotBlank(bean.getPojo().getTitle())){
-            bean.getPojo().setTitle(bean.getPojo().getTitle().replaceAll("-", " ").trim().toLowerCase());
+            bean.getPojo().setTitle(bean.getPojo().getTitle().replaceAll("-", " ").trim());
         }
 
         if(StringUtils.isNotBlank(bean.getPojo().getKeyword())){
@@ -53,13 +57,18 @@ public class ContentValidator extends ApplicationObjectSupport implements Valida
             bean.getPojo().setSlide(0);
         }
 
+        if(bean.getPojo().getProductStatus() == null){
+            bean.getPojo().setProductStatus(0);
+        }
+
         if(bean.getPojo().getLocation() == null || bean.getPojo().getLocation().getLocationId() == null || bean.getPojo().getLocation().getLocationId() < 0){
             bean.getPojo().setLocation(null);
         }
     }
 
     private void validateRequiredValues(ContentBean bean, Errors errors){
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.title", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("content.title")}, "non-empty value required.");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.header", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("content.header")}, "non-empty value required.");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.title", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("content.title.title")}, "non-empty value required.");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pojo.keyword", "errors.required", new String[]{this.getMessageSourceAccessor().getMessage("content.keyword")}, "non-empty value required.");
     }
 
@@ -68,7 +77,7 @@ public class ContentValidator extends ApplicationObjectSupport implements Valida
             ContentEntity content = contentService.findByTitle(cmd.getPojo().getTitle());
 
             if(content != null && content.getContentId() != null && content.getContentId() > 0 && !content.getContentId().equals(cmd.getPojo().getContentId())){
-                errors.rejectValue("pojo.title", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("content.title")}, "Value has been chosen.");
+                errors.rejectValue("pojo.title", "error.duplicated", new String[] {this.getMessageSourceAccessor().getMessage("content.title.title")}, "Value has been chosen.");
             }
 
         }catch (ObjectNotFoundException ex) {

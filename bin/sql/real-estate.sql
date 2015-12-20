@@ -124,6 +124,7 @@ CREATE TABLE Content (
   CategoryID bigint(20) NOT NULL,
   AuthoringTemplateID bigint(20) DEFAULT NULL,
   Title VARCHAR(255) NOT NULL,
+  Header VARCHAR(255) NOT NULL,
   Keyword VARCHAR(255),
   Description VARCHAR(255),
   Thumbnails VARCHAR(255),
@@ -144,7 +145,7 @@ CREATE TABLE Content (
   -- for slider ---------
   Slide TINYINT(1) DEFAULT 0,
 
-  XmlData TEXT,
+  XmlData MEDIUMTEXT,
   CreatedDate TIMESTAMP NOT NULL,
   ModifiedDate TIMESTAMP,
   PublishedDate TIMESTAMP,
@@ -182,6 +183,10 @@ ALTER TABLE AuthoringTemplate ADD COLUMN AreProduct INTEGER;
 ALTER TABLE Content ADD COLUMN Cost INTEGER;
 ALTER TABLE Category ADD COLUMN Title VARCHAR(255);
 ALTER TABLE Category ADD COLUMN Keyword VARCHAR(255);
+
+ALTER TABLE Content ADD COLUMN Header VARCHAR(255);
+
+ALTER TABLE Content MODIFY XmlData MEDIUMTEXT;
 
 
 

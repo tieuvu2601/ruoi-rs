@@ -8,6 +8,7 @@ public class ContentEntity implements Serializable {
     private CategoryEntity category;
     private AuthoringTemplateEntity authoringTemplate;
     private String title;
+    private String header;
     private String keyword;
     private String description;
     private String thumbnails;
@@ -68,6 +69,14 @@ public class ContentEntity implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public String getKeyword() {

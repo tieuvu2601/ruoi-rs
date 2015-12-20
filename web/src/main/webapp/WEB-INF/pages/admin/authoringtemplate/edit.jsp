@@ -5,13 +5,6 @@
     <meta name="heading" content="<fmt:message key="authoring.template.management"/>"/>
 </head>
 <script type="text/javascript" language="javascript" src="<c:url value="/scripts/authoringtemplate.js"/>"></script>
-<!-- Dependencies -->
-<%--<script language="javascript" src="<c:url value="/scripts/jQueryAlert/jquery.js"/>" type="text/javascript"></script>--%>
-<%--<script src="<c:url value="/scripts/jQueryAlert/jquery.ui.draggable.js"/>" type="text/javascript"></script>--%>
-
-<!-- Core files -->
-<%--<script src="<c:url value="/scripts/jQueryAlert/jquery.alerts.js"/>"  type="text/javascript"></script>--%>
-<%--<link href="<c:url value="/scripts/jQueryAlert/jquery.alerts.css"/>" rel="stylesheet" type="text/css" media="screen">--%>
 
 <c:url var="formUrl" value="/admin/authoringtemplate/edit.html"/>
 <c:url var="backUrl" value="/admin/authoringtemplate/list.html"/>

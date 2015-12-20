@@ -98,6 +98,23 @@ public class SiteController extends ApplicationObjectSupport {
         return mav;
     }
 
+    @RequestMapping(value = "/page/{pageTitle}.html")
+    public ModelAndView viewPage(@PathVariable(value = "pageTitle")String pageTitle){
+        ModelAndView mav = new ModelAndView("/web/page/view");
+        try{
+            pageTitle = pageTitle.replaceAll("-", " ");
+            ContentEntity dbItem = this.contentService.findByTitle(pageTitle, Constants.CONTENT_PUBLISH);
+            mav.addObject(Constants.FORM_MODEL_KEY, dbItem);
+            mav.addObject("category", dbItem.getCategory());
+
+        } catch (Exception e){
+
+        }
+        getRecentNews(mav);
+        getHotProduct(mav);
+        return mav;
+    }
+
 
     private void getRelationProduct(ContentEntity content, ModelAndView mav){
         mav.addObject("relativeProducts", "relativeProducts");

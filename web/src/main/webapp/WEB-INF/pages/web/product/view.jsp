@@ -1,12 +1,13 @@
 <%@ include file="/common/taglibs.jsp"%>
 <html>
 <head>
-    <seo:url value="${item.title}" var="itemUrl" prefix="/${item.category.prefixUrl}/${item.contentId}/"/>
-    <c:set var="itemThumbnailsUrl" value="/repository${item.thumbnails}"/>
-    <c:set var="itemXMLData" value="${portal:parseContentXML(item.xmlData)}"/>
     <title>${item.title}</title>
     <meta name="description" content="${item.description}">
     <meta name="keywords" content="${item.keyword}">
+
+    <seo:url value="${item.title}" var="itemUrl" prefix="/${item.category.prefixUrl}/${item.contentId}/"/>
+    <c:set var="itemThumbnailsUrl" value="/repository${item.thumbnails}"/>
+    <c:set var="itemXMLData" value="${portal:parseContentXML(item.xmlData)}"/>
 
 
     <meta property="og:url"           content="${itemUrl}" />
@@ -53,9 +54,8 @@
 <div class="container content product-container">
     <div class="row">
         <div class="col-md-9">
-            <!-- Blog Grid -->
             <div class="blog-grid margin-bottom-10">
-                <h2 class="blog-grid-title-lg">${itemXMLData.header[0]}</h2>
+                <h2 class="blog-grid-title-lg">${item.header}</h2>
                 <div class="overflow-h margin-bottom-10">
                     <ul class="blog-grid-info pull-left">
                         <li>${item.createdBy.displayName}</li>
@@ -68,80 +68,94 @@
                     </div>
                 </div>
             </div>
-            <!-- End Blog Grid -->
 
             <div class="blog-grid margin-bottom-30">
                 <img class="img-responsive img-product-thumbnail" src="${itemThumbnailsUrl}" alt="${item.title}">
                 <div class="blog-grid-inner">
-                    <h3><a href="${itemUrl}">${itemXMLData.header[0]}</a></h3>
-                    <h4><fmt:message key="site.content.cost"/>:
-                        ${portal:getNumberOfCost(item.cost)}
-                        <c:choose>
-                            <c:when test="${item.cost >= 1000}">
-                                <fmt:message key="site.content.cost.billion"/>
-                            </c:when>
-                            <c:otherwise>
-                                <fmt:message key="site.content.cost.million"/>
-                            </c:otherwise>
-                        </c:choose>
-                    </h4>
+                    <h4><a href="${itemUrl}">${item.header}</a></h4>
+                    <h5 class="product-cost"><fmt:message key="site.content.cost"/>:
+                        <span>
+                            ${portal:getNumberOfCost(item.cost)}
+                            <c:choose>
+                                <c:when test="${item.cost >= 1000}">
+                                    <fmt:message key="site.content.cost.billion"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <fmt:message key="site.content.cost.million"/>
+                                </c:otherwise>
+                            </c:choose>
+                        </span>
+                    </h5>
                     <c:if test="${not empty item.locationText}">
-                        <h5 class="product-location"><fmt:message key="site.content.address"/>: ${item.locationText}</h5>
+                        <h5 class="product-location"><fmt:message key="site.content.address"/>:
+                            <span>${item.locationText}</span>
+                        </h5>
                     </c:if>
 
                     <c:if test="${not empty item.area || not empty item.totalArea}">
                         <c:choose>
                             <c:when test="${not empty item.area}">
                                 <h5 class="product-area">
-                                    <fmt:message key="site.content.area"/>:  ${item.area}&nbsp;
-                                    <c:choose>
-                                        <c:when test="${item.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
-                                        <c:when test="${item.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
-                                        <c:when test="${item.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
-                                    </c:choose>
+                                    <fmt:message key="site.content.area"/>:
+                                    <span>
+                                        ${item.area}&nbsp;
+                                        <c:choose>
+                                            <c:when test="${item.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
+                                            <c:when test="${item.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
+                                            <c:when test="${item.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
+                                        </c:choose>
+                                    </span>
                                 </h5>
                             </c:when>
                             <c:otherwise>
                                 <h5 class="product-area">
-                                    <fmt:message key="site.content.area"/>:  ${item.totalArea}&nbsp;
-                                    <c:choose>
-                                        <c:when test="${item.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
-                                        <c:when test="${item.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
-                                        <c:when test="${item.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
-                                    </c:choose>
+                                    <fmt:message key="site.content.area"/>:
+                                    <span>
+                                        ${item.totalArea}&nbsp;
+                                        <c:choose>
+                                            <c:when test="${item.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
+                                            <c:when test="${item.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
+                                            <c:when test="${item.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
+                                        </c:choose>
+                                    </span>
                                 </h5>
                             </c:otherwise>
                         </c:choose>
-
                     </c:if>
 
                     <c:if test="${not empty item.areaRatio}">
-                        <h5 class="product-area-ratio"><fmt:message key="site.content.area.ratio"/> ${item.areaRatio}</h5>
+                        <h5 class="product-area-ratio"><fmt:message key="site.content.area.ratio"/>
+                            <span>${item.areaRatio}</span>
+                        </h5>
                     </c:if>
 
                     <c:if test="${not empty item.numberOfBlock}">
-                        <h5 class="product-number-of-block"><fmt:message key="site.content.number.of.block"/> ${item.numberOfBlock}</h5>
+                        <h5 class="product-number-of-block"><fmt:message key="site.content.number.of.block"/>
+                            <span>${item.numberOfBlock}</span>
+                        </h5>
                     </c:if>
                 </div>
             </div>
-            <!-- End Blog Grid -->
 
-            <p>${itemXMLData.shotDescription[0]}</p><br>
+            <c:if test="${not empty itemXMLData.headerContent[0]}">
+                <div class="row margin-bottom-30">${itemXMLData.headerContent[0]}</div>
+            </c:if>
 
             <div class="row tab-v3 margin-bottom-30">
                 <div class="col-sm-3">
-                    <ul class="nav nav-pills nav-stacked">
-                        <c:forEach var="headerContent" varStatus="headerStatus" items="${itemXMLData.mapHeader}">
-                            <li class="<c:if test="${headerStatus.index == 0}">active</c:if>">
-                                <a href="#product-content-${headerStatus.index}" data-toggle="tab" aria-expanded="false">${headerContent}</a></li>
-                        </c:forEach>
-                    </ul>
+                    <div class="row">
+                        <ul class="nav nav-pills nav-stacked">
+                            <c:forEach var="headerContent" varStatus="headerStatus" items="${itemXMLData.mapHeader}">
+                                <li class="<c:if test="${headerStatus.index == 0}">active</c:if>">
+                                    <a href="#product-content-${headerStatus.index}" data-toggle="tab" aria-expanded="false">${headerContent}</a></li>
+                            </c:forEach>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-sm-9">
                     <div class="tab-content">
                         <c:forEach var="contentContent" varStatus="contentStatus" items="${itemXMLData.mapContent}">
                             <div class="tab-pane fade <c:if test="${contentStatus.index == 0}">active in</c:if>" id="product-content-${contentStatus.index}">
-
                                 <div>
                                     ${contentContent}
                                 </div>
@@ -151,6 +165,9 @@
                 </div>
             </div>
 
+            <c:if test="${not empty itemXMLData.footerContent[0]}">
+                <div class="row margin-bottom-30">${itemXMLData.footerContent[0]}</div>
+            </c:if>
 
             <c:if test="${not empty item.keyword}">
                 <c:set var="keywords" value="${portal:generatorKeyword(item.keyword, ',')}"/>
@@ -166,7 +183,6 @@
 
             <div class="fb-comments" data-href="http://developers.facebook.com/docs/plugins/comments/" data-width="100%" data-numposts="10"></div>
 
-            <!-- Blog Thumb v4 -->
             <div class="margin-bottom-50">
                 <h2 class="title-v4">Related Product</h2>
                 <div class="row margin-bottom-50">
@@ -184,23 +200,15 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div><!--/end center wrap-->
+                                    </div>
                                 </div>
                                 <h3><a href="blog_single.html">What will fashion be like in 25 years?</a></h3>
                             </div>
-                            <!-- End Blog Thumb v4 -->
                         </div>
                     </c:forEach>
-
-                </div><!--/end row-->
+                </div>
             </div>
-            <!-- End Blog Thumb v4 -->
-
-
-
-            <%--<div class="fb-comments" data-href="${itemUrl}" data-width="100%" data-numposts="10"></div>--%>
         </div>
-
 
         <div class="col-md-3">
             <jsp:include page="../common/aboutme.jsp"></jsp:include>

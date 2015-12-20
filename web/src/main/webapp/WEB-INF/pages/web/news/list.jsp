@@ -38,7 +38,6 @@
                         </c:if>
                             <seo:url value="${news.title}" var="newsUrl" prefix="/${news.category.prefixUrl}/${news.contentId}/"/>
                             <c:set var="newsThumbnailUrl" value="/repository${news.thumbnails}"/>
-                            <c:set var="newsXMLData" value="${portal:parseContentXML(news.xmlData)}"/>
 
                             <div class="col-sm-6">
                                 <div class="blog-thumb margin-bottom-20">
@@ -47,7 +46,7 @@
                                         <a class="hover-grad" href="${newsUrl}"><i class="fa fa-photo"></i></a>
                                     </div>
                                     <div class="blog-thumb-desc">
-                                        <h3><a href="${newsUrl}">${newsXMLData.header[0]}</a></h3>
+                                        <h3><a href="${newsUrl}">${news.header}</a></h3>
                                         <ul class="blog-thumb-info">
                                             <li>${news.createdBy.displayName}</li>
                                             <li><fmt:formatDate pattern="dd-MM-yyyy" value="${news.publishedDate}"/></li>
@@ -82,17 +81,16 @@
     $(document).ready(function(){
         $(document).ready(function(){
             <c:choose>
-            <c:when test="${not empty category.parent && category.parent.categoryId > 0}">
-            setCurrentSelectedMenu($('#menu-index-${category.parent.categoryId}'), $('#menu-sub-index-${category.categoryId}'));
-            </c:when>
-            <c:otherwise>
-            setCurrentSelectedMenu($('#menu-index-${category.categoryId}'), null);
-            </c:otherwise>
+                <c:when test="${not empty category.parent && category.parent.categoryId > 0}">
+                    setCurrentSelectedMenu($('#menu-index-${category.parent.categoryId}'), $('#menu-sub-index-${category.categoryId}'));
+                </c:when>
+                <c:otherwise>
+                    setCurrentSelectedMenu($('#menu-index-${category.categoryId}'), null);
+                </c:otherwise>
             </c:choose>
         });
 
         function setCurrentSelectedMenu(menu, subMenu){
-            console.dir('sssssssssss');
             $('#top-navigation-container').find('li').removeClass('active');
             if($(menu != null && menu != undefined)){
                 $(menu).addClass('active');

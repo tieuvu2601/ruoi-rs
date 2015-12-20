@@ -152,8 +152,16 @@
                                 <div class="row">
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label"><fmt:message key="content.header"/></label>
-                                        <div class="col-sm-7">
-                                            <form:input path="pojo.title" size="40" maxlength="160" cssClass="form-control" id="title"/>
+                                        <div class="col-sm-8">
+                                            <form:input path="pojo.header" size="160" maxlength="255" cssClass="form-control" id="header"/>
+                                            <form:errors path="pojo.header" cssClass="validateError"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label"><fmt:message key="content.title.title"/></label>
+                                        <div class="col-sm-8">
+                                            <form:input path="pojo.title" size="160" maxlength="255" cssClass="form-control" id="title"/>
                                             <form:errors path="pojo.title" cssClass="validateError"/>
                                             <span class="help-block m-b-none">Title to using to seo. It should have length 160 character</span>
                                         </div>

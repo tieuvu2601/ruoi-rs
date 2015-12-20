@@ -25,7 +25,7 @@ public interface ContentService extends GenericService<ContentEntity, Long> {
 
     List<ContentEntity> findAnnouncementItemsOfOnlineUser(String authoringCode, Long loginUserId, Integer begin, Integer pageSize);
 
-    ContentEntity findByTitle(String title, Boolean isEng, Integer status);
+
 
     List<ContentEntity> findByPrefixUrl(String prefixUrl, Integer startRow, Integer pageSize, Boolean isEng, Integer status);
 
@@ -34,6 +34,8 @@ public interface ContentService extends GenericService<ContentEntity, Long> {
     ContentEntity findByTitle(String title) throws ObjectNotFoundException;
 
     // ---------------------  new update -----------------------------//
+
+    ContentEntity findByTitle(String title, Integer status);
 
     List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Integer status);
 

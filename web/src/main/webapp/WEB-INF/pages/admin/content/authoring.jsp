@@ -126,6 +126,14 @@ window.onload = function() {
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="content.header"/></label>
                                 <div class="col-sm-8">
+                                    <form:input path="pojo.header" size="160" maxlength="255" cssClass="form-control" id="header-content"/>
+                                    <form:errors path="pojo.header" cssClass="validateError"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="content.title.title"/></label>
+                                <div class="col-sm-8">
                                     <form:input path="pojo.title" size="160" maxlength="255" cssClass="form-control" id="title"/>
                                     <form:errors path="pojo.title" cssClass="validateError"/>
                                     <span class="help-block m-b-none">Title to using to seo. It should have length 160 character</span>
@@ -432,8 +440,9 @@ window.onload = function() {
     }
 
     var timeout;
+
     function submitAuthoringForm(crudaction) {
-        if(validateAuthoringForm()) {
+        if(validateContentData()) {
             $("#crudaction").val(crudaction);
             $("#content").fadeTo('slow',.3);
             <c:forEach items="${authoringTemplateNodes}" var="node">
@@ -442,6 +451,12 @@ window.onload = function() {
                 </c:if>
             </c:forEach>
             timeout = setTimeout(uploadCompletedTrigger, 2000);
+        } else {
+            swal({
+                title: "Error!",
+                text: errorMessage,
+                type: "error"
+            });
         }
     }
 
@@ -469,32 +484,41 @@ window.onload = function() {
         }
     }
 
-    function validateAuthoringForm() {
-        var title = convertUrlToTitle($('#title').val());
-        $('#title').val(title);
-
-        var keyword = $('#keyword').val();
-        if($.trim(title) == '') {
-            swal({
-                title: "Error!",
-                text: "Please enter the title.",
-                type: "error"
-            });
-
-            $('#title').focus();
-            return false;
+    var errorMessage;
+    function validateContentData(){
+        var isValid = false;
+        if($('#title').val() == null || $('#title').val() == undefined || $('#title').val().trim() == ""){
+            $('#title').addClass("error");
+            errorMessage = "Please Enter title!";
+        } else {
+            $('#title').removeClass("error");
+            errorMessage = "";
+            if($('#keyword').val() == null || $('#keyword').val() == undefined || $('#keyword').val().trim() == ""){
+                $('#keyword').addClass("error");
+                errorMessage = "Please Enter Keyword!";
+            } else {
+                $('#keyword').removeClass("error");
+                errorMessage = "";
+                if($('#description').val() == null || $('#description').val() == undefined || $('#description').val().trim() == "" ){
+                    $('#keyword').addClass("error");
+                    errorMessage = "Please Enter Description!";
+                } else {
+                    $('#description').removeClass("error");
+                    errorMessage = "";
+                    if($('#header-content').val() == null || $('#header-content').val() == undefined || $('#header-content').val().trim() == ""){
+                        $('#header-content').addClass("error");
+                        errorMessage = "Please Enter Header!";
+                    } else {
+                        $('#header-content').removeClass("error");
+                        errorMessage = "";
+                        isValid = true;
+                    }
+                }
+            }
         }
-        if($.trim(keyword) == '') {
-            swal({
-                title: "Error!",
-                text: "Please enter the keyword.",
-                type: "error"
-            });
-            $('#keyword').focus();
-            return false;
-        }
-        return true;
+        return isValid;
     }
+
     if(!FlashDetect.installed){
         swal({
             title: "Error!",

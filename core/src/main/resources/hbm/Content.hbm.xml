@@ -10,6 +10,7 @@
         <many-to-one name="category" column="CategoryID" lazy="false"/>
         <many-to-one name="authoringTemplate" column="AuthoringTemplateID"/>
         <property name="title" column="Title"/>
+        <property name="header" column="Header"/>
         <property name="keyword" column="Keyword"/>
         <property name="description" column="Description"/>
         <property name="thumbnails" column="Thumbnails"/>

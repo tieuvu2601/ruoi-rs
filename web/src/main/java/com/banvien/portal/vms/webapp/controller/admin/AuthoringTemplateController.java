@@ -104,16 +104,24 @@ public class AuthoringTemplateController extends ApplicationObjectSupport {
     }
 
     private String convertIntoXMLTemplateContent(List<XmlNodeDTO> authoringTemplateNodes) {
+        List<XmlNodeDTO> xmlNodes = new ArrayList<XmlNodeDTO>();
+        for(XmlNodeDTO xmlNode : authoringTemplateNodes){
+            if(StringUtils.isNotBlank(xmlNode.getName())){
+                xmlNodes.add(xmlNode);
+            }
+        }
+
         String res = "";
         com.banvien.portal.vms.xml.authoringtemplate.AuthoringTemplate authoringTemplate = new com.banvien.portal.vms.xml.authoringtemplate.AuthoringTemplate();
         authoringTemplate.setNodes(new Nodes());
-        Collections.sort(authoringTemplateNodes, new Comparator<XmlNodeDTO>() {
+        Collections.sort(xmlNodes, new Comparator<XmlNodeDTO>() {
             @Override
             public int compare(XmlNodeDTO o1, XmlNodeDTO o2) {
                 return o1.getDisplayOrder().compareTo(o2.getDisplayOrder());
             }
         });
-        for (XmlNodeDTO xmlNodeDTO : authoringTemplateNodes) {
+
+        for (XmlNodeDTO xmlNodeDTO : xmlNodes) {
             if (xmlNodeDTO != null && StringUtils.isNotBlank(xmlNodeDTO.getName())) {
                 Node node = new Node();
                 node.setAttributeName(xmlNodeDTO.getName());

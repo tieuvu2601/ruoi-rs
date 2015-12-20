@@ -5,7 +5,6 @@
     <c:forEach var="product" items="${hotProducts}">
         <c:set var="productThumbnails" value="/repository${product.thumbnails}"/>
         <seo:url value="${product.title}" var="productUrl" prefix="/${product.category.prefixUrl}/${product.contentId}/"/>
-        <c:set var="productXMLData" value="${portal:parseContentXML(product.xmlData)}"/>
 
         <div class="blog-thumb margin-bottom-20">
             <div class="blog-thumb-hover">
@@ -13,7 +12,18 @@
                 <a class="hover-grad" href="${productUrl}"><i class="fa fa-home"></i></a>
             </div>
             <div class="blog-thumb-desc">
-                <h3><a href="${productUrl}">${productXMLData.header[0]}</a></h3>
+                <h3><a href="${productUrl}">${product.header}</a></h3>
+                <p>
+                    ${portal:getNumberOfCost(product.cost)}
+                    <c:choose>
+                        <c:when test="${product.cost >= 1000}">
+                            <fmt:message key="site.content.cost.billion"/>
+                        </c:when>
+                        <c:otherwise>
+                            <fmt:message key="site.content.cost.million"/>
+                        </c:otherwise>
+                    </c:choose>
+                </p>
             </div>
         </div>
     </c:forEach>

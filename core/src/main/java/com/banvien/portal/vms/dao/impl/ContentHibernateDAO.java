@@ -173,21 +173,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Lon
                 });
     }
 
-    @Override
-    public ContentEntity findByTitle(final String title, final Boolean eng, final Integer status) {
-        return getHibernateTemplate().execute(
-                new HibernateCallback<ContentEntity>() {
 
-                    public ContentEntity doInHibernate(Session session) throws HibernateException, SQLException {
-                        Query query = session.createQuery("FROM Content c WHERE lower(c.title) = :title AND c.category.eng = :eng AND c.status = :status  ORDER BY c.modifiedDate DESC");
-                        query.setParameter("title", title.toLowerCase());
-                        query.setParameter("eng", eng);
-                        query.setParameter("status", status);
-                        return (ContentEntity) query.uniqueResult();
-
-                    }
-                });
-    }
 
     @Override
     public Object[] searchInSite(final String keyword, final  Timestamp fromDate, final  Timestamp toDate, final  Integer startRow, final Integer maxPageItems, final Boolean isEng, final Integer status) {
@@ -269,6 +255,21 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Lon
 
 
     //    new content function
+
+    @Override
+    public ContentEntity findByTitle(final String title, final Integer status) {
+        return getHibernateTemplate().execute(
+                new HibernateCallback<ContentEntity>() {
+
+                    public ContentEntity doInHibernate(Session session) throws HibernateException, SQLException {
+                        Query query = session.createQuery("FROM ContentEntity ce WHERE lower(ce.title) = :title AND ce.status = :status ");
+                        query.setParameter("title", title.toLowerCase());
+                        query.setParameter("status", status);
+                        return (ContentEntity) query.uniqueResult();
+
+                    }
+                });
+    }
 
     @Override
     public List<ContentEntity> findByCategory(final String category, final Integer startRow, final Integer pageSize, final Integer status) {

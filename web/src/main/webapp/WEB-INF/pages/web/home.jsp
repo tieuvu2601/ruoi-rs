@@ -10,7 +10,6 @@
                     <div class="ms-slide blog-slider">
                         <seo:url value="${slider.title}" var="sliderUrl" prefix="/${slider.category.prefixUrl}/${slider.contentId}/"/>
                         <c:set var="sliderThumbnailsUrl" value="/repository${slider.thumbnails}"/>
-                        <c:set var="sliderXMLData" value="${portal:parseContentXML(slider.xmlData)}"/>
 
                         <img src="<c:url value="/themes/site/plugins/master-slider/masterslider/style/blank.gif"/>" data-src="${sliderThumbnailsUrl}" alt="${slider.title}"/>
                         <c:if test="${not empty slider.categoryType && not empty slider.categoryType.name}">
@@ -20,7 +19,7 @@
                         <div class="ms-info"></div>
                         <div class="blog-slider-title">
                             <h2 class="product-title">
-                                <a href="${sliderUrl}">${sliderXMLData.header[0]}</a><br />
+                                <a href="${sliderUrl}">${slider.header}</a><br />
                                 <span class="product-cost">
                                     ${portal:getNumberOfCost(slider.cost)}
                                     <c:choose>
@@ -47,7 +46,6 @@
             <content:findByCategoryWithMaxItem category="tin tuc" begin="0" pageSize="6" var="newItems"/>
             <oscache:cache key="hot_news_item" duration="1">
                 <c:set var="firstNew" value="${newItems[0]}"/>
-                <c:set var="firstNewData" value="${portal:parseContentXML(firstNew.xmlData)}"/>
                 <c:set var="thumbnailsImg" value="/repository${firstNew.thumbnails}?w=650"/>
                 <div class="margin-bottom-30">
                     <h2 class="title-v4"><a href="">${firstNew.category.name}</a></h2>
@@ -56,7 +54,7 @@
                             <div class="blog-grid margin-bottom-20">
                                 <img class="img-responsive" src="${thumbnailsImg}" alt="${firstNew.title}">
                                 <seo:url value="${firstNew.title}" var="seoURL" prefix="/${firstNew.category.prefixUrl}/${firstNew.contentId}/"/>
-                                <h3><a href="${seoURL}">${firstNewData.header[0]}</a></h3>
+                                <h3><a href="${seoURL}">${firstNew.header}</a></h3>
                                 <ul class="blog-grid-info">
                                     <li>${firstNew.createdBy.displayName}</li>
                                     <li><fmt:formatDate pattern="dd-MM-yyyy" value="${firstNew.publishedDate}"/></li>
@@ -68,7 +66,6 @@
                         <div class="col-sm-5">
                             <c:forEach var="index" begin="1" end="${fn:length(newItems) - 1}">
                                 <c:set var="news" value="${newItems[index]}"/>
-                                <c:set var="newsXMLData" value="${portal:parseContentXML(news.xmlData)}"/>
                                 <seo:url value="${news.title}" var="newUrl" prefix="/${news.category.prefixUrl}/${news.contentId}/"/>
                                 <div class="blog-thumb margin-bottom-20">
                                     <div class="blog-thumb-hover">
@@ -77,7 +74,7 @@
                                         <a class="hover-grad" href="${newUrl}"><i class="fa fa-photo"></i></a>
                                     </div>
                                     <div class="blog-thumb-desc">
-                                        <h3><a href="${newUrl}">${newsXMLData.header[0]}</a></h3>
+                                        <h3><a href="${newUrl}">${news.header}</a></h3>
                                         <ul class="blog-thumb-info">
                                             <li><fmt:formatDate pattern="dd-MM-yyyy" value="${news.publishedDate}"/></li>
                                         </ul>
@@ -108,7 +105,6 @@
                             <c:if test="${projectStatus.index%2 == 0}">
                                 <div class="row margin-bottom-30">
                             </c:if>
-                            <c:set var="projectXMLData" value="${portal:parseContentXML(project.xmlData)}"/>
 
                             <div class="col-sm-6 sm-margin-bottom-50">
                                 <div class="blog-grid product-grid">
@@ -119,7 +115,7 @@
                                         <a class="hover-grad" href="${productUrl}"><fmt:message key="site.view.detail"/></a>
                                     </div>
 
-                                    <h4><a href="${productUrl}">${projectXMLData.header[0]}</a></h4>
+                                    <h4><a href="${productUrl}">${project.header}</a></h4>
                                     <h5 class="product-cost">
                                         <fmt:message key="site.content.cost"/>:
                                         <span>
@@ -171,11 +167,11 @@
                                         </c:if>
 
                                         <c:if test="${not empty project.areaRatio}">
-                                            <li class="product-area-ratio"><fmt:message key="site.content.area.ratio"/> <span>${project.areaRatio}</span></li>
+                                            <li class="product-area-ratio"><fmt:message key="site.content.area.ratio"/>: <span>${project.areaRatio}</span></li>
                                         </c:if>
 
                                         <c:if test="${not empty project.numberOfBlock}">
-                                            <li class="product-number-of-block"><fmt:message key="site.content.number.of.block"/> <span>${project.numberOfBlock}</span></li>
+                                            <li class="product-number-of-block"><fmt:message key="site.content.number.of.block"/>: <span>${project.numberOfBlock}</span></li>
                                         </c:if>
                                     </ul>
                                 </div>

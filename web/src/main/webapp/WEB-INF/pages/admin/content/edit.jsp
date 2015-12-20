@@ -133,6 +133,14 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="content.header"/></label>
                                 <div class="col-sm-8">
+                                    <form:input path="pojo.header" size="160" maxlength="255" cssClass="form-control" id="header-content"/>
+                                    <form:errors path="pojo.header" cssClass="validateError"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="content.title.title"/></label>
+                                <div class="col-sm-8">
                                     <form:input path="pojo.title" size="160" maxlength="255" cssClass="form-control" id="title"/>
                                     <form:errors path="pojo.title" cssClass="validateError"/>
                                     <span class="help-block m-b-none">Title to using to seo. It should have length 160 character</span>
@@ -432,123 +440,138 @@
 </form:form>
 <c:url var="prefixUrl" value="/" />
 <script type='text/javascript'>
-$(document).ready(function(){
-//        setActiveMenu4Admin('#administration_menu', '#user_menu');
+    $(document).ready(function(){
+    //        setActiveMenu4Admin('#administration_menu', '#user_menu');
 
-    $('.richTextEditor').each(function() {
-        CKEDITOR.timestamp = new Date().getTime(); /*Used to debug*/
-        CKEDITOR.replace($(this).attr('id'),{
-            filebrowserBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-            filebrowserImageBrowseUrl : '${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Image&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-            filebrowserFlashBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Flash&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
-            filebrowserUploadUrl  :'${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=File',
-            filebrowserImageUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Image',
-            filebrowserFlashUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Flash'
+        $('.richTextEditor').each(function() {
+            CKEDITOR.timestamp = new Date().getTime(); /*Used to debug*/
+            CKEDITOR.replace($(this).attr('id'),{
+                filebrowserBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserImageBrowseUrl : '${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Image&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserFlashBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Flash&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserUploadUrl  :'${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=File',
+                filebrowserImageUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Image',
+                filebrowserFlashUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Flash'
 
+            });
         });
+
+    //    $("#title").blur(function() {
+    //        var titleString = convertUrlToTitle($(this).val());
+    //        $(this).val(titleString);
+    //    });
+
+    //    $('.input-daterange').datepicker({
+    //        format: "dd-mm-yyyy",
+    //        singleDatePicker : true,
+    //        showDropdowns: true
+    //    });
     });
 
-//    $("#title").blur(function() {
-//        var titleString = convertUrlToTitle($(this).val());
-//        $(this).val(titleString);
-//    });
+    function convertUrlToTitle(str){
 
-//    $('.input-daterange').datepicker({
-//        format: "dd-mm-yyyy",
-//        singleDatePicker : true,
-//        showDropdowns: true
-//    });
-});
-
-function convertUrlToTitle(str){
-
-    return  str.toLowerCase().replace('.html', '').replace(/[^a-zA-Z0-9 ]/g, " ").replace(/\s+/g, ' ');
-}
+        return  str.toLowerCase().replace('.html', '').replace(/[^a-zA-Z0-9 ]/g, " ").replace(/\s+/g, ' ');
+    }
 
 
-var timeout;
-function submitContentForm(crudaction) {
-	if(validateAuthoringForm()) {
-		$('#crudaction').val(crudaction);
-		$("#content").fadeTo('slow',.3);
-		<c:forEach items="${item.contentItem.items.item}" var="node">
-			<c:if test="${node.itemType == 'IMAGE' or node.itemType == 'ATTACHMENT'}">
-				swfu_${node.itemKey}.startUpload();
-			</c:if>
-    	</c:forEach>
-    	timeout = setTimeout(uploadCompletedTrigger, 2000);
-	}
-}
+    var timeout;
+    function submitContentForm(crudaction) {
 
-function uploadCompletedTrigger() {
-	var isCompleted = true;
-	<c:forEach items="${item.contentItem.items.item}" var="node">
-		<c:if test="${node.itemType == 'IMAGE' or node.itemType == 'ATTACHMENT'}">
-			if(swfu_${node.itemKey}.getStats().files_queued > 0) {
-				isCompleted = false;
-			}
-		</c:if>
-	</c:forEach>
-	if(isCompleted) {
-		clearTimeout(timeout);
-		document.getElementById('itemForm').submit();
-	}else {
-		timeout = setTimeout(uploadCompletedTrigger, 2000);
-	}
-}
+        if(validateContentData()) {
+            $('#crudaction').val(crudaction);
+            $("#content").fadeTo('slow',.3);
+            <c:forEach items="${item.contentItem.items.item}" var="node">
+                <c:if test="${node.itemType == 'IMAGE' or node.itemType == 'ATTACHMENT'}">
+                    swfu_${node.itemKey}.startUpload();
+                </c:if>
+            </c:forEach>
+            timeout = setTimeout(uploadCompletedTrigger, 2000);
+        } else {
+            swal({
+                title: "Error!",
+                text: errorMessage,
+                type: "error"
+            });
+        }
+    }
 
-function uploadComplete(file) {
-	if (this.getStats().files_queued > 0) {
-		this.startUpload();
-	}
-}
+    function uploadCompletedTrigger() {
+        var isCompleted = true;
+        <c:forEach items="${item.contentItem.items.item}" var="node">
+            <c:if test="${node.itemType == 'IMAGE' or node.itemType == 'ATTACHMENT'}">
+                if(swfu_${node.itemKey}.getStats().files_queued > 0) {
+                    isCompleted = false;
+                }
+            </c:if>
+        </c:forEach>
+        if(isCompleted) {
+            clearTimeout(timeout);
+            document.getElementById('itemForm').submit();
+        }else {
+            timeout = setTimeout(uploadCompletedTrigger, 2000);
+        }
+    }
 
-function validateAuthoringForm() {
-    var title = convertUrlToTitle($('#title').val());
-    $('#title').val(title);
+    function uploadComplete(file) {
+        if (this.getStats().files_queued > 0) {
+            this.startUpload();
+        }
+    }
 
-    var keyword = $('#keyword').val();
-    if($.trim(title) == '') {
+    var errorMessage;
+    function validateContentData(){
+        var isValid = false;
+        if($('#title').val() == null || $('#title').val() == undefined || $('#title').val().trim() == ""){
+            $('#title').addClass("error");
+            errorMessage = "Please Enter title!";
+        } else {
+            $('#title').removeClass("error");
+            errorMessage = "";
+            if($('#keyword').val() == null || $('#keyword').val() == undefined || $('#keyword').val().trim() == ""){
+                $('#keyword').addClass("error");
+                errorMessage = "Please Enter Keyword!";
+            } else {
+                $('#keyword').removeClass("error");
+                errorMessage = "";
+                if($('#description').val() == null || $('#description').val() == undefined || $('#description').val().trim() == "" ){
+                    $('#keyword').addClass("error");
+                    errorMessage = "Please Enter Description!";
+                } else {
+                    $('#description').removeClass("error");
+                    errorMessage = "";
+                    if($('#header-content').val() == null || $('#header-content').val() == undefined || $('#header-content').val().trim() == ""){
+                        $('#header-content').addClass("error");
+                        errorMessage = "Please Enter Header!";
+                    } else {
+                        $('#header-content').removeClass("error");
+                        errorMessage = "";
+                        isValid = true;
+                    }
+                }
+            }
+        }
+        return isValid;
+    }
+
+    if(!FlashDetect.installed){
         swal({
             title: "Error!",
-            text: "Please enter the title.",
+            text: "<fmt:message key='admin.browser.not.install.flash.warn'/>",
             type: "error"
         });
-
-        $('#title').focus();
-        return false;
     }
-    if($.trim(keyword) == '') {
-        swal({
-            title: "Error!",
-            text: "Please enter the keyword.",
-            type: "error"
+
+    function deleteAttachmentItem(itemID) {
+        bootbox.confirm('<fmt:message key="delete.confirm"/>', function(r) {
+           if(r) {
+                var value = $('#' + itemID).val();
+                $('#' + itemID).remove();
+                $('#i_' + itemID).remove();
+                $('#itemForm').append('<input type="hidden" name="deletedAttchments" value="' + value + '">');
+           }
         });
-        $('#keyword').focus();
-        return false;
     }
-    return true;
-}
-
-if(!FlashDetect.installed){
-    swal({
-        title: "Error!",
-        text: "<fmt:message key='admin.browser.not.install.flash.warn'/>",
-        type: "error"
-    });
-}
-
-function deleteAttachmentItem(itemID) {
-    bootbox.confirm('<fmt:message key="delete.confirm"/>', function(r) {
-	   if(r) {
-		    var value = $('#' + itemID).val();
-			$('#' + itemID).remove();
-			$('#i_' + itemID).remove();
-			$('#itemForm').append('<input type="hidden" name="deletedAttchments" value="' + value + '">');
-	   }
-	});
-}
-if(!FlashDetect.installed){
-    alert("<fmt:message key='admin.browser.not.install.flash.warn'/>");
-}
+    if(!FlashDetect.installed){
+        alert("<fmt:message key='admin.browser.not.install.flash.warn'/>");
+    }
 </script>

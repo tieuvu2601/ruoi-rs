@@ -8,6 +8,11 @@
     right: 15px;
 }
 
+.blog-grid-inner {
+    margin: -70px 50px 0;
+    background: #fafafa;
+}
+
 
 .blog-cars-heading small {
     border-left: 2px solid;

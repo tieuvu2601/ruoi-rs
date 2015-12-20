@@ -137,11 +137,7 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
         return this.contentDAO.findAnnouncementItemsOfOnlineUser(authoringCode, loginUserId, begin, pageSize);
     }
 
-    @Override
-    public ContentEntity findByTitle(String title, Boolean isEng, Integer status) {
-        title = title.replaceAll("-", " ");
-        return this.contentDAO.findByTitle(title, isEng, status);
-    }
+
 
     @Override
     public List<ContentEntity> findByPrefixUrl(String prefixUrl, Integer startRow, Integer pageSize, Boolean isEng, Integer status) {
@@ -163,6 +159,11 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
     }
 
     // ---------------------  new update -----------------------------//
+
+    @Override
+    public ContentEntity findByTitle(String title, Integer status) {
+        return this.contentDAO.findByTitle(title, status);
+    }
 
     @Override
     public List<ContentEntity> findByCategory(String category, Integer startRow, Integer pageSize, Integer status) {

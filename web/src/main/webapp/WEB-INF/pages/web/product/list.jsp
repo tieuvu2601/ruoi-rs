@@ -33,14 +33,13 @@
             <c:forEach var="product" items="${items}">
                 <seo:url value="${product.title}" var="productUrl" prefix="/${product.category.prefixUrl}/${product.contentId}/"/>
                 <c:set var="productThumbnailUrl" value="/repository${product.thumbnails}"/>
-                <c:set var="productXMLData" value="${portal:parseContentXML(product.xmlData)}"/>
-                <div class="row margin-bottom-50">
+                <div class="row margin-bottom-30">
                     <div class="col-sm-4 sm-margin-bottom-20">
                         <img class="img-responsive" src="${productThumbnailUrl}" alt="${product.title}">
                     </div>
                     <div class="col-sm-8">
                         <div class="blog-grid">
-                            <h3><a href="${productUrl}">${productXMLData.header[0]}</a></h3>
+                            <h3><a href="${productUrl}">${product.header}</a></h3>
                             <ul class="blog-grid-info">
                                 <li>${product.createdBy.displayName}</li>
                                 <li><fmt:formatDate pattern="dd-MM-yyyy" value="${product.publishedDate}"/></li>
@@ -58,7 +57,6 @@
                 <li class="next"><a class="rounded-3x" href="#">Newer &rarr;</a></li>
             </ul>
         </div>
-
 
         <div class="col-md-3">
             <jsp:include page="../common/hotproduct.jsp"/>
@@ -83,7 +81,6 @@
         });
 
         function setCurrentSelectedMenu(menu, subMenu){
-            console.dir('sssssssssss');
             $('#top-navigation-container').find('li').removeClass('active');
             if($(menu != null && menu != undefined)){
                 $(menu).addClass('active');
