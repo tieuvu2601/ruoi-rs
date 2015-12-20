@@ -11,8 +11,8 @@
             </button>
 
             <div class="navbar-brand">
-                <a href="index.html">
-                    <img src="assets/img/themes/logo-news-dark-default.png" alt="Logo">
+                <a href="<c:url value="/index.html"/>">
+                    <img src="<c:url value="/themes/site/img/themes/logo-news-dark-default.png"/>" alt="<fmt:message key="webapp.name"/>">
                 </a>
             </div>
         </div>

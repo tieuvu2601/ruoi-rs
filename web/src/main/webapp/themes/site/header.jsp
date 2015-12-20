@@ -2,48 +2,23 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <!-- Topbar blog -->
 <div class="blog-topbar">
-    <div class="topbar-search-block">
-        <div class="container">
-            <form action="#">
-                <input type="text" class="form-control" placeholder="Search">
-                <div class="search-close"><i class="icon-close"></i></div>
-            </form>
-        </div>
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-xs-8">
-                <div class="topbar-time">Friday, Mar 13th 2015</div>
-                <div class="topbar-toggler"><span class="fa fa-angle-down"></span></div>
-                <ul class="topbar-list topbar-menu">
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Forums</a></li>
-                    <li>
-                        <a href="javascript:void(0);">Dropdown</a>
-                        <ul class="topbar-dropdown">
-                            <li><a href="#">Dropdown</a></li>
-                            <li><a href="#">Dropdown</a></li>
-                            <li class="topbar-submenu">
-                                <a href="javascript:void(0);">Submenu</a>
-                                <ul class="topbar-submenu-in">
-                                    <li><a href="#">Submenu</a></li>
-                                    <li><a href="#">Submenu</a></li>
-                                    <li class="topbar-submenu">
-                                        <a href="javascript:void(0);">Submenu</a>
-                                        <ul class="topbar-submenu-in">
-                                            <li><a href="#">Submenu</a></li>
-                                            <li><a href="#">Submenu</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signin" href="javascript:void(0);">Login</a></strong></li>
-                    <li class="cd-log_reg hidden-sm hidden-md hidden-lg"><strong><a class="cd-signup" href="javascript:void(0);">Register</a></strong></li>
-                </ul>
+                <div class="row">
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="topbar-search-block">
+                            <div class="">
+                                <form action="#" class="search-form-container">
+                                    <input type="text" class="form-control" placeholder="Search">
+                                    <div class="search-close"><i class="icon-close"></i></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="col-sm-4 col-xs-4 clearfix">
                 <i class="fa fa-search search-btn pull-right"></i>
                 <ul class="topbar-list topbar-log_reg pull-right visible-sm-block visible-md-block visible-lg-block">

@@ -67,7 +67,6 @@
                         </div>
                     </div>
                 </div>
-                <%--<img class="img-responsive" src="${itemThumbnailsUrl}" alt="${item.title}">--%>
             </div>
 
             <div class="margin-bottom-30">
@@ -92,32 +91,6 @@
             </c:if>
 
             <div class="fb-comments" data-href="${itemUrl}" data-width="100%" data-numposts="10"></div>
-
-            <!-- Blog Thumb v4 -->
-            <div class="margin-bottom-50">
-                <h2 class="title-v4">Related Posts</h2>
-                <div class="row margin-bottom-50">
-                    <div class="col-sm-3 col-xs-6 sm-margin-bottom-30">
-                        <!-- Blog Thumb v4 -->
-                        <div class="blog-thumb-v4">
-                            <div class="blog-thumb-item">
-                                <img class="img-responsive margin-bottom-10" src="assets/img/blog/img40.jpg" alt="">
-                                <div class="center-wrap">
-                                    <div class="center-alignCenter">
-                                        <div class="center-body">
-                                            <a href="https://player.vimeo.com/video/74197060" class="fbox-modal fancybox.iframe video-play-btn" title="What will fashion be like in 25 years?">
-                                                <img class="video-play-btn" src="assets/img/icons/video-play.png" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div><!--/end center wrap-->
-                            </div>
-                            <h3><a href="blog_single.html">What will fashion be like in 25 years?</a></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
         <div class="col-md-3">

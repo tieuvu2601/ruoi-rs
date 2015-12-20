@@ -106,7 +106,7 @@
                     <div class="blog-carousel carousel_v${productTypeStatus.count}">
                         <c:forEach var="project" varStatus="projectStatus" items="${productType.contents}">
                             <c:if test="${projectStatus.index%2 == 0}">
-                                <div class="row margin-bottom-50">
+                                <div class="row margin-bottom-30">
                             </c:if>
                             <c:set var="projectXMLData" value="${portal:parseContentXML(project.xmlData)}"/>
 
@@ -191,62 +191,23 @@
 
 
             <!-- Blog Grid -->
-            <div class="margin-bottom-50">
-                <h2 class="title-v4">Monthly News</h2>
-                <!-- Blog Grid -->
-                <div class="row margin-bottom-50">
-                    <div class="col-sm-6 sm-margin-bottom-50">
-                        <div class="blog-grid">
-                            <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img42.jpg"/>" alt="">
+            <div class="margin-bottom-30">
+                <h2 class="title-v4">Thong tin doi tac</h2>
+                <c:forEach var="idx" begin="0" end="11">
+                    <c:if test="${idx %6 == 0}">
+                        <div class="row margin-bottom-30">
+                    </c:if>
 
-                            <h3><a href="blog_single.html">6 Facts about dogs</a></h3>
-                            <ul class="blog-grid-info">
-                                <li>Richard Garner</li>
-                                <li>Mar 6, 2015</li>
-                                <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-                            </ul>
+                    <div class="col-xs-4 col-sm-2 sm-margin-bottom-20">
+                        <div class="blog-grid">
+                            <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img${idx%5 + 1}.jpg"/>" alt="Ten doanh nghiep">
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="blog-grid">
-                            <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img46.jpg"/>" alt="">
 
-                            <h3><a href="blog_single.html">Why we love watermelon...</a></h3>
-                            <ul class="blog-grid-info">
-                                <li>Richard Garner</li>
-                                <li>Mar 6, 2015</li>
-                                <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-                            </ul>
+                    <c:if test="${idx %6 == 5 || idx == 11}">
                         </div>
-                    </div>
-                </div>
-
-                <div class="row margin-bottom-50">
-                    <div class="col-sm-6 sm-margin-bottom-50">
-                        <div class="blog-grid">
-                            <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img48.jpg"/>" alt="">
-
-                            <h3><a href="blog_single.html">5 Facts about Coca-Cola</a></h3>
-                            <ul class="blog-grid-info">
-                                <li>Richard Garner</li>
-                                <li>Mar 6, 2015</li>
-                                <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="blog-grid">
-                            <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img47.jpg"/>" alt="">
-
-                            <h3><a href="blog_single.html">7 tips of writing that you didn't know</a></h3>
-                            <ul class="blog-grid-info">
-                                <li>Richard Garner</li>
-                                <li>Mar 6, 2015</li>
-                                <li><a href="#"><i class="fa fa-comments"></i> 0</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                    </c:if>
+                </c:forEach>
             </div>
         </div>
 

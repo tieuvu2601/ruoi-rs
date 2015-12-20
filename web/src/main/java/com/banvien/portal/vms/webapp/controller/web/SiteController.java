@@ -58,6 +58,7 @@ public class SiteController extends ApplicationObjectSupport {
 
         }
         getRecentNews(mav);
+        getHotProduct(mav);
         return mav;
     }
 
