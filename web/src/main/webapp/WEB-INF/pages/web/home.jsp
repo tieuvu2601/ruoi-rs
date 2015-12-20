@@ -14,13 +14,25 @@
 
                         <img src="<c:url value="/themes/site/plugins/master-slider/masterslider/style/blank.gif"/>" data-src="${sliderThumbnailsUrl}" alt="${slider.title}"/>
                         <c:if test="${not empty slider.categoryType && not empty slider.categoryType.name}">
-                            <span class="blog-slider-badge">${slider.categoryType.name}</span>
+                            <span class="blog-slider-badge <c:if test="${slider.hotItem == 1}"> is-hot-product</c:if>">${slider.categoryType.name}</span>
                         </c:if>
 
                         <div class="ms-info"></div>
                         <div class="blog-slider-title">
-                                <%--<span class="blog-slider-posted">Mar 6, 2015</span>--%>
-                            <h2><a href="${sliderUrl}">${sliderXMLData.header[0]}</a></h2>
+                            <h2 class="product-title">
+                                <a href="${sliderUrl}">${sliderXMLData.header[0]} ${sliderXMLData.header[0]} </a><br />
+                                <span class="product-cost">
+                                    ${portal:getNumberOfCost(slider.cost)}
+                                    <c:choose>
+                                        <c:when test="${slider.cost >= 1000}">
+                                            <fmt:message key="site.content.cost.billion"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <fmt:message key="site.content.cost.million"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </span>
+                            </h2>
                         </div>
                     </div>
                 </c:forEach>

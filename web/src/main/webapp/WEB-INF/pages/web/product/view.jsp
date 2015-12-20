@@ -69,7 +69,7 @@
             </div>
             <!-- End Blog Grid -->
 
-            <div class="blog-grid margin-bottom-50">
+            <div class="blog-grid margin-bottom-30">
                 <img class="img-responsive img-product-thumbnail" src="${itemThumbnailsUrl}" alt="${item.title}">
                 <div class="blog-grid-inner">
                     <h3><a href="${itemUrl}">${itemXMLData.header[0]}</a></h3>
