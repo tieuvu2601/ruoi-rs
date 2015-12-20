@@ -96,4 +96,36 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+
+    <tag>
+        <name>getRecentNews</name>
+        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibGetRecentNews</tagclass>
+        <bodycontent>JSP</bodycontent>
+        <attribute>
+            <name>pageSize</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>var</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>getHotProducts</name>
+        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibGetHotProducts</tagclass>
+        <bodycontent>JSP</bodycontent>
+        <attribute>
+            <name>pageSize</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>var</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>

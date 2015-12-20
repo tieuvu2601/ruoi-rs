@@ -41,8 +41,6 @@ public class SiteController extends ApplicationObjectSupport {
             }
         }
         mav.addObject(Constants.LIST_MODEL_KEY, contents);
-        getRecentNews(mav);
-        getHotProduct(mav);
         return mav;
     }
 
@@ -57,8 +55,6 @@ public class SiteController extends ApplicationObjectSupport {
         } catch (Exception e){
 
         }
-        getRecentNews(mav);
-        getHotProduct(mav);
         return mav;
     }
 
@@ -78,7 +74,6 @@ public class SiteController extends ApplicationObjectSupport {
             }
         }
         mav.addObject(Constants.LIST_MODEL_KEY, listResult);
-        getHotProduct(mav);
         return mav;
     }
 
@@ -93,8 +88,6 @@ public class SiteController extends ApplicationObjectSupport {
         } catch (Exception e){
 
         }
-        getRecentNews(mav);
-        getHotProduct(mav);
         return mav;
     }
 
@@ -110,8 +103,6 @@ public class SiteController extends ApplicationObjectSupport {
         } catch (Exception e){
 
         }
-        getRecentNews(mav);
-        getHotProduct(mav);
         return mav;
     }
 
@@ -120,12 +111,4 @@ public class SiteController extends ApplicationObjectSupport {
         mav.addObject("relativeProducts", "relativeProducts");
     }
 
-    private void getRecentNews(ModelAndView mav){
-        List<ContentEntity> recentNews = this.contentService.findByCategory(Constants.CATEGORY_RECENT_NEWS, 0, 6, Constants.CONTENT_PUBLISH);
-        mav.addObject("recentNews", recentNews);
-    }
-    private void getHotProduct(ModelAndView mav){
-        List<ContentEntity> hotProducts = this.contentService.getHotProduct(0, 10, Constants.CONTENT_PUBLISH);
-        mav.addObject("hotProducts", hotProducts);
-    }
 }

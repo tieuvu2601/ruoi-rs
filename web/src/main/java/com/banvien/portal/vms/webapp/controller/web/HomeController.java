@@ -20,20 +20,6 @@ public class HomeController extends ApplicationObjectSupport {
     @RequestMapping({"/index.html", "/"})
     public ModelAndView home() throws Exception{
         ModelAndView mav = new ModelAndView("web/home");
-        getRecentNews(mav);
-        getHotProduct(mav);
         return mav;
     }
-
-    private void getRecentNews(ModelAndView mav){
-        List<ContentEntity> recentNews = this.contentService.findByCategory(Constants.CATEGORY_RECENT_NEWS, 0, 5, Constants.CONTENT_PUBLISH);
-        mav.addObject("recentNews", recentNews);
-
-    }
-
-    private void getHotProduct(ModelAndView mav){
-        List<ContentEntity> hotProducts = this.contentService.getHotProduct(0, 10, Constants.CONTENT_PUBLISH);
-        mav.addObject("hotProducts", hotProducts);
-    }
-
 }
