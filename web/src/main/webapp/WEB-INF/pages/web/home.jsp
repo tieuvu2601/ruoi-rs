@@ -1,107 +1,33 @@
 <%@ taglib prefix="oscache" uri="http://www.opensymphony.com/oscache" %>
 <%@ include file="/common/taglibs.jsp" %>
 
-<div class="blog-ms-v1 content-sm bg-color-darker margin-bottom-60">
-    <div class="master-slider ms-skin-default" id="masterslider">
-        <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img9.jpg"
-                 alt="lorem ipsum dolor sit"/>
-            <span class="blog-slider-badge">Fashion</span>
+<content:buildSliderHomePage pageSize="5" var="sliderItems"/>
+<oscache:cache key="home_page_slider_item" duration="1">
+    <c:if test="${fn:length(sliderItems) > 0}">
+        <div class="blog-ms-v1 content-sm bg-color-darker margin-bottom-60">
+            <div class="master-slider ms-skin-default" id="masterslider">
+                <c:forEach var="slider" items="${sliderItems}">
+                    <div class="ms-slide blog-slider">
+                        <seo:url value="${slider.title}" var="sliderUrl" prefix="/${slider.category.prefixUrl}/${slider.contentId}/"/>
+                        <c:set var="sliderThumbnailsUrl" value="/repository${slider.thumbnails}"/>
+                        <c:set var="sliderXMLData" value="${portal:parseContentXML(slider.xmlData)}"/>
 
-            <div class="ms-info"></div>
-            <div class="blog-slider-title">
-                <span class="blog-slider-posted">Mar 6, 2015</span>
+                        <img src="<c:url value="/themes/site/plugins/master-slider/masterslider/style/blank.gif"/>" data-src="${sliderThumbnailsUrl}" alt="${slider.title}"/>
+                        <c:if test="${not empty slider.categoryType && not empty slider.categoryType.name}">
+                            <span class="blog-slider-badge">${slider.categoryType.name}</span>
+                        </c:if>
 
-                <h2><a href="#">Is this the end for fashion police?</a></h2>
+                        <div class="ms-info"></div>
+                        <div class="blog-slider-title">
+                                <%--<span class="blog-slider-posted">Mar 6, 2015</span>--%>
+                            <h2><a href="${sliderUrl}">${sliderXMLData.header[0]}</a></h2>
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
         </div>
-        <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img52.jpg"
-                 alt="lorem ipsum dolor sit"/>
-            <span class="blog-slider-badge">Hi-Tech</span>
-
-            <div class="ms-info"></div>
-            <div class="blog-slider-title">
-                <span class="blog-slider-posted">Mar 6, 2015</span>
-
-                <h2><a href="#">Learning as you're earning: The alternative to a degree</a></h2>
-            </div>
-        </div>
-        <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img5.jpg"
-                 alt="lorem ipsum dolor sit"/>
-            <span class="blog-slider-badge">Sport</span>
-
-            <div class="ms-info"></div>
-            <div class="blog-slider-title">
-                <span class="blog-slider-posted">Mar 6, 2015</span>
-
-                <h2><a href="#">Brady handed his place in history</a></h2>
-            </div>
-        </div>
-        <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img16.jpg"
-                 alt="lorem ipsum dolor sit"/>
-            <span class="blog-slider-badge">Fashion</span>
-
-            <div class="ms-info"></div>
-            <div class="blog-slider-title">
-                <span class="blog-slider-posted">Mar 6, 2015</span>
-
-                <h2><a href="#">Nadège Vanhee-Cybulski makes Hermès debut</a></h2>
-            </div>
-        </div>
-        <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img35.jpg"
-                 alt="lorem ipsum dolor sit"/>
-            <a href="http://player.vimeo.com/video/53914149" data-type="video"> vimeo video </a>
-            <span class="blog-slider-badge">Travel</span>
-
-            <div class="ms-info"></div>
-            <div class="blog-slider-title">
-                <span class="blog-slider-posted">Mar 6, 2015</span>
-
-                <h2><a href="#">Our favourite images of the week</a></h2>
-            </div>
-        </div>
-        <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img41.jpg"
-                 alt="lorem ipsum dolor sit"/>
-            <span class="blog-slider-badge">Travel</span>
-
-            <div class="ms-info"></div>
-            <div class="blog-slider-title">
-                <span class="blog-slider-posted">Mar 6, 2015</span>
-
-                <h2><a href="#">Must be visited places in the world</a></h2>
-            </div>
-        </div>
-        <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img48.jpg"
-                 alt="lorem ipsum dolor sit"/>
-            <span class="blog-slider-badge">Health</span>
-
-            <div class="ms-info"></div>
-            <div class="blog-slider-title">
-                <span class="blog-slider-posted">Mar 6, 2015</span>
-
-                <h2><a href="#">5 Facts about Coca-Cola</a></h2>
-            </div>
-        </div>
-        <div class="ms-slide blog-slider">
-            <img src="assets/plugins/master-slider/masterslider/style/blank.gif" data-src="assets/img/blog/img53.jpg"
-                 alt="lorem ipsum dolor sit"/>
-            <span class="blog-slider-badge">Community</span>
-
-            <div class="ms-info"></div>
-            <div class="blog-slider-title">
-                <span class="blog-slider-posted">Mar 6, 2015</span>
-
-                <h2><a href="#">Minimalism gives way to embroidery and crystals</a></h2>
-            </div>
-        </div>
-    </div>
-</div>
+    </c:if>
+</oscache:cache>
 
 <div class="container margin-bottom-40">
     <div class="row">
@@ -111,44 +37,44 @@
                 <c:set var="firstNew" value="${newItems[0]}"/>
                 <c:set var="firstNewData" value="${portal:parseContentXML(firstNew.xmlData)}"/>
                 <c:set var="thumbnailsImg" value="/repository${firstNew.thumbnails}?w=650"/>
-                    <div class="margin-bottom-30">
-                        <h2 class="title-v4"><a href="">${firstNew.category.name}</a></h2>
-                        <div class="row margin-bottom-20">
-                            <div class="col-sm-7">
-                                <div class="blog-grid margin-bottom-20">
-                                    <img class="img-responsive" src="${thumbnailsImg}" alt="${firstNew.title}">
-                                    <seo:url value="${firstNew.title}" var="seoURL" prefix="/${firstNew.category.prefixUrl}/${firstNew.contentId}/"/>
-                                    <h3><a href="${seoURL}">${firstNewData.header[0]}</a></h3>
-                                    <ul class="blog-grid-info">
-                                        <li>${firstNew.createdBy.displayName}</li>
-                                        <li><fmt:formatDate pattern="dd-MM-yyyy" value="${firstNew.publishedDate}"/></li>
-                                    </ul>
-                                    <p>${firstNew.description}</p>
-                                    <a class="r-more" href="${seoURL}"><fmt:message key="site.read.more"/></a>
-                                </div>
-                            </div>
-                            <div class="col-sm-5">
-                                <c:forEach var="index" begin="1" end="${fn:length(newItems) - 1}">
-                                    <c:set var="news" value="${newItems[index]}"/>
-                                    <c:set var="newsXMLData" value="${portal:parseContentXML(news.xmlData)}"/>
-                                    <seo:url value="${news.title}" var="newUrl" prefix="/${news.category.prefixUrl}/${news.contentId}/"/>
-                                    <div class="blog-thumb margin-bottom-20">
-                                        <div class="blog-thumb-hover">
-                                            <c:set var="thumbnailsImg" value="/repository${news.thumbnails}?w=120"/>
-                                            <img src="${thumbnailsImg}" alt="${news.title}">
-                                            <a class="hover-grad" href="${newUrl}"><i class="fa fa-photo"></i></a>
-                                        </div>
-                                        <div class="blog-thumb-desc">
-                                            <h3><a href="${newUrl}">${newsXMLData.header[0]}</a></h3>
-                                            <ul class="blog-thumb-info">
-                                                <li><fmt:formatDate pattern="dd-MM-yyyy" value="${news.publishedDate}"/></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </c:forEach>
+                <div class="margin-bottom-30">
+                    <h2 class="title-v4"><a href="">${firstNew.category.name}</a></h2>
+                    <div class="row margin-bottom-20">
+                        <div class="col-sm-7">
+                            <div class="blog-grid margin-bottom-20">
+                                <img class="img-responsive" src="${thumbnailsImg}" alt="${firstNew.title}">
+                                <seo:url value="${firstNew.title}" var="seoURL" prefix="/${firstNew.category.prefixUrl}/${firstNew.contentId}/"/>
+                                <h3><a href="${seoURL}">${firstNewData.header[0]}</a></h3>
+                                <ul class="blog-grid-info">
+                                    <li>${firstNew.createdBy.displayName}</li>
+                                    <li><fmt:formatDate pattern="dd-MM-yyyy" value="${firstNew.publishedDate}"/></li>
+                                </ul>
+                                <p>${firstNew.description}</p>
+                                <a class="r-more" href="${seoURL}"><fmt:message key="site.read.more"/></a>
                             </div>
                         </div>
+                        <div class="col-sm-5">
+                            <c:forEach var="index" begin="1" end="${fn:length(newItems) - 1}">
+                                <c:set var="news" value="${newItems[index]}"/>
+                                <c:set var="newsXMLData" value="${portal:parseContentXML(news.xmlData)}"/>
+                                <seo:url value="${news.title}" var="newUrl" prefix="/${news.category.prefixUrl}/${news.contentId}/"/>
+                                <div class="blog-thumb margin-bottom-20">
+                                    <div class="blog-thumb-hover">
+                                        <c:set var="thumbnailsImg" value="/repository${news.thumbnails}?w=120"/>
+                                        <img src="${thumbnailsImg}" alt="${news.title}">
+                                        <a class="hover-grad" href="${newUrl}"><i class="fa fa-photo"></i></a>
+                                    </div>
+                                    <div class="blog-thumb-desc">
+                                        <h3><a href="${newUrl}">${newsXMLData.header[0]}</a></h3>
+                                        <ul class="blog-thumb-info">
+                                            <li><fmt:formatDate pattern="dd-MM-yyyy" value="${news.publishedDate}"/></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
                     </div>
+                </div>
             </oscache:cache>
 
             <content:findAllContentsByCategoryType begin="0" pageSize="6" var="productTypes"/>
@@ -230,7 +156,6 @@
                                                     </li>
                                                 </c:otherwise>
                                             </c:choose>
-
                                         </c:if>
 
                                         <c:if test="${not empty project.areaRatio}">
@@ -260,7 +185,7 @@
                 <div class="row margin-bottom-50">
                     <div class="col-sm-6 sm-margin-bottom-50">
                         <div class="blog-grid">
-                            <img class="img-responsive" src="assets/img/blog/img42.jpg" alt="">
+                            <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img42.jpg"/>" alt="">
 
                             <h3><a href="blog_single.html">6 Facts about dogs</a></h3>
                             <ul class="blog-grid-info">
@@ -272,7 +197,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="blog-grid">
-                            <img class="img-responsive" src="assets/img/blog/img49.jpg" alt="">
+                            <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img46.jpg"/>" alt="">
 
                             <h3><a href="blog_single.html">Why we love watermelon...</a></h3>
                             <ul class="blog-grid-info">
@@ -287,7 +212,7 @@
                 <div class="row margin-bottom-50">
                     <div class="col-sm-6 sm-margin-bottom-50">
                         <div class="blog-grid">
-                            <img class="img-responsive" src="assets/img/blog/img48.jpg" alt="">
+                            <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img48.jpg"/>" alt="">
 
                             <h3><a href="blog_single.html">5 Facts about Coca-Cola</a></h3>
                             <ul class="blog-grid-info">
@@ -299,7 +224,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="blog-grid">
-                            <img class="img-responsive" src="assets/img/blog/img47.jpg" alt="">
+                            <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img47.jpg"/>" alt="">
 
                             <h3><a href="blog_single.html">7 tips of writing that you didn't know</a></h3>
                             <ul class="blog-grid-info">

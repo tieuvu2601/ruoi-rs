@@ -37,4 +37,6 @@ public interface ContentDAO extends GenericDAO<ContentEntity, Long> {
     Object[] findAllContentsByCategoryType(Long categoryTypeId, Integer begin, Integer pageSize, Integer status);
 
     List<ContentEntity> getHotProduct(Integer startRow, Integer pageSize, Integer status);
+
+    List<ContentEntity> findContentForBuildSlider(Integer pageSize, Integer status);
 }

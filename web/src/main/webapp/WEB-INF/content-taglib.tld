@@ -80,4 +80,20 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+
+    <tag>
+        <name>buildSliderHomePage</name>
+        <tagclass>com.banvien.portal.vms.taglibs.contents.ContentTagLibBuildSliderHomePage</tagclass>
+        <bodycontent>JSP</bodycontent>
+        <attribute>
+            <name>pageSize</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>var</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
 </taglib>
