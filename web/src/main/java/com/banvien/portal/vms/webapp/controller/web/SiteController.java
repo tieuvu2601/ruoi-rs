@@ -31,8 +31,7 @@ public class SiteController extends ApplicationObjectSupport {
         categoryCode = categoryCode.replaceAll("-", " ");
         List<ContentEntity> contents = this.contentService.findByCategory(categoryCode, 0, 20, Constants.CONTENT_PUBLISH);
         if(contents != null && contents.size() > 0){
-            CategoryEntity category = contents.get(0).getCategory();
-            mav.addObject("category", category);
+            mav.addObject("category", contents.get(0).getCategory());
         } else {
             try{
                 CategoryEntity category = this.categoryService.findByCode(categoryCode);
@@ -66,14 +65,35 @@ public class SiteController extends ApplicationObjectSupport {
     @RequestMapping(value = "/news/{categoryCode}.html")
     public ModelAndView viewNews(){
         ModelAndView mav = new ModelAndView("/web/news/list");
+        List<ContentEntity> listResult = this.contentService.findByCategory(Constants.CATEGORY_RECENT_NEWS, 0, 20, Constants.CONTENT_PUBLISH);
+        if(listResult != null && listResult.size() > 0){
+            mav.addObject("category", listResult.get(0).getCategory());
+        } else {
+            try{
+                CategoryEntity category = this.categoryService.findByCode(Constants.CATEGORY_RECENT_NEWS);
+                mav.addObject("category", category);
+            } catch (ObjectNotFoundException oe){
 
+            }
+        }
+        mav.addObject(Constants.LIST_MODEL_KEY, listResult);
+        getHotProduct(mav);
         return mav;
     }
 
     @RequestMapping(value = "/news/{newId}/{newTitle}.html")
     public ModelAndView viewNew(@PathVariable(value = "newId")Long newId, @PathVariable(value = "newTitle")String newTitle){
         ModelAndView mav = new ModelAndView("/web/news/view");
+        try{
+            ContentEntity dbItem = this.contentService.findById(newId);
+            mav.addObject(Constants.FORM_MODEL_KEY, dbItem);
+            mav.addObject("category", dbItem.getCategory());
 
+        } catch (Exception e){
+
+        }
+        getRecentNews(mav);
+        getHotProduct(mav);
         return mav;
     }
 

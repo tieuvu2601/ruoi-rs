@@ -15,10 +15,12 @@
             <c:choose>
                 <c:when test="${not empty category.parent}">
                     <li><a href="#">${category.parent.name}</a></li>
-                    <li class="active">${category.name}</li>
+                    <seo:url value="${category.code}" var="menuUrl" prefix="/${category.prefixUrl}/"/>
+                    <li class="active"><a href="${menuUrl}">${category.name}</a></li>
                 </c:when>
                 <c:otherwise>
-                    <li class="active">${category.name}</li>
+                    <seo:url value="${category.code}" var="menuUrl" prefix="/${category.prefixUrl}/"/>
+                    <li class="active"><a href="${menuUrl}">${category.name}</a></li>
                 </c:otherwise>
             </c:choose>
         </ul>
@@ -62,6 +64,8 @@
             <jsp:include page="../common/hotproduct.jsp"/>
 
             <jsp:include page="../common/recentnew.jsp"/>
+
+            <jsp:include page="../common/social.jsp"/>
         </div>
     </div>
 </div>

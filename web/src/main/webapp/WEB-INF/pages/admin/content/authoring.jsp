@@ -412,12 +412,12 @@ window.onload = function() {
             postfix : "(Trieu Dong)"
         });
 
-
-
-        $("#title").blur(function() {
-            var titleString = convertUrlToTitle($(this).val());
-            $(this).val(titleString);
-        });
+//
+//
+//        $("#title").blur(function() {
+//            var titleString = convertUrlToTitle($(this).val());
+//            $(this).val(titleString);
+//        });
     });
 
     function convertUrlToTitle(str){

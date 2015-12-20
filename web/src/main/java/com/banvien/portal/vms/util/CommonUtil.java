@@ -410,4 +410,13 @@ public class CommonUtil {
         }
         return result;
     }
+
+    public static String [] generatorKeywords(String input, String delimeter) {
+        if(StringUtils.isNotBlank(input)){
+            return input.split(delimeter);
+        } else {
+            return null;
+        }
+    }
+
 }

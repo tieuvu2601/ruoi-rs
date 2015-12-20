@@ -1,6 +1,6 @@
 <%@ taglib prefix="oscache" uri="http://www.opensymphony.com/oscache" %>
 <%@ include file="/common/taglibs.jsp" %>
-<!-- Master Slider -->
+
 <div class="blog-ms-v1 content-sm bg-color-darker margin-bottom-60">
     <div class="master-slider ms-skin-default" id="masterslider">
         <div class="ms-slide blog-slider">
@@ -102,9 +102,7 @@
         </div>
     </div>
 </div>
-<!-- End Master Slider -->
 
-<!--=== Container Part ===-->
 <div class="container margin-bottom-40">
     <div class="row">
         <div class="col-md-9">
@@ -152,7 +150,6 @@
                         </div>
                     </div>
             </oscache:cache>
-
 
             <content:findAllContentsByCategoryType begin="0" pageSize="6" var="productTypes"/>
             <oscache:cache key="product_type_items" duration="1">
@@ -246,7 +243,6 @@
                                     </ul>
                                 </div>
                             </div>
-
                             <c:if test="${projectStatus.index%2 == 1 || projectStatus.index == (fn:length(productType.contents) - 1)}">
                                 </div>
                             </c:if>
@@ -287,10 +283,7 @@
                         </div>
                     </div>
                 </div>
-                <!--/end row-->
-                <!-- End Blog Grid -->
 
-                <!-- Blog Grid -->
                 <div class="row margin-bottom-50">
                     <div class="col-sm-6 sm-margin-bottom-50">
                         <div class="blog-grid">
@@ -317,12 +310,9 @@
                         </div>
                     </div>
                 </div>
-                <!--/end row-->
-                <!-- End Blog Grid -->
             </div>
-            <!-- End Blog Grid -->
         </div>
-        <!-- Right Sidebar -->
+
         <div class="col-md-3">
             <jsp:include page="../web/common/aboutme.jsp"></jsp:include>
 
@@ -330,31 +320,9 @@
 
             <jsp:include page="../web/common/recentnew.jsp"></jsp:include>
 
-            <!-- Social Shares -->
-            <div class="margin-bottom-50">
-                <h2 class="title-v4">Social</h2>
-                <ul class="blog-social-shares">
-                    <li>
-                        <i class="rounded-x fb fa fa-facebook"></i>
-                        <a class="rounded-3x" href="#">Like</a>
-                        <span class="counter">31,702</span>
-                    </li>
-                    <li>
-                        <i class="rounded-x tw fa fa-twitter"></i>
-                        <a class="rounded-3x" href="#">Follow Us</a>
-                        <span class="counter">164,290</span>
-                    </li>
-                    <li>
-                        <i class="rounded-x gp fa fa-google-plus"></i>
-                        <a class="rounded-3x" href="#">Add to circle</a>
-                        <span class="counter">5,425,764</span>
-                    </li>
-                </ul>
-            </div>
-            <!-- End Social Shares -->
+            <jsp:include page="../web/common/social.jsp"></jsp:include>
         </div>
-        <!-- End Right Sidebar -->
     </div>
 </div>
-<!--=== End Container Part ===-->
+
 

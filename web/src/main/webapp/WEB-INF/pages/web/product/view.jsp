@@ -37,10 +37,12 @@
             <c:choose>
                 <c:when test="${not empty category.parent}">
                     <li><a href="#">${category.parent.name}</a></li>
-                    <li class="active">${category.name}</li>
+                    <seo:url value="${category.code}" var="menuUrl" prefix="/${category.prefixUrl}/"/>
+                    <li class="active"><a href="${menuUrl}">${category.name}</a></li>
                 </c:when>
                 <c:otherwise>
-                    <li class="active">${category.name}</li>
+                    <seo:url value="${category.code}" var="menuUrl" prefix="/${category.prefixUrl}/"/>
+                    <li class="active"><a href="${menuUrl}">${category.name}</a></li>
                 </c:otherwise>
             </c:choose>
         </ul>
@@ -288,13 +290,18 @@
                     </div>
                 </div>
             </div>
-            <!-- End Tab v5 -->
 
-
-            <%--<ul class="source-list">--%>
-                <%--<li><strong>Source:</strong> <a href="#">The Next Web</a></li>--%>
-                <%--<li><strong>Author:</strong> <a href="#">Evan Bartlett</a></li>--%>
-            <%--</ul>--%>
+            <c:if test="${not empty item.keyword}">
+                <c:set var="keywords" value="${portal:generatorKeyword(item.keyword, ',')}"/>
+                <c:if test="${fn:length(keywords) > 0}">
+                    <ul class="blog-grid-tags">
+                        <li class="head"><fmt:message key="site.keyword.tags"/></li>
+                        <c:forEach var="keyword" items="${keywords}">
+                            <li><a href="#">${keyword}</a></li>
+                        </c:forEach>
+                    </ul>
+                </c:if>
+            </c:if>
 
             <!-- Blog Thumb v4 -->
             <div class="margin-bottom-50">

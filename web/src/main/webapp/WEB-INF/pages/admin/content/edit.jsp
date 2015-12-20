@@ -442,16 +442,16 @@ $(document).ready(function(){
         });
     });
 
-    $("#title").blur(function() {
-        var titleString = convertUrlToTitle($(this).val());
-        $(this).val(titleString);
-    });
+//    $("#title").blur(function() {
+//        var titleString = convertUrlToTitle($(this).val());
+//        $(this).val(titleString);
+//    });
 
-    $('.input-daterange').datepicker({
-        format: "dd-mm-yyyy",
-        singleDatePicker : true,
-        showDropdowns: true
-    });
+//    $('.input-daterange').datepicker({
+//        format: "dd-mm-yyyy",
+//        singleDatePicker : true,
+//        showDropdowns: true
+//    });
 });
 
 function convertUrlToTitle(str){

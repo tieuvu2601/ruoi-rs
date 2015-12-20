@@ -47,4 +47,10 @@
         <function-class>com.banvien.portal.vms.util.CommonUtil</function-class>
         <function-signature>java.lang.String getNumberOfCost(java.lang.Long)</function-signature>
     </function>
+
+    <function>
+        <name>generatorKeyword</name>
+        <function-class>com.banvien.portal.vms.util.CommonUtil</function-class>
+        <function-signature>java.lang.String[] generatorKeywords(java.lang.String, java.lang.String)</function-signature>
+    </function>
 </taglib>
