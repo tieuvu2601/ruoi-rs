@@ -20,7 +20,7 @@
                         <div class="ms-info"></div>
                         <div class="blog-slider-title">
                             <h2 class="product-title">
-                                <a href="${sliderUrl}">${sliderXMLData.header[0]} ${sliderXMLData.header[0]} </a><br />
+                                <a href="${sliderUrl}">${sliderXMLData.header[0]}</a><br />
                                 <span class="product-cost">
                                     ${portal:getNumberOfCost(slider.cost)}
                                     <c:choose>
@@ -190,25 +190,25 @@
 
 
 
-            <!-- Blog Grid -->
-            <div class="margin-bottom-30">
-                <h2 class="title-v4">Thong tin doi tac</h2>
-                <c:forEach var="idx" begin="0" end="11">
-                    <c:if test="${idx %6 == 0}">
-                        <div class="row margin-bottom-30">
-                    </c:if>
+            <%--<!-- Blog Grid -->--%>
+            <%--<div class="margin-bottom-30">--%>
+                <%--<h2 class="title-v4">Thong tin doi tac</h2>--%>
+                <%--<c:forEach var="idx" begin="0" end="11">--%>
+                    <%--<c:if test="${idx %6 == 0}">--%>
+                        <%--<div class="row margin-bottom-30">--%>
+                    <%--</c:if>--%>
 
-                    <div class="col-xs-4 col-sm-2 sm-margin-bottom-20">
-                        <div class="blog-grid">
-                            <img class="img-responsive" src="<c:url value="/themes/site/img/blog/img${idx%5 + 1}.jpg"/>" alt="Ten doanh nghiep">
-                        </div>
-                    </div>
+                    <%--<div class="col-xs-4 col-sm-2 sm-margin-bottom-20">--%>
+                        <%--<div class="blog-grid">--%>
+                            <%--<img class="img-responsive" src="<c:url value="/themes/site/img/blog/img${idx%5 + 1}.jpg"/>" alt="Ten doanh nghiep">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
 
-                    <c:if test="${idx %6 == 5 || idx == 11}">
-                        </div>
-                    </c:if>
-                </c:forEach>
-            </div>
+                    <%--<c:if test="${idx %6 == 5 || idx == 11}">--%>
+                        <%--</div>--%>
+                    <%--</c:if>--%>
+                <%--</c:forEach>--%>
+            <%--</div>--%>
         </div>
 
         <div class="col-md-3">

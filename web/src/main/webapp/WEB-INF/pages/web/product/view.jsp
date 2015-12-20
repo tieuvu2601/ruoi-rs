@@ -13,7 +13,8 @@
     <meta property="og:type"          content="${item.categoryType.name}"/>
     <meta property="og:title"         content="${item.title}" />
     <meta property="og:description"   content="${item.description}"/>
-
+    <%--<meta property="fb:app_id"        content="797480313696960" />--%>
+    <%--<meta property="fb:admins"        content="100001895982023"/>--%>
     <meta property="og:image"         content="${itemThumbnailsUrl}"/>
 
 </head>
@@ -127,169 +128,29 @@
 
             <p>${itemXMLData.shotDescription[0]}</p><br>
 
-            <div class="row tab-v3">
+            <div class="row tab-v3 margin-bottom-30">
                 <div class="col-sm-3">
                     <ul class="nav nav-pills nav-stacked">
-                        <c:if test="${not empty itemXMLData.description[0]}">
-                            <li class="active">
-                                <a href="#product-description" data-toggle="tab" aria-expanded="false">Thong tin</a></li>
-                        </c:if>
-                        <c:if test="${not empty itemXMLData.feature[0]}">
-                            <li class="">
-                                <a href="#product-feature" data-toggle="tab" aria-expanded="false">Tien ich</a></li>
-                        </c:if>
-                        <c:if test="${not empty itemXMLData.costAndPay[0]}">
-                            <li class="">
-                                <a href="#product-costAndPay" data-toggle="tab" aria-expanded="false">Gia ban va thanh toan</a></li>
-                        </c:if>
-                        <c:if test="${not empty itemXMLData.location[0]}">
-                            <li class="">
-                                <a href="#product-location" data-toggle="tab" aria-expanded="false">Vi tri </a></li>
-                        </c:if>
-                        <c:if test="${not empty itemXMLData.progress[0]}">
-                            <li class="">
-                                <a href="#product-progress" data-toggle="tab" aria-expanded="false">Tien do du an</a></li>
-                        </c:if>
-                        <c:if test="${not empty itemXMLData.gallery}">
-                            <li class="">
-                                <a href="#product-gallery" data-toggle="tab" aria-expanded="false">Hinh anh</a></li>
-                        </c:if>
+                        <c:forEach var="headerContent" varStatus="headerStatus" items="${itemXMLData.mapHeader}">
+                            <li class="<c:if test="${headerStatus.index == 0}">active</c:if>">
+                                <a href="#product-content-${headerStatus.index}" data-toggle="tab" aria-expanded="false">${headerContent}</a></li>
+                        </c:forEach>
                     </ul>
                 </div>
                 <div class="col-sm-9">
                     <div class="tab-content">
-                        <c:if test="${not empty itemXMLData.description[0]}">
-                            <div class="tab-pane fade" id="product-description">
-                                <h4>Thong tin du an</h4>
+                        <c:forEach var="contentContent" varStatus="contentStatus" items="${itemXMLData.mapContent}">
+                            <div class="tab-pane fade <c:if test="${contentStatus.index == 0}">active in</c:if>" id="product-content-${contentStatus.index}">
+
                                 <div>
-                                    ${itemXMLData.description[0]}
+                                    ${contentContent}
                                 </div>
                             </div>
-                        </c:if>
-                        <c:if test="${not empty itemXMLData.feature[0]}">
-                            <div class="tab-pane fade" id="product-feature">
-                                <h4>Tien ich</h4>
-                                <div>
-                                    ${itemXMLData.feature[0]}
-                                </div>
-                            </div>
-                        </c:if>
-                        <c:if test="${not empty itemXMLData.costAndPay[0]}">
-                            <div class="tab-pane fade" id="product-costAndPay">
-                                <h4>Gia ban va thanh toan</h4>
-                                <div>
-                                    ${itemXMLData.costAndPay[0]}
-                                </div>
-                            </div>
-                        </c:if>
-                        <c:if test="${not empty itemXMLData.location[0]}">
-                            <div class="tab-pane fade" id="product-location">
-                                <h4>Vi tri</h4>
-                                <div>
-                                    ${itemXMLData.location[0]}
-                                </div>
-                            </div>
-                        </c:if>
-                        <c:if test="${not empty itemXMLData.progress[0]}">
-                            <div class="tab-pane fade" id="product-progress">
-                                <h4>Tien do du an</h4>
-                                <div>
-                                    ${itemXMLData.progress[0]}
-                                </div>
-                            </div>
-                        </c:if>
-                        <c:if test="${not empty itemXMLData.gallery}">
-                            <div class="tab-pane fade" id="product-gallery">
-                                <h4>Hinh anh</h4>
-                                <div>
-                                    ${itemXMLData.gallery[0]}
-                                </div>
-                            </div>
-                        </c:if>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
 
-            <!-- Tab v5 -->
-            <div class="tab-v5 margin-bottom-50">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="home active">
-                        <a href="#tab-v5-a1" role="tab" data-toggle="tab">Thong tin</a>
-                    </li>
-                    <li>
-                        <a href="#tab-v5-a2" role="tab" data-toggle="tab">Tien Ich</a>
-                    </li>
-                    <li>
-                        <a href="#tab-v5-a3" role="tab" data-toggle="tab">Gia ban Thanh Toan</a>
-                    </li>
-                    <li>
-                        <a href="#tab-v5-a4" role="tab" data-toggle="tab">Vi Tri</a>
-                    </li>
-                    <li>
-                        <a href="#tab-v5-a5" role="tab" data-toggle="tab">Tien Do</a>
-                    </li>
-                    <li>
-                        <a href="#tab-v5-a6" role="tab" data-toggle="tab">Hinh Anh</a>
-                    </li>
-                </ul>
-
-                <div class="tab-content">
-                    <div class="tab-pane active" id="tab-v5-a1">
-                        <!-- Blog Grid -->
-                        <div class="blog-grid margin-bottom-30">
-                            ${itemXMLData.description[0]}
-                        </div>
-                        <!-- End Blog Grid -->
-                    </div>
-
-                    <div class="tab-pane" id="tab-v5-a2">
-                        <div class="blog-thumb-v3">
-                            <div class="blog-grid margin-bottom-30">
-                                ${itemXMLData.feature[0]}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane" id="tab-v5-a3">
-                        <div class="blog-thumb-v3">
-                            <div class="blog-grid margin-bottom-30">
-                                ${itemXMLData.costAndPay[0]}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane" id="tab-v5-a4">
-                        <div class="blog-thumb-v3">
-                            <small>Mar 6, 2015</small>
-                            <h3><a href="#">Cameron's silence on defence is shameful</a></h3>
-                            <div>
-                                ${itemXMLData.location[0]}
-                            </div>
-                        </div>
-
-                        <hr class="hr-xs">
-
-                        <div class="blog-thumb-v3">
-                            <small>Mar 7, 2015</small>
-                            <h3><a href="#">Architects plan to stop skyscrapers from blocking out sunlight</a></h3>
-                            <div>
-                                ${itemXMLData.progress[0]}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane" id="tab-v5-a5">
-                        <div class="blog-thumb-v3">
-                            <small>Mar 6, 2015</small>
-                            <h3><a href="#">Cameron's silence on defence is shameful</a></h3>
-                            <div>
-                                ${itemXMLData.gallery[0]}
-                            </div>
-                        </div>
-                        <hr class="hr-xs">
-                    </div>
-                </div>
-            </div>
 
             <c:if test="${not empty item.keyword}">
                 <c:set var="keywords" value="${portal:generatorKeyword(item.keyword, ',')}"/>
@@ -302,6 +163,8 @@
                     </ul>
                 </c:if>
             </c:if>
+
+            <div class="fb-comments" data-href="http://developers.facebook.com/docs/plugins/comments/" data-width="100%" data-numposts="10"></div>
 
             <!-- Blog Thumb v4 -->
             <div class="margin-bottom-50">
@@ -333,7 +196,9 @@
             </div>
             <!-- End Blog Thumb v4 -->
 
-            <div class="fb-comments" data-href="${itemUrl}" data-width="100%" data-numposts="10"></div>
+
+
+            <%--<div class="fb-comments" data-href="${itemUrl}" data-width="100%" data-numposts="10"></div>--%>
         </div>
 
 
