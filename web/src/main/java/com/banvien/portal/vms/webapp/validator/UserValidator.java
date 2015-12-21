@@ -5,6 +5,7 @@ import com.banvien.portal.vms.domain.UserEntity;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.UserService;
 import com.banvien.portal.vms.util.CommonUtil;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,31 @@ public class UserValidator extends ApplicationObjectSupport implements Validator
     * This method is called for validating Model Attribute
     */
     public void validate(Object o, Errors errors) {
-       UserBean cmd = (UserBean)o;
-       validateRequiredValues(cmd, errors);
-       checkUnique(cmd, errors);
+        UserBean cmd = (UserBean)o;
+        validateRequiredValues(cmd, errors);
+        trimmingField(cmd);
+        checkUnique(cmd, errors);
+    }
+
+    private void trimmingField(UserBean bean){
+        if(StringUtils.isNotBlank(bean.getPojo().getUsername())){
+            bean.getPojo().setUsername(bean.getPojo().getUsername().trim());
+        }
+        if(StringUtils.isNotBlank(bean.getPojo().getFirstName())){
+            bean.getPojo().setFirstName(bean.getPojo().getFirstName().trim());
+        }
+        if(StringUtils.isNotBlank(bean.getPojo().getLastName())){
+            bean.getPojo().setLastName(bean.getPojo().getLastName().trim());
+        }
+        if(StringUtils.isNotBlank(bean.getPojo().getEmail())){
+            bean.getPojo().setEmail(bean.getPojo().getEmail().trim());
+        }
+        if(StringUtils.isNotBlank(bean.getPojo().getDisplayName())){
+            bean.getPojo().setDisplayName(bean.getPojo().getDisplayName().trim());
+        }
+        if(StringUtils.isNotBlank(bean.getPojo().getMobileNumber())){
+            bean.getPojo().setMobileNumber(bean.getPojo().getMobileNumber().trim());
+        }
     }
 
     public void checkUnique(UserBean cmd, Errors errors){

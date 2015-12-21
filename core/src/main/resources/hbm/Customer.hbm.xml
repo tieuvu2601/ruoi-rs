@@ -1,0 +1,29 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.CustomerEntity" table="Customer">
+		<id name="customerId" column="CustomerID">
+            <generator class="increment"/>
+		</id>
+
+		<property name="fullName" column="FullName"/>
+
+        <property name="email" column="Email"/>
+
+        <property name="phoneNumber" column="PhoneNumber"/>
+
+        <many-to-one name="location" column="LocationID"/>
+	
+		<property name="address" column="Address"/>
+	
+		<property name="description" column="Description"/>
+
+        <property name="createdDate" column="CreatedDate"/>
+
+        <property name="modifiedDate" column="ModifiedDate"/>
+
+        <many-to-one name="createdBy" column="CreatedBy"/>
+	</class>
+</hibernate-mapping>

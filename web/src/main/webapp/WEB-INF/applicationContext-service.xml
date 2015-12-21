@@ -108,4 +108,8 @@
         <property name="contentDAO" ref="contentDAO"/>
         <property name="categoryTypeDAO" ref="categoryTypeDAO"/>
     </bean>
+
+    <bean id="customerService" class="com.banvien.portal.vms.service.impl.CustomerServiceImpl">
+        <property name="customerDAO" ref="customerDAO"/>
+    </bean>
 </beans>

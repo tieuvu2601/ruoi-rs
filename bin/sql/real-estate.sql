@@ -160,6 +160,25 @@ CREATE TABLE Content (
 );
 
 
+DROP TABLE IF EXISTS Customer;
+CREATE TABLE Customer (
+   CustomerID bigint(20) NOT NULL AUTO_INCREMENT,
+   FullName VARCHAR (255),
+   Email VARCHAR(100),
+   PhoneNumber VARCHAR(100),
+   LocationID BIGINT NOT NULL,
+   Address VARCHAR(255),
+   Description VARCHAR(255),
+   CreatedDate TIMESTAMP NOT NULL,
+   ModifiedDate TIMESTAMP,
+   CreatedBy bigint(20) NOT NULL,
+   PRIMARY KEY (CustomerID),
+   UNIQUE KEY (Email),
+   FOREIGN KEY (LocationID) REFERENCES Location(LocationID) ON DELETE NO ACTION ON UPDATE NO ACTION,
+   FOREIGN KEY (CreatedBy) REFERENCES Users(UserID) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+
 ALTER TABLE CategoryType ADD COLUMN Unit VARCHAR(100);
 -- CLEAR DATA --
 

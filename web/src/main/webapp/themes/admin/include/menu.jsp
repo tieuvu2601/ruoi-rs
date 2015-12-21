@@ -11,6 +11,7 @@
             <li><a class="first" href="<c:url value="/admin/category/list.html"/>"><span class="nav-label"><fmt:message key="menu.category"/></span></a></li>
             <li><a class="first" href="<c:url value="/admin/location/list.html"/>"><span class="nav-label"><fmt:message key="menu.location"/></span></a></li>
             <li><a class="first" href="<c:url value="/admin/content/list.html"/>"><span class="nav-label"><fmt:message key="menu.content"/></span></a></li>
+            <li><a class="first" href="<c:url value="/admin/customer/list.html"/>"><span class="nav-label"><fmt:message key="menu.customer"/></span></a></li>
         </ul>
     </div>
 </aside>
