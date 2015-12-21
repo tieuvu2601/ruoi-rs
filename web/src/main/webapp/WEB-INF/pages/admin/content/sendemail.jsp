@@ -275,12 +275,16 @@
         var phoneNumber = $('#customerPhoneNumber').val();
         var address = $('#customerAddress').val();
         var locationId = $('#customerLocation').val();
+        var listCustomer = [];
+        $('#customer-selected').find('.customer-information').find('input.customer-selected').each(function(){
+           listCustomer.push($(this).val());
+        });
         $('#customer-container').empty();
         $.ajax({
             cache: false,
             type: "POST",
             dataType: 'HTML',
-            data: {'email': email, 'fullName': fullName, 'phoneNumber': phoneNumber, 'address': address, 'locationId': locationId},
+            data: {'email': email, 'fullName': fullName, 'phoneNumber': phoneNumber, 'address': address, 'locationId': locationId, 'listCustomer' : listCustomer.join(";")},
             url:  "<c:url value="/ajax/load-customer-for-send-email.html"/>",
             success: function(res){
                 $('#customer-container').html(res);
@@ -311,19 +315,20 @@
                 $(this).find('.select-customer').find('i').removeClass('fa-square-o').addClass('fa-check-square-o');
 
                 var customerSelected = $(this).clone();
-                $(customerSelected).append($('<input type="hidden" name="checkList" value="'+ $(this).attr("customerId") +'">'));
+                $(customerSelected).append($('<input type="hidden" class="customer-selected" name="checkList" value="'+ $(this).attr("customerId") +'">'));
                 $(customerSelected).removeClass('selected');
                 $(customerSelected).find('.select-customer').find('i').removeClass('fa-check-square-o').addClass('fa-times');
                 $('#customer-selected').find('table').find('tbody').append($(customerSelected));
 
-                removeCustomerSelected($(customerSelected));
+                removeCustomerSelected($(customerSelected).find('.select-customer'));
             }
         });
     }
 
     function removeCustomerSelected(element){
         $(element).on('click', function(){
-            removeCustomer($(element).attr("customerId"));
+            var customer = $(element).closest('.customer-information');
+            removeCustomer($(customer).attr("customerId"));
         });
     }
 

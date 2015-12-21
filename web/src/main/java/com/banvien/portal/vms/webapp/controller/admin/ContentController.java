@@ -722,10 +722,18 @@ public class ContentController extends ApplicationObjectSupport {
                                                  @RequestParam(value="phoneNumber") String phoneNumber,
                                                  @RequestParam(value="address") String address,
                                                  @RequestParam(value="locationId") Long locationId,
+                                                 @RequestParam(value="listCustomer") String listCustomer,
 
                                                  HttpServletResponse response) throws ObjectNotFoundException {
         ModelAndView mav = new ModelAndView("/admin/customer/customers");
-        List<CustomerEntity> customers = this.customerService.loadCustomerByProperties(email, fullName, phoneNumber, address, locationId);
+
+        List<Long> customerList = new ArrayList<Long>();
+        if(StringUtils.isNotBlank(listCustomer)){
+            for(String customerId : listCustomer.split(";")){
+                customerList.add(Long.valueOf(customerId.trim()));
+            }
+        }
+        List<CustomerEntity> customers = this.customerService.loadCustomerByProperties(email, fullName, phoneNumber, address, locationId, customerList);
         mav.addObject("customers", customers);
         return mav;
     }

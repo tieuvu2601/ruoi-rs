@@ -62,7 +62,7 @@ public class CustomerServiceImpl extends GenericServiceImpl<CustomerEntity, Long
     }
 
     @Override
-    public List<CustomerEntity> loadCustomerByProperties(String email, String fullName, String phoneNumber, String address, Long locationId) {
-        return this.customerDAO.loadCustomerByProperties(email, fullName, phoneNumber, address, locationId);
+    public List<CustomerEntity> loadCustomerByProperties(String email, String fullName, String phoneNumber, String address, Long locationId, List<Long>  customersSelected) {
+        return this.customerDAO.loadCustomerByProperties(email, fullName, phoneNumber, address, locationId, customersSelected);
     }
 }

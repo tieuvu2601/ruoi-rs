@@ -18,7 +18,7 @@ import java.util.List;
 public class CustomerHibernateDAO extends AbstractHibernateDAO<CustomerEntity, Long> implements CustomerDAO {
 
     @Override
-    public List<CustomerEntity> loadCustomerByProperties(final String email, final String fullName, final String phoneNumber, final  String address, final  Long locationId) {
+    public List<CustomerEntity> loadCustomerByProperties(final String email, final String fullName, final String phoneNumber, final  String address, final  Long locationId, final  List<Long> customersSelected) {
         return getHibernateTemplate().execute(
                 new HibernateCallback<List<CustomerEntity>>() {
 
@@ -45,9 +45,16 @@ public class CustomerHibernateDAO extends AbstractHibernateDAO<CustomerEntity, L
                             sql.append(" AND ce.location.locationId = :locationId ");
                         }
 
+                        if(customersSelected != null && customersSelected.size() > 0){
+                            sql.append(" AND ce.customerId NOT IN (:customersSelected) ");
+                        }
+
                         Query query = session.createQuery(sql.toString());
                         if(locationId != null && locationId > 0){
                             query.setParameter("locationId", locationId);
+                        }
+                        if(customersSelected != null && customersSelected.size() > 0){
+                            query.setParameterList("customersSelected", customersSelected);
                         }
                         return (List<CustomerEntity>) query.list();
                     }
