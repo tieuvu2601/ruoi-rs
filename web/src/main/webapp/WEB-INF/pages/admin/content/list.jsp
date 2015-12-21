@@ -12,6 +12,7 @@
 <c:url var="formUrl" value="/admin/content/list.html"/>
 <c:url var="addUrl" value="/admin/content/add.html"/>
 <c:url var="editUrl" value="/admin/content/edit.html"/>
+<c:url var="sendEmailUrl" value="/admin/content/send-email.html"/>
 <c:url var="viewUrl" value="/admin/content/view.html"/>
 
 <div class="small-header transition animated fadeIn">
@@ -169,14 +170,7 @@
                                     <display:column headerClass="table_header" titleKey="content.thumbnails" style="width: 10%">
                                         <c:if test="${not empty tableList.thumbnails}">
                                             <rep:href value="${tableList.thumbnails}" var="imgURL"/>
-                                            <c:choose>
-                                                <c:when test="${(tableList.createdBy.userId eq currentUserId) or (items.contentPublishedMap[tableList.contentId] eq true)}">
-                                                    <img src="<c:url value="${imgURL}?w=100"/>" style="max-width: 100px;max-height: 100px;" onclick="showImageLarger(${tableList.contentId})"/>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <img src="<c:url value="${imgURL}?w=100"/>" style="max-width: 100px;max-height: 100px;" />
-                                                </c:otherwise>
-                                            </c:choose>
+                                            <img src="<c:url value="${imgURL}?w=120"/>" style="max-width: 100px;max-height: 100px;" />
                                         </c:if>
                                     </display:column>
 
@@ -197,7 +191,12 @@
 
                                     <display:column sortable="false"  headerClass="table_header" url="/admin/content/edit.html" titleKey="action" style="width: 10%">
                                         <div class="toolbar">
-                                            <a title="<fmt:message key="button.view"/>" href="${viewUrl}?pojo.contentId=${tableList.contentId }" class="edit"><i class="fa  fa-info-circle"></i></a>
+                                            <a title="<fmt:message key="button.view"/>" href="${viewUrl}?pojo.contentId=${tableList.contentId}" class="edit"><i class="fa  fa-info-circle"></i></a>
+                                            <security:authorize ifAnyGranted="CUSTOMER,FULL_ACCESS_RIGHT">
+                                                <c:if test="${tableList.status == 1}">
+                                                    | <a title="<fmt:message key="button.send.email"/>" href="${sendEmailUrl}?pojo.contentId=${tableList.contentId}" class="send-email"><i class="fa fa-envelope"></i></a>
+                                                </c:if>
+                                            </security:authorize>
                                             <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
                                                 | <a title="<fmt:message key="button.edit"/>" href="${editUrl}?pojo.contentId=${tableList.contentId}" class="edit"><i class="fa fa-edit"></i></a>
                                                 | <a title="<fmt:message key="button.delete"/>" id="${tableList.contentId}" class="deleteLink"><i class="fa fa-remove"></i></a>

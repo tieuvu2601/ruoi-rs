@@ -74,6 +74,9 @@ public class ContentController extends ApplicationObjectSupport {
 
     @Autowired
     private LocationService locationService;
+
+    @Autowired
+    private CustomerService customerService;
     
     @Autowired
     private MailEngine mailEngine;
@@ -675,6 +678,55 @@ public class ContentController extends ApplicationObjectSupport {
             logger.error("Could not found Category template " + categoryId, e);
         }
 
+        return mav;
+    }
+
+
+    @RequestMapping("/admin/content/send-email.html")
+    public ModelAndView sendEmailForCustomer(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, HttpServletRequest request){
+        ModelAndView mav = new ModelAndView("/admin/content/sendemail");
+        String crudaction = bean.getCrudaction();
+
+        if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("send-email"))){
+            try{
+//                @TODO Implement Send Email For User In there
+                mav = new ModelAndView("redirect:/admin/content/list.html");
+                return mav;
+            } catch (Exception e){
+                mav = new ModelAndView("redirect:/admin/content/list.html");
+                return mav;
+            }
+        }
+
+        if(bean.getPojo().getContentId() != null && bean.getPojo().getContentId() > 0){
+            try {
+                ContentEntity content = contentService.findById(bean.getPojo().getContentId());
+                bean.setPojo(content);
+                ContentItem contentItem = ContentItemUtil.parseXML(content.getXmlData());
+                bean.setContentItem(contentItem);
+            } catch (Exception e) {
+                logger.error("Cannot found content with id: "+ bean.getPojo().getContentId(), e);
+                mav = new ModelAndView("redirect:/admin/content/list.html");
+                return mav;
+            }
+        }
+        mav.addObject("locations", this.locationService.findAll());
+        mav.addObject(Constants.FORM_MODEL_KEY, bean);
+        return mav;
+    }
+
+
+    @RequestMapping(value = "/ajax/load-customer-for-send-email.html")
+    public ModelAndView loadCustomerForSendEmail(@RequestParam(value="email") String email,
+                                                 @RequestParam(value="fullName") String fullName,
+                                                 @RequestParam(value="phoneNumber") String phoneNumber,
+                                                 @RequestParam(value="address") String address,
+                                                 @RequestParam(value="locationId") Long locationId,
+
+                                                 HttpServletResponse response) throws ObjectNotFoundException {
+        ModelAndView mav = new ModelAndView("/admin/customer/customers");
+        List<CustomerEntity> customers = this.customerService.loadCustomerByProperties(email, fullName, phoneNumber, address, locationId);
+        mav.addObject("customers", customers);
         return mav;
     }
 

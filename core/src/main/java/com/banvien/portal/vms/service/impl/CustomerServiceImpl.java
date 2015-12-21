@@ -9,6 +9,7 @@ import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.CustomerService;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class CustomerServiceImpl extends GenericServiceImpl<CustomerEntity, Long> implements CustomerService {
     private CustomerDAO customerDAO;
@@ -58,5 +59,10 @@ public class CustomerServiceImpl extends GenericServiceImpl<CustomerEntity, Long
         CustomerEntity res = this.customerDAO.findEqualUnique("email", email);
         if (res == null) throw new ObjectNotFoundException("Not found Customer with email: " + email);
         return res;
+    }
+
+    @Override
+    public List<CustomerEntity> loadCustomerByProperties(String email, String fullName, String phoneNumber, String address, Long locationId) {
+        return this.customerDAO.loadCustomerByProperties(email, fullName, phoneNumber, address, locationId);
     }
 }
