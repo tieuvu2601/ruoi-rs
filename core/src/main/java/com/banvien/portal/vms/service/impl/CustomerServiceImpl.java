@@ -9,6 +9,7 @@ import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.CustomerService;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerServiceImpl extends GenericServiceImpl<CustomerEntity, Long> implements CustomerService {
@@ -64,5 +65,14 @@ public class CustomerServiceImpl extends GenericServiceImpl<CustomerEntity, Long
     @Override
     public List<CustomerEntity> loadCustomerByProperties(String email, String fullName, String phoneNumber, String address, Long locationId, List<Long>  customersSelected) {
         return this.customerDAO.loadCustomerByProperties(email, fullName, phoneNumber, address, locationId, customersSelected);
+    }
+
+    @Override
+    public List<String> getEmailFromListCustomerId(String[] checkList) {
+        List<Long> customerList = new ArrayList<Long>();
+        for(String customerId : checkList){
+            customerList.add(Long.valueOf(customerId));
+        }
+        return this.customerDAO.getEmailFromListCustomerId(customerList);
     }
 }

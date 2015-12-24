@@ -60,4 +60,25 @@ public class CustomerHibernateDAO extends AbstractHibernateDAO<CustomerEntity, L
                     }
                 });
     }
+
+    @Override
+    public List<String> getEmailFromListCustomerId(final List<Long> customerIds) {
+        return getHibernateTemplate().execute(
+                new HibernateCallback<List<String>>() {
+
+                    public List<String> doInHibernate(Session session) throws HibernateException, SQLException {
+                        StringBuilder sql = new StringBuilder("SELECT ce.email FROM CustomerEntity ce WHERE 1 = 1 ");
+
+                        if(customerIds != null && customerIds.size() > 0){
+                            sql.append(" AND ce.customerId IN (:customerIds) ");
+                        }
+
+                        Query query = session.createQuery(sql.toString());
+                        if(customerIds != null && customerIds.size() > 0){
+                            query.setParameterList("customerIds", customerIds);
+                        }
+                        return (List<String>) query.list();
+                    }
+                });
+    }
 }

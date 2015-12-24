@@ -154,6 +154,7 @@
                                 </table>
                                 <div class="form-group">
                                     <div class="col-sm-8 col-sm-offset-2">
+                                        <input class="btn btn-success btn-send-email" type="button" value="<fmt:message key="button.send"/>"/>
                                         <a href="${backUrl}" class="btn w-xs btn-default"><fmt:message key="button.back"/></a>
                                     </div>
                                 </div>
@@ -267,6 +268,11 @@
         $('.btnReset').on('click', function(){
             resetCustomerFilter();
         });
+        $('.btn-send-email').on('click', function(){
+            $('#crudaction').val("send-email");
+            $('#itemForm').submit();
+        });
+
     });
 
     function loadCustomerForSendEmail(){

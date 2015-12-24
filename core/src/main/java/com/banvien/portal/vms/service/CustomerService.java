@@ -18,4 +18,6 @@ public interface CustomerService extends GenericService<CustomerEntity, Long> {
     Integer deleteItems(String[] checkList);
 
     List<CustomerEntity> loadCustomerByProperties(String email, String fullName, String phoneNumber, String address, Long locationId, List<Long> customersSelected);
+
+    List<String> getEmailFromListCustomerId(String[] checkList);
 }

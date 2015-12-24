@@ -104,7 +104,6 @@
     </bean>
 
     <bean id="contentService" class="com.banvien.portal.vms.service.impl.ContentServiceImpl">
-        <property name="noOfDateTracking" value="${no.of.date.tracking}"/>
         <property name="contentDAO" ref="contentDAO"/>
         <property name="categoryTypeDAO" ref="categoryTypeDAO"/>
     </bean>

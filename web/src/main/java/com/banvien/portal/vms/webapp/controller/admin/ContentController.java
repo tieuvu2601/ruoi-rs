@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.banvien.portal.vms.domain.*;
-import com.banvien.portal.vms.dto.CategoryTypeDTO;
 import com.banvien.portal.vms.dto.XmlNodeDTO;
 import com.banvien.portal.vms.editor.CustomDateEditorSQL;
 import com.banvien.portal.vms.service.*;
@@ -43,7 +42,6 @@ import com.banvien.portal.vms.xml.authoringtemplate.Node;
 import com.banvien.portal.vms.xml.contentitem.ContentItem;
 import com.banvien.portal.vms.xml.contentitem.Item;
 import com.banvien.portal.vms.xml.contentitem.Items;
-//import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ContentController extends ApplicationObjectSupport {
@@ -689,7 +687,14 @@ public class ContentController extends ApplicationObjectSupport {
 
         if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("send-email"))){
             try{
-//                @TODO Implement Send Email For User In there
+                if(bean.getCheckList() != null && bean.getCheckList().length > 0){
+                    List<String> emails = this.customerService.getEmailFromListCustomerId(bean.getCheckList());
+                    String [] recipients = new String [emails.size()];
+                    for(int i = 0; i < emails.size(); i++){
+                        recipients[i] = emails.get(i);
+                    }
+                    sendMail2RelatePeople(recipients, request);
+                }
                 mav = new ModelAndView("redirect:/admin/content/list.html");
                 return mav;
             } catch (Exception e){
@@ -737,5 +742,38 @@ public class ContentController extends ApplicationObjectSupport {
         mav.addObject("customers", customers);
         return mav;
     }
+
+    private String sendMail2RelatePeople( String[] recipients, String senderMail, HttpServletRequest request){
+
+        HashMap<String, String> model = new HashMap<String, String>();
+        model.put("targetUrl", RequestUtil.getAppURL(request)+ "demo-thu-xem-sao-xem-no-ra-cai-the-loai-gi.html");
+
+        String returnMessage = "";
+        String template = "content_approve_mail.vm";
+        try{
+            String subject = this.getMessageSourceAccessor().getMessage("content.approve.mail.subject");
+
+            mailEngine.sendMessage(recipients, senderMail, subject, template, model, null, null);
+
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+        }
+
+        return returnMessage;
+    }
+
+
+    private void sendMail2RelatePeople(String[] recipients, HttpServletRequest request){
+        String sender = "tieuvu260@gmail.com";
+        String subject = "Subject cua mail test thu";
+        String content = "Noi Dung cua mail";
+
+        try{
+            mailEngine.sendMessage(recipients, null, sender, subject, content);
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+        }
+    }
+
 
 }
