@@ -21,7 +21,7 @@ public class ContentTagLibBuildSliderHomePage extends TagSupport {
 
         if(context != null) {
             ContentService contentService = context.getBean(ContentService.class);
-            List<ContentEntity> contentList = contentService.findContentForBuildSlider(pageSize, Constants.CONTENT_PUBLISH);
+            List<ContentEntity> contentList = contentService.findContentForBuildSlider(-1, Constants.CONTENT_PUBLISH);
             if(contentList != null) {
                 this.pageContext.setAttribute(this.var, contentList);
             }
