@@ -767,7 +767,6 @@ public class ContentController extends ApplicationObjectSupport {
         String sender = "tieuvu260@gmail.com";
         String subject = "Subject cua mail test thu";
         String content = "Noi Dung cua mail";
-
         try{
             mailEngine.sendMessage(recipients, null, sender, subject, content);
         }catch(Exception e){
