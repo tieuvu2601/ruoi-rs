@@ -44,4 +44,8 @@ public interface ContentService extends GenericService<ContentEntity, Long> {
     List<ContentEntity> getHotProduct(Integer startRow, Integer pageSize, Integer status);
 
     List<ContentEntity> findContentForBuildSlider(Integer pageSize, Integer status);
+
+    List<ContentEntity> findContentByProperties(String title, String keyword, Integer status, Long authoringTemplateId, Long categoryId, List<Long> listContent);
+
+    void updateListSlider(String[] checkList);
 }

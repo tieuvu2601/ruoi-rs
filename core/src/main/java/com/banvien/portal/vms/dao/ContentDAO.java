@@ -22,11 +22,10 @@ public interface ContentDAO extends GenericDAO<ContentEntity, Long> {
 
     Object[] findByCategoryTypeWithMaxItem(String categoryType, Integer startRow, Integer pageSize, Date toDate, String categorySearch, Boolean isEng, Integer status);
 
-
-
     Object[] searchInSite(String keyword, Timestamp fromDate, Timestamp toDate, Integer startRow, Integer maxPageItems, Boolean isEng, Integer status);
 
     List<ContentEntity> findByAuthoringPrefixUrl(String prefixUrl, Integer startRow, Integer pageSize, Boolean eng, Integer status);
+
 
 
     //    new content function
@@ -41,4 +40,10 @@ public interface ContentDAO extends GenericDAO<ContentEntity, Long> {
     List<ContentEntity> getHotProduct(Integer startRow, Integer pageSize, Integer status);
 
     List<ContentEntity> findContentForBuildSlider(Integer pageSize, Integer status);
+
+    List<ContentEntity> findContentByProperties(String title, String keyword, Integer status, Long authoringTemplateId, Long categoryId, List<Long> listContent);
+
+    void removeSlideContent(List<Long> listContent);
+
+    List<ContentEntity> findByListContentId(List<Long> listContent);
 }

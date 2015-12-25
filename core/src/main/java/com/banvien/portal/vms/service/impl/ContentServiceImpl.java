@@ -201,4 +201,41 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
     public List<ContentEntity> findContentForBuildSlider(Integer pageSize, Integer status) {
         return this.contentDAO.findContentForBuildSlider(pageSize, status);
     }
+
+    @Override
+    public List<ContentEntity> findContentByProperties(String title, String keyword, Integer status, Long authoringTemplateId, Long categoryId, List<Long> listContent) {
+        return this.contentDAO.findContentByProperties(title, keyword, status, authoringTemplateId, categoryId, listContent);
+    }
+
+    @Override
+    public void updateListSlider(String[] checkList) {
+        if(checkList != null && checkList.length > 0){
+            List<Long> listContent = new ArrayList<Long>();
+            for(String contentId : checkList){
+                listContent.add(Long.valueOf(contentId));
+            }
+            this.contentDAO.removeSlideContent(listContent);
+            List<ContentEntity> contents = this.contentDAO.findByListContentId(listContent);
+
+            HashMap<Long, ContentEntity> hashMap = new HashMap<Long, ContentEntity>();
+
+            for(ContentEntity content: contents){
+                hashMap.put(content.getContentId(), content);
+
+            }
+
+            Integer index = 1;
+            for(Long contentId : listContent){
+                ContentEntity content = hashMap.get(contentId);
+                if(content != null){
+                    content.setDisplayOrder(index);
+                    content.setSlide(1);
+                    content.setModifiedDate(new Timestamp(System.currentTimeMillis()));
+                    this.contentDAO.detach(content);
+                    this.contentDAO.saveOrUpdate(content);
+                    index++;
+                }
+            }
+        }
+    }
 }

@@ -407,4 +407,88 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Lon
                     }
                 });
     }
+
+    @Override
+    public List<ContentEntity> findContentByProperties(final String title, final String keyword, final  Integer status, final Long authoringTemplateId, final Long categoryId, final List<Long> listContent) {
+        return getHibernateTemplate().execute(
+                new HibernateCallback<List<ContentEntity>>() {
+
+                    public List<ContentEntity> doInHibernate(Session session) throws HibernateException, SQLException {
+                        StringBuilder sql = new StringBuilder("FROM ContentEntity ce WHERE 1 = 1 ");
+
+                        if(StringUtils.isNotBlank(title)){
+                            sql.append(" AND lower(ce.title) like '%").append(title.toLowerCase().trim()).append("%' ");
+                        }
+
+                        if(StringUtils.isNotBlank(keyword)){
+                            sql.append(" AND lower(ce.keyword) like '%").append(keyword.toLowerCase().trim()).append("%' ");
+                        }
+
+                        if(status != null && status >= -1){
+                            sql.append(" AND  ce.status = :status ");
+                        }
+
+                        if(authoringTemplateId != null && authoringTemplateId > 0){
+                            sql.append(" AND  ce.authoringTemplate.authoringTemplateId = :authoringTemplateId ");
+                        }
+
+                        if(categoryId != null && categoryId > 0){
+                            sql.append(" AND  ce.category.categoryId = :categoryId ");
+                        }
+
+                        if(listContent != null && listContent.size() > 0){
+                            sql.append(" AND  ce.contentId NOT IN (:listContent) ");
+                        }
+
+                        sql.append(" ORDER BY ce.displayOrder, ce.hotItem DESC, ce.publishedDate DESC, ce.productStatus DESC ");
+
+                        Query query = session.createQuery(sql.toString());
+
+                        if(status != null && status >= 0){
+                            query.setParameter("status", status);
+                        }
+
+                        if(authoringTemplateId != null && authoringTemplateId > 0){
+                            query.setParameter("authoringTemplateId", authoringTemplateId);
+                        }
+
+                        if(categoryId != null && categoryId > 0){
+                            query.setParameter("categoryId", categoryId);
+                        }
+
+                        if(listContent != null && listContent.size() > 0){
+                            query.setParameterList("listContent", listContent);
+                        }
+
+                        return (List<ContentEntity>) query.list();
+                    }
+                });
+    }
+
+    @Override
+    public void removeSlideContent(final List<Long> listContent) {
+        getHibernateTemplate().execute(
+                new HibernateCallback<Object>() {
+                    public Object doInHibernate(Session session)
+                            throws HibernateException, SQLException {
+                        Query query = session
+                                .createQuery("UPDATE ContentEntity ce SET ce.slide = 0 WHERE ce.slide = 1 AND  ce.contentId NOT IN (:listContent) ");
+                        query.setParameterList("listContent", listContent);
+                        return query.executeUpdate();
+                    }
+                });
+
+    }
+
+    @Override
+    public List<ContentEntity> findByListContentId(final List<Long> listContent) {
+        return getHibernateTemplate().execute(
+                new HibernateCallback<List<ContentEntity>>() {
+                    public List<ContentEntity> doInHibernate(Session session) throws HibernateException, SQLException {
+                        Query query = session.createQuery(" FROM ContentEntity ce WHERE ce.contentId IN (:listContent)");
+                        query.setParameterList("listContent", listContent);
+                        return (List<ContentEntity>) query.list();
+                    }
+                });
+    }
 }

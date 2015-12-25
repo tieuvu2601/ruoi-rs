@@ -46,7 +46,7 @@
                             <div class="panel-tools">
                                 <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-                            <fmt:message key="content.management"/>
+                            <fmt:message key="button.search"/>
                         </div>
 
                         <div class="panel-body" style="display: block;">
@@ -145,7 +145,8 @@
                                     <a href="${addUrl}"><i class="fa fa-plus"></i> <fmt:message key="button.add"/></a>
                                 </security:authorize>
                             </div>
-                            <fmt:message key="button.search"/>
+                            <fmt:message key="content.list"/>
+                            <a class="btn btn-primary" href="<c:url value="/admin/content/slider-manager.html"/>"></a>
                         </div>
 
                         <div class="panel-body" style="display: block;">

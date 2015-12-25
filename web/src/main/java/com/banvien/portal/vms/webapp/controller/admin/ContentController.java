@@ -13,6 +13,7 @@ import com.banvien.portal.vms.dto.XmlNodeDTO;
 import com.banvien.portal.vms.editor.CustomDateEditorSQL;
 import com.banvien.portal.vms.service.*;
 import com.banvien.portal.vms.util.*;
+import com.banvien.portal.vms.xml.authoringtemplate.AuthoringTemplate;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -773,6 +774,53 @@ public class ContentController extends ApplicationObjectSupport {
             logger.error(e.getMessage(), e);
         }
     }
+
+
+    @RequestMapping("/admin/content/slider-manager.html")
+    public ModelAndView managerSlider(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, HttpServletRequest request){
+        ModelAndView mav = new ModelAndView("/admin/contentfunction/slide");
+        String crudaction = bean.getCrudaction();
+
+        if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("update-slide"))){
+            try{
+                if(bean.getCheckList() != null && bean.getCheckList().length > 0){
+                    this.contentService.updateListSlider(bean.getCheckList());
+                }
+                mav = new ModelAndView("redirect:/admin/content/list.html");
+                return mav;
+            } catch (Exception e){
+                mav = new ModelAndView("redirect:/admin/content/list.html");
+                return mav;
+            }
+        }
+
+        List<ContentEntity> resultList = contentService.findContentForBuildSlider(-1, Constants.CONTENT_PUBLISH);
+        bean.setListResult(resultList);
+        mav.addObject(Constants.FORM_MODEL_KEY, bean);
+        referenceData(mav);
+        return mav;
+    }
+
+
+    @RequestMapping("/ajax/search-by-properties.html")
+    public ModelAndView managerSlider(@RequestParam(value="title", required = false) String title,
+                                      @RequestParam(value="keyword", required = false) String keyword,
+                                      @RequestParam(value="status", required = false) Integer status,
+                                      @RequestParam(value="authoringTemplateId", required = false) Long authoringTemplateId,
+                                      @RequestParam(value="categoryId", required = false) Long categoryId,
+                                      @RequestParam(value="contentIds", required = false) String contentIds, HttpServletRequest request){
+        ModelAndView mav = new ModelAndView("/admin/contentfunction/list");
+        List<Long> listContent = new ArrayList<Long>();
+        if(StringUtils.isNotBlank(contentIds)){
+            for(String contentId : contentIds.split(";")){
+                listContent.add(Long.valueOf(contentId));
+            }
+        }
+        List<ContentEntity> listResult = this.contentService.findContentByProperties(title, keyword, status, authoringTemplateId, categoryId, listContent);
+        mav.addObject("items", listResult);
+        return mav;
+    }
+
 
 
 }
