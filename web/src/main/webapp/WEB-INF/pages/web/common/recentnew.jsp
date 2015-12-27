@@ -3,7 +3,7 @@
 <div class="margin-bottom-30">
     <h2 class="title-v4"><fmt:message key="site.recent.new"/> </h2>
     <content:getRecentNews pageSize="6" var="recentNews"/>
-    <oscache:cache key="site_recent_news_cache" duration="1">
+    <oscache:cache key="site_recent_news_cache" duration="3600">
         <c:forEach var="news" items="${recentNews}">
             <c:set var="newsThumbnailsUrl" value="/repository${news.thumbnails}"/>
             <seo:url value="${news.title}" var="newsUrl" prefix="/${news.category.prefixUrl}/${news.contentId}/"/>

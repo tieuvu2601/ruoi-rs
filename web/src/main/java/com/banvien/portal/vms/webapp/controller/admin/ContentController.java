@@ -300,7 +300,7 @@ public class ContentController extends ApplicationObjectSupport {
                 populateContentCommand2Bean(request, authoringTemplateNodes, bean, true);
                 contentValidator.validate(bean, bindingResult);
                 if(!bindingResult.hasErrors()){
-                    if (bean.getThumbnailFile() != null && bean.getThumbnailFile().getPath() != null) {
+                    if (bean.getThumbnailFile() != null && StringUtils.isNotBlank(bean.getThumbnailFile().getOriginalFilename())) {
                         String filepath = jcrContent.write(JcrConstants.CONTENT_PATH, BeanUtils.toJcrFileItem(bean.getThumbnailFile()) );
                         pojo.setThumbnails(filepath);
                     }

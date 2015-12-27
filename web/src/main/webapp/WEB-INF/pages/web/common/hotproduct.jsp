@@ -3,7 +3,7 @@
 <div class="margin-bottom-30">
     <h2 class="title-v4"><fmt:message key="site.hot.product"/></h2>
     <content:getHotProducts pageSize="10" var="hotProducts"/>
-    <oscache:cache key="site_hot_products_cache" duration="1">
+    <oscache:cache key="site_hot_products_cache" duration="3600">
         <c:forEach var="product" items="${hotProducts}">
             <c:set var="productThumbnails" value="/repository${product.thumbnails}"/>
             <seo:url value="${product.title}" var="productUrl" prefix="/${product.category.prefixUrl}/${product.contentId}/"/>

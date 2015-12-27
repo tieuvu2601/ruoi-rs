@@ -2,7 +2,7 @@
 <%@ include file="/common/taglibs.jsp" %>
 
 <content:buildSliderHomePage pageSize="5" var="sliderItems"/>
-<oscache:cache key="home_page_slider_item" duration="1">
+<oscache:cache key="home_page_slider_item" duration="3600">
     <c:if test="${fn:length(sliderItems) > 0}">
         <div class="blog-ms-v1 content-sm bg-color-darker margin-bottom-60">
             <div class="master-slider ms-skin-default" id="masterslider">
@@ -10,7 +10,6 @@
                     <div class="ms-slide blog-slider">
                         <seo:url value="${slider.title}" var="sliderUrl" prefix="/${slider.category.prefixUrl}/${slider.contentId}/"/>
                         <c:set var="sliderThumbnailsUrl" value="/repository${slider.thumbnails}"/>
-
                         <img src="<c:url value="/themes/site/plugins/master-slider/masterslider/style/blank.gif"/>" data-src="${sliderThumbnailsUrl}" alt="${slider.title}"/>
                         <c:if test="${not empty slider.categoryType && not empty slider.categoryType.name}">
                             <span class="blog-slider-badge <c:if test="${slider.hotItem == 1}"> is-hot-product</c:if>">${slider.categoryType.name}</span>
@@ -20,7 +19,8 @@
                         <div class="blog-slider-title">
                             <h2 class="product-title">
                                 <a href="${sliderUrl}">${slider.header}</a><br />
-                                <span class="product-cost">
+                                <c:if test="${slider.authoringTemplate.areProduct == 1}">
+                                    <span class="product-cost">
                                     ${portal:getNumberOfCost(slider.cost)}
                                     <c:choose>
                                         <c:when test="${slider.cost >= 1000}">
@@ -31,6 +31,7 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </span>
+                                </c:if>
                             </h2>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
     <div class="row">
         <div class="col-md-9">
             <content:findByCategoryWithMaxItem category="tin tuc" begin="0" pageSize="6" var="newItems"/>
-            <oscache:cache key="hot_news_item" duration="1">
+            <oscache:cache key="hot_news_item" duration="3600">
                 <c:set var="firstNew" value="${newItems[0]}"/>
                 <c:set var="thumbnailsImg" value="/repository${firstNew.thumbnails}?w=650"/>
                 <div class="margin-bottom-30">
@@ -87,7 +88,7 @@
             </oscache:cache>
 
             <content:findAllContentsByCategoryType begin="0" pageSize="6" var="productTypes"/>
-            <oscache:cache key="product_type_items" duration="1">
+            <oscache:cache key="product_type_items" duration="3600">
                 <c:forEach var="productType" varStatus="productTypeStatus" items="${productTypes}">
                     <div class="blog-cars-heading">
                         <seo:url value="${productType.categoryType.code}" var="productTypeUrl" prefix="/products/"/>

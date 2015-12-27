@@ -141,12 +141,12 @@
                     <div class="hpanel">
                         <div class="panel-heading">
                             <div class="panel-tools">
+                                <a href="<c:url value="/admin/content/slider-manager.html"/>"><fmt:message key="content.slide.manager"/></a>
                                 <security:authorize ifAnyGranted="AUTHOR,FULL_ACCESS_RIGHT">
                                     <a href="${addUrl}"><i class="fa fa-plus"></i> <fmt:message key="button.add"/></a>
                                 </security:authorize>
                             </div>
                             <fmt:message key="content.list"/>
-                            <a class="btn btn-primary" href="<c:url value="/admin/content/slider-manager.html"/>"></a>
                         </div>
 
                         <div class="panel-body" style="display: block;">

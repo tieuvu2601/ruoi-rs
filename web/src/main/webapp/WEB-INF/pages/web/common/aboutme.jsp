@@ -9,7 +9,6 @@
         <h5><fmt:message key="site.email"/>: <strong>minhthenguyen@gmail.com</strong></h5>
         <h5><fmt:message key="site.facebook.account"/>: <strong>minhthenguyen</strong></h5>
         <h5><fmt:message key="site.skype.account"/>: <strong>minhthenguyen</strong></h5>
-        <p>Gioi thieu ve ban than mot chut xiu</p>
     </div>
 </div>
 
