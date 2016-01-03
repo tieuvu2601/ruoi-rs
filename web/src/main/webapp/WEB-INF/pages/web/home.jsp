@@ -120,7 +120,7 @@
                                     <h5 class="product-cost">
                                         <fmt:message key="site.content.cost"/>:
                                         <span>
-                                            ${portal:getNumberOfCost(project.cost)}
+                                            ${portal:getNumberOfCost(project.cost)}${' '}
                                             <c:choose>
                                                 <c:when test="${project.cost >= 1000}">
                                                     <fmt:message key="site.content.cost.billion"/>
@@ -142,7 +142,7 @@
                                                     <li class="product-area">
                                                         <fmt:message key="site.content.area"/>:
                                                         <span>
-                                                            ${project.area}&nbsp;
+                                                            ${project.area}${' '}
                                                             <c:choose>
                                                                 <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
                                                                 <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
@@ -155,7 +155,7 @@
                                                     <li class="product-area">
                                                         <fmt:message key="site.content.area"/>:
                                                         <span>
-                                                            ${project.totalArea}&nbsp;
+                                                            ${project.totalArea}${' '}
                                                             <c:choose>
                                                                 <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
                                                                 <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>

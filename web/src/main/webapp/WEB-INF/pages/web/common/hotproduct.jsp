@@ -16,7 +16,7 @@
                 <div class="blog-thumb-desc">
                     <h3><a href="${productUrl}">${product.header}</a></h3>
                     <p>
-                        ${portal:getNumberOfCost(product.cost)}
+                        ${portal:getNumberOfCost(product.cost)}${' '}
                         <c:choose>
                             <c:when test="${product.cost >= 1000}">
                                 <fmt:message key="site.content.cost.billion"/>

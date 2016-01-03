@@ -14,8 +14,8 @@
     <meta property="og:type"          content="${item.categoryType.name}"/>
     <meta property="og:title"         content="${item.title}" />
     <meta property="og:description"   content="${item.description}"/>
-    <%--<meta property="fb:app_id"        content="797480313696960" />--%>
-    <%--<meta property="fb:admins"        content="100001895982023"/>--%>
+    <meta property="fb:app_id"        content="797480313696960" />
+    <meta property="fb:admins"        content="100001895982023"/>
     <meta property="og:image"         content="${itemThumbnailsUrl}"/>
 
 </head>
@@ -75,7 +75,7 @@
                     <h4><a href="${itemUrl}">${item.header}</a></h4>
                     <h5 class="product-cost"><fmt:message key="site.content.cost"/>:
                         <span>
-                            ${portal:getNumberOfCost(item.cost)}&nbsp;
+                            ${portal:getNumberOfCost(item.cost)}${' '}
                             <c:choose>
                                 <c:when test="${item.cost >= 1000}">
                                     <fmt:message key="site.content.cost.billion"/>
@@ -98,7 +98,7 @@
                                 <h5 class="product-area">
                                     <fmt:message key="site.content.area"/>:
                                     <span>
-                                        ${item.area}&nbsp;
+                                        ${item.area}${' '}
                                         <c:choose>
                                             <c:when test="${item.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
                                             <c:when test="${item.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
@@ -111,7 +111,7 @@
                                 <h5 class="product-area">
                                     <fmt:message key="site.content.area"/>:
                                     <span>
-                                        ${item.totalArea}&nbsp;
+                                        ${item.totalArea}${' '}
                                         <c:choose>
                                             <c:when test="${item.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
                                             <c:when test="${item.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>

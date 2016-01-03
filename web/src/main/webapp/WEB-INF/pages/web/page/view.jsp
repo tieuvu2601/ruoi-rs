@@ -13,7 +13,8 @@
     <meta property="og:type"          content="${item.categoryType.name}"/>
     <meta property="og:title"         content="${item.title}" />
     <meta property="og:description"   content="${item.description}"/>
-
+    <meta property="fb:app_id"        content="797480313696960" />
+    <meta property="fb:admins"        content="100001895982023"/>
     <meta property="og:image"         content="${itemThumbnailsUrl}"/>
 
 </head>
