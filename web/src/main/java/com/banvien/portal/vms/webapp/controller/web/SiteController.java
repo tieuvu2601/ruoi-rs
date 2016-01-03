@@ -11,9 +11,13 @@ import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class SiteController extends ApplicationObjectSupport {
@@ -26,10 +30,21 @@ public class SiteController extends ApplicationObjectSupport {
 
 
     @RequestMapping(value = "/products/{categoryCode}.html")
-    public ModelAndView viewProducts(@PathVariable(value = "categoryCode")String categoryCode){
+    public ModelAndView viewProducts(@RequestParam(value = "pg", required = false)Integer currentPage,
+                                     @PathVariable(value = "categoryCode")String categoryCode){
         ModelAndView mav = new ModelAndView("/web/product/list");
         categoryCode = categoryCode.replaceAll("-", " ");
-        List<ContentEntity> contents = this.contentService.findByCategory(categoryCode, 0, 20, Constants.CONTENT_PUBLISH);
+        Integer maxPageSize = 10;
+        if(currentPage == null){
+            currentPage = 1;
+        }
+        Integer startRow = (currentPage - 1) * maxPageSize;
+        Object [] objs = this.contentService.findByCategoryWithPage(categoryCode, startRow , maxPageSize, Constants.CONTENT_PUBLISH);
+        List<ContentEntity> contents = (List<ContentEntity> ) objs[0];
+        Long totalItem = (Long) objs [1];
+
+        getMaxPageNumber(currentPage, totalItem, maxPageSize, mav);
+
         if(contents != null && contents.size() > 0){
             mav.addObject("category", contents.get(0).getCategory());
         } else {
@@ -58,11 +73,20 @@ public class SiteController extends ApplicationObjectSupport {
         return mav;
     }
 
-
     @RequestMapping(value = "/news/{categoryCode}.html")
-    public ModelAndView viewNews(){
+    public ModelAndView viewNews(@RequestParam(value = "pg", required = false)Integer currentPage){
         ModelAndView mav = new ModelAndView("/web/news/list");
-        List<ContentEntity> listResult = this.contentService.findByCategory(Constants.CATEGORY_RECENT_NEWS, 0, 20, Constants.CONTENT_PUBLISH);
+        Integer maxPageSize = 20;
+        if(currentPage == null){
+            currentPage = 1;
+        }
+        Integer startRow = (currentPage - 1) * maxPageSize;
+        Object [] objs = this.contentService.findByCategoryWithPage(Constants.CATEGORY_RECENT_NEWS, startRow , maxPageSize, Constants.CONTENT_PUBLISH);
+        List<ContentEntity> listResult = (List<ContentEntity> ) objs[0];
+        Long totalItem = (Long) objs [1];
+
+        getMaxPageNumber(currentPage, totalItem, maxPageSize, mav);
+
         if(listResult != null && listResult.size() > 0){
             mav.addObject("category", listResult.get(0).getCategory());
         } else {
@@ -75,6 +99,17 @@ public class SiteController extends ApplicationObjectSupport {
         }
         mav.addObject(Constants.LIST_MODEL_KEY, listResult);
         return mav;
+    }
+
+    private void getMaxPageNumber(Integer currentPage, Long totalItem, Integer maxPageSize, ModelAndView mav){
+        mav.addObject("pageNumber", currentPage);
+        Long maxPageNumber;
+        if(totalItem % maxPageSize == 0){
+            maxPageNumber = totalItem / maxPageSize;
+        } else {
+            maxPageNumber = (totalItem - (totalItem % maxPageSize))/maxPageSize + 1;
+        }
+        mav.addObject("maxPageNumber", maxPageNumber);
     }
 
     @RequestMapping(value = "/news/{newId}/{newTitle}.html")

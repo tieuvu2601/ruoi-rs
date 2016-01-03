@@ -9,7 +9,7 @@
 }
 
 .blog-grid-inner {
-    margin: -70px 50px 0;
+    margin: -70px 70px 0;
     background: #fafafa;
 }
 
@@ -91,4 +91,28 @@
 .product-grid .product-grid-info li {
     font-size: 14px;
 }
+
+.new-content, .product-content{
+    text-align: justify;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.product-content img{
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+ul.pager.pager-pagination li {
+    float: left;
+    margin-right: 3px;
+}
+
+
+ul.pager.pager-pagination li.active a{
+    font-weight: bold;
+    background-color: #222;
+    color: #FFFFFF;
+}
+
 

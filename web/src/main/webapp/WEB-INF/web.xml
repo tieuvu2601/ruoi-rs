@@ -12,11 +12,6 @@
 		<param-value>vms_strecth</param-value>
 	</context-param>
     <context-param>
-		<param-name>mobi8url</param-name>
-		<param-value>http://192.168.2.10:8080/dien-dan/mvnforum/listthreads?forum=1</param-value>
-	</context-param>
-	<!-- Define the basename for a resource bundle for I18N -->
-    <context-param>
         <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
         <param-value>ApplicationResources</param-value>
     </context-param>

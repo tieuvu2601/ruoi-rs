@@ -75,7 +75,7 @@
                     <h4><a href="${itemUrl}">${item.header}</a></h4>
                     <h5 class="product-cost"><fmt:message key="site.content.cost"/>:
                         <span>
-                            ${portal:getNumberOfCost(item.cost)}
+                            ${portal:getNumberOfCost(item.cost)}&nbsp;
                             <c:choose>
                                 <c:when test="${item.cost >= 1000}">
                                     <fmt:message key="site.content.cost.billion"/>
@@ -87,7 +87,7 @@
                         </span>
                     </h5>
                     <c:if test="${not empty item.locationText}">
-                        <h5 class="product-location"><fmt:message key="site.content.address"/>:
+                        <h5 class="product-location"><fmt:message key="site.content.address"/>:&nbsp;
                             <span>${item.locationText}</span>
                         </h5>
                     </c:if>
@@ -138,7 +138,7 @@
             </div>
 
             <c:if test="${not empty itemXMLData.headerContent[0]}">
-                <div class="row margin-bottom-30">${itemXMLData.headerContent[0]}</div>
+                <div class="row margin-bottom-30 product-content">${itemXMLData.headerContent[0]}</div>
             </c:if>
 
             <div class="row tab-v3 margin-bottom-30">
@@ -156,7 +156,7 @@
                     <div class="tab-content">
                         <c:forEach var="contentContent" varStatus="contentStatus" items="${itemXMLData.mapContent}">
                             <div class="tab-pane fade <c:if test="${contentStatus.index == 0}">active in</c:if>" id="product-content-${contentStatus.index}">
-                                <div>
+                                <div class="product-content">
                                     ${contentContent}
                                 </div>
                             </div>
@@ -166,7 +166,7 @@
             </div>
 
             <c:if test="${not empty itemXMLData.footerContent[0]}">
-                <div class="row margin-bottom-30">${itemXMLData.footerContent[0]}</div>
+                <div class="row margin-bottom-30 product-content">${itemXMLData.footerContent[0]}</div>
             </c:if>
 
             <c:if test="${not empty item.keyword}">
@@ -181,7 +181,7 @@
                 </c:if>
             </c:if>
 
-            <div class="fb-comments" data-href="http://developers.facebook.com/docs/plugins/comments/" data-width="100%" data-numposts="10"></div>
+            <div class="fb-comments" data-href="http://khanhtran.com/${itemUrl}" data-width="100%" data-numposts="10"></div>
 
             <div class="margin-bottom-50">
                 <h2 class="title-v4">Related Product</h2>

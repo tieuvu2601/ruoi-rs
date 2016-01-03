@@ -51,11 +51,9 @@
                 </div>
             </c:forEach>
 
-            <ul class="pager pager-v4">
-                <li class="previous"><a class="rounded-3x" href="#">&larr; Older</a></li>
-                <li class="page-amount">1 of 7</li>
-                <li class="next"><a class="rounded-3x" href="#">Newer &rarr;</a></li>
-            </ul>
+            <jsp:include page="../common/pagination.jsp"></jsp:include>
+
+
         </div>
 
         <div class="col-md-3">

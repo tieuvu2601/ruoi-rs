@@ -491,4 +491,50 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Lon
                     }
                 });
     }
+
+    @Override
+    public Object[] findByCategoryWithPage(final String category, final Integer startRow, final Integer maxPageSize, final Integer status) {
+        return getHibernateTemplate().execute(
+                new HibernateCallback<Object[]>() {
+
+                    public Object[] doInHibernate(Session session) throws HibernateException, SQLException {
+                        StringBuffer sqlClause = new StringBuffer(" FROM ContentEntity c WHERE  c.status = :status ");
+                        if(StringUtils.isNotBlank(category)){
+                            sqlClause.append(" AND  lower(c.category.code) = :category ");
+                        }
+
+                        StringBuffer orderClause = new StringBuffer(" ORDER BY c.hotItem DESC, c.publishedDate DESC ");
+
+                        Query query = session.createQuery(sqlClause.toString() + orderClause.toString());
+
+                        query.setParameter("status", status);
+                        if(StringUtils.isNotBlank(category)){
+                            query.setParameter("category", category.toLowerCase());
+                        }
+
+                        query.setFirstResult(startRow);
+                        if(maxPageSize != null && maxPageSize > 0){
+                            query.setMaxResults(maxPageSize);
+                        }
+                        List<ContentEntity> contentEntities = query.list();
+
+
+                        StringBuffer countClause = new StringBuffer(" SELECT COUNT(*) ");
+
+                        countClause = countClause.append(sqlClause);
+
+                        Query queryCount = session.createQuery(countClause.toString());
+
+                        queryCount.setParameter("status", status);
+
+                        if(StringUtils.isNotBlank(category)){
+                            queryCount.setParameter("category", category.toLowerCase());
+                        }
+
+                        Long count = (Long) queryCount.uniqueResult();
+
+                        return new Object[]{contentEntities, count};
+                    }
+                });
+    }
 }

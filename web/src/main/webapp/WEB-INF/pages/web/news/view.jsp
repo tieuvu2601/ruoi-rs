@@ -63,22 +63,22 @@
                     </ul>
                     <div class="pull-right">
                         <div class="addthis_sharing_toolbox">
-                            <div class="fb-like" data-href="${itemUrl}" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+                            <div class="fb-like" data-href="http://khanhtran.com${itemUrl}" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <c:if test="${not empty itemXMLData.headerContent[0]}">
-                <div class="row margin-bottom-30">${itemXMLData.headerContent[0]}</div>
+                <div class="margin-bottom-30 new-content">${itemXMLData.headerContent[0]}</div>
             </c:if>
 
-            <div class="margin-bottom-30">
+            <div class="margin-bottom-30 new-content">
                 ${itemXMLData.content[0]}
             </div>
 
             <c:if test="${not empty itemXMLData.footerContent[0]}">
-                <div class="row margin-bottom-30">${itemXMLData.footerContent[0]}</div>
+                <div class="margin-bottom-30 new-content">${itemXMLData.footerContent[0]}</div>
             </c:if>
 
             <%--<ul class="source-list">--%>
@@ -98,7 +98,7 @@
                 </c:if>
             </c:if>
 
-            <div class="fb-comments" data-href="${itemUrl}" data-width="100%" data-numposts="10"></div>
+            <div class="fb-comments" data-href="http://khanhtran.com${itemUrl}" data-width="100%" data-numposts="10"></div>
         </div>
 
         <div class="col-md-3">

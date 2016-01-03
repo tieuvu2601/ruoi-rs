@@ -51,7 +51,7 @@
     <!-- CSS Theme -->
     <link rel="stylesheet" href="<c:url value="/themes/site/css/theme-colors/green.css"/>">
     <link rel="stylesheet" href="<c:url value="/themes/site/css/theme-skins/dark.css"/>">
-
+    <link rel="stylesheet" href="<c:url value="/themes/site/css/app.css"/>">
     <!-- CSS Customization -->
     <link rel="stylesheet" href="<c:url value="/themes/site/css/custom.css"/>">
 

@@ -48,4 +48,6 @@ public interface ContentService extends GenericService<ContentEntity, Long> {
     List<ContentEntity> findContentByProperties(String title, String keyword, Integer status, Long authoringTemplateId, Long categoryId, List<Long> listContent);
 
     void updateListSlider(String[] checkList);
+
+    Object [] findByCategoryWithPage(String category, Integer startRow, Integer maxPageSize, Integer status);
 }

@@ -46,4 +46,6 @@ public interface ContentDAO extends GenericDAO<ContentEntity, Long> {
     void removeSlideContent(List<Long> listContent);
 
     List<ContentEntity> findByListContentId(List<Long> listContent);
+
+    Object[] findByCategoryWithPage(String category, Integer startRow, Integer maxPageSize, Integer status);
 }

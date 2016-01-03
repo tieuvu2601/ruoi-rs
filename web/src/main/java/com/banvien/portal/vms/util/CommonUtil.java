@@ -22,9 +22,6 @@ import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * @author Nguyen Hai Vien
- */
 public class CommonUtil {
     public static String getBaseFolder() {
         return "/files/";
@@ -198,9 +195,9 @@ public class CommonUtil {
     public static String removeDiacritic(String str) {
 		String result = Normalizer.normalize(str, Normalizer.Form.NFD);
 		result = result.replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
-//		result = result.replace('đ', 'd');
-//		result = result.replace('Đ', 'D');
-//		result = result.replaceAll("[^a-z A-Z0-9-]", "");
+		result = result.replace("đ", "d");
+		result = result.replace("Đ", "D");
+		result = result.replaceAll("[^a-z A-Z0-9-]", "");
 		return result;
 	}
 
