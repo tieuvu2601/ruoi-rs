@@ -538,4 +538,17 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Lon
                     }
                 });
     }
+
+    @Override
+    public List<ContentEntity> findByListCategory(final List<Long> listCategoryId, final Integer status) {
+        return getHibernateTemplate().execute(
+                new HibernateCallback<List<ContentEntity>>() {
+                    public List<ContentEntity> doInHibernate(Session session) throws HibernateException, SQLException {
+                        Query query = session.createQuery("FROM ContentEntity c WHERE c.status = :status  AND c.category.categoryId IN (:listCategoryId) ORDER BY  c.category.categoryId, c.publishedDate DESC ");
+                        query.setParameterList("listCategoryId", listCategoryId);
+                        query.setParameter("status", status);
+                        return (List<ContentEntity>) query.list();
+                    }
+                });
+    }
 }

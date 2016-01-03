@@ -248,4 +248,9 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
     public Object[] searchInSite(String keyword, Timestamp fromDate, Timestamp toDate, Integer startRow, Integer maxPageItems, Integer status) {
         return this.contentDAO.searchInSite(keyword.toLowerCase(), fromDate, toDate, startRow, maxPageItems, status);
     }
+
+    @Override
+    public List<ContentEntity> findByListCategory(List<Long> listCategoryId, Integer status) {
+        return this.contentDAO.findByListCategory(listCategoryId, status);
+    }
 }

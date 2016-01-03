@@ -50,4 +50,6 @@ public interface ContentDAO extends GenericDAO<ContentEntity, Long> {
     Object[] findByCategoryWithPage(String category, Integer startRow, Integer maxPageSize, Integer status);
 
     Object[] searchInSite(String keyword, Timestamp fromDate, Timestamp toDate, Integer startRow, Integer maxPageItems, Integer status);
+
+    List<ContentEntity> findByListCategory(List<Long> listCategoryId, Integer status);
 }

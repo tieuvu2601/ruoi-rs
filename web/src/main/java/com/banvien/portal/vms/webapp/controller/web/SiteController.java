@@ -19,10 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 public class SiteController extends ApplicationObjectSupport {
@@ -163,7 +160,7 @@ public class SiteController extends ApplicationObjectSupport {
         String crudaction = bean.getCrudaction();
         if(StringUtils.isNotBlank(crudaction) && "search".equals(crudaction) && StringUtils.isNotEmpty(bean.getKeyword())){
             RequestUtil.initSearchBean(request, bean);
-            Integer maxPageSize = 2;
+            Integer maxPageSize = 30;
             Integer currentPage = bean.getPageNumber();
             if(currentPage == null ){
                 currentPage = 1;
@@ -182,39 +179,42 @@ public class SiteController extends ApplicationObjectSupport {
         return mav;
     }
 
-//    @RequestMapping("/sitemap.html")
-//    public ModelAndView siteMap(@ModelAttribute SearchBean bean, HttpServletRequest request){
-//        ModelAndView mav = new ModelAndView("web/sitemap");
-//        Integer nodeLevel = 3;
-//        List<Long> listCategoryId = new ArrayList<Long>();
-//        List<CategoryObject>  categoryResult = new ArrayList<CategoryObject>();
-//        HashMap<Long, List<Content>> mapContentResult = new HashMap<Long, List<Content>>();
-//
-//        List<CategoryObject>  categoryObjects = categoryService.findCategoryForBuildMenu(CommonUtil.isEnglishLanguage());
-//
-//        for(CategoryObject categoryObject : categoryObjects){
-//            if(categoryObject.getSiteMap()){
-//                categoryResult.add(categoryObject);
-//                listCategoryId.add(categoryObject.getCategoryID());
-//            }
-//        }
-//
-//        List<Content> contentList = this.contentService.findByListCategory(listCategoryId, Constants.CONTENT_PUBLISH, CommonUtil.isEnglishLanguage());
-//
-//        for (Content content: contentList){
-//            Long categoryId = content.getCategory().getCategoryID();
-//            if(mapContentResult.get(categoryId) != null){
-//                mapContentResult.get(categoryId).add(content);
-//            } else {
-//                List<Content> contents = new ArrayList<Content>();
-//                contents.add(content);
-//                mapContentResult.put(categoryId, contents);
-//            }
-//        }
-//        mav.addObject("categoryResult", categoryResult);
-//        mav.addObject("mapContentResult", mapContentResult);
-//        mav.addObject("totalContent", contentList.size());
-//        return mav;
-//    }
+    @RequestMapping("/sitemap.html")
+    public ModelAndView siteMap(@ModelAttribute SearchBean bean, HttpServletRequest request){
+        ModelAndView mav = new ModelAndView("web/sitemap");
+        List<Long> listCategoryId = new ArrayList<Long>();
+        List<CategoryEntity>  categoryResult = new ArrayList<CategoryEntity>();
+        HashMap<Long, List<ContentEntity>> mapContentResult = new HashMap<Long, List<ContentEntity>>();
+
+        List<CategoryEntity>  categoryObjects = categoryService.findAllCategoryParent();
+
+        for(CategoryEntity category : categoryObjects){
+            categoryResult.add(category);
+            listCategoryId.add(category.getCategoryId());
+            if(category.getChildren() != null && category.getChildren().size() > 0){
+                for(CategoryEntity child: category.getChildren()){
+                    categoryResult.add(child);
+                    listCategoryId.add(child.getCategoryId());
+                }
+            }
+        }
+
+        List<ContentEntity> contentList = this.contentService.findByListCategory(listCategoryId, Constants.CONTENT_PUBLISH);
+
+        for (ContentEntity content: contentList){
+            Long categoryId = content.getCategory().getCategoryId();
+            if(mapContentResult.get(categoryId) != null){
+                mapContentResult.get(categoryId).add(content);
+            } else {
+                List<ContentEntity> contents = new ArrayList<ContentEntity>();
+                contents.add(content);
+                mapContentResult.put(categoryId, contents);
+            }
+        }
+        mav.addObject("categoryResult", categoryResult);
+        mav.addObject("mapContentResult", mapContentResult);
+        mav.addObject("totalContent", contentList.size());
+        return mav;
+    }
 
 }

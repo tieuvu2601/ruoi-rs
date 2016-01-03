@@ -44,6 +44,9 @@
                                 </c:otherwise>
                             </c:choose>
                         </c:forEach>
+                        <li class="sitemap">
+                            <a href="<c:url value="/sitemap.html"/>"><fmt:message key="site.sitemap"/></a>
+                        </li>
                     </oscache:cache>
                 </ul>
             </div>
