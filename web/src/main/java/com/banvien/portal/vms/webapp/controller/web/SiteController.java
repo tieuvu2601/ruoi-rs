@@ -1,19 +1,24 @@
 package com.banvien.portal.vms.webapp.controller.web;
 
+import com.banvien.portal.vms.bean.SearchBean;
 import com.banvien.portal.vms.domain.CategoryEntity;
 import com.banvien.portal.vms.domain.ContentEntity;
+import com.banvien.portal.vms.editor.CustomDateEditor;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.CategoryService;
 import com.banvien.portal.vms.service.ContentService;
 import com.banvien.portal.vms.util.Constants;
+import com.banvien.portal.vms.util.RequestUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +32,11 @@ public class SiteController extends ApplicationObjectSupport {
 
     @Autowired
     private CategoryService categoryService;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Timestamp.class, new CustomDateEditor("dd/MM/yyyy"));
+    }
 
 
     @RequestMapping(value = "/products/{categoryCode}.html")
@@ -145,5 +155,66 @@ public class SiteController extends ApplicationObjectSupport {
     private void getRelationProduct(ContentEntity content, ModelAndView mav){
         mav.addObject("relativeProducts", "relativeProducts");
     }
+
+
+    @RequestMapping("/search.html")
+    public ModelAndView search(@ModelAttribute SearchBean bean, HttpServletRequest request){
+        ModelAndView mav = new ModelAndView("web/search");
+        String crudaction = bean.getCrudaction();
+        if(StringUtils.isNotBlank(crudaction) && "search".equals(crudaction) && StringUtils.isNotEmpty(bean.getKeyword())){
+            RequestUtil.initSearchBean(request, bean);
+            Integer maxPageSize = 2;
+            Integer currentPage = bean.getPageNumber();
+            if(currentPage == null ){
+                currentPage = 1;
+            }
+            Integer startRow = (currentPage - 1) * maxPageSize;
+
+            Object[] objs = contentService.searchInSite(bean.getKeyword(), bean.getFromDate(), bean.getToDate(), startRow, maxPageSize, Constants.CONTENT_PUBLISH);
+
+            bean.setListResult((List<ContentEntity>) objs[1]);
+
+            Long totalItem = (Long) objs[0];
+
+            getMaxPageNumber(currentPage, totalItem, maxPageSize, mav);
+        }
+        mav.addObject(Constants.FORM_MODEL_KEY, bean);
+        return mav;
+    }
+
+//    @RequestMapping("/sitemap.html")
+//    public ModelAndView siteMap(@ModelAttribute SearchBean bean, HttpServletRequest request){
+//        ModelAndView mav = new ModelAndView("web/sitemap");
+//        Integer nodeLevel = 3;
+//        List<Long> listCategoryId = new ArrayList<Long>();
+//        List<CategoryObject>  categoryResult = new ArrayList<CategoryObject>();
+//        HashMap<Long, List<Content>> mapContentResult = new HashMap<Long, List<Content>>();
+//
+//        List<CategoryObject>  categoryObjects = categoryService.findCategoryForBuildMenu(CommonUtil.isEnglishLanguage());
+//
+//        for(CategoryObject categoryObject : categoryObjects){
+//            if(categoryObject.getSiteMap()){
+//                categoryResult.add(categoryObject);
+//                listCategoryId.add(categoryObject.getCategoryID());
+//            }
+//        }
+//
+//        List<Content> contentList = this.contentService.findByListCategory(listCategoryId, Constants.CONTENT_PUBLISH, CommonUtil.isEnglishLanguage());
+//
+//        for (Content content: contentList){
+//            Long categoryId = content.getCategory().getCategoryID();
+//            if(mapContentResult.get(categoryId) != null){
+//                mapContentResult.get(categoryId).add(content);
+//            } else {
+//                List<Content> contents = new ArrayList<Content>();
+//                contents.add(content);
+//                mapContentResult.put(categoryId, contents);
+//            }
+//        }
+//        mav.addObject("categoryResult", categoryResult);
+//        mav.addObject("mapContentResult", mapContentResult);
+//        mav.addObject("totalContent", contentList.size());
+//        return mav;
+//    }
 
 }

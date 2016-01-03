@@ -1,6 +1,5 @@
 <%@ include file="/common/taglibs.jsp"%>
-<%@ page trimDirectiveWhitespaces="true"%>
-<!-- Topbar blog -->
+<c:url var="searchUrl" value="/search.html"/>
 <div class="blog-topbar">
     <div class="container">
         <div class="row">
@@ -9,9 +8,10 @@
                     <div class="col-sm-12 col-xs-12">
                         <div class="topbar-search-block">
                             <div class="">
-                                <form action="#" class="search-form-container">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                <form action="${searchUrl}" class="search-form-container">
+                                    <input type="text" name="keyword" class="form-control" placeholder="Search" id="keyword">
                                     <div class="search-close"><i class="icon-close"></i></div>
+                                    <input type="hidden" name="crudaction" value="search">
                                 </form>
                             </div>
                         </div>
@@ -26,7 +26,6 @@
                     <li class="cd-log_reg"><a class="cd-signup" href="javascript:void(0);">Register</a></li>
                 </ul>
             </div>
-        </div><!--/end row-->
-    </div><!--/end container-->
+        </div>
+    </div>
 </div>
-<!-- End Topbar blog -->

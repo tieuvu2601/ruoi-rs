@@ -22,7 +22,7 @@ public interface ContentDAO extends GenericDAO<ContentEntity, Long> {
 
     Object[] findByCategoryTypeWithMaxItem(String categoryType, Integer startRow, Integer pageSize, Date toDate, String categorySearch, Boolean isEng, Integer status);
 
-    Object[] searchInSite(String keyword, Timestamp fromDate, Timestamp toDate, Integer startRow, Integer maxPageItems, Boolean isEng, Integer status);
+
 
     List<ContentEntity> findByAuthoringPrefixUrl(String prefixUrl, Integer startRow, Integer pageSize, Boolean eng, Integer status);
 
@@ -48,4 +48,6 @@ public interface ContentDAO extends GenericDAO<ContentEntity, Long> {
     List<ContentEntity> findByListContentId(List<Long> listContent);
 
     Object[] findByCategoryWithPage(String category, Integer startRow, Integer maxPageSize, Integer status);
+
+    Object[] searchInSite(String keyword, Timestamp fromDate, Timestamp toDate, Integer startRow, Integer maxPageItems, Integer status);
 }

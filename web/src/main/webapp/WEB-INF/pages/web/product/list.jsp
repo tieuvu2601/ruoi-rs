@@ -50,10 +50,7 @@
                     </div>
                 </div>
             </c:forEach>
-
             <jsp:include page="../common/pagination.jsp"></jsp:include>
-
-
         </div>
 
         <div class="col-md-3">

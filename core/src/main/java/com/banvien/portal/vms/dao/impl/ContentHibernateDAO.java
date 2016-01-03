@@ -175,63 +175,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Lon
 
 
 
-    @Override
-    public Object[] searchInSite(final String keyword, final  Timestamp fromDate, final  Timestamp toDate, final  Integer startRow, final Integer maxPageItems, final Boolean isEng, final Integer status) {
-        return getHibernateTemplate().execute(
-                new HibernateCallback<Object[]>() {
 
-                    public Object[] doInHibernate(Session session) throws HibernateException, SQLException {
-                        StringBuffer sqlClause = new StringBuffer("FROM ContentEntity c WHERE 1 = 1 AND c.category.eng = :isEng  AND c.status = :status ");
-                        if(StringUtils.isNotBlank(keyword)){
-                            sqlClause.append(" AND ( lower(c.keyword) LIKE '%").append(keyword).append("%' OR lower(c.title) LIKE '%").append(keyword).append("%' )");
-                        }
-                        if(fromDate != null){
-                            sqlClause.append(" AND c.publishedDate >= :fromDate ");
-                        }
-
-                        if(toDate != null){
-                            sqlClause.append(" AND c.publishedDate <= :toDate ");
-                        }
-
-                        StringBuffer orderClause = new StringBuffer(" ORDER BY c.category, c.category.displayOrder, c.modifiedDate DESC ");
-
-                        Query query = session.createQuery(sqlClause.toString() + orderClause.toString());
-                        query.setParameter("isEng", isEng);
-                        query.setParameter("status", status);
-                        if(fromDate != null){
-                            query.setParameter("fromDate", fromDate);
-                        }
-
-                        if(toDate != null){
-                            query.setParameter("toDate", toDate);
-                        }
-                        query.setFirstResult(startRow);
-                        if(maxPageItems != null && maxPageItems > 0){
-                            query.setMaxResults(maxPageItems);
-                        }
-                        List<ContentEntity> contentEntities = query.list();
-
-
-                        StringBuffer countClause = new StringBuffer(" SELECT COUNT(*) ");
-                        countClause = countClause.append(sqlClause);
-                        Query queryCount = session.createQuery(countClause.toString());
-
-                        queryCount.setParameter("isEng", isEng);
-                        queryCount.setParameter("status", status);
-
-                        if(fromDate != null){
-                            queryCount.setParameter("fromDate", fromDate);
-                        }
-
-                        if(toDate != null){
-                            queryCount.setParameter("toDate", toDate);
-                        }
-                        Long count = (Long) queryCount.uniqueResult();
-
-                        return new Object[]{count, contentEntities};
-                    }
-                });
-    }
 
     @Override
     public List<ContentEntity> findByAuthoringPrefixUrl(final String prefixUrl,final  Integer startRow,final  Integer pageSize,final  Boolean isEng, final Integer status) {
@@ -534,6 +478,63 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Lon
                         Long count = (Long) queryCount.uniqueResult();
 
                         return new Object[]{contentEntities, count};
+                    }
+                });
+    }
+
+    @Override
+    public Object[] searchInSite(final String keyword, final  Timestamp fromDate, final  Timestamp toDate, final  Integer startRow, final Integer maxPageItems, final Integer status) {
+        return getHibernateTemplate().execute(
+                new HibernateCallback<Object[]>() {
+
+                    public Object[] doInHibernate(Session session) throws HibernateException, SQLException {
+                        StringBuffer sqlClause = new StringBuffer("FROM ContentEntity c WHERE 1 = 1 AND c.status = :status ");
+                        if(StringUtils.isNotBlank(keyword)){
+                            sqlClause.append(" AND ( lower(c.keyword) LIKE '%").append(keyword).append("%' OR lower(c.header) LIKE '%").append(keyword).append("%' OR lower(c.title) LIKE '%").append(keyword).append("%' )");
+                        }
+
+                        if(fromDate != null){
+                            sqlClause.append(" AND c.publishedDate >= :fromDate ");
+                        }
+
+                        if(toDate != null){
+                            sqlClause.append(" AND c.publishedDate <= :toDate ");
+                        }
+
+                        StringBuffer orderClause = new StringBuffer(" ORDER BY c.category, c.category.displayOrder, c.modifiedDate DESC ");
+
+                        Query query = session.createQuery(sqlClause.toString() + orderClause.toString());
+                        query.setParameter("status", status);
+                        if(fromDate != null){
+                            query.setParameter("fromDate", fromDate);
+                        }
+
+                        if(toDate != null){
+                            query.setParameter("toDate", toDate);
+                        }
+                        query.setFirstResult(startRow);
+                        if(maxPageItems != null && maxPageItems > 0){
+                            query.setMaxResults(maxPageItems);
+                        }
+                        List<ContentEntity> contentEntities = query.list();
+
+
+                        StringBuffer countClause = new StringBuffer(" SELECT COUNT(*) ");
+                        countClause = countClause.append(sqlClause);
+                        Query queryCount = session.createQuery(countClause.toString());
+
+                        queryCount.setParameter("status", status);
+
+                        if(fromDate != null){
+                            queryCount.setParameter("fromDate", fromDate);
+                        }
+
+                        if(toDate != null){
+                            queryCount.setParameter("toDate", toDate);
+                        }
+                        Long count = (Long) queryCount.uniqueResult();
+
+                        return new Object[]{count, contentEntities};
                     }
                 });
     }

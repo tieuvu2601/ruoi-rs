@@ -5,6 +5,8 @@ import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.dto.CategoryTypeDTO;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface ContentService extends GenericService<ContentEntity, Long> {
@@ -50,4 +52,6 @@ public interface ContentService extends GenericService<ContentEntity, Long> {
     void updateListSlider(String[] checkList);
 
     Object [] findByCategoryWithPage(String category, Integer startRow, Integer maxPageSize, Integer status);
+
+    Object[] searchInSite(String keyword, Timestamp fromDate, Timestamp toDate, Integer startRow, Integer maxPageItems, Integer status);
 }
