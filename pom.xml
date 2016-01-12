@@ -104,6 +104,8 @@
 
         <!--<jpa.hibernate.dialect>org.hibernate.dialect.PostgresPlusDialect</jpa.hibernate.dialect>-->
 
+        <!--<db.username>da_admin</db.username>-->
+        <!--<db.password>rYorB7OU</db.password>-->
 
         <db.username>root</db.username>
         <db.password>123456</db.password>
