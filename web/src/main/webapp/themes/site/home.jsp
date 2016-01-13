@@ -7,6 +7,7 @@
 
 <!-- Mirrored from htmlstream.com/preview/unify-v1.8/Blog/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 06 Dec 2015 10:44:01 GMT -->
 <head>
+    <meta name="google-site-verification" content="pLlTKLs0FWecFBX01uipQb3XildhPhLVNPX-0k5i1ww" />
     <title><fmt:message key="webapp.name"/>&trade;&nbsp;-&nbsp;<decorator:title/></title>
     <meta name="description" content="<decorator:getProperty property="meta.description"></decorator:getProperty>"/>
     <meta name="keywords" content="<decorator:getProperty property="meta.keywords"></decorator:getProperty>">
@@ -98,6 +99,16 @@
     <script src="<c:url value="/themes/site/js/plugins/master-slider-showcase1.js"/>"></script>
     <script src="<c:url value="/themes/site/js/plugins/style-switcher.js"/>"></script>
     <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-72353184-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+    <script>
         jQuery(document).ready(function() {
             App.init();
             App.initCounter();
@@ -108,11 +119,6 @@
             MasterSliderShowcase1.initMasterSliderShowcase1();
         });
     </script>
-    <!--[if lt IE 9]>
-    <script src="<c:url value="/themes/site/plugins/respond.js"/>"></script>
-    <script src="<c:url value="/themes/site/plugins/html5shiv.js"/>"></script>
-    <script src="<c:url value="/themes/site/plugins/placeholder-IE-fixes.js"/>"></script>
-    <![endif]-->
 </body>
 
 </html>

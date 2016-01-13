@@ -14,9 +14,10 @@
     <meta property="og:type"          content="${item.categoryType.name}"/>
     <meta property="og:title"         content="${item.title}" />
     <meta property="og:description"   content="${item.description}"/>
-    <meta property="fb:app_id"        content="797480313696960" />
-    <meta property="fb:admins"        content="100001895982023"/>
-    <meta property="og:image"         content="${itemThumbnailsUrl}"/>
+
+    <meta property="fb:admins" content="100001895982023"/>
+    <meta property="fb:app_id" content="1127660597245028" />
+    <meta property="og:image"         content="http://canhovabietthu.com${itemThumbnailsUrl}"/>
 
 </head>
 <body>
@@ -63,7 +64,7 @@
                     </ul>
                     <div class="pull-right">
                         <div class="addthis_sharing_toolbox">
-                            <div class="fb-like" data-href="${itemUrl}" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+                            <div class="fb-like" data-href="http://<fmt:message key="webapp.url"/>${itemUrl}" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
                         </div>
                     </div>
                 </div>
@@ -181,33 +182,33 @@
                 </c:if>
             </c:if>
 
-            <div class="fb-comments" data-href="http://khanhtran.com/${itemUrl}" data-width="100%" data-numposts="10"></div>
+            <div class="fb-comments" data-href="http://<fmt:message key="webapp.url"/>/${itemUrl}" data-width="100%" data-numposts="10"></div>
 
-            <div class="margin-bottom-50">
-                <h2 class="title-v4">Related Product</h2>
-                <div class="row margin-bottom-50">
-                    <c:forEach var="idx" begin="1" end="8">
-                        <div class="col-sm-3 col-xs-6 sm-margin-bottom-30">
-                            <!-- Blog Thumb v4 -->
-                            <div class="blog-thumb-v4">
-                                <div class="blog-thumb-item">
-                                    <img class="img-responsive margin-bottom-10" src="<c:url value="/themes/site/img/blog/img40.jpg"/>" alt="">
-                                    <div class="center-wrap">
-                                        <div class="center-alignCenter">
-                                            <div class="center-body">
-                                                <a href="https://player.vimeo.com/video/74197060" class="fbox-modal fancybox.iframe video-play-btn" title="What will fashion be like in 25 years?">
-                                                    <img class="video-play-btn" src="<c:url value="/themes/site/img/icons/video-play.png"/>" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3><a href="blog_single.html">What will fashion be like in 25 years?</a></h3>
-                            </div>
-                        </div>
-                    </c:forEach>
-                </div>
-            </div>
+            <%--<div class="margin-bottom-50">--%>
+                <%--<h2 class="title-v4">Related Product</h2>--%>
+                <%--<div class="row margin-bottom-50">--%>
+                    <%--<c:forEach var="idx" begin="1" end="8">--%>
+                        <%--<div class="col-sm-3 col-xs-6 sm-margin-bottom-30">--%>
+                            <%--<!-- Blog Thumb v4 -->--%>
+                            <%--<div class="blog-thumb-v4">--%>
+                                <%--<div class="blog-thumb-item">--%>
+                                    <%--<img class="img-responsive margin-bottom-10" src="<c:url value="/themes/site/img/blog/img40.jpg"/>" alt="">--%>
+                                    <%--<div class="center-wrap">--%>
+                                        <%--<div class="center-alignCenter">--%>
+                                            <%--<div class="center-body">--%>
+                                                <%--<a href="https://player.vimeo.com/video/74197060" class="fbox-modal fancybox.iframe video-play-btn" title="What will fashion be like in 25 years?">--%>
+                                                    <%--<img class="video-play-btn" src="<c:url value="/themes/site/img/icons/video-play.png"/>" alt="">--%>
+                                                <%--</a>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                                <%--<h3><a href="blog_single.html">What will fashion be like in 25 years?</a></h3>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</c:forEach>--%>
+                <%--</div>--%>
+            <%--</div>--%>
         </div>
 
         <div class="col-md-3">

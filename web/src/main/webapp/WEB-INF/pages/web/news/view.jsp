@@ -14,7 +14,9 @@
     <meta property="og:title"         content="${item.title}" />
     <meta property="og:description"   content="${item.description}"/>
 
-    <meta property="og:image"         content="${itemThumbnailsUrl}"/>
+    <meta property="fb:admins" content="100001895982023"/>
+    <meta property="fb:app_id" content="1127660597245028" />
+    <meta property="og:image"         content="http://canhovabietthu.com${itemThumbnailsUrl}"/>
 
 </head>
 <body>
@@ -63,7 +65,7 @@
                     </ul>
                     <div class="pull-right">
                         <div class="addthis_sharing_toolbox">
-                            <div class="fb-like" data-href="http://khanhtran.com${itemUrl}" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+                            <div class="fb-like" data-href="http://<fmt:message key="webapp.url"/>${itemUrl}" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
                         </div>
                     </div>
                 </div>
@@ -98,7 +100,7 @@
                 </c:if>
             </c:if>
 
-            <div class="fb-comments" data-href="http://khanhtran.com${itemUrl}" data-width="100%" data-numposts="10"></div>
+            <div class="fb-comments" data-href="http://<fmt:message key="webapp.url"/>/${itemUrl}" data-width="100%" data-numposts="10"></div>
         </div>
 
         <div class="col-md-3">

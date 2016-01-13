@@ -4,32 +4,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-6 column-one md-margin-bottom-50">
-                    <h3 class="footer-header margin-bottom-20"><a href="<c:url value="/index.html"/>">San giao dich bat dong san Hung Thinh</a></h3>
-                    <span>Dia chi:</span>
-                    <p>527 Dien Bien Phu, Phuong 25 Quan Binh Thanh, TP. Ho Chi Minh</p>
+                    <h3 class="footer-header margin-bottom-20"><a href="<c:url value="/index.html"/>"><fmt:message key="site.footer.company"/></a></h3>
+                    <span>Address:</span>
+                    <p><fmt:message key="site.footer.address"/></p>
                     <hr>
-                    <span>So dien thoai:</span>
-                    <p>0902481155</p>
-                    <p>0969639004</p>
+                    <span>Phone Number:</span>
+                    <p><fmt:message key="site.author.phonenumber"/></p>
                     <hr>
-                    <span>Dia chi email:</span>
-                    <a href="#">minhthenguyen@gido.com</a>
+                    <span>Email:</span>
+                    <a href="#"><fmt:message key="site.author.email"/></a>
                 </div>
 
 
                 <div class="col-md-6 col-sm-6">
                     <h2>Subscribe</h2>
-                    <p><strong>Theo doi</strong> chung toi de nhan duoc nhung tin tuc bat dong san moi nhat va hot nhat cua thi truong Ho Chi Minh va nhieu khu vuc khac.</p><br>
+                    <p><fmt:message key="site.footer.subcrible.message"/></p><br>
 
                     <div class="input-group margin-bottom-50">
                         <input class="form-control" type="email" placeholder="Enter email">
                         <div class="input-group-btn">
-                            <button type="button" class="btn-u input-btn">Subscribe</button>
+                            <button type="button" class="btn-u input-btn"><fmt:message key="site.footer.subcribe.button"/></button>
                         </div>
                     </div>
 
-                    <h2>Mang xa hoi</h2>
-                    <p><strong>Follow Us</strong> </p><br>
+                    <h2><fmt:message key="site.footer.social"/></h2>
+                    <p><strong>Follow Us</strong></p><br>
 
                     <ul class="social-icon-list margin-bottom-20">
                         <li><a href="#"><i class="rounded-x fa fa-twitter"></i></a></li>

@@ -75,15 +75,17 @@ CREATE TABLE AuthoringTemplate (
 DROP TABLE IF EXISTS Category;
 CREATE TABLE Category (
   CategoryID bigint(20) NOT NULL AUTO_INCREMENT,
-  Code VARCHAR (255) NOT NULL,
-  Name VARCHAR(255) NOT NULL,
-  PrefixUrl VARCHAR(255),
-  Description VARCHAR(255),
-  DisplayOrder int(11) DEFAULT 1,
+  Code varchar(255) NOT NULL,
+  Name varchar(255) NOT NULL,
+  PrefixUrl varchar(255) DEFAULT NULL,
+  Description varchar(255) DEFAULT NULL,
+  DisplayOrder int(11) DEFAULT '1',
   AuthoringTemplateID bigint(20) NOT NULL,
-  ParentID bigint(20),
-  CreatedDate TIMESTAMP NOT NULL,
-  ModifiedDate TIMESTAMP,
+  ParentID bigint(20) DEFAULT NULL,
+  CreatedDate timestamp NOT NULL,
+  ModifiedDate timestamp NOT NULL,
+  Keyword varchar(255) DEFAULT NULL,
+  Title varchar(255) DEFAULT NULL,
   PRIMARY KEY (CategoryID),
   UNIQUE (Code),
   FOREIGN KEY (AuthoringTemplateID) REFERENCES AuthoringTemplate(AuthoringTemplateID) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -117,16 +119,17 @@ CREATE TABLE Content (
 
 -- CLEAR DATA --
 
-DROP TABLE IF EXISTS Content;
-DROP TABLE IF EXISTS Category;
-DROP TABLE IF EXISTS AuthoringTemplate;
-DROP TABLE IF EXISTS UserRole;
-DROP TABLE IF EXISTS Role;
-DROP TABLE IF EXISTS Users;
-DROP TABLE IF EXISTS UserGroup;
+-- DROP TABLE IF EXISTS Content;
+-- DROP TABLE IF EXISTS Category;
+-- DROP TABLE IF EXISTS AuthoringTemplate;
+-- DROP TABLE IF EXISTS UserRole;
+-- DROP TABLE IF EXISTS Role;
+-- DROP TABLE IF EXISTS Users;
+-- DROP TABLE IF EXISTS UserGroup;
 
 -- INIT DATABASE --
 
 INSERT INTO UserGroup(Code, Name, Description, CreatedDate) VALUES ('Administrator', 'Administrator', 'Administrator', NOW());
 INSERT INTO Users(Username, Password, Email, FirstName, LastName, DisplayName, MobileNumber, Status, UserGroupID, CreatedDate, FullAccess)
 VALUES ('admin', '123456', 'khanh.tran@hoanghacgroup.com', 'Administrator', 'Administrator', 'Administrator', '000000000', 1, 1, NOW(), 1);
+
