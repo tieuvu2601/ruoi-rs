@@ -1,6 +1,7 @@
 package com.banvien.jcr.api.struts;
 
 
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 import org.slf4j.Logger;
@@ -10,6 +11,9 @@ import com.banvien.jcr.api.FileItem;
 import com.banvien.jcr.api.IJcrContent;
 import com.banvien.jcr.api.JcrContentImplUtil;
 import com.banvien.jcr.api.JcrException;
+import org.springmodules.jcr.JcrCallback;
+
+import java.io.IOException;
 
 public class JcrContentImpl implements IJcrContent {
 
@@ -56,4 +60,10 @@ public class JcrContentImpl implements IJcrContent {
 		Session session = JcrPlugin.getSession();
 		return JcrContentImplUtil.getAll(session, webdavContextPath, path);
 	}
+
+    @Override
+    public Object getAllFileInPath(final String path) {
+        Session session = JcrPlugin.getSession();
+        return JcrContentImplUtil.getAllFileInPath(session, webdavContextPath, path);
+    }
 }

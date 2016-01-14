@@ -399,6 +399,7 @@ window.onload = function() {
 //        setActiveMenu4Admin('#administration_menu', '#user_menu');
 
         $('.richTextEditor').each(function() {
+            CKEDITOR.timestamp = new Date().getTime(); /*Used to debug*/
             CKEDITOR.replace($(this).attr('id'),{
                 filebrowserBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
                 filebrowserImageBrowseUrl : '${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Image&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),

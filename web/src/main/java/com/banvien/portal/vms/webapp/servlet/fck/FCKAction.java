@@ -68,7 +68,7 @@ public class FCKAction implements Connector{
 			path += currentFolder;
 		}
 		if(StringUtils.isNotEmpty(path)){
-			obj = jcrContent.getAll(path);
+            obj = jcrContent.getAllFileInPath(path);
 		}
 		if(obj != null){
 			Object[] objs = (Object[])obj;

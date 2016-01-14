@@ -9,12 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.activation.MimetypesFileTypeMap;
-import javax.jcr.Node;
-import javax.jcr.PathNotFoundException;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-import javax.jcr.SimpleCredentials;
-import javax.jcr.ValueFormatException;
+import javax.jcr.*;
 import javax.jcr.query.Query;
 import javax.jcr.query.Row;
 import javax.jcr.query.RowIterator;
@@ -102,7 +97,28 @@ public class JcrContentImplUtil {
         return new Object[] {total, fileItems};
             
     }
-	
+
+    public static Object getAllFileInPath(Session session, String webdavContextPath, String path) {
+        String currentPath = "/" + path;
+        String wspName = session.getWorkspace().getName();
+        List<FileItem> fileItems = new ArrayList<FileItem>();
+        try {
+            Node node = (Node)session.getItem(currentPath);
+            NodeIterator nodeIterator = node.getNodes();
+            while(nodeIterator.hasNext()) {
+                Node file = nodeIterator.nextNode();
+                if(file.getPrimaryNodeType().getName().equals("nt:file")) {
+                    FileItem fileItem = nodeFile2FileItem(webdavContextPath, wspName, file);
+                    fileItems.add(fileItem);
+                }
+            }
+        } catch (RepositoryException e) {
+        }
+
+        return new Object[] {fileItems.size(), fileItems};
+    }
+
+
 	public static Object getAll(Session session, String webdavContextPath, final String path){
 		String wspName = session.getWorkspace().getName();
     	

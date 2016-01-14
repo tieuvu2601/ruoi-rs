@@ -39,4 +39,6 @@ public interface IJcrContent {
     public Object search(final String path, final String str, final long offset, final long limit);
     
     public Object getAll(final String path);
+
+    public Object getAllFileInPath(final String path);
 }

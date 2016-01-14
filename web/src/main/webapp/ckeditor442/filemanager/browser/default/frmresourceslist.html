@@ -48,7 +48,7 @@ oListManager.GetFolderRowHtml = function( folderName, folderPath )
 	// Build the link to view the folder.
 	var sLink = '<a href="#" onclick="OpenFolder(\'' + ProtectPath( folderPath ) + '\');return false;">' ;
 
-	return '<tr>' +
+	return '<tr class="cke-folders">' +
 			'<td width="16">' +
 				sLink +
 				'<img alt="" src="images/Folder.gif" width="16" height="16" border="0"><\/a>' +
@@ -67,7 +67,7 @@ oListManager.GetFileRowHtml = function( fileName, fileUrl, fileSize )
 	// Get the file icon.
 	var sIcon = oIcons.GetIcon( fileName ) ;
 
-	return '<tr>' +
+	return '<tr class="cke-items">' +
 			'<td width="16">' +
 				sLink +
 				'<img alt="" src="images/icons/' + sIcon + '.gif" width="16" height="16" border="0"><\/a>' +

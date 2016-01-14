@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import com.banvien.jcr.api.struts.JcrPlugin;
 import org.apache.log4j.Logger;
 import org.springmodules.jcr.JcrCallback;
 import org.springmodules.jcr.JcrTemplate;
@@ -81,4 +82,14 @@ public class JcrContentImpl implements IJcrContent {
         });
    		return totalandlist;
 	}
+
+    @Override
+    public Object getAllFileInPath(final String path) {
+        Object totalandlist = template.execute(new JcrCallback() {
+            public Object doInJcr(Session session) throws RepositoryException,IOException {
+                return JcrContentImplUtil.getAllFileInPath(session, webdavContextPath, path);
+            }
+        });
+        return totalandlist;
+    }
 }
