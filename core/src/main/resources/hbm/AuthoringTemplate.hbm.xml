@@ -3,7 +3,7 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-	<class name="com.banvien.portal.vms.domain.AuthoringTemplateEntity" table="AuthoringTemplate">
+	<class name="com.banvien.portal.vms.domain.AuthoringTemplateEntity" table="authoringtemplate">
         <id name="authoringTemplateId" column="AuthoringTemplateID">
             <generator class="increment"/>
         </id>

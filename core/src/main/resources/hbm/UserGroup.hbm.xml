@@ -3,7 +3,7 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-	<class name="com.banvien.portal.vms.domain.UserGroupEntity" table="UserGroup">
+	<class name="com.banvien.portal.vms.domain.UserGroupEntity" table="usergroup">
         <id name="userGroupId" column="UserGroupID">
             <generator class="increment"/>
         </id>

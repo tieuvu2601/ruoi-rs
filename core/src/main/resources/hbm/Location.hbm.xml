@@ -3,7 +3,7 @@
 	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
 
 <hibernate-mapping>
-	<class name="com.banvien.portal.vms.domain.LocationEntity" table="Location">
+	<class name="com.banvien.portal.vms.domain.LocationEntity" table="location">
 
         <id name="locationId" column="LocationID">
             <generator class="increment"/>
