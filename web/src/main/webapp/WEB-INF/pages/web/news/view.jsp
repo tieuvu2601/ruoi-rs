@@ -1,9 +1,11 @@
 <%@ include file="/common/taglibs.jsp"%>
 <html>
 <head>
+    <c:set var="siteUrl" value="http://canhovabietthu.com"/>
     <seo:url value="${item.title}" var="itemUrl" prefix="/${item.category.prefixUrl}/${item.contentId}/"/>
     <c:set var="itemThumbnailsUrl" value="/repository${item.thumbnails}"/>
     <c:set var="itemXMLData" value="${portal:parseContentXML(item.xmlData)}"/>
+
     <title>${item.title}</title>
     <meta name="description" content="${item.description}">
     <meta name="keywords" content="${item.keyword}">
@@ -16,7 +18,7 @@
 
     <meta property="fb:admins" content="100001895982023"/>
     <meta property="fb:app_id" content="1127660597245028" />
-    <meta property="og:image"         content="http://canhovabietthu.com${itemThumbnailsUrl}"/>
+    <meta property="og:image"  content="${siteUrl}${itemThumbnailsUrl}"/>
 
 </head>
 <body>
@@ -25,7 +27,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=797480313696960";
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=1127660597245028";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -54,7 +56,6 @@
 <div class="container content">
     <div class="row">
         <div class="col-md-9">
-            <!-- Blog Grid -->
             <div class="blog-grid margin-bottom-30">
                 <h2 class="blog-grid-title-lg">${item.header}</h2>
 
@@ -65,7 +66,7 @@
                     </ul>
                     <div class="pull-right">
                         <div class="addthis_sharing_toolbox">
-                            <div class="fb-like" data-href="http://<fmt:message key="webapp.url"/>${itemUrl}" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+                            <div class="fb-like" data-href="${siteUrl}${itemUrl}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
                         </div>
                     </div>
                 </div>
@@ -83,11 +84,6 @@
                 <div class="margin-bottom-30 new-content">${itemXMLData.footerContent[0]}</div>
             </c:if>
 
-            <%--<ul class="source-list">--%>
-                <%--<li><strong>Source:</strong> <a href="#">The Next Web</a></li>--%>
-                <%--<li><strong>Author:</strong> <a href="#">Evan Bartlett</a></li>--%>
-            <%--</ul>--%>
-
             <c:if test="${not empty item.keyword}">
                 <c:set var="keywords" value="${portal:generatorKeyword(item.keyword, ',')}"/>
                 <c:if test="${fn:length(keywords) > 0}">
@@ -99,8 +95,9 @@
                     </ul>
                 </c:if>
             </c:if>
-
-            <div class="fb-comments" data-href="http://<fmt:message key="webapp.url"/>/${itemUrl}" data-width="100%" data-numposts="10"></div>
+            <div class="margin-bottom-30">
+                <div class="fb-comments" data-href="${siteUrl}${itemUrl}" data-width="100%" data-numposts="10"></div>
+            </div>
         </div>
 
         <div class="col-md-3">

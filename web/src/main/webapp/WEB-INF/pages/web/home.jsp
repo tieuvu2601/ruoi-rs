@@ -1,5 +1,13 @@
 <%@ taglib prefix="oscache" uri="http://www.opensymphony.com/oscache" %>
 <%@ include file="/common/taglibs.jsp" %>
+<html>
+<head>
+    <c:set var="siteUrl" value="http://canhovabietthu.com"/>
+    <title><fmt:message key="site.title"/></title>
+    <meta name="description" content="<fmt:message key="site.description"/>">
+    <meta name="keywords" content="<fmt:message key="site.keyword"/>">
+</head>
+<body>
 
 <content:buildSliderHomePage pageSize="5" var="sliderItems"/>
 <oscache:cache key="home_page_slider_item" duration="3600">
@@ -219,5 +227,8 @@
         </div>
     </div>
 </div>
+</body>
+</html>
+
 
 

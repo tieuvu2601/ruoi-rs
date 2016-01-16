@@ -1,6 +1,7 @@
 <%@ include file="/common/taglibs.jsp"%>
 <html>
 <head>
+    <c:set var="siteUrl" value="http://canhovabietthu.com"/>
     <title>${item.title}</title>
     <meta name="description" content="${item.description}">
     <meta name="keywords" content="${item.keyword}">
@@ -17,7 +18,7 @@
 
     <meta property="fb:admins" content="100001895982023"/>
     <meta property="fb:app_id" content="1127660597245028" />
-    <meta property="og:image"         content="http://canhovabietthu.com${itemThumbnailsUrl}"/>
+    <meta property="og:image"         content="${siteUrl}${itemThumbnailsUrl}"/>
 
 </head>
 <body>
@@ -26,7 +27,7 @@
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=797480313696960";
+    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=1127660597245028";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -64,7 +65,7 @@
                     </ul>
                     <div class="pull-right">
                         <div class="addthis_sharing_toolbox">
-                            <div class="fb-like" data-href="http://<fmt:message key="webapp.url"/>${itemUrl}" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+                            <div class="fb-like" data-href="${siteUrl}${itemUrl}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
                         </div>
                     </div>
                 </div>
@@ -182,7 +183,9 @@
                 </c:if>
             </c:if>
 
-            <div class="fb-comments" data-href="http://<fmt:message key="webapp.url"/>/${itemUrl}" data-width="100%" data-numposts="10"></div>
+            <div class="margin-bottom-30">
+                <div class="fb-comments" data-href="${siteUrl}${itemUrl}" data-width="100%" data-numposts="10"></div>
+            </div>
 
             <%--<div class="margin-bottom-50">--%>
                 <%--<h2 class="title-v4">Related Product</h2>--%>
