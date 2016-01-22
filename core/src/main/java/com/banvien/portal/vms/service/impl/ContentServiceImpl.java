@@ -44,7 +44,7 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
     }
     
     @Override
-    public void updateItem(ContentBean bean) throws ObjectNotFoundException, DuplicateException {
+    public void updateItem(ContentBean bean, Boolean updatePublishedDate) throws ObjectNotFoundException, DuplicateException {
         ContentEntity pojo = bean.getPojo();
         ContentEntity dbItem = this.contentDAO.findByIdNoAutoCommit(pojo.getContentId());
         if (dbItem == null) throw new ObjectNotFoundException("Not found account " + pojo.getContentId());
@@ -58,12 +58,15 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
         pojo.setModifiedDate(now);
 
         if(pojo.getStatus() == Constants.CONTENT_PUBLISH){
-            if(dbItem.getStatus() == Constants.CONTENT_PUBLISH){
-                pojo.setPublishedDate(dbItem.getPublishedDate());
-            } else {
+            if(updatePublishedDate){
                 pojo.setPublishedDate(now);
+            } else {
+                if(dbItem.getStatus() == Constants.CONTENT_PUBLISH){
+                    pojo.setPublishedDate(dbItem.getPublishedDate());
+                } else {
+                    pojo.setPublishedDate(now);
+                }
             }
-
         }
         pojo.setModifiedDate(now);
         this.contentDAO.detach(dbItem);

@@ -312,6 +312,13 @@
                                         <div class="checkbox"><label> <form:checkbox path="pojo.slide" value="1"/><fmt:message key="content.slider"/></label></div>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"></label>
+                                    <div class="col-sm-8">
+                                        <div class="checkbox"><label> <form:checkbox path="moveToTop" value="1"/><fmt:message key="content.move.to.top"/></label></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -466,6 +473,12 @@
     //        singleDatePicker : true,
     //        showDropdowns: true
     //    });
+
+        $("#product-cost").TouchSpin({
+            initval: 0,
+            max: 1000000000,
+            postfix : "(Trieu Dong)"
+        });
     });
 
     function convertUrlToTitle(str){

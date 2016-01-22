@@ -1,6 +1,6 @@
 <%@ taglib prefix="oscache" uri="http://www.opensymphony.com/oscache" %>
 <%@ include file="/common/taglibs.jsp" %>
-<html>
+<html lang="vi-VI">
 <head>
     <c:set var="siteUrl" value="http://canhovabietthu.com"/>
     <title><fmt:message key="site.title"/></title>
@@ -29,16 +29,16 @@
                                 <a href="${sliderUrl}">${slider.header}</a><br />
                                 <c:if test="${slider.authoringTemplate.areProduct == 1}">
                                     <span class="product-cost">
-                                    ${portal:getNumberOfCost(slider.cost)}
-                                    <c:choose>
-                                        <c:when test="${slider.cost >= 1000}">
-                                            <fmt:message key="site.content.cost.billion"/>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <fmt:message key="site.content.cost.million"/>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </span>
+                                        ${portal:getNumberOfCost(slider.cost)}${' '}
+                                        <c:choose>
+                                            <c:when test="${slider.cost >= 1000}">
+                                                <fmt:message key="site.content.cost.billion"/>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <fmt:message key="site.content.cost.million"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </span>
                                 </c:if>
                             </h2>
                         </div>
@@ -98,98 +98,100 @@
             <content:findAllContentsByCategoryType begin="0" pageSize="6" var="productTypes"/>
             <oscache:cache key="product_type_items" duration="3600">
                 <c:forEach var="productType" varStatus="productTypeStatus" items="${productTypes}">
-                    <div class="blog-cars-heading">
-                        <seo:url value="${productType.categoryType.code}" var="productTypeUrl" prefix="/products/"/>
-                        <a href="<c:url value="${productTypeUrl}"/>"><h2>${productType.categoryType.name}<small>(${productType.totalNumber}&nbsp;<fmt:message key="site.project"/>)</small></h2></a>
+                    <c:if test="${productType.totalNumber > 0}">
+                        <div class="blog-cars-heading">
+                            <seo:url value="${productType.categoryType.code}" var="productTypeUrl" prefix="/products/"/>
+                            <a href="<c:url value="${productTypeUrl}"/>"><h2>${productType.categoryType.name}<small>(${productType.totalNumber}&nbsp;<fmt:message key="site.project"/>)</small></h2></a>
 
-                        <div class="owl-navigation">
-                            <div class="customNavigation">
-                                <a class="owl-btn btn-prev-v${productTypeStatus.count}"><i class="fa fa-angle-left"></i></a>
-                                <a class="owl-btn btn-next-v${productTypeStatus.count}"><i class="fa fa-angle-right"></i></a>
+                            <div class="owl-navigation">
+                                <div class="customNavigation">
+                                    <a class="owl-btn btn-prev-v${productTypeStatus.count}"><i class="fa fa-angle-left"></i></a>
+                                    <a class="owl-btn btn-next-v${productTypeStatus.count}"><i class="fa fa-angle-right"></i></a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="blog-carousel carousel_v${productTypeStatus.count}">
-                        <c:forEach var="project" varStatus="projectStatus" items="${productType.contents}">
-                            <c:if test="${projectStatus.index%2 == 0}">
-                                <div class="row margin-bottom-30">
-                            </c:if>
+                        <div class="blog-carousel carousel_v${productTypeStatus.count}">
+                            <c:forEach var="project" varStatus="projectStatus" items="${productType.contents}">
+                                <c:if test="${projectStatus.index%2 == 0}">
+                                    <div class="row margin-bottom-30">
+                                </c:if>
 
-                            <div class="col-sm-6 sm-margin-bottom-50">
-                                <div class="blog-grid product-grid">
-                                    <seo:url value="${project.title}" var="productUrl" prefix="/products/${project.contentId}/"/>
-                                    <div class="blog-grid-hover">
-                                        <c:set var="thumbnailsImg" value="/repository${project.thumbnails}"/>
-                                        <img class="img-responsive" src="<c:url value="${thumbnailsImg}?w=650"/>" alt="">
-                                        <a class="hover-grad" href="${productUrl}"><fmt:message key="site.view.detail"/></a>
+                                <div class="col-sm-6 sm-margin-bottom-50">
+                                    <div class="blog-grid product-grid">
+                                        <seo:url value="${project.title}" var="productUrl" prefix="/products/${project.contentId}/"/>
+                                        <div class="blog-grid-hover">
+                                            <c:set var="thumbnailsImg" value="/repository${project.thumbnails}"/>
+                                            <img class="img-responsive" src="<c:url value="${thumbnailsImg}?w=650"/>" alt="">
+                                            <a class="hover-grad" href="${productUrl}"><fmt:message key="site.view.detail"/></a>
+                                        </div>
+
+                                        <h4><a href="${productUrl}">${project.header}</a></h4>
+                                        <h5 class="product-cost">
+                                            <fmt:message key="site.content.cost"/>:
+                                            <span>
+                                                ${portal:getNumberOfCost(project.cost)}${' '}
+                                                <c:choose>
+                                                    <c:when test="${project.cost >= 1000}">
+                                                        <fmt:message key="site.content.cost.billion"/>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <fmt:message key="site.content.cost.million"/>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </span>
+                                        </h5>
+                                        <ul class="product-grid-info">
+                                            <c:if test="${not empty project.locationText}">
+                                                <li class="product-location"><fmt:message key="site.content.address"/>: <span>${project.locationText}</span></li>
+                                            </c:if>
+
+                                            <c:if test="${not empty project.area || not empty project.totalArea}">
+                                                <c:choose>
+                                                    <c:when test="${not empty project.area}">
+                                                        <li class="product-area">
+                                                            <fmt:message key="site.content.area"/>:
+                                                            <span>
+                                                                ${project.area}${' '}
+                                                                <c:choose>
+                                                                    <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
+                                                                    <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
+                                                                    <c:when test="${project.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
+                                                                </c:choose>
+                                                            </span>
+                                                        </li>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <li class="product-area">
+                                                            <fmt:message key="site.content.area"/>:
+                                                            <span>
+                                                                ${project.totalArea}${' '}
+                                                                <c:choose>
+                                                                    <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
+                                                                    <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
+                                                                    <c:when test="${project.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
+                                                                </c:choose>
+                                                            </span>
+                                                        </li>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:if>
+
+                                            <c:if test="${not empty project.areaRatio}">
+                                                <li class="product-area-ratio"><fmt:message key="site.content.area.ratio"/>: <span>${project.areaRatio}</span></li>
+                                            </c:if>
+
+                                            <c:if test="${not empty project.numberOfBlock}">
+                                                <li class="product-number-of-block"><fmt:message key="site.content.number.of.block"/>: <span>${project.numberOfBlock}</span></li>
+                                            </c:if>
+                                        </ul>
                                     </div>
-
-                                    <h4><a href="${productUrl}">${project.header}</a></h4>
-                                    <h5 class="product-cost">
-                                        <fmt:message key="site.content.cost"/>:
-                                        <span>
-                                            ${portal:getNumberOfCost(project.cost)}${' '}
-                                            <c:choose>
-                                                <c:when test="${project.cost >= 1000}">
-                                                    <fmt:message key="site.content.cost.billion"/>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <fmt:message key="site.content.cost.million"/>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </span>
-                                    </h5>
-                                    <ul class="product-grid-info">
-                                        <c:if test="${not empty project.locationText}">
-                                            <li class="product-location"><fmt:message key="site.content.address"/>: <span>${project.locationText}</span></li>
-                                        </c:if>
-
-                                        <c:if test="${not empty project.area || not empty project.totalArea}">
-                                            <c:choose>
-                                                <c:when test="${not empty project.area}">
-                                                    <li class="product-area">
-                                                        <fmt:message key="site.content.area"/>:
-                                                        <span>
-                                                            ${project.area}${' '}
-                                                            <c:choose>
-                                                                <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
-                                                                <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
-                                                                <c:when test="${project.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
-                                                            </c:choose>
-                                                        </span>
-                                                    </li>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <li class="product-area">
-                                                        <fmt:message key="site.content.area"/>:
-                                                        <span>
-                                                            ${project.totalArea}${' '}
-                                                            <c:choose>
-                                                                <c:when test="${project.unit == 'm2'}"><fmt:message key="site.content.unit.m2"/></c:when>
-                                                                <c:when test="${project.unit == 'unit'}"><fmt:message key="site.content.unit.unit"/></c:when>
-                                                                <c:when test="${project.unit == 'hecta'}"><fmt:message key="site.content.unit.hecta"/></c:when>
-                                                            </c:choose>
-                                                        </span>
-                                                    </li>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:if>
-
-                                        <c:if test="${not empty project.areaRatio}">
-                                            <li class="product-area-ratio"><fmt:message key="site.content.area.ratio"/>: <span>${project.areaRatio}</span></li>
-                                        </c:if>
-
-                                        <c:if test="${not empty project.numberOfBlock}">
-                                            <li class="product-number-of-block"><fmt:message key="site.content.number.of.block"/>: <span>${project.numberOfBlock}</span></li>
-                                        </c:if>
-                                    </ul>
                                 </div>
-                            </div>
-                            <c:if test="${projectStatus.index%2 == 1 || projectStatus.index == (fn:length(productType.contents) - 1)}">
-                                </div>
-                            </c:if>
-                        </c:forEach>
-                    </div>
+                                <c:if test="${projectStatus.index%2 == 1 || projectStatus.index == (fn:length(productType.contents) - 1)}">
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                        </div>
+                    </c:if>
                 </c:forEach>
             </oscache:cache>
 

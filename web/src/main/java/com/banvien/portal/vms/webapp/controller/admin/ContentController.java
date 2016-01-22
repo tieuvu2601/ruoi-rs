@@ -272,6 +272,10 @@ public class ContentController extends ApplicationObjectSupport {
         ContentEntity dbItem = null;
         ContentItem contentItem = new ContentItem();
         List<XmlNodeDTO> authoringTemplateNodes = new ArrayList<XmlNodeDTO>();
+        Boolean updatePublishedDate = false;
+        if(bean.getMoveToTop() != null && bean.getMoveToTop() == 1){
+            updatePublishedDate = true;
+        }
         try{
             dbItem = contentService.findById(bean.getPojo().getContentId());
             AuthoringTemplateEntity authoringTemplateDB = dbItem.getAuthoringTemplate();
@@ -314,7 +318,7 @@ public class ContentController extends ApplicationObjectSupport {
                         } else if(crudaction.equals("content-post")){
                             pojo.setStatus(Constants.CONTENT_PUBLISH);
                         }
-                        this.contentService.updateItem(bean);
+                        this.contentService.updateItem(bean, updatePublishedDate);
                     }
                     if(bean.getDeletedAttchments() != null && bean.getDeletedAttchments().size() > 0) {
                         deleteFromJCR(bean.getDeletedAttchments());
@@ -574,6 +578,10 @@ public class ContentController extends ApplicationObjectSupport {
         ContentEntity dbItem = null;
         ContentItem contentItem = new ContentItem();
         List<XmlNodeDTO> authoringTemplateNodes = new ArrayList<XmlNodeDTO>();
+        Boolean updatePublishedDate = false;
+        if(bean.getMoveToTop() != null && bean.getMoveToTop() == 1){
+            updatePublishedDate = true;
+        }
 
         if(pojo.getContentId() != null && pojo.getContentId() > 0){
             try{
@@ -620,7 +628,7 @@ public class ContentController extends ApplicationObjectSupport {
                         if(crudaction.equals("update")){
                             pojo.setStatus(Constants.CONTENT_SAVE);
                         }
-                        this.contentService.updateItem(bean);
+                        this.contentService.updateItem(bean, updatePublishedDate);
                         mav = new ModelAndView("redirect:/admin/content/list.html");
                         return mav;
                     }

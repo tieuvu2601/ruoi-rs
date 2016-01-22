@@ -39,10 +39,27 @@
                     </div>
                     <div class="col-sm-8">
                         <div class="blog-grid">
-                            <h3><a href="${productUrl}">${product.header}</a></h3>
+                            <h3>
+                                <a href="${productUrl}">${product.header}</a>
+                            </h3>
                             <ul class="blog-grid-info">
                                 <li>${product.createdBy.displayName}</li>
                                 <li><fmt:formatDate pattern="dd-MM-yyyy" value="${product.publishedDate}"/></li>
+                                <c:if test="${product.authoringTemplate.areProduct == 1}">
+                                    <li class="product-cost">
+                                        <span>
+                                            ${portal:getNumberOfCost(product.cost)}${' '}
+                                            <c:choose>
+                                                <c:when test="${product.cost >= 1000}">
+                                                    <fmt:message key="site.content.cost.billion"/>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <fmt:message key="site.content.cost.million"/>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </span>
+                                    </li>
+                                </c:if>
                             </ul>
                             <p>${product.description}</p>
                             <a class="r-more" href="${productUrl}"><fmt:message key="site.read.more"/></a>

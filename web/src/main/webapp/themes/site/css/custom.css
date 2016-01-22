@@ -8,10 +8,10 @@
     right: 15px;
 }
 
-.blog-grid-inner {
-    margin: -70px 70px 0;
-    background: #fafafa;
-}
+/*.blog-grid-inner {*/
+    /*margin: -70px 70px 0;*/
+    /*background: #fafafa;*/
+/*}*/
 
 
 .blog-cars-heading small {
@@ -24,8 +24,12 @@
     font-size: 14px;
 }
 
-.blog-grid-inner {
-    border: 3px solid #68af28;
+/*.blog-grid-inner {*/
+    /*border: 3px solid #68af28;*/
+/*}*/
+
+.key-word-tag{
+    cursor: pointer;
 }
 
 .product-container .img-product-thumbnail{

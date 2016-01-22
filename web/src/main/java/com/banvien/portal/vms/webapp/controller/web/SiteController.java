@@ -160,7 +160,7 @@ public class SiteController extends ApplicationObjectSupport {
         String crudaction = bean.getCrudaction();
         if(StringUtils.isNotBlank(crudaction) && "search".equals(crudaction) && StringUtils.isNotEmpty(bean.getKeyword())){
             RequestUtil.initSearchBean(request, bean);
-            Integer maxPageSize = 30;
+            Integer maxPageSize = 20;
             Integer currentPage = bean.getPageNumber();
             if(currentPage == null ){
                 currentPage = 1;
@@ -170,6 +170,22 @@ public class SiteController extends ApplicationObjectSupport {
             Object[] objs = contentService.searchInSite(bean.getKeyword(), bean.getFromDate(), bean.getToDate(), startRow, maxPageSize, Constants.CONTENT_PUBLISH);
 
             bean.setListResult((List<ContentEntity>) objs[1]);
+
+            Map<String, List<ContentEntity>> mapResult = new HashMap<String, List<ContentEntity>>();
+            for(ContentEntity content : (List<ContentEntity>) objs[1]){
+                String authoringTemplateName = content.getAuthoringTemplate().getName();
+                if(mapResult.get(authoringTemplateName) == null){
+                    List<ContentEntity> contents = new ArrayList<ContentEntity>();
+                    contents.add(content);
+                    mapResult.put(authoringTemplateName, contents);
+                } else {
+                    List<ContentEntity> contents = mapResult.get(authoringTemplateName);
+                    contents.add(content);
+                    mapResult.put(authoringTemplateName, contents);
+                }
+            }
+
+            mav.addObject("mapResult", mapResult);
 
             Long totalItem = (Long) objs[0];
 

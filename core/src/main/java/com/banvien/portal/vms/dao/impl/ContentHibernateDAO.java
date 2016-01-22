@@ -501,7 +501,7 @@ public class ContentHibernateDAO extends AbstractHibernateDAO<ContentEntity, Lon
                             sqlClause.append(" AND c.publishedDate <= :toDate ");
                         }
 
-                        StringBuffer orderClause = new StringBuffer(" ORDER BY c.category, c.category.displayOrder, c.modifiedDate DESC ");
+                        StringBuffer orderClause = new StringBuffer(" ORDER BY c.modifiedDate DESC");
 
                         Query query = session.createQuery(sqlClause.toString() + orderClause.toString());
                         query.setParameter("status", status);

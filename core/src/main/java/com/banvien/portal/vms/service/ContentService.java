@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface ContentService extends GenericService<ContentEntity, Long> {
 
-    void updateItem(ContentBean bean) throws ObjectNotFoundException, DuplicateException;
+    void updateItem(ContentBean bean, Boolean updatePublishedDate) throws ObjectNotFoundException, DuplicateException;
 
     void updateStatusItem(ContentEntity contentEntity) throws ObjectNotFoundException, DuplicateException;
 

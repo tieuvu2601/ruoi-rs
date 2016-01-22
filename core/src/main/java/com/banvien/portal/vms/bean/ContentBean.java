@@ -20,6 +20,8 @@ public class ContentBean extends AbstractBean<ContentEntity> {
 
     private ContentItem contentItem;
 
+    private Integer moveToTop;
+
     private Map<Long, Boolean> contentPublishedMap;
     
     private Map<String, List<String>> oldNodeAttachementValues;
@@ -102,4 +104,12 @@ public class ContentBean extends AbstractBean<ContentEntity> {
 	public void setDeletedAttchments(List<String> deletedAttchments) {
 		this.deletedAttchments = deletedAttchments;
 	}
+
+    public Integer getMoveToTop() {
+        return moveToTop;
+    }
+
+    public void setMoveToTop(Integer moveToTop) {
+        this.moveToTop = moveToTop;
+    }
 }

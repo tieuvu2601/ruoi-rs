@@ -256,7 +256,6 @@ window.onload = function() {
                                     <label class="col-sm-2 control-label"><fmt:message key="content.cost"/></label>
                                     <div class="col-sm-4">
                                         <form:input path="pojo.cost" size="40" id="product-cost" cssClass="form-control"/>
-
                                     </div>
 
                                     <label class="col-sm-2 control-label"><fmt:message key="content.cost.unit"/></label>

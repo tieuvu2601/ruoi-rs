@@ -8,7 +8,7 @@
                     <div class="col-sm-12 col-xs-12">
                         <div class="topbar-search-block">
                             <div class="">
-                                <form action="${searchUrl}" class="search-form-container">
+                                <form action="${searchUrl}" class="search-form-container" method="post">
                                     <input type="text" name="keyword" class="form-control" placeholder="Search" id="keyword">
                                     <div class="search-close"><i class="icon-close"></i></div>
                                     <input type="hidden" name="crudaction" value="search">

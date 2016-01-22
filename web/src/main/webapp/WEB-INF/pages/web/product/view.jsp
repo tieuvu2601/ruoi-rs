@@ -140,10 +140,10 @@
             </div>
 
             <c:if test="${not empty itemXMLData.headerContent[0]}">
-                <div class="row margin-bottom-30 product-content">${itemXMLData.headerContent[0]}</div>
+                <div class="margin-bottom-30 product-content">${itemXMLData.headerContent[0]}</div>
             </c:if>
 
-            <div class="row tab-v3 margin-bottom-30">
+            <div class="tab-v3 margin-bottom-30">
                 <div class="col-sm-3">
                     <div class="row">
                         <ul class="nav nav-pills nav-stacked">
@@ -155,20 +155,22 @@
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <div class="tab-content">
-                        <c:forEach var="contentContent" varStatus="contentStatus" items="${itemXMLData.mapContent}">
-                            <div class="tab-pane fade <c:if test="${contentStatus.index == 0}">active in</c:if>" id="product-content-${contentStatus.index}">
-                                <div class="product-content">
-                                    ${contentContent}
+                    <div class="row">
+                        <div class="tab-content">
+                            <c:forEach var="contentContent" varStatus="contentStatus" items="${itemXMLData.mapContent}">
+                                <div class="tab-pane fade <c:if test="${contentStatus.index == 0}">active in</c:if>" id="product-content-${contentStatus.index}">
+                                    <div class="product-content">
+                                        ${contentContent}
+                                    </div>
                                 </div>
-                            </div>
-                        </c:forEach>
+                            </c:forEach>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <c:if test="${not empty itemXMLData.footerContent[0]}">
-                <div class="row margin-bottom-30 product-content">${itemXMLData.footerContent[0]}</div>
+                <div class="margin-bottom-30 product-content">${itemXMLData.footerContent[0]}</div>
             </c:if>
 
             <c:if test="${not empty item.keyword}">
@@ -177,7 +179,7 @@
                     <ul class="blog-grid-tags">
                         <li class="head"><fmt:message key="site.keyword.tags"/></li>
                         <c:forEach var="keyword" items="${keywords}">
-                            <li><a href="#">${keyword}</a></li>
+                            <li><a class="key-word-tag" keyword="${keyword}">${keyword}</a></li>
                         </c:forEach>
                     </ul>
                 </c:if>
