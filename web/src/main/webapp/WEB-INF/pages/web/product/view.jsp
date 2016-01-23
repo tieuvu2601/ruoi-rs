@@ -56,7 +56,7 @@
 <div class="container content product-container">
     <div class="row">
         <div class="col-md-9">
-            <div class="blog-grid margin-bottom-10">
+            <div class="blog-grid margin-bottom-20">
                 <h2 class="blog-grid-title-lg">${item.header}</h2>
                 <div class="overflow-h margin-bottom-10">
                     <ul class="blog-grid-info pull-left">
@@ -65,17 +65,17 @@
                     </ul>
                     <div class="pull-right">
                         <div class="addthis_sharing_toolbox">
-                            <div class="fb-like" data-href="${siteUrl}${itemUrl}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+                            <div class="fb-like" data-href="${siteUrl}${itemUrl}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="blog-grid margin-bottom-30">
+            <div class="blog-grid margin-bottom-20">
                 <img class="img-responsive img-product-thumbnail" src="${itemThumbnailsUrl}" alt="${item.title}">
                 <div class="blog-grid-inner">
-                    <h4><a href="${itemUrl}">${item.header}</a></h4>
-                    <h5 class="product-cost"><fmt:message key="site.content.cost"/>:
+                    <h3><a href="${itemUrl}">${item.header}</a></h3>
+                    <h4 class="product-cost"><fmt:message key="site.content.cost"/>:
                         <span>
                             ${portal:getNumberOfCost(item.cost)}${' '}
                             <c:choose>
@@ -87,7 +87,7 @@
                                 </c:otherwise>
                             </c:choose>
                         </span>
-                    </h5>
+                    </h4>
                     <c:if test="${not empty item.locationText}">
                         <h5 class="product-location"><fmt:message key="site.content.address"/>:&nbsp;
                             <span>${item.locationText}</span>
@@ -126,13 +126,13 @@
                     </c:if>
 
                     <c:if test="${not empty item.areaRatio}">
-                        <h5 class="product-area-ratio"><fmt:message key="site.content.area.ratio"/>
+                        <h5 class="product-area-ratio"><fmt:message key="site.content.area.ratio"/>:
                             <span>${item.areaRatio}</span>
                         </h5>
                     </c:if>
 
                     <c:if test="${not empty item.numberOfBlock}">
-                        <h5 class="product-number-of-block"><fmt:message key="site.content.number.of.block"/>
+                        <h5 class="product-number-of-block"><fmt:message key="site.content.number.of.block"/>:
                             <span>${item.numberOfBlock}</span>
                         </h5>
                     </c:if>
@@ -140,52 +140,54 @@
             </div>
 
             <c:if test="${not empty itemXMLData.headerContent[0]}">
-                <div class="margin-bottom-30 product-content">${itemXMLData.headerContent[0]}</div>
+                <div class="blog-grid margin-bottom-20 product-content">${itemXMLData.headerContent[0]}</div>
             </c:if>
 
-            <div class="tab-v3 margin-bottom-30">
-                <div class="col-sm-3">
-                    <div class="row">
-                        <ul class="nav nav-pills nav-stacked">
-                            <c:forEach var="headerContent" varStatus="headerStatus" items="${itemXMLData.mapHeader}">
-                                <li class="<c:if test="${headerStatus.index == 0}">active</c:if>">
-                                    <a href="#product-content-${headerStatus.index}" data-toggle="tab" aria-expanded="false">${headerContent}</a></li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-9">
-                    <div class="row">
-                        <div class="tab-content">
-                            <c:forEach var="contentContent" varStatus="contentStatus" items="${itemXMLData.mapContent}">
-                                <div class="tab-pane fade <c:if test="${contentStatus.index == 0}">active in</c:if>" id="product-content-${contentStatus.index}">
-                                    <div class="product-content">
-                                        ${contentContent}
+            <div class="blog-grid margin-bottom-20">
+                <div class="row ">
+                    <div class="tab-v3">
+                        <div class="col-sm-3">
+                            <ul class="nav nav-pills nav-stacked">
+                                <c:forEach var="headerContent" varStatus="headerStatus" items="${itemXMLData.mapHeader}">
+                                    <li class="<c:if test="${headerStatus.index == 0}">active</c:if>">
+                                        <a href="#product-content-${headerStatus.index}" data-toggle="tab" aria-expanded="false">${headerContent}</a></li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="tab-content">
+                                <c:forEach var="contentContent" varStatus="contentStatus" items="${itemXMLData.mapContent}">
+                                    <div class="tab-pane fade <c:if test="${contentStatus.index == 0}">active in</c:if>" id="product-content-${contentStatus.index}">
+                                        <div class="product-content">
+                                                ${contentContent}
+                                        </div>
                                     </div>
-                                </div>
-                            </c:forEach>
+                                </c:forEach>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <c:if test="${not empty itemXMLData.footerContent[0]}">
-                <div class="margin-bottom-30 product-content">${itemXMLData.footerContent[0]}</div>
+                <div class="blog-grid margin-bottom-20 product-content">${itemXMLData.footerContent[0]}</div>
             </c:if>
 
             <c:if test="${not empty item.keyword}">
                 <c:set var="keywords" value="${portal:generatorKeyword(item.keyword, ',')}"/>
                 <c:if test="${fn:length(keywords) > 0}">
-                    <ul class="blog-grid-tags">
-                        <li class="head"><fmt:message key="site.keyword.tags"/></li>
-                        <c:forEach var="keyword" items="${keywords}">
-                            <li><a class="key-word-tag" keyword="${keyword}">${keyword}</a></li>
-                        </c:forEach>
-                    </ul>
+                    <div class="blog-grid margin-bottom-20 product-content">
+                        <ul class="blog-grid-tags">
+                            <li class="head"><fmt:message key="site.keyword.tags"/></li>
+                            <c:forEach var="keyword" items="${keywords}">
+                                <li><a class="key-word-tag" keyword="${keyword}">${keyword}</a></li>
+                            </c:forEach>
+                        </ul>
+                    </div>
                 </c:if>
             </c:if>
 
-            <div class="margin-bottom-30">
+            <div class="blog-grid margin-bottom-30">
                 <div class="fb-comments" data-href="${siteUrl}${itemUrl}" data-width="100%" data-numposts="10"></div>
             </div>
 

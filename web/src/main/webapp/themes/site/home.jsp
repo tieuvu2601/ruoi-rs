@@ -78,7 +78,7 @@
     <script src="<c:url value="/themes/site/plugins/jquery/jquery-migrate.min.js"/>"></script>
     <script src="<c:url value="/themes/site/plugins/bootstrap/js/bootstrap.min.js"/>"></script>
 <decorator:head/>
-
+<c:set var="domainUrl" value="${pageContext.request.serverName}"/>
 <body class="header-fixed header-fixed-space-v2">
     <div class="wrapper">
         <!--=== Header v8 ===-->

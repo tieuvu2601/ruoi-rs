@@ -41,19 +41,22 @@
                                     </c:if>
                                     <div class="col-sm-6">
                                         <div class="blog-thumb margin-bottom-20">
-                                            <div class="blog-thumb-hover">
-                                                <img src="${newsThumbnailUrl}" alt="${news.title}">
-                                                <a class="hover-grad" href="${newsUrl}">
-                                                    <c:choose>
-                                                        <c:when test="${news.authoringTemplate.areProduct == 1}">
-                                                            <i class="fa fa-home"></i>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            <i class="fa fa-photo"></i>
-                                                        </c:otherwise>
-                                                    </c:choose>
-                                                </a>
-                                            </div>
+                                            <c:if test="${not empty news.thumbnails}">
+                                                <div class="blog-thumb-hover">
+                                                    <img src="${newsThumbnailUrl}" alt="${news.title}">
+                                                    <a class="hover-grad" href="${newsUrl}">
+                                                        <c:choose>
+                                                            <c:when test="${news.authoringTemplate.areProduct == 1}">
+                                                                <i class="fa fa-home"></i>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <i class="fa fa-photo"></i>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </a>
+                                                </div>
+                                            </c:if>
+
                                             <div class="blog-thumb-desc">
                                                 <h3><a href="${newsUrl}">${news.header}</a></h3>
                                                 <ul class="blog-thumb-info">
