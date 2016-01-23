@@ -96,7 +96,7 @@
             </oscache:cache>
 
             <content:findAllContentsByCategoryType begin="0" pageSize="6" var="productTypes"/>
-            <oscache:cache key="product_type_items" duration="1">
+            <oscache:cache key="product_type_items" duration="3600">
                 <c:forEach var="productType" varStatus="productTypeStatus" items="${productTypes}">
                     <c:if test="${productType.totalNumber > 0}">
                         <div class="blog-cars-heading">
