@@ -270,22 +270,19 @@ window.onload = function() {
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"></label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-8 col-sm-offset-2">
                                         <div class="checkbox"><label> <form:checkbox path="pojo.hotItem" value="1"/><fmt:message key="content.is.hot.product"/></label></div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"></label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-8 col-sm-offset-2">
                                         <div class="checkbox"><label> <form:checkbox path="pojo.productStatus" value="1"/><fmt:message key="content.is.new.product"/></label></div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label"></label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-8 col-sm-offset-2">
                                         <div class="checkbox"><label> <form:checkbox path="pojo.slide" value="1"/><fmt:message key="content.slider"/></label></div>
                                     </div>
                                 </div>

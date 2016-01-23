@@ -10,7 +10,7 @@
             <div class="blog-thumb blog-thumb-circle margin-bottom-15">
                 <div class="blog-thumb-hover">
                     <img class="rounded-x" src="${newsThumbnailsUrl}" alt="${news.title}">
-                    <a class="hover-grad" href="${newsUrl}"><i class="fa fa-link"></i></a>
+                    <a class="hover-grad" href="${newsUrl}"><i class="fa fa-photo"></i></a>
                 </div>
                 <div class="blog-thumb-desc">
                     <h3><a href="${newsUrl}">${news.header}</a></h3>

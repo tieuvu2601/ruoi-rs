@@ -18,7 +18,7 @@
                     <div class="ms-slide blog-slider">
                         <seo:url value="${slider.title}" var="sliderUrl" prefix="/${slider.category.prefixUrl}/${slider.contentId}/"/>
                         <c:set var="sliderThumbnailsUrl" value="/repository${slider.thumbnails}"/>
-                        <img src="<c:url value="/themes/site/plugins/master-slider/masterslider/style/blank.gif"/>" data-src="${sliderThumbnailsUrl}" alt="${slider.title}"/>
+                        <img src="<c:url value="/themes/site/plugins/master-slider/masterslider/style/blank.gif"/>" data-src="${sliderThumbnailsUrl}?w=850" alt="${slider.title}"/>
                         <c:if test="${not empty slider.categoryType && not empty slider.categoryType.name}">
                             <span class="blog-slider-badge <c:if test="${slider.hotItem == 1}"> is-hot-product</c:if>">${slider.categoryType.name}</span>
                         </c:if>
@@ -55,7 +55,7 @@
             <content:findByCategoryWithMaxItem category="tin tuc" begin="0" pageSize="6" var="newItems"/>
             <oscache:cache key="hot_news_item" duration="3600">
                 <c:set var="firstNew" value="${newItems[0]}"/>
-                <c:set var="thumbnailsImg" value="/repository${firstNew.thumbnails}?w=650"/>
+                <c:set var="thumbnailsImg" value="/repository${firstNew.thumbnails}?w=715"/>
                 <div class="margin-bottom-30">
                     <h2 class="title-v4"><a href="">${firstNew.category.name}</a></h2>
                     <div class="row margin-bottom-20">
@@ -96,12 +96,12 @@
             </oscache:cache>
 
             <content:findAllContentsByCategoryType begin="0" pageSize="6" var="productTypes"/>
-            <oscache:cache key="product_type_items" duration="3600">
+            <oscache:cache key="product_type_items" duration="1">
                 <c:forEach var="productType" varStatus="productTypeStatus" items="${productTypes}">
                     <c:if test="${productType.totalNumber > 0}">
                         <div class="blog-cars-heading">
                             <seo:url value="${productType.categoryType.code}" var="productTypeUrl" prefix="/products/"/>
-                            <a href="<c:url value="${productTypeUrl}"/>"><h2>${productType.categoryType.name}<small>(${productType.totalNumber}&nbsp;<fmt:message key="site.project"/>)</small></h2></a>
+                            <h2><a href="<c:url value="${productTypeUrl}"/>">${productType.categoryType.name}<small>(${productType.totalNumber}&nbsp;<fmt:message key="site.project"/>)</small></a></h2>
 
                             <div class="owl-navigation">
                                 <div class="customNavigation">
@@ -121,11 +121,11 @@
                                         <seo:url value="${project.title}" var="productUrl" prefix="/products/${project.contentId}/"/>
                                         <div class="blog-grid-hover">
                                             <c:set var="thumbnailsImg" value="/repository${project.thumbnails}"/>
-                                            <img class="img-responsive" src="<c:url value="${thumbnailsImg}?w=650"/>" alt="">
+                                            <img class="img-responsive" src="<c:url value="${thumbnailsImg}?w=715"/>" alt="">
                                             <a class="hover-grad" href="${productUrl}"><fmt:message key="site.view.detail"/></a>
                                         </div>
 
-                                        <h4><a href="${productUrl}">${project.header}</a></h4>
+                                        <h3><a href="${productUrl}">${project.header}</a></h3>
                                         <h5 class="product-cost">
                                             <fmt:message key="site.content.cost"/>:
                                             <span>
@@ -225,7 +225,7 @@
 
             <jsp:include page="../web/common/recentnew.jsp"></jsp:include>
 
-            <jsp:include page="../web/common/social.jsp"></jsp:include>
+            <%--<jsp:include page="../web/common/social.jsp"></jsp:include>--%>
         </div>
     </div>
 </div>
