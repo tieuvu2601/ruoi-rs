@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+	<class name="com.banvien.portal.vms.domain.SiteSettingEntity" table="sitesetting">
+
+        <id name="siteSettingId" column="SiteSettingID">
+            <generator class="increment"/>
+        </id>
+
+		<property name="googleAccount" column="GoogleAccount" />
+
+        <property name="passwordGoogleAccount" column="PasswordGoogleAccount"/>
+	</class>
+</hibernate-mapping>

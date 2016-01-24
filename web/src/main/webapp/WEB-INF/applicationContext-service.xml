@@ -111,4 +111,8 @@
     <bean id="customerService" class="com.banvien.portal.vms.service.impl.CustomerServiceImpl">
         <property name="customerDAO" ref="customerDAO"/>
     </bean>
+
+    <bean id="siteSettingService" class="com.banvien.portal.vms.service.impl.SiteSettingServiceImpl">
+        <property name="siteSettingDAO" ref="siteSettingDAO"/>
+    </bean>
 </beans>

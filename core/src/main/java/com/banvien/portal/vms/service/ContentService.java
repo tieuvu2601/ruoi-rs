@@ -15,6 +15,8 @@ public interface ContentService extends GenericService<ContentEntity, Long> {
 
     void updateStatusItem(ContentEntity contentEntity) throws ObjectNotFoundException, DuplicateException;
 
+    void updateEmailContent(Long contentId, String emailSubject, String emailContent) throws ObjectNotFoundException;
+
     Integer deleteItems(String[] checkList);
 
 
@@ -56,4 +58,6 @@ public interface ContentService extends GenericService<ContentEntity, Long> {
     Object[] searchInSite(String keyword, Timestamp fromDate, Timestamp toDate, Integer startRow, Integer maxPageItems, Integer status);
 
     List<ContentEntity> findByListCategory(List<Long> listCategoryId, Integer status);
+
+
 }

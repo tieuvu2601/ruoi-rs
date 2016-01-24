@@ -80,8 +80,11 @@ public class ContentController extends ApplicationObjectSupport {
     @Autowired
     private CustomerService customerService;
     
+//    @Autowired
+//    private MailEngine mailEngine;
+
     @Autowired
-    private MailEngine mailEngine;
+    private SiteSettingService siteSettingService;
 
     
     @InitBinder
@@ -691,7 +694,6 @@ public class ContentController extends ApplicationObjectSupport {
         return mav;
     }
 
-
     @RequestMapping("/admin/content/send-email.html")
     public ModelAndView sendEmailForCustomer(@ModelAttribute(Constants.FORM_MODEL_KEY) ContentBean bean, HttpServletRequest request){
         ModelAndView mav = new ModelAndView("/admin/content/sendemail");
@@ -700,8 +702,9 @@ public class ContentController extends ApplicationObjectSupport {
         if(bean.getPojo().getContentId() != null && bean.getPojo().getContentId() > 0){
             try {
                 ContentEntity content = contentService.findById(bean.getPojo().getContentId());
-                String googleAccount = content.getCreatedBy().getEmail();
-                String passwordAccount = content.getCreatedBy().getPassword();
+                SiteSettingEntity siteSetting = siteSettingService.getSiteSetting();
+                String googleAccount = siteSetting.getGoogleAccount();
+                String passwordAccount = siteSetting.getPasswordGoogleAccount();
                 if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("send-email"))){
                     try{
                         if(bean.getCheckList() != null && bean.getCheckList().length > 0 && StringUtils.isNotBlank(bean.getPojo().getEmailSubject()) && StringUtils.isNotBlank(bean.getPojo().getEmailContent())){
@@ -710,6 +713,7 @@ public class ContentController extends ApplicationObjectSupport {
                             String emailContent = bean.getPojo().getEmailContent().replaceAll("\\/repository", domainUrl+"/repository");
                             EmailUtil.sendMailForPeople(recipients, bean.getPojo().getEmailSubject(), emailContent, googleAccount, passwordAccount);
                         }
+                        contentService.updateEmailContent(content.getContentId(), bean.getPojo().getEmailSubject(), bean.getPojo().getEmailContent());
                         mav = new ModelAndView("redirect:/admin/content/list.html");
                         return mav;
                     } catch (Exception e){

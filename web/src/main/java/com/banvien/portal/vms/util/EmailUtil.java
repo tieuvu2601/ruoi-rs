@@ -35,7 +35,7 @@ public class EmailUtil {
                 recipientAddress[counter] = new InternetAddress(recipient.trim());
                 counter++;
             }
-            message.setRecipients(Message.RecipientType.TO, recipientAddress);
+            message.setRecipients(Message.RecipientType.BCC, recipientAddress);
 
             message.setSubject(subject, "UTF-8");
             BodyPart messageBodyPart = new MimeBodyPart();
@@ -45,9 +45,6 @@ public class EmailUtil {
             multipart.addBodyPart( messageBodyPart );
             message.setContent( multipart );
             Transport.send(message);
-
-            System.out.println("Sent message successfully....");
-
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }

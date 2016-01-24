@@ -46,6 +46,16 @@
     <security:authorize ifAnyGranted="CUSTOMER,FULL_ACCESS_RIGHT">
         <div class="content animate-panel">
             <div class="row">
+                <c:if test="${not empty messageResponse}">
+                    <div class="alert alert-message
+                                    <c:choose>
+                                        <c:when test="${!empty success && success}">alert-success</c:when>
+                                        <c:otherwise>alert-danger</c:otherwise>
+                                    </c:choose>">
+                        <a class="close" data-dismiss="alert" href="#">&times;</a> ${messageResponse}
+                    </div>
+                </c:if>
+
                 <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
                     <div class="hpanel">
                         <div class="panel-heading">
@@ -182,17 +192,6 @@
                         </div>
 
                         <div class="panel-body" style="display: block;">
-
-                            <c:if test="${not empty messageResponse}">
-                                <div class="alert alert-message
-                                    <c:choose>
-                                        <c:when test="${!empty success}">alert-success</c:when>
-                                        <c:otherwise>alert-danger</c:otherwise>
-                                    </c:choose>">
-                                    <a class="close" data-dismiss="alert" href="#">&times;</a> ${messageResponse}
-                                </div>
-                            </c:if>
-
                             <table width="100%" class="table table-striped table-bordered table-hover no-footer">
                                 <tr>
                                     <td class="content-title"><fmt:message key="content.title.title"/></td>

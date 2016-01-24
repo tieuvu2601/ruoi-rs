@@ -37,6 +37,7 @@
                 <value>hbm/Category.hbm.xml</value>
                 <value>hbm/Content.hbm.xml</value>
                 <value>hbm/Customer.hbm.xml</value>
+                <value>hbm/SiteSetting.hbm.xml</value>
             </list>
         </property>
 
@@ -92,6 +93,10 @@
 	</bean>
 
     <bean id="customerDAO" class="com.banvien.portal.vms.dao.impl.CustomerHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean id="siteSettingDAO" class="com.banvien.portal.vms.dao.impl.SiteSettingHibernateDAO">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 </beans>

@@ -55,6 +55,8 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
         pojo.setAuthoringTemplate(dbItem.getAuthoringTemplate());
         Timestamp now = new Timestamp(System.currentTimeMillis());
         pojo.setCreatedDate(dbItem.getCreatedDate());
+        pojo.setEmailSubject(dbItem.getEmailSubject());
+        pojo.setEmailContent(dbItem.getEmailContent());
         pojo.setModifiedDate(now);
 
         if(pojo.getStatus() == Constants.CONTENT_PUBLISH){
@@ -87,6 +89,20 @@ public class ContentServiceImpl extends GenericServiceImpl<ContentEntity, Long> 
                 newItem.setPublishedDate(now);
             }
         }
+        newItem.setModifiedDate(now);
+        this.contentDAO.detach(dbItem);
+        this.contentDAO.update(newItem);
+    }
+
+    @Override
+    public void updateEmailContent(Long contentId, String emailSubject, String emailContent) throws ObjectNotFoundException {
+        ContentEntity dbItem = this.contentDAO.findByIdNoAutoCommit(contentId);
+        if (dbItem == null) throw new ObjectNotFoundException("Not found account " + contentId.toString());
+        Timestamp now = new Timestamp(System.currentTimeMillis());
+        ContentEntity newItem = dbItem;
+        newItem.setEmailSubject(emailSubject);
+        newItem.setEmailContent(emailContent);
+
         newItem.setModifiedDate(now);
         this.contentDAO.detach(dbItem);
         this.contentDAO.update(newItem);

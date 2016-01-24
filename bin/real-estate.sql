@@ -136,3 +136,20 @@ VALUES ('admin', '123456', 'khanh.tran@hoanghacgroup.com', 'Administrator', 'Adm
 ALTER TABLE content ADD COLUMN EmailSubject VARCHAR(512);
 ALTER TABLE content ADD COLUMN EmailContent text;
 
+
+
+DROP TABLE IF EXISTS sitesetting;
+CREATE TABLE sitesetting (
+  SiteSettingID bigint(20) NOT NULL AUTO_INCREMENT,
+  GoogleAccount VARCHAR(255),
+  PasswordGoogleAccount VARCHAR(255),
+  PRIMARY KEY (SiteSettingID)
+);
+
+
+INSERT INTO sitesetting(SiteSettingID, GoogleAccount, PasswordGoogleAccount)
+VALUES (1, 'tieuvu2601@gmail.com', 'ThienDuong0209');
+
+
+
+
