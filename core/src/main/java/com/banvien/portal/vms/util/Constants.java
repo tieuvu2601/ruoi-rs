@@ -101,4 +101,7 @@ public class Constants {
 
     public static final String CATEGORY_RECENT_NEWS = "tin tuc";
 
+    public static final String EMAIL_ADDRESS = "tieuvu2601@gmail.com";
+    public static final String EMAIL_PASSWORD = "ThienDuong0209";
+
 }

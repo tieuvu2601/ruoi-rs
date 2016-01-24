@@ -23,7 +23,7 @@ public class ContentBean extends AbstractBean<ContentEntity> {
     private Integer moveToTop;
 
     private Map<Long, Boolean> contentPublishedMap;
-    
+
     private Map<String, List<String>> oldNodeAttachementValues;
     
     private List<String> deletedAttchments;

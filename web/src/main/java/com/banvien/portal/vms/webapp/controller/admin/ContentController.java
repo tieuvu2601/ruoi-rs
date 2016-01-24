@@ -5,6 +5,9 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.*;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -694,30 +697,34 @@ public class ContentController extends ApplicationObjectSupport {
         ModelAndView mav = new ModelAndView("/admin/content/sendemail");
         String crudaction = bean.getCrudaction();
 
-        if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("send-email"))){
-            try{
-                if(bean.getCheckList() != null && bean.getCheckList().length > 0){
-                    List<String> emails = this.customerService.getEmailFromListCustomerId(bean.getCheckList());
-                    String [] recipients = new String [emails.size()];
-                    for(int i = 0; i < emails.size(); i++){
-                        recipients[i] = emails.get(i);
-                    }
-                    sendMail2RelatePeople(recipients, request);
-                }
-                mav = new ModelAndView("redirect:/admin/content/list.html");
-                return mav;
-            } catch (Exception e){
-                mav = new ModelAndView("redirect:/admin/content/list.html");
-                return mav;
-            }
-        }
-
         if(bean.getPojo().getContentId() != null && bean.getPojo().getContentId() > 0){
             try {
                 ContentEntity content = contentService.findById(bean.getPojo().getContentId());
-                bean.setPojo(content);
-                ContentItem contentItem = ContentItemUtil.parseXML(content.getXmlData());
-                bean.setContentItem(contentItem);
+                String googleAccount = content.getCreatedBy().getEmail();
+                String passwordAccount = content.getCreatedBy().getPassword();
+                if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("send-email"))){
+                    try{
+                        if(bean.getCheckList() != null && bean.getCheckList().length > 0 && StringUtils.isNotBlank(bean.getPojo().getEmailSubject()) && StringUtils.isNotBlank(bean.getPojo().getEmailContent())){
+                            List<String> recipients = this.customerService.getEmailFromListCustomerId(bean.getCheckList());
+                            String domainUrl = request.getScheme() + "://" + request.getServerName();
+                            String emailContent = bean.getPojo().getEmailContent().replaceAll("\\/repository", domainUrl+"/repository");
+                            EmailUtil.sendMailForPeople(recipients, bean.getPojo().getEmailSubject(), emailContent, googleAccount, passwordAccount);
+                        }
+                        mav = new ModelAndView("redirect:/admin/content/list.html");
+                        return mav;
+                    } catch (Exception e){
+                        mav.addObject("messageResponse", "Account google ko login vao duoc.");
+                        mav.addObject("success", false);
+                    }
+                }else {
+                    if(StringUtils.isBlank(content.getEmailSubject())){
+                        content.setEmailSubject(content.getHeader());
+                    }
+                    bean.setPojo(content);
+                    ContentItem contentItem = ContentItemUtil.parseXML(content.getXmlData());
+                    bean.setContentItem(contentItem);
+                }
+
             } catch (Exception e) {
                 logger.error("Cannot found content with id: "+ bean.getPojo().getContentId(), e);
                 mav = new ModelAndView("redirect:/admin/content/list.html");
@@ -750,37 +757,6 @@ public class ContentController extends ApplicationObjectSupport {
         List<CustomerEntity> customers = this.customerService.loadCustomerByProperties(email, fullName, phoneNumber, address, locationId, customerList);
         mav.addObject("customers", customers);
         return mav;
-    }
-
-    private String sendMail2RelatePeople( String[] recipients, String senderMail, HttpServletRequest request){
-
-        HashMap<String, String> model = new HashMap<String, String>();
-        model.put("targetUrl", RequestUtil.getAppURL(request)+ "demo-thu-xem-sao-xem-no-ra-cai-the-loai-gi.html");
-
-        String returnMessage = "";
-        String template = "content_approve_mail.vm";
-        try{
-            String subject = this.getMessageSourceAccessor().getMessage("content.approve.mail.subject");
-
-            mailEngine.sendMessage(recipients, senderMail, subject, template, model, null, null);
-
-        }catch(Exception e){
-            logger.error(e.getMessage(), e);
-        }
-
-        return returnMessage;
-    }
-
-
-    private void sendMail2RelatePeople(String[] recipients, HttpServletRequest request){
-        String sender = "tieuvu260@gmail.com";
-        String subject = "Subject cua mail test thu";
-        String content = "Noi Dung cua mail";
-        try{
-            mailEngine.sendMessage(recipients, null, sender, subject, content);
-        }catch(Exception e){
-            logger.error(e.getMessage(), e);
-        }
     }
 
 

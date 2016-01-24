@@ -45,211 +45,218 @@
     </div>
     <security:authorize ifAnyGranted="CUSTOMER,FULL_ACCESS_RIGHT">
         <div class="content animate-panel">
-            <div>
-
-
-                <div class="row">
-                    <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
-                        <div class="hpanel">
-                            <div class="panel-heading">
-                                <div class="panel-tools">
-                                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                                </div>
-                                <fmt:message key="customer.list"/>
+            <div class="row">
+                <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
+                    <div class="hpanel">
+                        <div class="panel-heading">
+                            <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
                             </div>
-
-                            <div class="panel-body" style="display: block;">
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label"><fmt:message key="customer.location"/></label>
-                                        <div class="col-sm-8">
-                                            <select id="customerLocation" class="form-control">
-                                                <option value="-1"><fmt:message key="label.all"/></option>
-                                                <c:forEach var="location" items="${locations}">
-                                                    <option value="${locationId}">${location.name}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label"><fmt:message key="customer.full.name"/></label>
-                                        <div class="col-sm-8">
-                                            <input id="customerName" size="255" class="form-control"/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label"><fmt:message key="customer.email"/></label>
-                                        <div class="col-sm-8">
-                                            <input id="customerEmail" size="100" class="form-control"/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-5">
-                                    <div class="form-group">
-                                        <label class="col-sm-4 control-label"><fmt:message key="customer.phone.number"/></label>
-                                        <div class="col-sm-8">
-                                            <input id="customerPhoneNumber" size="255" class="form-control"/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-10">
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label"><fmt:message key="customer.address"/></label>
-                                        <div class="col-sm-10">
-                                            <input id="customerAddress" size="255" class="form-control"/>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <div class="col-sm-8 col-sm-offset-4">
-                                            <a class="btn btn-primary btnFilter"><i class="fa fa-search"></i> <fmt:message key="button.search"/></a>
-                                            <a class="btn btn-danger btnReset"><i class="fa fa-refresh"></i> <fmt:message key="button.reset"/></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel-body"  style="display: block;" id="customer-container">
-
-                            </div>
+                            <fmt:message key="customer.list"/>
                         </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
-                        <div class="hpanel">
-                            <div class="panel-heading">
-                                <div class="panel-tools">
-                                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
-                                </div>
-                                <fmt:message key="content.customer.list"/>
-                            </div>
-
-                            <div class="panel-body" style="display: block;" id="customer-selected">
-                                <table width="100%" class="table table-bordered no-footer">
-                                    <thead>
-                                        <tr >
-                                            <th style="width: 5%">#</th>
-                                            <th style="width: 15%"><fmt:message key="customer.full.name"/></th>
-                                            <th style="width: 15%"><fmt:message key="customer.email"/></th>
-                                            <th style="width: 15%"><fmt:message key="customer.phone.number"/></th>
-                                            <th style="width: 30%"><fmt:message key="customer.address"/></th>
-                                            <th style="width: 20%"><fmt:message key="customer.location"/></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
+                        <div class="panel-body" style="display: block;">
+                            <div class="col-lg-5">
                                 <div class="form-group">
-                                    <div class="col-sm-8 col-sm-offset-2">
-                                        <input class="btn btn-success btn-send-email" type="button" value="<fmt:message key="button.send"/>"/>
-                                        <a href="${backUrl}" class="btn w-xs btn-default"><fmt:message key="button.back"/></a>
+                                    <label class="col-sm-4 control-label"><fmt:message key="customer.location"/></label>
+                                    <div class="col-sm-8">
+                                        <select id="customerLocation" class="form-control">
+                                            <option value="-1"><fmt:message key="label.all"/></option>
+                                            <c:forEach var="location" items="${locations}">
+                                                <option value="${locationId}">${location.name}</option>
+                                            </c:forEach>
+                                        </select>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"><fmt:message key="customer.full.name"/></label>
+                                    <div class="col-sm-8">
+                                        <input id="customerName" size="255" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"><fmt:message key="customer.email"/></label>
+                                    <div class="col-sm-8">
+                                        <input id="customerEmail" size="100" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-5">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label"><fmt:message key="customer.phone.number"/></label>
+                                    <div class="col-sm-8">
+                                        <input id="customerPhoneNumber" size="255" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-10">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label"><fmt:message key="customer.address"/></label>
+                                    <div class="col-sm-10">
+                                        <input id="customerAddress" size="255" class="form-control"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <div class="col-sm-8 col-sm-offset-4">
+                                        <a class="btn btn-primary btnFilter"><i class="fa fa-search"></i> <fmt:message key="button.search"/></a>
+                                        <a class="btn btn-danger btnReset"><i class="fa fa-refresh"></i> <fmt:message key="button.reset"/></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-body"  style="display: block;" id="customer-container">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
+                    <div class="hpanel">
+                        <div class="panel-heading">
+                            <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                            </div>
+                            <fmt:message key="content.customer.list"/>
+                        </div>
+
+                        <div class="panel-body" style="display: block;" id="customer-selected">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="content.email.subject"/></label>
+                                <div class="col-sm-8">
+                                    <form:input path="pojo.emailSubject" size="160" maxlength="255" cssClass="form-control" id="title"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="content.email.content"/></label>
+                                <div class="col-sm-8">
+                                    <form:textarea cssClass="richTextEditor" cols="80" id="email_content" path="pojo.emailContent" rows="10"></form:textarea>
+                                </div>
+                            </div>
+
+                            <table width="100%" class="table table-bordered no-footer">
+                                <thead>
+                                <tr >
+                                    <th style="width: 5%">#</th>
+                                    <th style="width: 15%"><fmt:message key="customer.full.name"/></th>
+                                    <th style="width: 15%"><fmt:message key="customer.email"/></th>
+                                    <th style="width: 15%"><fmt:message key="customer.phone.number"/></th>
+                                    <th style="width: 30%"><fmt:message key="customer.address"/></th>
+                                    <th style="width: 20%"><fmt:message key="customer.location"/></th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="form-group">
+                                <div class="col-sm-8 col-sm-offset-2">
+                                    <input class="btn btn-success btn-send-email" type="button" value="<fmt:message key="button.send"/>"/>
+                                    <a href="${backUrl}" class="btn w-xs btn-default"><fmt:message key="button.back"/></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="row">
-                    <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
-                        <div class="hpanel">
-                            <div class="panel-heading">
-                                <div class="panel-tools">
-                                    <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+            <div class="row">
+                <div class="col-lg-12 animated-panel zoomIn" style="animation-delay: 0.2s;">
+                    <div class="hpanel">
+                        <div class="panel-heading">
+                            <div class="panel-tools">
+                                <a class="showhide"><i class="fa fa-chevron-up"></i></a>
+                            </div>
+                            <fmt:message key="content.information"/>
+                        </div>
+
+                        <div class="panel-body" style="display: block;">
+
+                            <c:if test="${not empty messageResponse}">
+                                <div class="alert alert-message
+                                    <c:choose>
+                                        <c:when test="${!empty success}">alert-success</c:when>
+                                        <c:otherwise>alert-danger</c:otherwise>
+                                    </c:choose>">
+                                    <a class="close" data-dismiss="alert" href="#">&times;</a> ${messageResponse}
                                 </div>
-                                <fmt:message key="content.information"/>
-                            </div>
+                            </c:if>
 
-                            <div class="panel-body" style="display: block;">
+                            <table width="100%" class="table table-striped table-bordered table-hover no-footer">
+                                <tr>
+                                    <td class="content-title"><fmt:message key="content.title.title"/></td>
+                                    <td class="content-content">${item.pojo.title}</td>
+                                </tr>
+                                <tr>
+                                    <td class="content-title"><fmt:message key="content.header"/></td>
+                                    <td class="content-content">${item.pojo.header}</td>
+                                </tr>
+                                <tr>
+                                    <td class="content-title"><fmt:message key="content.keyword"/></td>
+                                    <td class="content-content">${item.pojo.keyword}</td>
+                                </tr>
+                                <tr>
+                                    <td class="content-title"><fmt:message key="content.description"/></td>
+                                    <td class="content-content">${item.pojo.description}</td>
+                                </tr>
+                                <tr>
+                                    <td class="content-title"><fmt:message key="content.thumbnails"/></td>
+                                    <td class="content-content">
+                                        <rep:href value="${item.pojo.thumbnails}" var="imgURL"/>
+                                        <label class="col-sm-12 control-label text-default"><img src="<c:url value="${imgURL}"/>?w=120"/></label>
+                                    </td>
+                                </tr>
 
-                                <c:if test="${not empty messageResponse}">
-                                    <div class="alert alert-message
-                                            <c:choose>
-                                                <c:when test="${!empty success}">alert-success</c:when>
-                                                <c:otherwise>alert-danger</c:otherwise>
-                                            </c:choose>">
-                                        <a class="close" data-dismiss="alert" href="#">&times;</a> ${messageResponse}
-                                    </div>
+                                <c:if test="${item.pojo.authoringTemplate.areProduct == 1}">
+                                    <tr>
+                                        <td class="content-title"><fmt:message key="content.location.text"/></td>
+                                        <td class="content-content">${item.pojo.locationText}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content-title"><fmt:message key="content.location"/></td>
+                                        <td class="content-content">${item.pojo.location.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content-title"><fmt:message key="content.area"/></td>
+                                        <td class="content-content">${item.pojo.area}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content-title"><fmt:message key="content.total.area"/></td>
+                                        <td class="content-content">${item.pojo.totalArea}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content-title"><fmt:message key="content.area.ratio"/></td>
+                                        <td class="content-content">${item.pojo.areaRatio}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content-title"><fmt:message key="content.number.of.block"/></td>
+                                        <td class="content-content">${item.pojo.numberOfBlock}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content-title"><fmt:message key="content.cost"/></td>
+                                        <td class="content-content">${item.pojo.cost}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content-title"><fmt:message key="content.is.hot.product"/></td>
+                                        <td class="content-content">${item.pojo.hotItem}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="content-title"><fmt:message key="content.is.new.product"/></td>
+                                        <td class="content-content">${item.pojo.productStatus}</td>
+                                    </tr>
                                 </c:if>
-
-                                <table width="100%" class="table table-striped table-bordered table-hover no-footer">
-                                    <tr>
-                                        <td class="content-title"><fmt:message key="content.title.title"/></td>
-                                        <td class="content-content">${item.pojo.title}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content-title"><fmt:message key="content.header"/></td>
-                                        <td class="content-content">${item.pojo.header}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content-title"><fmt:message key="content.keyword"/></td>
-                                        <td class="content-content">${item.pojo.keyword}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content-title"><fmt:message key="content.description"/></td>
-                                        <td class="content-content">${item.pojo.description}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="content-title"><fmt:message key="content.thumbnails"/></td>
-                                        <td class="content-content">
-                                            <rep:href value="${item.pojo.thumbnails}" var="imgURL"/>
-                                            <label class="col-sm-12 control-label text-default"><img src="<c:url value="${imgURL}"/>?w=120"/></label>
-                                        </td>
-                                    </tr>
-
-                                    <c:if test="${item.pojo.authoringTemplate.areProduct == 1}">
-                                        <tr>
-                                            <td class="content-title"><fmt:message key="content.location.text"/></td>
-                                            <td class="content-content">${item.pojo.locationText}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content-title"><fmt:message key="content.location"/></td>
-                                            <td class="content-content">${item.pojo.location.name}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content-title"><fmt:message key="content.area"/></td>
-                                            <td class="content-content">${item.pojo.area}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content-title"><fmt:message key="content.total.area"/></td>
-                                            <td class="content-content">${item.pojo.totalArea}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content-title"><fmt:message key="content.area.ratio"/></td>
-                                            <td class="content-content">${item.pojo.areaRatio}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content-title"><fmt:message key="content.number.of.block"/></td>
-                                            <td class="content-content">${item.pojo.numberOfBlock}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content-title"><fmt:message key="content.cost"/></td>
-                                            <td class="content-content">${item.pojo.cost}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content-title"><fmt:message key="content.is.hot.product"/></td>
-                                            <td class="content-content">${item.pojo.hotItem}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="content-title"><fmt:message key="content.is.new.product"/></td>
-                                            <td class="content-content">${item.pojo.productStatus}</td>
-                                        </tr>
-                                    </c:if>
-                                </table>
-                            </div>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -259,8 +266,22 @@
     <form:hidden path="crudaction" id="crudaction"/>
     <form:hidden path="pojo.contentId"/>
 </form:form>
+<c:url var="prefixUrl" value="/" />
 <script>
     $(document).ready(function(){
+        $('.richTextEditor').each(function() {
+            CKEDITOR.timestamp = new Date().getTime(); /*Used to debug*/
+            CKEDITOR.replace($(this).attr('id'),{
+                filebrowserBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserImageBrowseUrl : '${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Image&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserFlashBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Flash&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserUploadUrl  :'${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=File',
+                filebrowserImageUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Image',
+                filebrowserFlashUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Flash'
+
+            });
+        });
+
         $('.btnFilter').on('click', function(){
             loadCustomerForSendEmail();
         });
@@ -353,4 +374,3 @@
         }
     }
 </script>
-

@@ -133,3 +133,6 @@ INSERT INTO UserGroup(Code, Name, Description, CreatedDate) VALUES ('Administrat
 INSERT INTO Users(Username, Password, Email, FirstName, LastName, DisplayName, MobileNumber, Status, UserGroupID, CreatedDate, FullAccess)
 VALUES ('admin', '123456', 'khanh.tran@hoanghacgroup.com', 'Administrator', 'Administrator', 'Administrator', '000000000', 1, 1, NOW(), 1);
 
+ALTER TABLE content ADD COLUMN EmailSubject VARCHAR(512);
+ALTER TABLE content ADD COLUMN EmailContent text;
+

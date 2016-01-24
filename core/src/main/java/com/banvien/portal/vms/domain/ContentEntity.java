@@ -39,6 +39,10 @@ public class ContentEntity implements Serializable {
 
     private UserEntity createdBy;
 
+    private String emailSubject;
+
+    private String emailContent;
+
     public Long getContentId() {
         return contentId;
     }
@@ -253,5 +257,21 @@ public class ContentEntity implements Serializable {
 
     public void setCreatedBy(UserEntity createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public String getEmailSubject() {
+        return emailSubject;
+    }
+
+    public void setEmailSubject(String emailSubject) {
+        this.emailSubject = emailSubject;
+    }
+
+    public String getEmailContent() {
+        return emailContent;
+    }
+
+    public void setEmailContent(String emailContent) {
+        this.emailContent = emailContent;
     }
 }

@@ -39,5 +39,8 @@
         <property name="modifiedDate" column="ModifiedDate"/>
         <property name="publishedDate" column="PublishedDate"/>
         <many-to-one name="createdBy" column="CreatedBy"/>
+
+        <property name="emailSubject" column="EmailSubject"/>
+        <property name="emailContent" column="EmailContent"/>
 	</class>
 </hibernate-mapping>
