@@ -207,7 +207,7 @@
 
                             <div class="form-group">
                                 <div class="col-sm-8 col-sm-offset-2">
-                                    <div class="checkbox"><label> <form:checkbox path="moveToTop" value="1"/><fmt:message key="content.move.to.top"/></label></div>
+                                    <div class="checkbox"><label><form:checkbox path="moveToTop" value="1"/><fmt:message key="content.move.to.top"/></label></div>
                                 </div>
                             </div>
                         </div>

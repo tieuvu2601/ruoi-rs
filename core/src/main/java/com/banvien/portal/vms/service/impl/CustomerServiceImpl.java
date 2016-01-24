@@ -68,11 +68,19 @@ public class CustomerServiceImpl extends GenericServiceImpl<CustomerEntity, Long
     }
 
     @Override
-    public List<String> getEmailFromListCustomerId(String[] checkList) {
-        List<Long> customerList = new ArrayList<Long>();
-        for(String customerId : checkList){
-            customerList.add(Long.valueOf(customerId));
+    public List<String> getEmailFromListCustomerId(String[] checkList,  String [] locations) {
+        List<Long> customerList = getListIdFromArray(checkList);
+        List<Long> locationList = getListIdFromArray(locations);
+        return this.customerDAO.getEmailFromListCustomerId(customerList, locationList);
+    }
+
+    private List<Long> getListIdFromArray(String [] arrays){
+        List<Long> returnList = new ArrayList<Long>();
+        if(arrays != null && arrays.length > 0){
+            for(String element : arrays){
+                returnList.add(Long.valueOf(element));
+            }
         }
-        return this.customerDAO.getEmailFromListCustomerId(customerList);
+        return returnList;
     }
 }

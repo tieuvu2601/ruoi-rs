@@ -28,6 +28,8 @@ public class ContentBean extends AbstractBean<ContentEntity> {
     
     private List<String> deletedAttchments;
 
+    private String []  locations;
+
     public ContentBean(){
         this.pojo = new ContentEntity();
     }
@@ -111,5 +113,13 @@ public class ContentBean extends AbstractBean<ContentEntity> {
 
     public void setMoveToTop(Integer moveToTop) {
         this.moveToTop = moveToTop;
+    }
+
+    public String[] getLocations() {
+        return locations;
+    }
+
+    public void setLocations(String[] locations) {
+        this.locations = locations;
     }
 }

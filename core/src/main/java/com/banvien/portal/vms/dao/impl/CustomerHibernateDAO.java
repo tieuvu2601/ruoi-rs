@@ -62,23 +62,36 @@ public class CustomerHibernateDAO extends AbstractHibernateDAO<CustomerEntity, L
     }
 
     @Override
-    public List<String> getEmailFromListCustomerId(final List<Long> customerIds) {
+    public List<String> getEmailFromListCustomerId(final List<Long> customerIds, final List<Long> locations) {
         return getHibernateTemplate().execute(
-                new HibernateCallback<List<String>>() {
+            new HibernateCallback<List<String>>() {
 
-                    public List<String> doInHibernate(Session session) throws HibernateException, SQLException {
-                        StringBuilder sql = new StringBuilder("SELECT ce.email FROM CustomerEntity ce WHERE 1 = 1 ");
+                public List<String> doInHibernate(Session session) throws HibernateException, SQLException {
+                    StringBuilder sql = new StringBuilder("SELECT ce.email FROM CustomerEntity ce WHERE 1 = 1 ");
 
+                    if(locations != null && locations.size() > 0){
+                        sql.append(" AND ce.location.locationId IN (:locations) ");
+                        if(customerIds != null && customerIds.size() > 0){
+                            sql.append(" OR ce.customerId IN (:customerIds) ");
+                        }
+                    } else {
                         if(customerIds != null && customerIds.size() > 0){
                             sql.append(" AND ce.customerId IN (:customerIds) ");
                         }
-
-                        Query query = session.createQuery(sql.toString());
+                    }
+                    Query query = session.createQuery(sql.toString());
+                    if(locations != null && locations.size() > 0){
+                        query.setParameterList("locations", locations);
                         if(customerIds != null && customerIds.size() > 0){
                             query.setParameterList("customerIds", customerIds);
                         }
-                        return (List<String>) query.list();
+                    } else {
+                        if(customerIds != null && customerIds.size() > 0){
+                            query.setParameterList("customerIds", customerIds);
+                        }
                     }
-                });
+                    return (List<String>) query.list();
+                }
+            });
     }
 }

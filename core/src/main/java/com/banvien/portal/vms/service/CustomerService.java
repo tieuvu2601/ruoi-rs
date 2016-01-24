@@ -19,5 +19,5 @@ public interface CustomerService extends GenericService<CustomerEntity, Long> {
 
     List<CustomerEntity> loadCustomerByProperties(String email, String fullName, String phoneNumber, String address, Long locationId, List<Long> customersSelected);
 
-    List<String> getEmailFromListCustomerId(String[] checkList);
+    List<String> getEmailFromListCustomerId(String[] checkList, String [] locations);
 }

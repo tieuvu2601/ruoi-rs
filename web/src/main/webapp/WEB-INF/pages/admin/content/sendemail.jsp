@@ -48,10 +48,10 @@
             <div class="row">
                 <c:if test="${not empty messageResponse}">
                     <div class="alert alert-message
-                                    <c:choose>
-                                        <c:when test="${!empty success && success}">alert-success</c:when>
-                                        <c:otherwise>alert-danger</c:otherwise>
-                                    </c:choose>">
+                        <c:choose>
+                            <c:when test="${!empty success && success}">alert-success</c:when>
+                            <c:otherwise>alert-danger</c:otherwise>
+                        </c:choose>">
                         <a class="close" data-dismiss="alert" href="#">&times;</a> ${messageResponse}
                     </div>
                 </c:if>
@@ -145,15 +145,27 @@
 
                         <div class="panel-body" style="display: block;" id="customer-selected">
                             <div class="form-group">
+                                <label class="col-sm-2 control-label"><fmt:message key="location.title"/></label>
+                                <div class="col-sm-8">
+                                    <c:forEach var="location" items="${locations}">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" class="i-checks" name="locations" value="${location.locationId}" <c:if test="${item.pojo.location.locationId eq location.locationId}">checked</c:if>>
+                                            ${location.name}
+                                        </label>
+                                    </c:forEach>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="content.email.subject"/></label>
                                 <div class="col-sm-8">
-                                    <form:input path="pojo.emailSubject" size="160" maxlength="255" cssClass="form-control" id="title"/>
+                                    <form:input path="pojo.emailSubject" size="160" maxlength="255" cssClass="form-control" id="emailSubject"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="content.email.content"/></label>
                                 <div class="col-sm-8">
-                                    <form:textarea cssClass="richTextEditor" cols="80" id="email_content" path="pojo.emailContent" rows="10"></form:textarea>
+                                    <form:textarea cssClass="richTextEditor" cols="80" id="emailContent" path="pojo.emailContent" rows="10"></form:textarea>
                                 </div>
                             </div>
 
@@ -267,10 +279,11 @@
 </form:form>
 <c:url var="prefixUrl" value="/" />
 <script>
+    var emailContent;
     $(document).ready(function(){
         $('.richTextEditor').each(function() {
             CKEDITOR.timestamp = new Date().getTime(); /*Used to debug*/
-            CKEDITOR.replace($(this).attr('id'),{
+            emailContent = CKEDITOR.replace($(this).attr('id'),{
                 filebrowserBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
                 filebrowserImageBrowseUrl : '${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Image&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
                 filebrowserFlashBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Flash&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
@@ -290,7 +303,18 @@
         });
         $('.btn-send-email').on('click', function(){
             $('#crudaction').val("send-email");
+
+            var errorMessage = validateDataBeforeSubmit();
+            if($.trim(errorMessage) == ""){
             $('#itemForm').submit();
+            } else {
+                swal({
+                    title: "Error!",
+                    text: errorMessage,
+                    type: "error"
+                });
+            }
+
         });
 
     });
@@ -371,5 +395,21 @@
             $(customer).removeClass('selected');
             $(customer).find('.select-customer').find('i').removeClass('fa-check-square-o').addClass('fa-square-o');
         }
+    }
+
+    function validateDataBeforeSubmit(){
+        var errorMessage = "";
+        if($('.customer-selected').length > 0 || $('input[name=locations]:checked').length > 0 ){
+            var eMailContentData = "";
+            if(emailContent != null){
+                eMailContentData = emailContent.getData();
+            }
+            if($.trim($('#emailSubject').val()) == '' || $.trim(eMailContentData) == ''){
+                errorMessage = "<fmt:message key="content.send.email.empty.content"/>";
+            }
+        } else {
+            errorMessage = "<fmt:message key="content.send.email.empty.user"/>";
+        }
+        return errorMessage;
     }
 </script>

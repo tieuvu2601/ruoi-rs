@@ -707,8 +707,8 @@ public class ContentController extends ApplicationObjectSupport {
                 String passwordAccount = siteSetting.getPasswordGoogleAccount();
                 if(StringUtils.isNotBlank(crudaction) && (crudaction.equals("send-email"))){
                     try{
-                        if(bean.getCheckList() != null && bean.getCheckList().length > 0 && StringUtils.isNotBlank(bean.getPojo().getEmailSubject()) && StringUtils.isNotBlank(bean.getPojo().getEmailContent())){
-                            List<String> recipients = this.customerService.getEmailFromListCustomerId(bean.getCheckList());
+                        if((bean.getCheckList() != null && bean.getCheckList().length > 0 || bean.getLocations() != null && bean.getLocations().length > 0) && StringUtils.isNotBlank(bean.getPojo().getEmailSubject()) && StringUtils.isNotBlank(bean.getPojo().getEmailContent())){
+                            List<String> recipients = this.customerService.getEmailFromListCustomerId(bean.getCheckList(), bean.getLocations());
                             String domainUrl = request.getScheme() + "://" + request.getServerName();
                             String emailContent = bean.getPojo().getEmailContent().replaceAll("\\/repository", domainUrl+"/repository");
                             EmailUtil.sendMailForPeople(recipients, bean.getPojo().getEmailSubject(), emailContent, googleAccount, passwordAccount);
