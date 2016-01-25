@@ -11,7 +11,7 @@
 .blog-grid-inner {
     /*margin: -70px 70px 0;*/
     margin: -40px 40px 0;
-    border: 3px solid #68af28;
+    border: 3px solid #019348;
     background: #fafafa;
 }
 
@@ -158,4 +158,13 @@ ul.pager.pager-pagination li.active a{
 }
 .sweet-alert {
     z-index: 9999999;
+}
+
+.tab-v2 .tab-content{
+    border: solid 1px #019348;
+}
+
+.tab-v2 .nav-tabs li.active a{
+    border-left: solid 1px #019348;
+    border-right: solid 1px #019348;
 }

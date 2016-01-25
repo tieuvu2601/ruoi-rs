@@ -145,27 +145,47 @@
 
             <div class="blog-grid margin-bottom-20">
                 <div class="row ">
-                    <div class="tab-v3">
-                        <div class="col-sm-3">
-                            <ul class="nav nav-pills nav-stacked">
-                                <c:forEach var="headerContent" varStatus="headerStatus" items="${itemXMLData.mapHeader}">
-                                    <li class="<c:if test="${headerStatus.index == 0}">active</c:if>">
-                                        <a href="#product-content-${headerStatus.index}" data-toggle="tab" aria-expanded="false">${headerContent}</a></li>
-                                </c:forEach>
-                            </ul>
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="tab-content">
-                                <c:forEach var="contentContent" varStatus="contentStatus" items="${itemXMLData.mapContent}">
-                                    <div class="tab-pane fade <c:if test="${contentStatus.index == 0}">active in</c:if>" id="product-content-${contentStatus.index}">
-                                        <div class="product-content">
-                                                ${contentContent}
-                                        </div>
+                    <div class="tab-v2">
+                        <ul class="nav nav-tabs">
+                            <c:forEach var="headerContent" varStatus="headerStatus" items="${itemXMLData.mapHeader}">
+                                <li class="<c:if test="${headerStatus.index == 0}">active</c:if>">
+                                    <a href="#product-content-${headerStatus.index}" data-toggle="tab" aria-expanded="false">${headerContent}</a></li>
+                            </c:forEach>
+
+                        </ul>
+                        <div class="tab-content">
+                            <c:forEach var="contentContent" varStatus="contentStatus" items="${itemXMLData.mapContent}">
+                                <div class="tab-pane fade <c:if test="${contentStatus.index == 0}">active in</c:if>" id="product-content-${contentStatus.index}">
+                                    <div class="product-content">
+                                            ${contentContent}
                                     </div>
-                                </c:forEach>
-                            </div>
+                                </div>
+                            </c:forEach>
+
                         </div>
                     </div>
+
+                    <%--<div class="tab-v3">--%>
+                        <%--<div class="col-sm-3">--%>
+                            <%--<ul class="nav nav-pills nav-stacked">--%>
+                                <%--<c:forEach var="headerContent" varStatus="headerStatus" items="${itemXMLData.mapHeader}">--%>
+                                    <%--<li class="<c:if test="${headerStatus.index == 0}">active</c:if>">--%>
+                                        <%--<a href="#product-content-${headerStatus.index}" data-toggle="tab" aria-expanded="false">${headerContent}</a></li>--%>
+                                <%--</c:forEach>--%>
+                            <%--</ul>--%>
+                        <%--</div>--%>
+                        <%--<div class="col-sm-9">--%>
+                            <%--<div class="tab-content">--%>
+                                <%--<c:forEach var="contentContent" varStatus="contentStatus" items="${itemXMLData.mapContent}">--%>
+                                    <%--<div class="tab-pane fade <c:if test="${contentStatus.index == 0}">active in</c:if>" id="product-content-${contentStatus.index}">--%>
+                                        <%--<div class="product-content">--%>
+                                                <%--${contentContent}--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</c:forEach>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                 </div>
             </div>
 

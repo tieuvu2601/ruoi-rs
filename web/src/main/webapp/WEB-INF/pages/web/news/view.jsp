@@ -73,15 +73,15 @@
             </div>
 
             <c:if test="${not empty itemXMLData.headerContent[0]}">
-                <div class="margin-bottom-30 new-content">${itemXMLData.headerContent[0]}</div>
+                <div class="margin-bottom-30 product-content">${itemXMLData.headerContent[0]}</div>
             </c:if>
 
-            <div class="margin-bottom-30 new-content">
+            <div class="margin-bottom-30 product-content">
                 ${itemXMLData.content[0]}
             </div>
 
             <c:if test="${not empty itemXMLData.footerContent[0]}">
-                <div class="margin-bottom-30 new-content">${itemXMLData.footerContent[0]}</div>
+                <div class="margin-bottom-30 product-content">${itemXMLData.footerContent[0]}</div>
             </c:if>
 
             <c:if test="${not empty item.keyword}">

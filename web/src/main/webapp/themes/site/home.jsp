@@ -139,13 +139,43 @@
             MasterSliderShowcase1.initMasterSliderShowcase1();
             $("#register-customer-btn").on('click', function(){
                 if(registerCustomerFormValidate($("#registerForm"))){
-                    $("#registerForm").submit();
+                    if(registerCustomerFormEmailValidate($("#registerForm"))){
+                        swal({
+                            title: "<fmt:message key="site.customer.register.success"/>",
+                            text: "<fmt:message key="site.customer.register.success.message"/>",
+                            type: "success",
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                        $("#registerForm").submit();
+                    }
+                } else {
+                    swal({
+                        title: "<fmt:message key="site.customer.register.error"/>",
+                        text: "<fmt:message key="site.customer.register.error.message"/>",
+                        type: "error"
+                    });
                 }
             });
 
             $("#register-customer-footer-btn").on('click', function(){
                 if(registerCustomerFormValidate($("#registerFormFooter"))){
-                    $("#registerFormFooter").submit();
+                    if(registerCustomerFormEmailValidate($("#registerFormFooter"))){
+                        swal({
+                            title: "<fmt:message key="site.customer.register.success"/>",
+                            text: "<fmt:message key="site.customer.register.success.message"/>",
+                            type: "success",
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                        $("#registerFormFooter").submit();
+                    }
+                } else {
+                    swal({
+                        title: "<fmt:message key="site.customer.register.error"/>",
+                        text: "<fmt:message key="site.customer.register.error.message"/>",
+                        type: "error"
+                    });
                 }
             });
         });
@@ -160,15 +190,18 @@
                    $(this).removeClass("errors");
                }
             });
+            return isValid;
+        }
 
+        function registerCustomerFormEmailValidate(formElement){
+            var isValid = true;
             $(formElement).find('.cus-email-field').each(function(){
                 if( !validateEmail($(this).val())) {
                     $(this).addClass("error");
                     isValid = false;
-//                    $(formElement).closest('.cd-user-modal').removeClass('is-visible');
                     swal({
-                        title: "Error!",
-                        text: "Email not valid!",
+                        title: "<fmt:message key="site.customer.register.error"/>",
+                        text: "<fmt:message key="site.email.not.valid"/>",
                         type: "error"
                     });
                 } else {
