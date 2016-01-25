@@ -103,9 +103,9 @@
         <div class="col-md-3">
             <jsp:include page="../common/aboutme.jsp"></jsp:include>
 
-            <jsp:include page="../common/recentnew.jsp"></jsp:include>
-
             <jsp:include page="../common/hotproduct.jsp"></jsp:include>
+
+            <jsp:include page="../common/recentnew.jsp"></jsp:include>
 
             <jsp:include page="../common/social.jsp"></jsp:include>
         </div>

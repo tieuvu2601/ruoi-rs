@@ -1,6 +1,6 @@
 <%@ include file="/common/taglibs.jsp" %>
-<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
-    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+<div class="cd-user-modal">
+    <div class="cd-user-modal-container">
         <ul class="cd-switcher">
             <li><a href="javascript:void(0);">Login</a></li>
             <li><a href="javascript:void(0);"><fmt:message key="site.register.get.email"/></a></li>
@@ -61,44 +61,37 @@
                         <label class="input">
                             <i class="icon-append fa fa-user"></i>
                             <form:input path="pojo.fullName" class="required-field cus-fullName"  placeholder="${customerFullNameLabel}"></form:input>
-                            <%--<input type="text" name="item.pojo.fullName" class="required-field cus-fullName">--%>
-                                <%--<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>--%>
+                            <b class="tooltip tooltip-bottom-right">Needed to enter your name</b>
                         </label>
                     </section>
 
                     <section>
                         <label class="input">
                             <i class="icon-append fa fa-envelope"></i>
-                            <form:input path="pojo.email" class="required-field cus-email" placeholder="${customerEmalLabel}"></form:input>
-
-                            <%--<input type="text" name="item.pojo.email" placeholder="<fmt:message key="customer.email"/>" class="required-field cus-email">--%>
-                                <%--<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>--%>
+                            <form:input path="pojo.email" class="required-field cus-email cus-email-field" placeholder="${customerEmalLabel}"></form:input>
+                            <b class="tooltip tooltip-bottom-right">Needed to verify your email</b>
                         </label>
                     </section>
 
                     <section>
                         <label class="input">
                             <i class="icon-append fa fa-phone"></i>
-                            <form:input path="pojo.phoneNumber" class="required-field cus-phoneNumber" placeholder="${customerPhoneNumberLabel}"></form:input>
-
-                            <%--<input type="text" name="item.pojo.phoneNumber" class="cus-phoneNumber"  placeholder="<fmt:message key="customer.phone.number"/>">--%>
-                                <%--<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>--%>
+                            <form:input path="pojo.phoneNumber" class="cus-phoneNumber" placeholder="${customerPhoneNumberLabel}"></form:input>
+                            <b class="tooltip tooltip-bottom-right">Needed to enter your phone number</b>
                         </label>
                     </section>
 
                     <section>
                         <label class="input">
                             <i class="icon-append fa fa-map-marker"></i>
-                            <form:input path="pojo.address" class="required-field cus-address" placeholder="${customerAddressLabel}"></form:input>
-
-                            <%--<input type="text" name="item.pojo.address" class="cus-address"  placeholder="<fmt:message key="customer.address"/>">--%>
-                                <%--<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>--%>
+                            <form:input path="pojo.address" class="cus-address" placeholder="${customerAddressLabel}"></form:input>
+                            <b class="tooltip tooltip-bottom-right">Needed to enter your address</b>
                         </label>
                     </section>
 
                     <section>
                         <label class="select">
-                            <form:select path="pojo.location.locationId" class="required-field cus-fullName">
+                            <form:select path="pojo.location.locationId" cssClass="required-field cus-fullName" cssStyle="padding: 5px 10px;">
                                 <option value="" selected="" disabled=""><fmt:message key="location.title"/></option>
                                 <content:getLocations var="locations"/>
                                 <oscache:cache key="locations_items_register" duration="1">
@@ -107,24 +100,15 @@
                                     </c:forEach>
                                 </oscache:cache>
                             </form:select>
-
-
-                            <%--<select class="cus-location" name="item.pojo.location.locationId">--%>
-                                <%--<option value="" selected="" disabled=""><fmt:message key="location.title"/></option>--%>
-                                <%--<c:forEach var="location" items="${locations}">--%>
-                                    <%--<option value="${location.locationId}">${location.name}</option>--%>
-                                <%--</c:forEach>--%>
-                            <%--</select>--%>
                         </label>
                     </section>
                 </fieldset>
 
                 <footer>
-                    <button class="btn-u" id="register-customer-btn">Register</button>
+                    <a class="btn-u" id="register-customer-btn">Register</a>
                 </footer>
                 <form:hidden path="crudaction" cssClass="crudaction"/>
             </form:form>
-
             <a href="javascript:void(0);" class="cd-close-form">Close</a>
         </div>
     </div>

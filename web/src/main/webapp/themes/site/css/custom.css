@@ -126,5 +126,36 @@ ul.pager.pager-pagination li.active a{
     background-color: #222;
     color: #FFFFFF;
 }
+.contacts-section{
+    background: #999 !important;
+}
 
+.custom-footer .content-lg {
+     padding-top: 20px;
+     padding-bottom: 20px;
+}
 
+.custom-footer .sky-form fieldset{
+    background-color: transparent;
+}
+
+.custom-footer .sky-form input,
+.custom-footer .sky-form select,
+.custom-footer .sky-form select > option{
+    background-color: transparent !important;
+    border: 1px solid #fff;
+    width: 100%;
+    padding: 5px 10px;
+    color: #fff;
+}
+
+.required-field.error{
+    border: 1px solid #e74c3c !important;
+}
+
+.sweet-overlay {
+    z-index: 9999998;
+}
+.sweet-alert {
+    z-index: 9999999;
+}

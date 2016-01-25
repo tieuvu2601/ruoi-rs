@@ -50,7 +50,7 @@
 
     <!-- CSS Header and Footer -->
     <link rel="stylesheet" href="<c:url value="/themes/site/css/headers/header-v8.css"/>">
-    <link rel="stylesheet" href="<c:url value="/themes/site/css/footers/footer-v8.css"/>">
+    <link rel="stylesheet" href="<c:url value="/themes/site/css/footers/footer-v7.css"/>">
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="<c:url value="/themes/site/plugins/animate.css"/>">
@@ -137,11 +137,51 @@
             OwlCarousel.initOwlCarousel2();
             StyleSwitcher.initStyleSwitcher();
             MasterSliderShowcase1.initMasterSliderShowcase1();
-            $("#register-customer-btn").click(function(){
-                $("#registerForm").submit();
+            $("#register-customer-btn").on('click', function(){
+                if(registerCustomerFormValidate($("#registerForm"))){
+                    $("#registerForm").submit();
+                }
+            });
+
+            $("#register-customer-footer-btn").on('click', function(){
+                if(registerCustomerFormValidate($("#registerFormFooter"))){
+                    $("#registerFormFooter").submit();
+                }
             });
         });
 
+        function registerCustomerFormValidate(formElement){
+            var isValid = true;
+            $(formElement).find('.required-field').each(function(){
+               if($.trim($(this).val()) == ""){
+                   $(this).addClass("error");
+                   isValid = false;
+               }  else {
+                   $(this).removeClass("errors");
+               }
+            });
+
+            $(formElement).find('.cus-email-field').each(function(){
+                if( !validateEmail($(this).val())) {
+                    $(this).addClass("error");
+                    isValid = false;
+//                    $(formElement).closest('.cd-user-modal').removeClass('is-visible');
+                    swal({
+                        title: "Error!",
+                        text: "Email not valid!",
+                        type: "error"
+                    });
+                } else {
+                    $(this).removeClass("errors");
+                }
+            });
+            return isValid;
+        }
+
+        function validateEmail(email) {
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            return emailReg.test(email);
+        }
     </script>
 </body>
 </html>
