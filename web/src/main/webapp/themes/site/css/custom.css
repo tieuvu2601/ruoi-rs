@@ -39,6 +39,10 @@
     max-width: 100%;
 }
 
+.product-grid .product-grid-info li{
+    color: #777;
+}
+
 .product-cost span{
     color: #c7254e;
     font-size: 110%;

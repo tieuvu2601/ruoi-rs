@@ -24,7 +24,7 @@
                         <a href="<c:url value="/index.html"/>"><fmt:message key="site.home"/></a>
                     </li>
                     <content:getBuildingMenu var="menuItems"/>
-                    <oscache:cache key="menu_items_top_menu" duration="1">
+                    <oscache:cache key="menu_items_top_menu" duration="3600">
                         <c:forEach var="menuItem" items="${menuItems}">
                             <c:choose>
                                 <c:when test="${menuItem.children != null && fn:length(menuItem.children) > 0}">

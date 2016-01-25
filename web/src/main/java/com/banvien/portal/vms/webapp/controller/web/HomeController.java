@@ -1,5 +1,6 @@
 package com.banvien.portal.vms.webapp.controller.web;
 
+import com.banvien.portal.vms.bean.CustomerBean;
 import com.banvien.portal.vms.domain.ContentEntity;
 import com.banvien.portal.vms.service.ContentService;
 import com.banvien.portal.vms.util.Constants;
@@ -20,6 +21,7 @@ public class HomeController extends ApplicationObjectSupport {
     @RequestMapping({"/index.html", "/"})
     public ModelAndView home() throws Exception{
         ModelAndView mav = new ModelAndView("web/home");
+        mav.addObject("customerForm", new CustomerBean());
         return mav;
     }
 }

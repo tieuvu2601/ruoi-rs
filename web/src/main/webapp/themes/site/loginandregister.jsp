@@ -6,112 +6,126 @@
             <li><a href="javascript:void(0);"><fmt:message key="site.register.get.email"/></a></li>
         </ul>
 
-        <div id="cd-login"> <!-- log in form -->
-            <form class="cd-form" action="<c:url value="/j_security_check"/>" method="post" id="loginForm">
-                <%--<p class="social-login">--%>
-                    <%--<span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>--%>
-                    <%--<span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>--%>
-                    <%--<span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>--%>
-                <%--</p>--%>
+        <div id="cd-login">
+            <form action="<c:url value="/j_security_check"/>" id="loginForm" class="sky-form" novalidate="novalidate">
+                <fieldset>
+                    <section>
+                        <div class="row">
+                            <label class="label col col-4">Username</label>
+                            <div class="col col-8">
+                                <label class="input">
+                                    <i class="icon-append fa fa-user"></i>
+                                    <input type="text" name="j_username">
+                                </label>
+                            </div>
+                        </div>
+                    </section>
 
-                <%--<div class="lined-text"><span>Or use your account on Blog</span><hr></div>--%>
+                    <section>
+                        <div class="row">
+                            <label class="label col col-4">Password</label>
+                            <div class="col col-8">
+                                <label class="input">
+                                    <i class="icon-append fa fa-lock"></i>
+                                    <input type="password" name="j_password">
+                                </label>
+                            </div>
+                        </div>
+                    </section>
 
-                <p class="fieldset">
-                    <label class="image-replace cd-username" for="signin-email">Username</label>
-                    <input name="j_username" class="full-width has-padding has-border" id="signin-email" type="text" placeholder="Username">
-                    <span class="cd-error-message">Error message here!</span>
-                </p>
-
-                <p class="fieldset">
-                    <label class="image-replace cd-password" for="signin-password">Password</label>
-                    <input name="j_password" class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Password">
-                    <a href="javascript:void(0);" class="hide-password">Show</a>
-                    <span class="cd-error-message">Error message here!</span>
-                </p>
-
-                <p class="fieldset">
-                    <input type="checkbox" id="remember-me" checked>
-                    <label for="remember-me">Remember me</label>
-                </p>
-
-                <p class="fieldset">
-                    <input class="full-width" type="submit" value="Login" onclick="$('#loginForm').submit();"/>
-                </p>
+                    <section>
+                        <div class="row">
+                            <div class="col col-4"></div>
+                            <div class="col col-8">
+                                <label class="checkbox"><input type="checkbox" name="remember" checked=""><i></i>Keep me logged in</label>
+                            </div>
+                        </div>
+                    </section>
+                </fieldset>
+                <footer>
+                    <button type="submit" class="btn-u" onclick="$('#loginForm').submit();">Log in</button>
+                </footer>
             </form>
+        </div>
 
-            <p class="cd-form-bottom-message"><a href="javascript:void(0);">Forgot your password?</a></p>
-            <!-- <a href="javascript:void(0);" class="cd-close-form">Close</a> -->
-        </div> <!-- cd-login -->
+        <div id="cd-signup">
+            <c:url var="customerFormUrl" value="/register-customer.html"/>
+            <fmt:message var="customerFullNameLabel" key="customer.full.name"/>
+            <fmt:message var="customerEmalLabel" key="customer.email"/>
+            <fmt:message var="customerPhoneNumberLabel" key="customer.phone.number"/>
+            <fmt:message var="customerAddressLabel" key="customer.address"/>
 
-        <div id="cd-signup"> <!-- sign up form -->
-            <form class="cd-form">
-                <%--<p class="social-login">--%>
-                    <%--<span class="social-login-facebook"><a href="#"><i class="fa fa-facebook"></i> Facebook</a></span>--%>
-                    <%--<span class="social-login-google"><a href="#"><i class="fa fa-google"></i> Google</a></span>--%>
-                    <%--<span class="social-login-twitter"><a href="#"><i class="fa fa-twitter"></i> Twitter</a></span>--%>
-                <%--</p>--%>
+            <form:form commandName="customerForm" action="${customerFormUrl}" method="post" id="registerForm" cssClass="sky-form register-form">
+                <fieldset>
+                    <section>
+                        <label class="input">
+                            <i class="icon-append fa fa-user"></i>
+                            <form:input path="pojo.fullName" class="required-field cus-fullName"  placeholder="${customerFullNameLabel}"></form:input>
+                            <%--<input type="text" name="item.pojo.fullName" class="required-field cus-fullName">--%>
+                                <%--<b class="tooltip tooltip-bottom-right">Needed to enter the website</b>--%>
+                        </label>
+                    </section>
 
-                <%--<div class="lined-text"><span>Or register your new account on Blog</span><hr></div>--%>
+                    <section>
+                        <label class="input">
+                            <i class="icon-append fa fa-envelope"></i>
+                            <form:input path="pojo.email" class="required-field cus-email" placeholder="${customerEmalLabel}"></form:input>
 
-                <p class="fieldset">
-                    <label class="image-replace cd-username" for="signup-username"><fmt:message key="customer.full.name"/></label>
-                    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="<fmt:message key="customer.full.name"/>">
-                    <span class="cd-error-message">Error message here!</span>
-                </p>
+                            <%--<input type="text" name="item.pojo.email" placeholder="<fmt:message key="customer.email"/>" class="required-field cus-email">--%>
+                                <%--<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>--%>
+                        </label>
+                    </section>
 
-                <p class="fieldset">
-                    <label class="image-replace cd-email" for="signup-email">E-mail</label>
-                    <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
-                    <span class="cd-error-message">Error message here!</span>
-                </p>
+                    <section>
+                        <label class="input">
+                            <i class="icon-append fa fa-phone"></i>
+                            <form:input path="pojo.phoneNumber" class="required-field cus-phoneNumber" placeholder="${customerPhoneNumberLabel}"></form:input>
 
-                <p class="fieldset">
-                    <label class="image-replace " for="signup-phone"><i class="fa fa-phone"></i></label>
-                    <input class="full-width has-padding has-border" id="signup-phone" type="phone" placeholder="<fmt:message key="customer.phone.number"/>">
-                    <span class="cd-error-message">Error message here!</span>
-                </p>
+                            <%--<input type="text" name="item.pojo.phoneNumber" class="cus-phoneNumber"  placeholder="<fmt:message key="customer.phone.number"/>">--%>
+                                <%--<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>--%>
+                        </label>
+                    </section>
 
-                <p class="fieldset">
-                    <label class="" for="signup-location"></label>
-                    <select class="full-width has-padding has-border" id="signup-location">
-                        <option>Location 1</option>
-                        <option>Location 2</option>
-                        <option>Location 3</option>
-                        <option>Location 4</option>
-                    </select>
-                    <span class="cd-error-message">Error message here!</span>
-                </p>
+                    <section>
+                        <label class="input">
+                            <i class="icon-append fa fa-map-marker"></i>
+                            <form:input path="pojo.address" class="required-field cus-address" placeholder="${customerAddressLabel}"></form:input>
 
-                <p class="fieldset">
-                    <input type="checkbox" id="accept-terms">
-                    <label for="accept-terms">I agree to the <a href="javascript:void(0);">Terms</a></label>
-                </p>
+                            <%--<input type="text" name="item.pojo.address" class="cus-address"  placeholder="<fmt:message key="customer.address"/>">--%>
+                                <%--<b class="tooltip tooltip-bottom-right">Needed to verify your account</b>--%>
+                        </label>
+                    </section>
 
-                <p class="fieldset">
-                    <input class="full-width has-padding" type="submit" value="Create account">
-                </p>
-            </form>
+                    <section>
+                        <label class="select">
+                            <form:select path="pojo.location.locationId" class="required-field cus-fullName">
+                                <option value="" selected="" disabled=""><fmt:message key="location.title"/></option>
+                                <content:getLocations var="locations"/>
+                                <oscache:cache key="locations_items_register" duration="1">
+                                    <c:forEach var="location" items="${locations}">
+                                        <option value="${location.locationId}">${location.name}</option>
+                                    </c:forEach>
+                                </oscache:cache>
+                            </form:select>
+
+
+                            <%--<select class="cus-location" name="item.pojo.location.locationId">--%>
+                                <%--<option value="" selected="" disabled=""><fmt:message key="location.title"/></option>--%>
+                                <%--<c:forEach var="location" items="${locations}">--%>
+                                    <%--<option value="${location.locationId}">${location.name}</option>--%>
+                                <%--</c:forEach>--%>
+                            <%--</select>--%>
+                        </label>
+                    </section>
+                </fieldset>
+
+                <footer>
+                    <button class="btn-u" id="register-customer-btn">Register</button>
+                </footer>
+                <form:hidden path="crudaction" cssClass="crudaction"/>
+            </form:form>
 
             <a href="javascript:void(0);" class="cd-close-form">Close</a>
-        </div> <!-- cd-signup -->
-
-        <%--<div id="cd-reset-password"> <!-- reset password form -->--%>
-            <%--<p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>--%>
-
-            <%--<form class="cd-form">--%>
-                <%--<p class="fieldset">--%>
-                    <%--<label class="image-replace cd-email" for="reset-email">E-mail</label>--%>
-                    <%--<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">--%>
-                    <%--<span class="cd-error-message">Error message here!</span>--%>
-                <%--</p>--%>
-
-                <%--<p class="fieldset">--%>
-                    <%--<input class="full-width has-padding" type="submit" value="Reset password">--%>
-                <%--</p>--%>
-            <%--</form>--%>
-
-            <%--<p class="cd-form-bottom-message"><a href="javascript:void(0);">Back to log-in</a></p>--%>
-        <%--</div> <!-- cd-reset-password -->--%>
-        <%--<a href="javascript:void(0);" class="cd-close-form">Close</a>--%>
-    </div> <!-- cd-user-modal-container -->
-</div> <!-- cd-user-modal -->
+        </div>
+    </div>
+</div>

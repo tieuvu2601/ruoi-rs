@@ -1,5 +1,6 @@
 package com.banvien.portal.vms.webapp.controller.web;
 
+import com.banvien.portal.vms.bean.CustomerBean;
 import com.banvien.portal.vms.bean.SearchBean;
 import com.banvien.portal.vms.domain.CategoryEntity;
 import com.banvien.portal.vms.domain.ContentEntity;
@@ -63,6 +64,7 @@ public class SiteController extends ApplicationObjectSupport {
             }
         }
         mav.addObject(Constants.LIST_MODEL_KEY, contents);
+        mav.addObject("customerForm", new CustomerBean());
         return mav;
     }
 
@@ -77,6 +79,7 @@ public class SiteController extends ApplicationObjectSupport {
         } catch (Exception e){
 
         }
+        mav.addObject("customerForm", new CustomerBean());
         return mav;
     }
 
@@ -105,6 +108,7 @@ public class SiteController extends ApplicationObjectSupport {
             }
         }
         mav.addObject(Constants.LIST_MODEL_KEY, listResult);
+        mav.addObject("customerForm", new CustomerBean());
         return mav;
     }
 
@@ -117,6 +121,7 @@ public class SiteController extends ApplicationObjectSupport {
             maxPageNumber = (totalItem - (totalItem % maxPageSize))/maxPageSize + 1;
         }
         mav.addObject("maxPageNumber", maxPageNumber);
+        mav.addObject("customerForm", new CustomerBean());
     }
 
     @RequestMapping(value = "/news/{newId}/{newTitle}.html")
@@ -130,6 +135,7 @@ public class SiteController extends ApplicationObjectSupport {
         } catch (Exception e){
 
         }
+        mav.addObject("customerForm", new CustomerBean());
         return mav;
     }
 
@@ -145,6 +151,7 @@ public class SiteController extends ApplicationObjectSupport {
         } catch (Exception e){
 
         }
+        mav.addObject("customerForm", new CustomerBean());
         return mav;
     }
 
@@ -192,6 +199,7 @@ public class SiteController extends ApplicationObjectSupport {
             getMaxPageNumber(currentPage, totalItem, maxPageSize, mav);
         }
         mav.addObject(Constants.FORM_MODEL_KEY, bean);
+        mav.addObject("customerForm", new CustomerBean());
         return mav;
     }
 
@@ -230,6 +238,7 @@ public class SiteController extends ApplicationObjectSupport {
         mav.addObject("categoryResult", categoryResult);
         mav.addObject("mapContentResult", mapContentResult);
         mav.addObject("totalContent", contentList.size());
+        mav.addObject("customerForm", new CustomerBean());
         return mav;
     }
 

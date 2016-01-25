@@ -160,8 +160,8 @@ CREATE TABLE Content (
 );
 
 
-DROP TABLE IF EXISTS Customer;
-CREATE TABLE Customer (
+DROP TABLE IF EXISTS customer;
+CREATE TABLE customer (
    CustomerID bigint(20) NOT NULL AUTO_INCREMENT,
    FullName VARCHAR (255),
    Email VARCHAR(100),
@@ -207,9 +207,45 @@ ALTER TABLE Content ADD COLUMN Header VARCHAR(255);
 
 ALTER TABLE Content MODIFY XmlData MEDIUMTEXT;
 
+---------------------------------------------------------------
+
+ALTER TABLE content ADD COLUMN EmailSubject VARCHAR(512);
+ALTER TABLE content ADD COLUMN EmailContent text;
 
 
 
-Product
+DROP TABLE IF EXISTS sitesetting;
+CREATE TABLE sitesetting (
+  SiteSettingID bigint(20) NOT NULL AUTO_INCREMENT,
+  GoogleAccount VARCHAR(255),
+  PasswordGoogleAccount VARCHAR(255),
+  PRIMARY KEY (SiteSettingID)
+);
+
+
+INSERT INTO sitesetting(SiteSettingID, GoogleAccount, PasswordGoogleAccount)
+VALUES (1, 'tieuvu2601@gmail.com', 'ThienDuong0209');
+
+----------------------------------------------------------------------
+
+DROP TABLE IF EXISTS customer;
+CREATE TABLE customer (
+   CustomerID bigint(20) NOT NULL AUTO_INCREMENT,
+   FullName VARCHAR (255),
+   Email VARCHAR(100),
+   PhoneNumber VARCHAR(100),
+   LocationID BIGINT NOT NULL,
+   Address VARCHAR(255),
+   Description VARCHAR(255),
+   CreatedDate TIMESTAMP NOT NULL,
+   ModifiedDate TIMESTAMP,
+   CreatedBy bigint(20),
+   PRIMARY KEY (CustomerID),
+   UNIQUE KEY (Email),
+   FOREIGN KEY (LocationID) REFERENCES Location(LocationID) ON DELETE NO ACTION ON UPDATE NO ACTION,
+   FOREIGN KEY (CreatedBy) REFERENCES Users(UserID) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+
+
 
 

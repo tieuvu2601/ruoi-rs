@@ -4,10 +4,15 @@ import com.banvien.portal.vms.bean.CustomerBean;
 import com.banvien.portal.vms.domain.CustomerEntity;
 import com.banvien.portal.vms.domain.LocationEntity;
 import com.banvien.portal.vms.domain.UserEntity;
+import com.banvien.portal.vms.dto.CustomerDTO;
+import com.banvien.portal.vms.editor.CustomDateEditor;
+import com.banvien.portal.vms.editor.PojoEditor;
+import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.security.SecurityUtils;
 import com.banvien.portal.vms.service.CustomerService;
 import com.banvien.portal.vms.service.LocationService;
+import com.banvien.portal.vms.service.UserService;
 import com.banvien.portal.vms.util.Constants;
 import com.banvien.portal.vms.util.RequestUtil;
 import com.banvien.portal.vms.webapp.validator.CustomerValidator;
@@ -17,11 +22,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +47,17 @@ public class CustomerController extends ApplicationObjectSupport {
     private LocationService locationService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private CustomerValidator customerValidator;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(Date.class, new CustomDateEditor());
+        binder.registerCustomEditor(UserEntity.class, new PojoEditor(UserEntity.class, "userId", Long.class));
+        binder.registerCustomEditor(LocationEntity.class, new PojoEditor(LocationEntity.class, "locationId", Long.class));
+    }
 
     @RequestMapping("/admin/customer/edit.html")
     public ModelAndView edit(@ModelAttribute(Constants.FORM_MODEL_KEY) CustomerBean bean, BindingResult bindingResult){
@@ -128,4 +148,40 @@ public class CustomerController extends ApplicationObjectSupport {
         bean.setListResult((List<CustomerEntity>)results[1]);
         bean.setTotalItems(Integer.valueOf(results[0].toString()));
     }
+
+    @RequestMapping(value = "/register-customer.html")
+    public ModelAndView registerCustomerForPage(@ModelAttribute("customerForm") CustomerBean bean, BindingResult bindingResult) throws DuplicateException {
+        ModelAndView mav = new ModelAndView("/admin/customer/register");
+        CustomerEntity pojo = bean.getPojo();
+        CustomerEntity customerHasEmail = null;
+        try {
+            customerHasEmail = this.customerService.findByEmail(pojo.getEmail());
+        } catch (ObjectNotFoundException e) { }
+
+        if(customerHasEmail != null && customerHasEmail.getCustomerId() != null && customerHasEmail.getCustomerId() > 0){
+            pojo.setCustomerId(customerHasEmail.getCustomerId());
+            pojo.setCreatedDate(customerHasEmail.getCreatedDate());
+            pojo.setCreatedBy(customerHasEmail.getCreatedBy());
+        }
+        try{
+            if(pojo.getCustomerId() != null && pojo.getCustomerId() >0 ){
+                pojo.setModifiedDate(new Timestamp(System.currentTimeMillis()));
+                this.customerService.detach(customerHasEmail);
+                pojo = this.customerService.update(pojo);
+                mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.update.successful"));
+            }
+            else {
+                pojo.setCreatedBy(null);
+                pojo.setCreatedDate(new Timestamp(System.currentTimeMillis()));
+                pojo = this.customerService.save(pojo);
+                mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.add.successful"));
+            }
+            mav = new ModelAndView("redirect:/index.html");
+        }catch(Exception e) {
+            logger.error(e.getMessage(), e);
+            mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("general.exception.msg"));
+        }
+        return mav;
+    }
+
 }

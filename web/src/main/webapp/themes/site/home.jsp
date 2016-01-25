@@ -66,6 +66,8 @@
     <link rel="stylesheet" href="<c:url value="/themes/site/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css"/>">
     <link rel="stylesheet" href="<c:url value="/themes/site/plugins/login-signup-modal-window/css/style.css"/>">
 
+    <link rel="stylesheet" href="<c:url value="/themes/admin/vendor/sweetalert/lib/sweet-alert.css"/>">
+
     <!-- CSS Theme -->
     <link rel="stylesheet" href="<c:url value="/themes/site/css/theme-colors/green.css"/>">
     <link rel="stylesheet" href="<c:url value="/themes/site/css/theme-skins/dark.css"/>">
@@ -115,6 +117,7 @@
     <script src="<c:url value="/themes/site/js/plugins/owl-carousel.js"/>"></script>
     <script src="<c:url value="/themes/site/js/plugins/master-slider-showcase1.js"/>"></script>
     <script src="<c:url value="/themes/site/js/plugins/style-switcher.js"/>"></script>
+    <script src="<c:url value="/themes/admin/vendor/sweetalert/lib/sweet-alert.min.js"/>"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -134,7 +137,11 @@
             OwlCarousel.initOwlCarousel2();
             StyleSwitcher.initStyleSwitcher();
             MasterSliderShowcase1.initMasterSliderShowcase1();
+            $("#register-customer-btn").click(function(){
+                $("#registerForm").submit();
+            });
         });
+
     </script>
 </body>
 </html>

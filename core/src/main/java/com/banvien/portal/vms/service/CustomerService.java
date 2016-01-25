@@ -2,6 +2,7 @@ package com.banvien.portal.vms.service;
 
 import com.banvien.portal.vms.domain.CustomerEntity;
 import com.banvien.portal.vms.domain.RoleEntity;
+import com.banvien.portal.vms.dto.CustomerDTO;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 

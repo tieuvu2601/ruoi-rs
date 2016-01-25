@@ -3,7 +3,9 @@ package com.banvien.portal.vms.service.impl;
 import com.banvien.portal.vms.dao.GenericDAO;
 import com.banvien.portal.vms.dao.CustomerDAO;
 import com.banvien.portal.vms.domain.CustomerEntity;
+import com.banvien.portal.vms.domain.LocationEntity;
 import com.banvien.portal.vms.domain.UserEntity;
+import com.banvien.portal.vms.dto.CustomerDTO;
 import com.banvien.portal.vms.exception.DuplicateException;
 import com.banvien.portal.vms.exception.ObjectNotFoundException;
 import com.banvien.portal.vms.service.CustomerService;
@@ -47,10 +49,12 @@ public class CustomerServiceImpl extends GenericServiceImpl<CustomerEntity, Long
     public Integer deleteItems(String[] checkList) {
         Integer res = 0;
         if (checkList != null && checkList.length > 0) {
-            res = checkList.length;
-            for (String id : checkList) {
-                this.customerDAO.delete(Long.parseLong(id));
-            }
+            try{
+                res = checkList.length;
+                for (String id : checkList) {
+                    this.customerDAO.delete(Long.parseLong(id));
+                }
+            }catch (Exception e){ }
         }
         return res;
     }
