@@ -3579,10 +3579,15 @@ img.image-md {
   padding-bottom: 0 !important;
 }
 
-.content-xs {
-  padding-top: 20px;
-  padding-bottom: 20px;
+.content-xxs {
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
+
+.content-xs {
+     padding-top: 20px;
+     padding-bottom: 20px;
+ }
 
 .content {
   padding-top: 40px;
@@ -3756,6 +3761,7 @@ img.image-md {
 .bg-color-dark-blue { background-color: #4765a0 !important;}
 .bg-color-light-grey { background-color: #585f69 !important;}
 .bg-color-light-green { background-color: #79d5b3 !important;}
+.bg-color-site-default { background-color: #019348 !important;}
 
 .rgba-red { background-color: rgba(231,76,60,0.8);}
 .rgba-blue{ background-color: rgba(52,152,219,0.8);}

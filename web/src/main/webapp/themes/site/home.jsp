@@ -79,6 +79,13 @@
     <script src="<c:url value="/themes/site/plugins/jquery/jquery.min.js"/>"></script>
     <script src="<c:url value="/themes/site/plugins/jquery/jquery-migrate.min.js"/>"></script>
     <script src="<c:url value="/themes/site/plugins/bootstrap/js/bootstrap.min.js"/>"></script>
+
+    <style>
+        <content:getConfigurationSite var="configuration"/>
+        <oscache:cache key="site_configuration_custom_css_cache" duration="3600">
+            ${configuration.customCSS}
+        </oscache:cache>
+    </style>
 <decorator:head/>
 <c:set var="domainUrl" value="${pageContext.request.serverName}"/>
 <body class="header-fixed header-fixed-space-v2" domainUrl="${domainUrl}">

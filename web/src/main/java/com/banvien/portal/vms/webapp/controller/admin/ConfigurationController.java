@@ -81,13 +81,8 @@ public class ConfigurationController extends ApplicationObjectSupport {
             }
         }
         if(!bindingResult.hasErrors()){
-            try{
-                ConfigurationEntity configuration = configurationService.getConfigurationSite();
-                bean.setPojo(configuration);
-            }catch (ObjectNotFoundException ex) {
-                logger.error(ex.getMessage(), ex);
-                mav.addObject("messageResponse", this.getMessageSourceAccessor().getMessage("database.exception.keynotfound"));
-            }
+            ConfigurationEntity configuration = configurationService.getConfigurationSite();
+            bean.setPojo(configuration);
         }
         mav.addObject(Constants.FORM_MODEL_KEY, bean);
         return mav;

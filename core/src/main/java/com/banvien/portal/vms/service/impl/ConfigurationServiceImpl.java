@@ -37,7 +37,7 @@ public class ConfigurationServiceImpl extends GenericServiceImpl<ConfigurationEn
     }
 
     @Override
-    public ConfigurationEntity getConfigurationSite() throws ObjectNotFoundException {
+    public ConfigurationEntity getConfigurationSite(){
         List<ConfigurationEntity> listConfigurations = this.configurationDAO.findAll();
         if(listConfigurations != null && listConfigurations.size() > 0){
             return listConfigurations.get(0);

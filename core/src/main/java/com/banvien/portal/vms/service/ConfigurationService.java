@@ -13,5 +13,5 @@ public interface ConfigurationService extends GenericService<ConfigurationEntity
 
     ConfigurationEntity updateItem(ConfigurationEntity pojo) throws ObjectNotFoundException, DuplicateException;
 
-    ConfigurationEntity getConfigurationSite() throws ObjectNotFoundException;
+    ConfigurationEntity getConfigurationSite();
 }

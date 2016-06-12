@@ -8,7 +8,6 @@
                     <li><i class="fa fa-map-marker"></i> <fmt:message key="site.footer.address"/></li>
                     <li><i class="fa fa-phone"></i> <fmt:message key="site.author.phonenumber"/></li>
                     <li><i class="fa fa-envelope"></i> <a href="mailto:<fmt:message key="site.author.email"/>?subject=T%C6%B0%20v%E1%BA%A5n%20v%E1%BB%81%20d%E1%BB%B1%20%C3%A1n%20b%E1%BA%A5t%20%C4%91%E1%BB%99ng%20s%E1%BA%A3n"><fmt:message key="site.author.email"/></a></li>
-                    <%--<li><i class="fa fa-globe"></i> <a href="http://htmlstream.com/">www.htmlstream.com</a></li>--%>
                 </ul>
             </div>
 
@@ -74,4 +73,14 @@
             </div>
         </div>
     </div>
+    <content:getConfigurationSite var="configuration"/>
+    <oscache:cache key="site_configuration_hot_line_cache" duration="3600">
+        <i class="style-switcher-btn hidden-xs">${configuration.hotLine}</i>
+        <%--<div class="style-switcher animated fadeInRight">--%>
+            <%--<div class="style-swticher-header">--%>
+                <%--<div class="style-switcher-heading">${configuration.hotLine}</div>--%>
+                <%--<div class="theme-close"><i class="icon-close"></i></div>--%>
+            <%--</div>--%>
+        <%--</div><!--/style-switcher-->--%>
+    </oscache:cache>
 </section>

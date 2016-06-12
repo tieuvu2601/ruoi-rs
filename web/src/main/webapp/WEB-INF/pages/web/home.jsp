@@ -12,13 +12,13 @@
 <content:buildSliderHomePage pageSize="5" var="sliderItems"/>
 <oscache:cache key="home_page_slider_item" duration="3600">
     <c:if test="${fn:length(sliderItems) > 0}">
-        <div class="blog-ms-v1 content-sm bg-color-darker margin-bottom-60">
+        <div class="blog-ms-v1 content-xxs bg-color-site-default margin-bottom-40">
             <div class="master-slider ms-skin-default" id="masterslider">
                 <c:forEach var="slider" items="${sliderItems}">
                     <div class="ms-slide blog-slider">
                         <seo:url value="${slider.title}" var="sliderUrl" prefix="/${slider.category.prefixUrl}/${slider.contentId}/"/>
                         <c:set var="sliderThumbnailsUrl" value="/repository${slider.thumbnails}"/>
-                        <img src="<c:url value="/themes/site/plugins/master-slider/masterslider/style/blank.gif"/>" data-src="${sliderThumbnailsUrl}?w=850" alt="${slider.title}"/>
+                        <img src="<c:url value="/themes/site/plugins/master-slider/masterslider/style/blank.gif"/>" data-src="${sliderThumbnailsUrl}?w=1100" alt="${slider.title}"/>
                         <c:if test="${not empty slider.categoryType && not empty slider.categoryType.name}">
                             <span class="blog-slider-badge <c:if test="${slider.hotItem == 1}"> is-hot-product</c:if>">${slider.categoryType.name}</span>
                         </c:if>

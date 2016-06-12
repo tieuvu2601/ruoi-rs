@@ -70,17 +70,29 @@
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="configuration.aboutme"/></label>
-                                <div class="col-sm-8">
-                                    <form:textarea path="pojo.aboutMe" cssClass="form-control" cssStyle="width: 98%; min-height: 100px"/>
+                                <div class="col-sm-5">
+                                    <form:textarea path="pojo.aboutMe" cssClass="form-control richTextEditor" cssStyle="width: 98%; min-height: 100px"/>
                                     <form:errors path="pojo.aboutMe" cssClass="validateError"/>
+                                </div>
+                                <div class="col-sm-5" style="font-size: 80%">
+                                    <i>
+                                        &lt;div class="latest-news"&gt;<br/>
+                                        &nbsp; &nbsp; &lt;img class="user-avatar" src="IMAGE_URL" alt=""&gt;<br/>
+                                        &nbsp; &nbsp; &lt;h3&gt;AUTHOR_NAME&lt;/h3&gt;<br/>
+                                        &nbsp; &nbsp; &lt;h4&gt;Phone Number: PHONE_NUMBER &lt;/h4&gt;<br/>
+                                        &nbsp; &nbsp; &lt;h5&gt;Email: EMAIL@MAIL.COM&lt;/h5&gt;<br/>
+                                        &nbsp; &nbsp; &lt;h5&gt;FaceBook Account: Account Facebook&lt;/h5&gt;<br/>
+                                        &nbsp; &nbsp; &lt;h5&gt;SkypeAccount: SKYPE_ACCOUNT&lt;/h5&gt;<br/>
+                                        &lt;/div&gt;<br/>
+                                    </i>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"><fmt:message key="configuration.custom.css"/></label>
                                 <div class="col-sm-8">
-                                    <form:textarea path="pojo.aboutMe" cssClass="form-control" cssStyle="width: 98%; min-height: 200px"/>
-                                    <form:errors path="pojo.aboutMe" cssClass="validateError"/>
+                                    <form:textarea path="pojo.customCSS" cssClass="form-control" cssStyle="width: 98%; min-height: 200px"/>
+                                    <form:errors path="pojo.customCSS" cssClass="validateError"/>
                                 </div>
                             </div>
 
@@ -99,9 +111,24 @@
     <form:hidden path="crudaction" id="crudaction"/>
     <form:hidden path="pojo.configurationId"/>
 </form:form>
+<c:url var="prefixUrl" value="/"/>
 <script>
     $(document).ready(function(){
 //        setActiveMenu4Admin('#administration_menu', '#user_menu');
+
+        $('.richTextEditor').each(function() {
+            CKEDITOR.timestamp = new Date().getTime(); /*Used to debug*/
+            CKEDITOR.replace($(this).attr('id'),{
+                filebrowserBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserImageBrowseUrl : '${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Image&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserFlashBrowseUrl :'${prefixUrl}ckeditor442/filemanager/browser/default/browser.html?Type=Flash&Connector=${prefixUrl}ckeditor442/filemanager/connectors/php/connector.html?preventCache=' + new Date().getTime(),
+                filebrowserUploadUrl  :'${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=File',
+                filebrowserImageUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Image',
+                filebrowserFlashUploadUrl : '${prefixUrl}ckeditor442/filemanager/connectors/php/upload.html?Type=Flash'
+
+            });
+        });
+
         $("#btnSave").click(function(){
             $("#crudaction").val("insert-update");
             $("#itemForm").submit();

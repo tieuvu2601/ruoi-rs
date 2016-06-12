@@ -11,11 +11,12 @@ var MasterSliderShowcase1 = function () {
 			slider.control('circletimer' , {color:"#fff" , stroke:9});
 			
 			slider.setup('masterslider' , {
-				width:850,
-				height:400,
+                autoplay: true,
+                loop:true,
+				width:1100,
+				height:450,
 				space:10,
-		        speed: 40,				
-				loop:true,
+		        speed: 17,
 				view:'fadeWave',
 				layout:'partialview'
 			});
