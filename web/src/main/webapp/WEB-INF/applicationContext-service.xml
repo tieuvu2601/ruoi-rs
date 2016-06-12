@@ -115,4 +115,8 @@
     <bean id="siteSettingService" class="com.banvien.portal.vms.service.impl.SiteSettingServiceImpl">
         <property name="siteSettingDAO" ref="siteSettingDAO"/>
     </bean>
+
+    <bean id="configurationService" class="com.banvien.portal.vms.service.impl.ConfigurationServiceImpl">
+        <property name="configurationDAO" ref="configurationDAO"/>
+    </bean>
 </beans>
