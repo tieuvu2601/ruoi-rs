@@ -1,0 +1,8 @@
+Deploy Web :
+
+0. Prepare : PuTTy and WinSCP
+1. Login to server at : canhovabietthu.com, password Heaven0209
+2. Update MySQL at :  da_admin/rYorB7OU/RealEstate
+3. Copy file and deploy web app // /usr/share/apache-tomcat-7.0.63 // /usr/share/apache-tomcat-7.0.63/webapps/ROOT
+4. Copy old Config
+5. reboot if have error.
