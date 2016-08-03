@@ -37,7 +37,7 @@ public class SiteController extends ApplicationObjectSupport {
     }
 
 
-    @RequestMapping(value = "/products/{categoryCode}.html")
+    @RequestMapping(value={"/products/{categoryCode}.html", "/du-an/{categoryCode}.html"})
     public ModelAndView viewProducts(@RequestParam(value = "pg", required = false)Integer currentPage,
                                      @PathVariable(value = "categoryCode")String categoryCode){
         ModelAndView mav = new ModelAndView("/web/product/list");
@@ -68,7 +68,7 @@ public class SiteController extends ApplicationObjectSupport {
         return mav;
     }
 
-    @RequestMapping(value = "/products/{productId}/{productTitle}.html")
+    @RequestMapping(value = {"/products/{productId}/{productTitle}.html", "/du-an/{productId}/{productTitle}.html"})
     public ModelAndView viewProduct(@PathVariable(value = "productId")Long productId, @PathVariable(value = "productTitle")String productTitle){
         ModelAndView mav = new ModelAndView("/web/product/view");
         try{
@@ -83,7 +83,7 @@ public class SiteController extends ApplicationObjectSupport {
         return mav;
     }
 
-    @RequestMapping(value = "/news/{categoryCode}.html")
+    @RequestMapping(value = {"/news/{categoryCode}.html", "/tin-tuc/{categoryCode}.html"})
     public ModelAndView viewNews(@RequestParam(value = "pg", required = false)Integer currentPage){
         ModelAndView mav = new ModelAndView("/web/news/list");
         Integer maxPageSize = 20;
@@ -124,7 +124,7 @@ public class SiteController extends ApplicationObjectSupport {
         mav.addObject("customerForm", new CustomerBean());
     }
 
-    @RequestMapping(value = "/news/{newId}/{newTitle}.html")
+    @RequestMapping(value = {"/news/{newId}/{newTitle}.html", "/tin-tuc/{newId}/{newTitle}.html"})
     public ModelAndView viewNew(@PathVariable(value = "newId")Long newId, @PathVariable(value = "newTitle")String newTitle){
         ModelAndView mav = new ModelAndView("/web/news/view");
         try{
@@ -139,7 +139,7 @@ public class SiteController extends ApplicationObjectSupport {
         return mav;
     }
 
-    @RequestMapping(value = "/page/{pageTitle}.html")
+    @RequestMapping(value = {"/page/{pageTitle}.html", "/bai-viet/{pageTitle}.html"})
     public ModelAndView viewPage(@PathVariable(value = "pageTitle")String pageTitle){
         ModelAndView mav = new ModelAndView("/web/page/view");
         try{
@@ -161,7 +161,7 @@ public class SiteController extends ApplicationObjectSupport {
     }
 
 
-    @RequestMapping("/search.html")
+    @RequestMapping(value = {"/search.html", "/tim-kiem.html"})
     public ModelAndView search(@ModelAttribute SearchBean bean, HttpServletRequest request){
         ModelAndView mav = new ModelAndView("web/search");
         String crudaction = bean.getCrudaction();

@@ -100,7 +100,7 @@
                 <c:forEach var="productType" varStatus="productTypeStatus" items="${productTypes}">
                     <c:if test="${productType.totalNumber > 0}">
                         <div class="blog-cars-heading">
-                            <seo:url value="${productType.categoryType.code}" var="productTypeUrl" prefix="/products/"/>
+                            <seo:url value="${productType.categoryType.code}" var="productTypeUrl" prefix="/du-an/"/>
                             <h2><a href="<c:url value="${productTypeUrl}"/>">${productType.categoryType.name}<small>(${productType.totalNumber}&nbsp;<fmt:message key="site.project"/>)</small></a></h2>
 
                             <div class="owl-navigation">
@@ -118,7 +118,7 @@
 
                                 <div class="col-sm-6 sm-margin-bottom-50">
                                     <div class="blog-grid product-grid">
-                                        <seo:url value="${project.title}" var="productUrl" prefix="/products/${project.contentId}/"/>
+                                        <seo:url value="${project.title}" var="productUrl" prefix="/du-an/${project.contentId}/"/>
                                         <div class="blog-grid-hover">
                                             <c:set var="thumbnailsImg" value="/repository${project.thumbnails}"/>
                                             <img class="img-responsive" src="<c:url value="${thumbnailsImg}?w=715"/>" alt="">
